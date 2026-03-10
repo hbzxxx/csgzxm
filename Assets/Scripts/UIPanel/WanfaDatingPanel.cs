@@ -1,0 +1,93 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class WanfaDatingPanel : PanelBase
+{
+    public Transform tran_grid;
+    private List<WanfaView> wanfaViewList = new List<WanfaView>();
+
+    public override void Init(params object[] args)
+    {
+        base.Init(args);
+    }
+
+    public override void OnOpenIng()
+    {
+        base.OnOpenIng();
+        CreateWanfaViews();
+    }
+
+    void CreateWanfaViews()
+    {
+        // 清理之前的视图
+        ClearWanfaViews();
+
+        // 玩法数据配置
+        var wanfaDataList = new List<WanfaData>
+        {
+            new WanfaData 
+            { 
+                title = "达洛尔矿洞", 
+                iconName = "mine_icon", 
+                bgName = "mine_bg",
+                wanfaType = WanfaType.Mining,
+                isEnabled = true
+            },
+            new WanfaData 
+            { 
+                title = "哥布林巢穴", 
+                iconName = "mine_icon", 
+                bgName = "goblin_bg",
+                wanfaType = WanfaType.Goblin,
+                isEnabled = true
+            },
+            new WanfaData 
+            { 
+                title = "", 
+                iconName = "", 
+                bgName = "jqqd_bg",
+                wanfaType = WanfaType.ComingSoon,
+                isEnabled = false
+            }
+        };
+
+        // 创建 WanfaView
+        for (int i = 0; i < wanfaDataList.Count; i++)
+        {
+            Debug.Log("xxxxxxxxxxxxxxxxxxx"+tran_grid);
+            WanfaView view = PanelManager.Instance.OpenSingle<WanfaView>(tran_grid, wanfaDataList[i], this);
+            wanfaViewList.Add(view);
+        }
+    }
+
+    void ClearWanfaViews()
+    {
+        PanelManager.Instance.CloseAllSingle(tran_grid);
+        wanfaViewList.Clear();
+    }
+
+    public override void Clear()
+    {
+        base.Clear();
+        ClearWanfaViews();
+    }
+}
+
+// 玩法数据结构
+public class WanfaData
+{
+    public string title;
+    public string iconName;
+    public string bgName;
+    public WanfaType wanfaType;
+    public bool isEnabled;
+}
+
+// 玩法类型枚举
+public enum WanfaType
+{
+    Mining,
+    Goblin,
+    ComingSoon
+}

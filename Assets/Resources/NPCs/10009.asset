@@ -1,0 +1,8295 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebab6d859aa0bda44a0d1768209204e5, type: 3}
+  m_Name: 10009
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: tasks
+      Entry: 7
+      Data: 0|System.Collections.Generic.List`1[[SingleTask, Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 41
+    - Name: 
+      Entry: 7
+      Data: 1|SingleTask, Assembly-CSharp
+    - Name: block
+      Entry: 5
+      Data: false
+    - Name: theId
+      Entry: 3
+      Data: 165940384700001349
+    - Name: index
+      Entry: 3
+      Data: 0
+    - Name: tagId
+      Entry: 6
+      Data: 
+    - Name: trackingName
+      Entry: 6
+      Data: 
+    - Name: NPCPos
+      Entry: 3
+      Data: 1
+    - Name: condition
+      Entry: 7
+      Data: 2|System.Collections.Generic.List`1[[TaskCondition, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 3|TaskCondition, Assembly-CSharp
+    - Name: taskConditionType
+      Entry: 3
+      Data: 5
+    - Name: param
+      Entry: 1
+      Data: 10002_12
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: TaskGuideId
+      Entry: 3
+      Data: 0
+    - Name: taskType
+      Entry: 3
+      Data: 40
+    - Name: taskRepeatType
+      Entry: 3
+      Data: 2
+    - Name: repeatTime
+      Entry: 3
+      Data: 0
+    - Name: isNeedItem
+      Entry: 5
+      Data: false
+    - Name: needReceiveItem
+      Entry: 5
+      Data: false
+    - Name: needItem
+      Entry: 3
+      Data: 0
+    - Name: needNum
+      Entry: 3
+      Data: 0
+    - Name: isNeedKillEnemy
+      Entry: 5
+      Data: false
+    - Name: needKillEnemy
+      Entry: 3
+      Data: 0
+    - Name: needKillEnemyNum
+      Entry: 3
+      Data: 0
+    - Name: isNeedDanFarmNum
+      Entry: 5
+      Data: false
+    - Name: needDanFarmId
+      Entry: 3
+      Data: 0
+    - Name: needDanFarmNum
+      Entry: 3
+      Data: 0
+    - Name: needPlayerLevel
+      Entry: 3
+      Data: 0
+    - Name: commonAccomplishCondition
+      Entry: 1
+      Data: 10000|1
+    - Name: des
+      Entry: 1
+      Data: "\u524D\u5F80\u3010\u4E0B\u5C71\u3011-\u3010\u754C\u57DF\u3011-\u3010\u4E91\u6D77\u5B97\u3011-\u3010\u79D8\u5883\u3011\u63A2\u7D22\u4E00\u6B21"
+    - Name: awardList
+      Entry: 7
+      Data: 4|System.Collections.Generic.List`1[[System.String, mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 1
+      Data: 10001|10000
+    - Name: 
+      Entry: 1
+      Data: 365001|10
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: ifAppearInform
+      Entry: 5
+      Data: true
+    - Name: appearTxt
+      Entry: 1
+      Data: "\u95FB\u5230\u4E00\u4E1D\u82E5\u6709\u82E5\u65E0\u7684\u6E29\u8F6F\u4F53\u9999\uFF0C\u201D\u5E1D\u6B8A\uFF0C\u662F\u4F60\u5417\uFF1F\u201C\u7136\u800C\u56DE\u5E94\u4F60\u7684\u662F\u4E00\u4E2A\u964C\u751F\u5C11\u5973\u7684\u58F0\u97F3\u3002"
+    - Name: ifDialogBefore
+      Entry: 5
+      Data: true
+    - Name: dialogList
+      Entry: 7
+      Data: 5|System.Collections.Generic.List`1[[DialogEditorData, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 6
+    - Name: 
+      Entry: 7
+      Data: 6|DialogEditorData, Assembly-CSharp
+    - Name: type
+      Entry: 3
+      Data: 2
+    - Name: content
+      Entry: 1
+      Data: "\u201D\u5E1D\u6B8A\u2026\u2026\u5E1D\u6B8A\u662F\u8C01\u554A\uFF1F\u201C"
+    - Name: ifPlayerAnswer
+      Entry: 5
+      Data: true
+    - Name: answerList
+      Entry: 7
+      Data: 7|System.Collections.Generic.List`1[[System.String, mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 1
+      Data: "\u662F\u4E00\u4E2A\u6545\u4EBA"
+    - Name: 
+      Entry: 1
+      Data: "\u6CA1\u4EC0\u4E48\u2026\u2026"
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 8|DialogEditorData, Assembly-CSharp
+    - Name: type
+      Entry: 3
+      Data: 2
+    - Name: content
+      Entry: 1
+      Data: "\u542C\u8BF4\u4F60\u4EEC\u628A\u4E91\u6D77\u5B97\u7684\u5996\u602A\u6D88\u706D\u4E86\uFF0C\u771F\u5389\u5BB3\u5440\uFF01"
+    - Name: ifPlayerAnswer
+      Entry: 5
+      Data: false
+    - Name: answerList
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 9|DialogEditorData, Assembly-CSharp
+    - Name: type
+      Entry: 3
+      Data: 2
+    - Name: content
+      Entry: 1
+      Data: "\u65E9\u5C31\u542C\u95FB\u5B63\u72F8\u8FB9\u5883\u9644\u8FD1\u7684\u4E91\u6D77\u5B97\u6709\u5996\u65CF\u5728\u4F5C\u4E71\uFF0C\u539F\u4EE5\u4E3A\u662F\u4F20\u8A00\uFF0C\u672A\u66FE\u60F3\u7ADF\u7136\u662F\u771F\u7684\u3002"
+    - Name: ifPlayerAnswer
+      Entry: 5
+      Data: false
+    - Name: answerList
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 10|DialogEditorData, Assembly-CSharp
+    - Name: type
+      Entry: 3
+      Data: 2
+    - Name: content
+      Entry: 1
+      Data: "\u4E0D\u8FC7\uFF0C\u5996\u65CF\u7684\u771F\u9762\u76EE\u90FD\u5728\u201D\u88C2\u9699\u201C\uFF0C\u4E0D\u628A\u201D\u88C2\u9699\u201C\u4E2D\u7684\u5996\u65CF\u6D88\u706D\uFF0C\u5B83\u4EEC\u8FDF\u65E9\u6709\u4E00\u5929\u8981\u5377\u571F\u91CD\u6765\u3002"
+    - Name: ifPlayerAnswer
+      Entry: 5
+      Data: false
+    - Name: answerList
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 11|DialogEditorData, Assembly-CSharp
+    - Name: type
+      Entry: 3
+      Data: 0
+    - Name: content
+      Entry: 1
+      Data: "\u770B\u6765\uFF0C\u8981\u627E\u5230\u5E1D\u6B8A\uFF0C\u8FD9\u88C2\u9699\u662F\u975E\u53BB\u4E00\u8D9F\u4E0D\u53EF\u4E86\u3002"
+    - Name: ifPlayerAnswer
+      Entry: 5
+      Data: false
+    - Name: answerList
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 12|DialogEditorData, Assembly-CSharp
+    - Name: type
+      Entry: 3
+      Data: 2
+    - Name: content
+      Entry: 1
+      Data: "\u4E0D\u8FC7\uFF0C\u626B\u6E05\u4E91\u6D77\u5B97\u7684\u9B54\u4FEE\u540E\uFF0C\u90A3\u513F\u7684\u79D8\u5883\u5F00\u653E\u4E86\uFF0C\u524D\u53BB\u63A2\u7D22\u8BD5\u8BD5\u5427\u3002"
+    - Name: ifPlayerAnswer
+      Entry: 5
+      Data: false
+    - Name: answerList
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: ifDialogAfter
+      Entry: 5
+      Data: true
+    - Name: dialogListAfter
+      Entry: 7
+      Data: 13|System.Collections.Generic.List`1[[DialogEditorData, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 14|DialogEditorData, Assembly-CSharp
+    - Name: type
+      Entry: 3
+      Data: 2
+    - Name: content
+      Entry: 1
+      Data: "\u79D8\u5883\u7684\u6536\u83B7\u5F88\u4E30\u5BCC\u5427\uFF01"
+    - Name: ifPlayerAnswer
+      Entry: 5
+      Data: false
+    - Name: answerList
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 15|SingleTask, Assembly-CSharp
+    - Name: block
+      Entry: 5
+      Data: false
+    - Name: theId
+      Entry: 3
+      Data: 165940443900002379
+    - Name: index
+      Entry: 3
+      Data: 1
+    - Name: tagId
+      Entry: 6
+      Data: 
+    - Name: trackingName
+      Entry: 6
+      Data: 
+    - Name: NPCPos
+      Entry: 3
+      Data: 1
+    - Name: condition
+      Entry: 7
+      Data: 16|System.Collections.Generic.List`1[[TaskCondition, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 17|TaskCondition, Assembly-CSharp
+    - Name: taskConditionType
+      Entry: 3
+      Data: 4
+    - Name: param
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: TaskGuideId
+      Entry: 3
+      Data: 0
+    - Name: taskType
+      Entry: 3
+      Data: 27
+    - Name: taskRepeatType
+      Entry: 3
+      Data: 2
+    - Name: repeatTime
+      Entry: 3
+      Data: 0
+    - Name: isNeedItem
+      Entry: 5
+      Data: false
+    - Name: needReceiveItem
+      Entry: 5
+      Data: false
+    - Name: needItem
+      Entry: 3
+      Data: 0
+    - Name: needNum
+      Entry: 3
+      Data: 0
+    - Name: isNeedKillEnemy
+      Entry: 5
+      Data: false
+    - Name: needKillEnemy
+      Entry: 3
+      Data: 0
+    - Name: needKillEnemyNum
+      Entry: 3
+      Data: 0
+    - Name: isNeedDanFarmNum
+      Entry: 5
+      Data: false
+    - Name: needDanFarmId
+      Entry: 3
+      Data: 0
+    - Name: needDanFarmNum
+      Entry: 3
+      Data: 0
+    - Name: needPlayerLevel
+      Entry: 3
+      Data: 0
+    - Name: commonAccomplishCondition
+      Entry: 1
+      Data: 3
+    - Name: des
+      Entry: 1
+      Data: "\u5728\u3010\u961F\u4F0D\u3011\u5904\u4E0A\u9635\u4E09\u540D\u4FEE\u6B66\u5F1F\u5B50"
+    - Name: awardList
+      Entry: 7
+      Data: 18|System.Collections.Generic.List`1[[System.String, mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 1
+      Data: 10001|10000
+    - Name: 
+      Entry: 1
+      Data: 365001|10
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: ifAppearInform
+      Entry: 5
+      Data: false
+    - Name: appearTxt
+      Entry: 6
+      Data: 
+    - Name: ifDialogBefore
+      Entry: 5
+      Data: true
+    - Name: dialogList
+      Entry: 7
+      Data: 19|System.Collections.Generic.List`1[[DialogEditorData, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 20|DialogEditorData, Assembly-CSharp
+    - Name: type
+      Entry: 3
+      Data: 2
+    - Name: content
+      Entry: 1
+      Data: "\u4FEE\u6B66\u5F1F\u5B50\u8981\u591F\u591A\u624D\u597D\u53BB\u5371\u9669\u7684\u5730\u65B9\u3002"
+    - Name: ifPlayerAnswer
+      Entry: 5
+      Data: false
+    - Name: answerList
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: ifDialogAfter
+      Entry: 5
+      Data: true
+    - Name: dialogListAfter
+      Entry: 7
+      Data: 21|System.Collections.Generic.List`1[[DialogEditorData, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 22|DialogEditorData, Assembly-CSharp
+    - Name: type
+      Entry: 3
+      Data: 2
+    - Name: content
+      Entry: 1
+      Data: "\u961F\u4F0D\u7684\u5B9E\u529B\u53C8\u58EE\u5927\u4E86\uFF01"
+    - Name: ifPlayerAnswer
+      Entry: 5
+      Data: false
+    - Name: answerList
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 23|SingleTask, Assembly-CSharp
+    - Name: block
+      Entry: 5
+      Data: false
+    - Name: theId
+      Entry: 3
+      Data: 165940468600003458
+    - Name: index
+      Entry: 3
+      Data: 2
+    - Name: tagId
+      Entry: 6
+      Data: 
+    - Name: trackingName
+      Entry: 6
+      Data: 
+    - Name: NPCPos
+      Entry: 3
+      Data: 1
+    - Name: condition
+      Entry: 7
+      Data: 24|System.Collections.Generic.List`1[[TaskCondition, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 25|TaskCondition, Assembly-CSharp
+    - Name: taskConditionType
+      Entry: 3
+      Data: 4
+    - Name: param
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: TaskGuideId
+      Entry: 3
+      Data: 0
+    - Name: taskType
+      Entry: 3
+      Data: 48
+    - Name: taskRepeatType
+      Entry: 3
+      Data: 2
+    - Name: repeatTime
+      Entry: 3
+      Data: 0
+    - Name: isNeedItem
+      Entry: 5
+      Data: false
+    - Name: needReceiveItem
+      Entry: 5
+      Data: false
+    - Name: needItem
+      Entry: 3
+      Data: 0
+    - Name: needNum
+      Entry: 3
+      Data: 0
+    - Name: isNeedKillEnemy
+      Entry: 5
+      Data: false
+    - Name: needKillEnemy
+      Entry: 3
+      Data: 0
+    - Name: needKillEnemyNum
+      Entry: 3
+      Data: 0
+    - Name: isNeedDanFarmNum
+      Entry: 5
+      Data: false
+    - Name: needDanFarmId
+      Entry: 3
+      Data: 0
+    - Name: needDanFarmNum
+      Entry: 3
+      Data: 0
+    - Name: needPlayerLevel
+      Entry: 3
+      Data: 0
+    - Name: commonAccomplishCondition
+      Entry: 1
+      Data: 3
+    - Name: des
+      Entry: 1
+      Data: "\u8FDB\u5165\u89D2\u8272\u754C\u9762\uFF0C\u9009\u62E9\u4FEE\u6B66\u5F1F\u5B50\u5206\u7C7B\uFF0C\u70B9\u51FB\u5F1F\u5B50\u4FE1\u606F\uFF0C\u70B9\u51FB\u88C5\u5907\uFF0C\u4E3A3\u540D\u4FEE\u6B66\u5F1F\u5B50\u90FD\u88C5\u5907\u4E0A\u6CD5\u5668"
+    - Name: awardList
+      Entry: 7
+      Data: 26|System.Collections.Generic.List`1[[System.String, mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 1
+      Data: 111001|5000
+    - Name: 
+      Entry: 1
+      Data: 365001|10
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: ifAppearInform
+      Entry: 5
+      Data: false
+    - Name: appearTxt
+      Entry: 6
+      Data: 
+    - Name: ifDialogBefore
+      Entry: 5
+      Data: true
+    - Name: dialogList
+      Entry: 7
+      Data: 27|System.Collections.Generic.List`1[[DialogEditorData, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 28|DialogEditorData, Assembly-CSharp
+    - Name: type
+      Entry: 3
+      Data: 2
+    - Name: content
+      Entry: 1
+      Data: "\u7ED9\u5F1F\u5B50\u6CD5\u5668\u4ED6\u4EEC\u624D\u6709\u66F4\u9AD8\u7684\u6218\u6597\u529B\u54E6"
+    - Name: ifPlayerAnswer
+      Entry: 5
+      Data: false
+    - Name: answerList
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: ifDialogAfter
+      Entry: 5
+      Data: true
+    - Name: dialogListAfter
+      Entry: 7
+      Data: 29|System.Collections.Generic.List`1[[DialogEditorData, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 30|DialogEditorData, Assembly-CSharp
+    - Name: type
+      Entry: 3
+      Data: 2
+    - Name: content
+      Entry: 1
+      Data: "\u5F1F\u5B50\u90FD\u5F88\u559C\u6B22\u638C\u95E8\u8D60\u9001\u7684\u6CD5\u5668\u554A"
+    - Name: ifPlayerAnswer
+      Entry: 5
+      Data: false
+    - Name: answerList
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 31|SingleTask, Assembly-CSharp
+    - Name: block
+      Entry: 5
+      Data: false
+    - Name: theId
+      Entry: 3
+      Data: 165940516700001085
+    - Name: index
+      Entry: 3
+      Data: 3
+    - Name: tagId
+      Entry: 6
+      Data: 
+    - Name: trackingName
+      Entry: 6
+      Data: 
+    - Name: NPCPos
+      Entry: 3
+      Data: 1
+    - Name: condition
+      Entry: 7
+      Data: 32|System.Collections.Generic.List`1[[TaskCondition, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 33|TaskCondition, Assembly-CSharp
+    - Name: taskConditionType
+      Entry: 3
+      Data: 4
+    - Name: param
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: TaskGuideId
+      Entry: 3
+      Data: 0
+    - Name: taskType
+      Entry: 3
+      Data: 50
+    - Name: taskRepeatType
+      Entry: 3
+      Data: 2
+    - Name: repeatTime
+      Entry: 3
+      Data: 0
+    - Name: isNeedItem
+      Entry: 5
+      Data: false
+    - Name: needReceiveItem
+      Entry: 5
+      Data: false
+    - Name: needItem
+      Entry: 3
+      Data: 0
+    - Name: needNum
+      Entry: 3
+      Data: 0
+    - Name: isNeedKillEnemy
+      Entry: 5
+      Data: false
+    - Name: needKillEnemy
+      Entry: 3
+      Data: 0
+    - Name: needKillEnemyNum
+      Entry: 3
+      Data: 0
+    - Name: isNeedDanFarmNum
+      Entry: 5
+      Data: false
+    - Name: needDanFarmId
+      Entry: 3
+      Data: 0
+    - Name: needDanFarmNum
+      Entry: 3
+      Data: 0
+    - Name: needPlayerLevel
+      Entry: 3
+      Data: 0
+    - Name: commonAccomplishCondition
+      Entry: 1
+      Data: 3|5
+    - Name: des
+      Entry: 1
+      Data: "\u8FDB\u5165\u89D2\u8272\u754C\u9762\uFF0C\u9009\u62E9\u4FEE\u6B66\u5F1F\u5B50\u5206\u7C7B\uFF0C\u70B9\u51FB\u5F1F\u5B50\u4FE1\u606F\uFF0C\u70B9\u51FB\u88C5\u5907\uFF0C\u9009\u4E2D\u5F1F\u5B50\u5DF2\u88C5\u5907\u7684\u6CD5\u5668\uFF0C\u5C063\u540D\u5F1F\u5B50\u7684\u6CD5\u5668\u90FD\u5F3A\u5316\u81F3Lv5"
+    - Name: awardList
+      Entry: 7
+      Data: 34|System.Collections.Generic.List`1[[System.String, mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 1
+      Data: 10001|10000
+    - Name: 
+      Entry: 1
+      Data: 365001|10
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: ifAppearInform
+      Entry: 5
+      Data: false
+    - Name: appearTxt
+      Entry: 6
+      Data: 
+    - Name: ifDialogBefore
+      Entry: 5
+      Data: true
+    - Name: dialogList
+      Entry: 7
+      Data: 35|System.Collections.Generic.List`1[[DialogEditorData, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 36|DialogEditorData, Assembly-CSharp
+    - Name: type
+      Entry: 3
+      Data: 2
+    - Name: content
+      Entry: 1
+      Data: "\u548C\u638C\u95E8\u7684\u4E00\u6837\uFF0C\u5F1F\u5B50\u7684\u6CD5\u5668\u4E0D\u5F3A\u5316\u4E5F\u4E0D\u884C\u54E6\u3002"
+    - Name: ifPlayerAnswer
+      Entry: 5
+      Data: false
+    - Name: answerList
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: ifDialogAfter
+      Entry: 5
+      Data: true
+    - Name: dialogListAfter
+      Entry: 7
+      Data: 37|System.Collections.Generic.List`1[[DialogEditorData, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 38|DialogEditorData, Assembly-CSharp
+    - Name: type
+      Entry: 3
+      Data: 2
+    - Name: content
+      Entry: 1
+      Data: "\u8FD9\u4E0B\u611F\u89C9\u6765\u4E00\u767E\u4E2A\u9B54\u4FEE\u90FD\u4E0D\u6015\u4E86\uFF01"
+    - Name: ifPlayerAnswer
+      Entry: 5
+      Data: false
+    - Name: answerList
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 39|SingleTask, Assembly-CSharp
+    - Name: block
+      Entry: 5
+      Data: false
+    - Name: theId
+      Entry: 3
+      Data: 165751194900001534
+    - Name: index
+      Entry: 3
+      Data: 4
+    - Name: tagId
+      Entry: 6
+      Data: 
+    - Name: trackingName
+      Entry: 6
+      Data: 
+    - Name: NPCPos
+      Entry: 3
+      Data: 1
+    - Name: condition
+      Entry: 7
+      Data: 40|System.Collections.Generic.List`1[[TaskCondition, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 41|TaskCondition, Assembly-CSharp
+    - Name: taskConditionType
+      Entry: 3
+      Data: 4
+    - Name: param
+      Entry: 1
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: TaskGuideId
+      Entry: 3
+      Data: 0
+    - Name: taskType
+      Entry: 3
+      Data: 42
+    - Name: taskRepeatType
+      Entry: 3
+      Data: 2
+    - Name: repeatTime
+      Entry: 3
+      Data: 0
+    - Name: isNeedItem
+      Entry: 5
+      Data: false
+    - Name: needReceiveItem
+      Entry: 5
+      Data: false
+    - Name: needItem
+      Entry: 3
+      Data: 0
+    - Name: needNum
+      Entry: 3
+      Data: 0
+    - Name: isNeedKillEnemy
+      Entry: 5
+      Data: false
+    - Name: needKillEnemy
+      Entry: 3
+      Data: 0
+    - Name: needKillEnemyNum
+      Entry: 3
+      Data: 0
+    - Name: isNeedDanFarmNum
+      Entry: 5
+      Data: false
+    - Name: needDanFarmId
+      Entry: 3
+      Data: 0
+    - Name: needDanFarmNum
+      Entry: 3
+      Data: 0
+    - Name: needPlayerLevel
+      Entry: 3
+      Data: 0
+    - Name: commonAccomplishCondition
+      Entry: 1
+      Data: 0-6
+    - Name: des
+      Entry: 1
+      Data: "\u4E8E12\u6708\u754C\u57DF\u88C2\u9699\u5F00\u542F\u540E\u524D\u5F80\u4E0B\u5C71-\u754C\u57DF-\u754C\u57DF\u88C2\u9699-\u4E91\u6D77\u5B97\uFF0C\r\u5E76\u901A\u51730-6"
+    - Name: awardList
+      Entry: 7
+      Data: 42|System.Collections.Generic.List`1[[System.String, mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 1
+      Data: 10001|10000
+    - Name: 
+      Entry: 1
+      Data: 365001|10
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: ifAppearInform
+      Entry: 5
+      Data: false
+    - Name: appearTxt
+      Entry: 1
+      Data: "\u95FB\u5230\u4E00\u4E1D\u82E5\u6709\u82E5\u65E0\u7684\u6E29\u8F6F\u4F53\u9999\uFF0C\u201D\u5E1D\u6B8A\uFF0C\u662F\u4F60\u5417\uFF1F\u201C\u7136\u800C\u56DE\u5E94\u4F60\u7684\u662F\u4E00\u4E2A\u964C\u751F\u5C11\u5973\u7684\u58F0\u97F3\u3002"
+    - Name: ifDialogBefore
+      Entry: 5
+      Data: true
+    - Name: dialogList
+      Entry: 7
+      Data: 43|System.Collections.Generic.List`1[[DialogEditorData, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 44|DialogEditorData, Assembly-CSharp
+    - Name: type
+      Entry: 3
+      Data: 2
+    - Name: content
+      Entry: 1
+      Data: "\u73B0\u5728\u53EF\u4EE5\u51FA\u53D1\u4E86\uFF0C\u53BB\u4E91\u6D77\u5B97\u88C2\u9699\u5427\uFF01"
+    - Name: ifPlayerAnswer
+      Entry: 5
+      Data: false
+    - Name: answerList
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: ifDialogAfter
+      Entry: 5
+      Data: true
+    - Name: dialogListAfter
+      Entry: 7
+      Data: 45|System.Collections.Generic.List`1[[DialogEditorData, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 46|DialogEditorData, Assembly-CSharp
+    - Name: type
+      Entry: 3
+      Data: 2
+    - Name: content
+      Entry: 1
+      Data: "\u754C\u57DF\u88C2\u9699\u4E00\u5E74\u624D\u4F1A\u5F00\u542F\u4E00\u6B21\uFF0C\u51F6\u9669\u5F02\u5E38\uFF0C\u4F60\u6CA1\u4E8B\u5427\uFF1F\u6709\u6CA1\u6709\u53D7\u4F24\uFF1F\r"
+    - Name: ifPlayerAnswer
+      Entry: 5
+      Data: false
+    - Name: answerList
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 47|SingleTask, Assembly-CSharp
+    - Name: block
+      Entry: 5
+      Data: false
+    - Name: theId
+      Entry: 3
+      Data: 169235069800001424
+    - Name: index
+      Entry: 3
+      Data: 5
+    - Name: tagId
+      Entry: 6
+      Data: 
+    - Name: trackingName
+      Entry: 6
+      Data: 
+    - Name: NPCPos
+      Entry: 3
+      Data: 1
+    - Name: condition
+      Entry: 7
+      Data: 48|System.Collections.Generic.List`1[[TaskCondition, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 49|TaskCondition, Assembly-CSharp
+    - Name: taskConditionType
+      Entry: 3
+      Data: 4
+    - Name: param
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: TaskGuideId
+      Entry: 3
+      Data: 0
+    - Name: taskType
+      Entry: 3
+      Data: 32
+    - Name: taskRepeatType
+      Entry: 3
+      Data: 2
+    - Name: repeatTime
+      Entry: 3
+      Data: 0
+    - Name: isNeedItem
+      Entry: 5
+      Data: false
+    - Name: needReceiveItem
+      Entry: 5
+      Data: false
+    - Name: needItem
+      Entry: 3
+      Data: 0
+    - Name: needNum
+      Entry: 3
+      Data: 0
+    - Name: isNeedKillEnemy
+      Entry: 5
+      Data: false
+    - Name: needKillEnemy
+      Entry: 3
+      Data: 0
+    - Name: needKillEnemyNum
+      Entry: 3
+      Data: 0
+    - Name: isNeedDanFarmNum
+      Entry: 5
+      Data: false
+    - Name: needDanFarmId
+      Entry: 3
+      Data: 0
+    - Name: needDanFarmNum
+      Entry: 3
+      Data: 0
+    - Name: needPlayerLevel
+      Entry: 3
+      Data: 0
+    - Name: commonAccomplishCondition
+      Entry: 1
+      Data: 4|1
+    - Name: des
+      Entry: 1
+      Data: "\u4E0B\u5C71\uFF0C\u524D\u5F80\u795E\u5668\u5893\u5730\uFF0C\u901A\u5173\u795E\u5668\u5893\u5730Lv.1"
+    - Name: awardList
+      Entry: 7
+      Data: 50|System.Collections.Generic.List`1[[System.String, mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 1
+      Data: 10001|10000
+    - Name: 
+      Entry: 1
+      Data: 365001|10
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: ifAppearInform
+      Entry: 5
+      Data: false
+    - Name: appearTxt
+      Entry: 6
+      Data: 
+    - Name: ifDialogBefore
+      Entry: 5
+      Data: true
+    - Name: dialogList
+      Entry: 7
+      Data: 51|System.Collections.Generic.List`1[[DialogEditorData, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 52|DialogEditorData, Assembly-CSharp
+    - Name: type
+      Entry: 3
+      Data: 0
+    - Name: content
+      Entry: 1
+      Data: "\u6B66\u5668\u53EA\u662F\u6700\u57FA\u7840\u7684\u6CD5\u5668\uFF0C\u5168\u8EAB\u6B66\u88C5\u8D77\u6765\u624D\u80FD\u66F4\u5F3A\uFF0C\u542C\u8BF4\u5C71\u4E0B\u6709\u4E00\u7247\u795E\u5668\u5893\u5730\uFF0C\u4E0D\u5982\u53BB\u90A3\u513F\u78B0\u78B0\u8FD0\u6C14\u3002"
+    - Name: ifPlayerAnswer
+      Entry: 5
+      Data: false
+    - Name: answerList
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: ifDialogAfter
+      Entry: 5
+      Data: true
+    - Name: dialogListAfter
+      Entry: 7
+      Data: 53|System.Collections.Generic.List`1[[DialogEditorData, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 54|DialogEditorData, Assembly-CSharp
+    - Name: type
+      Entry: 3
+      Data: 0
+    - Name: content
+      Entry: 1
+      Data: "\u5FEB\u8BA9\u6211\u770B\u770B\u4F60\u83B7\u5F97\u4E86\u4EC0\u4E48\u6837\u7684\u7EDD\u4E16\u795E\u5175\uFF01\u771F\u662F\u6536\u83B7\u9887\u4E30\u3002"
+    - Name: ifPlayerAnswer
+      Entry: 5
+      Data: false
+    - Name: answerList
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 55|SingleTask, Assembly-CSharp
+    - Name: block
+      Entry: 5
+      Data: false
+    - Name: theId
+      Entry: 3
+      Data: 165759425500001271
+    - Name: index
+      Entry: 3
+      Data: 6
+    - Name: tagId
+      Entry: 6
+      Data: 
+    - Name: trackingName
+      Entry: 6
+      Data: 
+    - Name: NPCPos
+      Entry: 3
+      Data: 1
+    - Name: condition
+      Entry: 7
+      Data: 56|System.Collections.Generic.List`1[[TaskCondition, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 57|TaskCondition, Assembly-CSharp
+    - Name: taskConditionType
+      Entry: 3
+      Data: 4
+    - Name: param
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: TaskGuideId
+      Entry: 3
+      Data: 0
+    - Name: taskType
+      Entry: 3
+      Data: 42
+    - Name: taskRepeatType
+      Entry: 3
+      Data: 2
+    - Name: repeatTime
+      Entry: 3
+      Data: 0
+    - Name: isNeedItem
+      Entry: 5
+      Data: false
+    - Name: needReceiveItem
+      Entry: 5
+      Data: false
+    - Name: needItem
+      Entry: 3
+      Data: 0
+    - Name: needNum
+      Entry: 3
+      Data: 0
+    - Name: isNeedKillEnemy
+      Entry: 5
+      Data: false
+    - Name: needKillEnemy
+      Entry: 3
+      Data: 0
+    - Name: needKillEnemyNum
+      Entry: 3
+      Data: 0
+    - Name: isNeedDanFarmNum
+      Entry: 5
+      Data: false
+    - Name: needDanFarmId
+      Entry: 3
+      Data: 0
+    - Name: needDanFarmNum
+      Entry: 3
+      Data: 0
+    - Name: needPlayerLevel
+      Entry: 3
+      Data: 0
+    - Name: commonAccomplishCondition
+      Entry: 1
+      Data: 0-10
+    - Name: des
+      Entry: 1
+      Data: "\u4E8E12\u6708\u754C\u57DF\u88C2\u9699\u5F00\u542F\u540E\u524D\u5F80\u754C\u57DF\u4F20\u9001\u9635-\u4E91\u6D77\u5B97-\u88C2\u9699\uFF0C\u5E76\u901A\u5173\u4E91\u6D77\u5B97\u88C2\u96990-10"
+    - Name: awardList
+      Entry: 7
+      Data: 58|System.Collections.Generic.List`1[[System.String, mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 1
+      Data: 10001|4000
+    - Name: 
+      Entry: 1
+      Data: 365001|10
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: ifAppearInform
+      Entry: 5
+      Data: false
+    - Name: appearTxt
+      Entry: 6
+      Data: 
+    - Name: ifDialogBefore
+      Entry: 5
+      Data: true
+    - Name: dialogList
+      Entry: 7
+      Data: 59|System.Collections.Generic.List`1[[DialogEditorData, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 60|DialogEditorData, Assembly-CSharp
+    - Name: type
+      Entry: 3
+      Data: 2
+    - Name: content
+      Entry: 1
+      Data: "\u770B\u4F60\u8FDB\u5165\u4E91\u6D77\u5B97\u88C2\u9699\u540E\u6CBE\u67D3\u7684\u5996\u6C14\u7A0B\u5EA6\uFF0C\u6050\u6015\u6574\u4E2A\u4E91\u6D77\u5B97\u5DF2\u51F6\u591A\u5409\u5C11\r\u3002"
+    - Name: ifPlayerAnswer
+      Entry: 5
+      Data: true
+    - Name: answerList
+      Entry: 7
+      Data: 61|System.Collections.Generic.List`1[[System.String, mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 1
+      Data: "\u6211\u8FD9\u5C31\u53BB\u6740\u5B83\u4E2A\u5E72\u5E72\u51C0\u51C0"
+    - Name: 
+      Entry: 1
+      Data: "\u90FD\u4EA4\u7ED9\u6211\u5427"
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: ifDialogAfter
+      Entry: 5
+      Data: true
+    - Name: dialogListAfter
+      Entry: 7
+      Data: 62|System.Collections.Generic.List`1[[DialogEditorData, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 63|DialogEditorData, Assembly-CSharp
+    - Name: type
+      Entry: 3
+      Data: 2
+    - Name: content
+      Entry: 1
+      Data: "\u539F\u6765\u90A3\u4E91\u6D77\u5B97\u4E0A\u4E0B\u90FD\u88AB\u5996\u65CF\u53D6\u4EE3\u4E86\uFF0C\u8FDE\u4E91\u6D77\u5B97\u638C\u95E8\u4E5F\u662F\u9AD8\u9636\u72F8\u732B\u4EBA\u6240\u5316......\u6211\u5F97\u5373\u523B\u5C06\u8FD9\u8BAF\u606F\u56DE\u53BB\uFF0C\u4E91\u6D77\u5B97\u6BD7\u90BB\u5B63\u72F8\u56FD\uFF0C\u6050\u6015\u4F1A\u5371\u53CA\u5B63\u72F8\u56FD\r"
+    - Name: ifPlayerAnswer
+      Entry: 5
+      Data: false
+    - Name: answerList
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 64|SingleTask, Assembly-CSharp
+    - Name: block
+      Entry: 5
+      Data: false
+    - Name: theId
+      Entry: 3
+      Data: 165940610900001252
+    - Name: index
+      Entry: 3
+      Data: 7
+    - Name: tagId
+      Entry: 6
+      Data: 
+    - Name: trackingName
+      Entry: 6
+      Data: 
+    - Name: NPCPos
+      Entry: 3
+      Data: 1
+    - Name: condition
+      Entry: 7
+      Data: 65|System.Collections.Generic.List`1[[TaskCondition, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 66|TaskCondition, Assembly-CSharp
+    - Name: taskConditionType
+      Entry: 3
+      Data: 4
+    - Name: param
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: TaskGuideId
+      Entry: 3
+      Data: 0
+    - Name: taskType
+      Entry: 3
+      Data: 15
+    - Name: taskRepeatType
+      Entry: 3
+      Data: 2
+    - Name: repeatTime
+      Entry: 3
+      Data: 0
+    - Name: isNeedItem
+      Entry: 5
+      Data: false
+    - Name: needReceiveItem
+      Entry: 5
+      Data: false
+    - Name: needItem
+      Entry: 3
+      Data: 0
+    - Name: needNum
+      Entry: 3
+      Data: 0
+    - Name: isNeedKillEnemy
+      Entry: 5
+      Data: false
+    - Name: needKillEnemy
+      Entry: 3
+      Data: 0
+    - Name: needKillEnemyNum
+      Entry: 3
+      Data: 0
+    - Name: isNeedDanFarmNum
+      Entry: 5
+      Data: false
+    - Name: needDanFarmId
+      Entry: 3
+      Data: 0
+    - Name: needDanFarmNum
+      Entry: 3
+      Data: 0
+    - Name: needPlayerLevel
+      Entry: 3
+      Data: 0
+    - Name: commonAccomplishCondition
+      Entry: 1
+      Data: 6
+    - Name: des
+      Entry: 1
+      Data: "\u5C06\u5B97\u95E8\u7B49\u7EA7\u63D0\u5347\u81F3Lv6"
+    - Name: awardList
+      Entry: 7
+      Data: 67|System.Collections.Generic.List`1[[System.String, mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 1
+      Data: 161001|40
+    - Name: 
+      Entry: 1
+      Data: 365001|10
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: ifAppearInform
+      Entry: 5
+      Data: false
+    - Name: appearTxt
+      Entry: 6
+      Data: 
+    - Name: ifDialogBefore
+      Entry: 5
+      Data: true
+    - Name: dialogList
+      Entry: 7
+      Data: 68|System.Collections.Generic.List`1[[DialogEditorData, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 69|DialogEditorData, Assembly-CSharp
+    - Name: type
+      Entry: 3
+      Data: 2
+    - Name: content
+      Entry: 1
+      Data: "\u638C\u95E8\u597D\u4E45\u6CA1\u63D0\u5347\u8FC7\u5B97\u95E8\u7B49\u7EA7\u4E86\u5427\uFF1F"
+    - Name: ifPlayerAnswer
+      Entry: 5
+      Data: false
+    - Name: answerList
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: ifDialogAfter
+      Entry: 5
+      Data: true
+    - Name: dialogListAfter
+      Entry: 7
+      Data: 70|System.Collections.Generic.List`1[[DialogEditorData, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 71|DialogEditorData, Assembly-CSharp
+    - Name: type
+      Entry: 3
+      Data: 2
+    - Name: content
+      Entry: 1
+      Data: "\u8FD9\u4E0B\u80FD\u4FEE\u847A\u66F4\u597D\u7684\u5EFA\u7B51\u4E86"
+    - Name: ifPlayerAnswer
+      Entry: 5
+      Data: false
+    - Name: answerList
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 72|SingleTask, Assembly-CSharp
+    - Name: block
+      Entry: 5
+      Data: false
+    - Name: theId
+      Entry: 3
+      Data: 165940675600002764
+    - Name: index
+      Entry: 3
+      Data: 8
+    - Name: tagId
+      Entry: 6
+      Data: 
+    - Name: trackingName
+      Entry: 6
+      Data: 
+    - Name: NPCPos
+      Entry: 3
+      Data: 1
+    - Name: condition
+      Entry: 7
+      Data: 73|System.Collections.Generic.List`1[[TaskCondition, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 74|TaskCondition, Assembly-CSharp
+    - Name: taskConditionType
+      Entry: 3
+      Data: 4
+    - Name: param
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: TaskGuideId
+      Entry: 3
+      Data: 0
+    - Name: taskType
+      Entry: 3
+      Data: 18
+    - Name: taskRepeatType
+      Entry: 3
+      Data: 2
+    - Name: repeatTime
+      Entry: 3
+      Data: 0
+    - Name: isNeedItem
+      Entry: 5
+      Data: false
+    - Name: needReceiveItem
+      Entry: 5
+      Data: false
+    - Name: needItem
+      Entry: 3
+      Data: 0
+    - Name: needNum
+      Entry: 3
+      Data: 0
+    - Name: isNeedKillEnemy
+      Entry: 5
+      Data: false
+    - Name: needKillEnemy
+      Entry: 3
+      Data: 0
+    - Name: needKillEnemyNum
+      Entry: 3
+      Data: 0
+    - Name: isNeedDanFarmNum
+      Entry: 5
+      Data: false
+    - Name: needDanFarmId
+      Entry: 3
+      Data: 0
+    - Name: needDanFarmNum
+      Entry: 3
+      Data: 0
+    - Name: needPlayerLevel
+      Entry: 3
+      Data: 0
+    - Name: commonAccomplishCondition
+      Entry: 1
+      Data: 2|8|10001
+    - Name: des
+      Entry: 1
+      Data: "\u5C06\u4E24\u5757\u7075\u7530\u5347\u81F3Lv.8"
+    - Name: awardList
+      Entry: 7
+      Data: 75|System.Collections.Generic.List`1[[System.String, mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 1
+      Data: 10001|10000
+    - Name: 
+      Entry: 1
+      Data: 365001|10
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: ifAppearInform
+      Entry: 5
+      Data: false
+    - Name: appearTxt
+      Entry: 6
+      Data: 
+    - Name: ifDialogBefore
+      Entry: 5
+      Data: true
+    - Name: dialogList
+      Entry: 7
+      Data: 76|System.Collections.Generic.List`1[[DialogEditorData, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 77|DialogEditorData, Assembly-CSharp
+    - Name: type
+      Entry: 3
+      Data: 2
+    - Name: content
+      Entry: 1
+      Data: "\u6211\u542C\u5230\u597D\u591A\u4EBA\u8BF4\u5B97\u95E8\u8981\u7834\u4EA7\u5566\uFF01\uFF01\u600E\u4E48\u529E\u600E\u4E48\u529E\uFF1F"
+    - Name: ifPlayerAnswer
+      Entry: 5
+      Data: true
+    - Name: answerList
+      Entry: 7
+      Data: 78|System.Collections.Generic.List`1[[System.String, mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 1
+      Data: "\u77E5\u9053\u8981\u5347\u7EA7\u7075\u7530\u4E86"
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: ifDialogAfter
+      Entry: 5
+      Data: true
+    - Name: dialogListAfter
+      Entry: 7
+      Data: 79|System.Collections.Generic.List`1[[DialogEditorData, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 80|DialogEditorData, Assembly-CSharp
+    - Name: type
+      Entry: 3
+      Data: 2
+    - Name: content
+      Entry: 1
+      Data: "\u4EE5\u540E\u53EF\u4EE5\u627E\u4F60\u501F\u7075\u77F3\u5417~\u563B\u563B"
+    - Name: ifPlayerAnswer
+      Entry: 5
+      Data: false
+    - Name: answerList
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 81|SingleTask, Assembly-CSharp
+    - Name: block
+      Entry: 5
+      Data: false
+    - Name: theId
+      Entry: 3
+      Data: 165940718500003649
+    - Name: index
+      Entry: 3
+      Data: 9
+    - Name: tagId
+      Entry: 6
+      Data: 
+    - Name: trackingName
+      Entry: 6
+      Data: 
+    - Name: NPCPos
+      Entry: 3
+      Data: 1
+    - Name: condition
+      Entry: 7
+      Data: 82|System.Collections.Generic.List`1[[TaskCondition, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 83|TaskCondition, Assembly-CSharp
+    - Name: taskConditionType
+      Entry: 3
+      Data: 4
+    - Name: param
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: TaskGuideId
+      Entry: 3
+      Data: 0
+    - Name: taskType
+      Entry: 3
+      Data: 37
+    - Name: taskRepeatType
+      Entry: 3
+      Data: 2
+    - Name: repeatTime
+      Entry: 3
+      Data: 0
+    - Name: isNeedItem
+      Entry: 5
+      Data: false
+    - Name: needReceiveItem
+      Entry: 5
+      Data: false
+    - Name: needItem
+      Entry: 3
+      Data: 0
+    - Name: needNum
+      Entry: 3
+      Data: 0
+    - Name: isNeedKillEnemy
+      Entry: 5
+      Data: false
+    - Name: needKillEnemy
+      Entry: 3
+      Data: 0
+    - Name: needKillEnemyNum
+      Entry: 3
+      Data: 0
+    - Name: isNeedDanFarmNum
+      Entry: 5
+      Data: false
+    - Name: needDanFarmId
+      Entry: 3
+      Data: 0
+    - Name: needDanFarmNum
+      Entry: 3
+      Data: 0
+    - Name: needPlayerLevel
+      Entry: 3
+      Data: 0
+    - Name: commonAccomplishCondition
+      Entry: 1
+      Data: 18|0
+    - Name: des
+      Entry: 1
+      Data: "\u5B97\u95E8\u5F1F\u5B50\u6570\u8FBE\u523018\u4EBA"
+    - Name: awardList
+      Entry: 7
+      Data: 84|System.Collections.Generic.List`1[[System.String, mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 1
+      Data: 10001|10000
+    - Name: 
+      Entry: 1
+      Data: 365001|10
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: ifAppearInform
+      Entry: 5
+      Data: false
+    - Name: appearTxt
+      Entry: 6
+      Data: 
+    - Name: ifDialogBefore
+      Entry: 5
+      Data: true
+    - Name: dialogList
+      Entry: 7
+      Data: 85|System.Collections.Generic.List`1[[DialogEditorData, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 7
+      Data: 86|DialogEditorData, Assembly-CSharp
+    - Name: type
+      Entry: 3
+      Data: 2
+    - Name: content
+      Entry: 1
+      Data: "\u521A\u624D\u770B\u5230\u5C0F\u7231\u90FD\u5FD9\u6655\u8FC7\u53BB\u4E86\uFF0C\u8BF4\u5B97\u95E8\u4E8B\u52A1\u7E41\u6742\uFF0C\u6BCF\u5929\u52A0\u73ED\u52A0\u70B9\uFF0C\u662F\u4E0D\u662F\u4EBA\u624B\u4E0D\u591F\u554A\uFF1F"
+    - Name: ifPlayerAnswer
+      Entry: 5
+      Data: true
+    - Name: answerList
+      Entry: 7
+      Data: 87|System.Collections.Generic.List`1[[System.String, mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 1
+      Data: "\u5C0F\u7231\u662F\u8C01\u2026\u2026"
+    - Name: 
+      Entry: 1
+      Data: "\u522B\u7ED9\u6211\u5F1F\u5B50\u778E\u53D6\u540D\u5B57"
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 88|DialogEditorData, Assembly-CSharp
+    - Name: type
+      Entry: 3
+      Data: 2
+    - Name: content
+      Entry: 1
+      Data: "\u54CE\u5440\u4F60\u522B\u7BA1\u5C0F\u7231\u662F\u8C01\u4E86\uFF0C\u672C\u516C\u4E3B\u4EB2\u81EA\u8D50\u540D~\u54C8\u54C8\u54C8"
+    - Name: ifPlayerAnswer
+      Entry: 5
+      Data: false
+    - Name: answerList
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: ifDialogAfter
+      Entry: 5
+      Data: true
+    - Name: dialogListAfter
+      Entry: 7
+      Data: 89|System.Collections.Generic.List`1[[DialogEditorData, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 90|DialogEditorData, Assembly-CSharp
+    - Name: type
+      Entry: 3
+      Data: 2
+    - Name: content
+      Entry: 1
+      Data: "\u5C0F\u5EA6\u548C\u5C0F\u897F\u7ECF\u5E38\u6765\u5E2E\u5C0F\u7231\u7684\u5FD9\uFF0C\u8FD9\u4E0B\u4ED6\u4EEC\u5C31\u6709\u65F6\u95F4\u966A\u672C\u516C\u4E3B\u73A9\u5566\uFF01"
+    - Name: ifPlayerAnswer
+      Entry: 5
+      Data: true
+    - Name: answerList
+      Entry: 7
+      Data: 91|System.Collections.Generic.List`1[[System.String, mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 1
+      Data: "\u603B\u611F\u89C9\u6709\u54EA\u91CC\u4E0D\u5BF9"
+    - Name: 
+      Entry: 1
+      Data: "\u5B97\u95E8\u771F\u7684\u7F3A\u4EBA\u561B\uFF01"
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 92|SingleTask, Assembly-CSharp
+    - Name: block
+      Entry: 5
+      Data: false
+    - Name: theId
+      Entry: 3
+      Data: 165940786000001735
+    - Name: index
+      Entry: 3
+      Data: 10
+    - Name: tagId
+      Entry: 6
+      Data: 
+    - Name: trackingName
+      Entry: 6
+      Data: 
+    - Name: NPCPos
+      Entry: 3
+      Data: 1
+    - Name: condition
+      Entry: 7
+      Data: 93|System.Collections.Generic.List`1[[TaskCondition, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 94|TaskCondition, Assembly-CSharp
+    - Name: taskConditionType
+      Entry: 3
+      Data: 4
+    - Name: param
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: TaskGuideId
+      Entry: 3
+      Data: 0
+    - Name: taskType
+      Entry: 3
+      Data: 18
+    - Name: taskRepeatType
+      Entry: 3
+      Data: 2
+    - Name: repeatTime
+      Entry: 3
+      Data: 0
+    - Name: isNeedItem
+      Entry: 5
+      Data: false
+    - Name: needReceiveItem
+      Entry: 5
+      Data: false
+    - Name: needItem
+      Entry: 3
+      Data: 0
+    - Name: needNum
+      Entry: 3
+      Data: 0
+    - Name: isNeedKillEnemy
+      Entry: 5
+      Data: false
+    - Name: needKillEnemy
+      Entry: 3
+      Data: 0
+    - Name: needKillEnemyNum
+      Entry: 3
+      Data: 0
+    - Name: isNeedDanFarmNum
+      Entry: 5
+      Data: false
+    - Name: needDanFarmId
+      Entry: 3
+      Data: 0
+    - Name: needDanFarmNum
+      Entry: 3
+      Data: 0
+    - Name: needPlayerLevel
+      Entry: 3
+      Data: 0
+    - Name: commonAccomplishCondition
+      Entry: 1
+      Data: 2|1|20001
+    - Name: des
+      Entry: 1
+      Data: "\u5EFA\u90202\u4E2A\u51E1\u7EA7\u77FF\u573A"
+    - Name: awardList
+      Entry: 7
+      Data: 95|System.Collections.Generic.List`1[[System.String, mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 1
+      Data: 10001|10000
+    - Name: 
+      Entry: 1
+      Data: 365001|10
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: ifAppearInform
+      Entry: 5
+      Data: false
+    - Name: appearTxt
+      Entry: 6
+      Data: 
+    - Name: ifDialogBefore
+      Entry: 5
+      Data: true
+    - Name: dialogList
+      Entry: 7
+      Data: 96|System.Collections.Generic.List`1[[DialogEditorData, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 7
+      Data: 97|DialogEditorData, Assembly-CSharp
+    - Name: type
+      Entry: 3
+      Data: 2
+    - Name: content
+      Entry: 1
+      Data: "\u6211\u770B\u5C0F\u7231\u7684\u6CD5\u5668\u7834\u8D25\u4E0D\u582A\uFF0C\u542C\u8BF4\u5979\u5DF2\u7ECF\u5F88\u4E45\u6CA1\u6709\u5F3A\u5316\u6CD5\u5668\u4E86"
+    - Name: ifPlayerAnswer
+      Entry: 5
+      Data: false
+    - Name: answerList
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 98|DialogEditorData, Assembly-CSharp
+    - Name: type
+      Entry: 3
+      Data: 2
+    - Name: content
+      Entry: 1
+      Data: "\u638C\u95E8\u5927\u4EBA\uFF0C\u662F\u4E0D\u662F\u6708\u7075\u77FF\u4E0D\u591F\u4E86\u5440\uFF01"
+    - Name: ifPlayerAnswer
+      Entry: 5
+      Data: true
+    - Name: answerList
+      Entry: 7
+      Data: 99|System.Collections.Generic.List`1[[System.String, mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 1
+      Data: "\u662F\u662F\u662F\u5BF9\u5BF9\u5BF9"
+    - Name: 
+      Entry: 1
+      Data: "\u6211\u628A\u5B97\u95E8\u9020\u6EE1\u77FF\u573A\u597D\u5427"
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: ifDialogAfter
+      Entry: 5
+      Data: true
+    - Name: dialogListAfter
+      Entry: 7
+      Data: 100|System.Collections.Generic.List`1[[DialogEditorData, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 101|DialogEditorData, Assembly-CSharp
+    - Name: type
+      Entry: 3
+      Data: 2
+    - Name: content
+      Entry: 1
+      Data: "\u8FD9\u4E0B\u54B1\u4EEC\u4E0D\u7F3A\u77FF\u4E86\uFF01"
+    - Name: ifPlayerAnswer
+      Entry: 5
+      Data: true
+    - Name: answerList
+      Entry: 7
+      Data: 102|System.Collections.Generic.List`1[[System.String, mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 1
+      Data: "\u522B\u54B1\u4EEC"
+    - Name: 
+      Entry: 1
+      Data: "\u662F\u6211\u7684\u5B97\u95E8\u4E0D\u7F3A\u77FF\u4E86"
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 103|SingleTask, Assembly-CSharp
+    - Name: block
+      Entry: 5
+      Data: false
+    - Name: theId
+      Entry: 3
+      Data: 165940918000002314
+    - Name: index
+      Entry: 3
+      Data: 11
+    - Name: tagId
+      Entry: 6
+      Data: 
+    - Name: trackingName
+      Entry: 6
+      Data: 
+    - Name: NPCPos
+      Entry: 3
+      Data: 1
+    - Name: condition
+      Entry: 7
+      Data: 104|System.Collections.Generic.List`1[[TaskCondition, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 105|TaskCondition, Assembly-CSharp
+    - Name: taskConditionType
+      Entry: 3
+      Data: 4
+    - Name: param
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: TaskGuideId
+      Entry: 3
+      Data: 0
+    - Name: taskType
+      Entry: 3
+      Data: 18
+    - Name: taskRepeatType
+      Entry: 3
+      Data: 2
+    - Name: repeatTime
+      Entry: 3
+      Data: 0
+    - Name: isNeedItem
+      Entry: 5
+      Data: false
+    - Name: needReceiveItem
+      Entry: 5
+      Data: false
+    - Name: needItem
+      Entry: 3
+      Data: 0
+    - Name: needNum
+      Entry: 3
+      Data: 0
+    - Name: isNeedKillEnemy
+      Entry: 5
+      Data: false
+    - Name: needKillEnemy
+      Entry: 3
+      Data: 0
+    - Name: needKillEnemyNum
+      Entry: 3
+      Data: 0
+    - Name: isNeedDanFarmNum
+      Entry: 5
+      Data: false
+    - Name: needDanFarmId
+      Entry: 3
+      Data: 0
+    - Name: needDanFarmNum
+      Entry: 3
+      Data: 0
+    - Name: needPlayerLevel
+      Entry: 3
+      Data: 0
+    - Name: commonAccomplishCondition
+      Entry: 1
+      Data: 2|5|20001
+    - Name: des
+      Entry: 1
+      Data: "\u5C06\u4E24\u4E2A\u51E1\u7EA7\u77FF\u573A\u5347\u81F3Lv.5\r\n"
+    - Name: awardList
+      Entry: 7
+      Data: 106|System.Collections.Generic.List`1[[System.String, mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 1
+      Data: 111001|5000
+    - Name: 
+      Entry: 1
+      Data: 365001|10
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: ifAppearInform
+      Entry: 5
+      Data: false
+    - Name: appearTxt
+      Entry: 6
+      Data: 
+    - Name: ifDialogBefore
+      Entry: 5
+      Data: true
+    - Name: dialogList
+      Entry: 7
+      Data: 107|System.Collections.Generic.List`1[[DialogEditorData, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 108|DialogEditorData, Assembly-CSharp
+    - Name: type
+      Entry: 3
+      Data: 2
+    - Name: content
+      Entry: 1
+      Data: "\u77FF\u573A\u7684\u4EA7\u51FA\u4E0D\u548B\u5730\u5462\uFF0C\u4F5C\u4E3A\u5929\u4E0B\u7B2C\u4E00\u5927\u5B97\uFF0C\u600E\u80FD\u5982\u6B64\u5BD2\u9178~"
+    - Name: ifPlayerAnswer
+      Entry: 5
+      Data: false
+    - Name: answerList
+      Entry: 7
+      Data: 109|System.Collections.Generic.List`1[[System.String, mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 1
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: ifDialogAfter
+      Entry: 5
+      Data: true
+    - Name: dialogListAfter
+      Entry: 7
+      Data: 110|System.Collections.Generic.List`1[[DialogEditorData, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 111|DialogEditorData, Assembly-CSharp
+    - Name: type
+      Entry: 3
+      Data: 2
+    - Name: content
+      Entry: 1
+      Data: "\u5F3A\u5316\u6CD5\u5668\u518D\u4E5F\u4E0D\u7F3A\u77FF\u77F3\u5566\uFF01"
+    - Name: ifPlayerAnswer
+      Entry: 5
+      Data: true
+    - Name: answerList
+      Entry: 7
+      Data: 112|System.Collections.Generic.List`1[[System.String, mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 1
+      Data: "\u4F60\u5E94\u8BE5\u662F\u60F3\u591A\u4E86\u2026\u2026"
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 113|SingleTask, Assembly-CSharp
+    - Name: block
+      Entry: 5
+      Data: false
+    - Name: theId
+      Entry: 3
+      Data: 165759481200002003
+    - Name: index
+      Entry: 3
+      Data: 12
+    - Name: tagId
+      Entry: 6
+      Data: 
+    - Name: trackingName
+      Entry: 6
+      Data: 
+    - Name: NPCPos
+      Entry: 3
+      Data: 1
+    - Name: condition
+      Entry: 7
+      Data: 114|System.Collections.Generic.List`1[[TaskCondition, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 115|TaskCondition, Assembly-CSharp
+    - Name: taskConditionType
+      Entry: 3
+      Data: 4
+    - Name: param
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: TaskGuideId
+      Entry: 3
+      Data: 0
+    - Name: taskType
+      Entry: 3
+      Data: 22
+    - Name: taskRepeatType
+      Entry: 3
+      Data: 2
+    - Name: repeatTime
+      Entry: 3
+      Data: 0
+    - Name: isNeedItem
+      Entry: 5
+      Data: false
+    - Name: needReceiveItem
+      Entry: 5
+      Data: false
+    - Name: needItem
+      Entry: 3
+      Data: 0
+    - Name: needNum
+      Entry: 3
+      Data: 0
+    - Name: isNeedKillEnemy
+      Entry: 5
+      Data: false
+    - Name: needKillEnemy
+      Entry: 3
+      Data: 0
+    - Name: needKillEnemyNum
+      Entry: 3
+      Data: 0
+    - Name: isNeedDanFarmNum
+      Entry: 5
+      Data: false
+    - Name: needDanFarmId
+      Entry: 3
+      Data: 0
+    - Name: needDanFarmNum
+      Entry: 3
+      Data: 0
+    - Name: needPlayerLevel
+      Entry: 3
+      Data: 0
+    - Name: commonAccomplishCondition
+      Entry: 1
+      Data: 15
+    - Name: des
+      Entry: 1
+      Data: "\u5C06\u638C\u95E8\u88C5\u5907\u7684\u6CD5\u5668\u5F3A\u5316\u81F3Lv15\r"
+    - Name: awardList
+      Entry: 7
+      Data: 116|System.Collections.Generic.List`1[[System.String, mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 1
+      Data: 191001|1
+    - Name: 
+      Entry: 1
+      Data: 365001|10
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: ifAppearInform
+      Entry: 5
+      Data: false
+    - Name: appearTxt
+      Entry: 6
+      Data: 
+    - Name: ifDialogBefore
+      Entry: 5
+      Data: true
+    - Name: dialogList
+      Entry: 7
+      Data: 117|System.Collections.Generic.List`1[[DialogEditorData, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 118|DialogEditorData, Assembly-CSharp
+    - Name: type
+      Entry: 3
+      Data: 2
+    - Name: content
+      Entry: 1
+      Data: "\u6211\u89C1\u4F60\u6CD5\u5668\u5B9D\u5149\u6DE1\u8584\uFF0C\u6050\u6015\u9700\u8981\u5F3A\u5316\u4E9B\u8BB8\uFF0C\u5BF9\u4E0A\u90A3\u4E9B\u4EBA\u624D\u4E0D\u4F1A\u5403\u4E8F\r"
+    - Name: ifPlayerAnswer
+      Entry: 5
+      Data: false
+    - Name: answerList
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: ifDialogAfter
+      Entry: 5
+      Data: true
+    - Name: dialogListAfter
+      Entry: 7
+      Data: 119|System.Collections.Generic.List`1[[DialogEditorData, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 120|DialogEditorData, Assembly-CSharp
+    - Name: type
+      Entry: 3
+      Data: 2
+    - Name: content
+      Entry: 1
+      Data: "\u6CD5\u5668\u8D8A\u5F3A\uFF0C\u6211\u4EEC\u7684\u653B\u51FB\u529B\u5C31\u8D8A\u5F3A\uFF0C\u53EA\u6709\u5F3A\u5927......\u624D\u4E0D\u4F1A\u8D25\r"
+    - Name: ifPlayerAnswer
+      Entry: 5
+      Data: false
+    - Name: answerList
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 121|SingleTask, Assembly-CSharp
+    - Name: block
+      Entry: 5
+      Data: false
+    - Name: theId
+      Entry: 3
+      Data: 165941065800003929
+    - Name: index
+      Entry: 3
+      Data: 13
+    - Name: tagId
+      Entry: 6
+      Data: 
+    - Name: trackingName
+      Entry: 6
+      Data: 
+    - Name: NPCPos
+      Entry: 3
+      Data: 1
+    - Name: condition
+      Entry: 7
+      Data: 122|System.Collections.Generic.List`1[[TaskCondition, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 123|TaskCondition, Assembly-CSharp
+    - Name: taskConditionType
+      Entry: 3
+      Data: 4
+    - Name: param
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: TaskGuideId
+      Entry: 3
+      Data: 0
+    - Name: taskType
+      Entry: 3
+      Data: 42
+    - Name: taskRepeatType
+      Entry: 3
+      Data: 2
+    - Name: repeatTime
+      Entry: 3
+      Data: 0
+    - Name: isNeedItem
+      Entry: 5
+      Data: false
+    - Name: needReceiveItem
+      Entry: 5
+      Data: false
+    - Name: needItem
+      Entry: 3
+      Data: 0
+    - Name: needNum
+      Entry: 3
+      Data: 0
+    - Name: isNeedKillEnemy
+      Entry: 5
+      Data: false
+    - Name: needKillEnemy
+      Entry: 3
+      Data: 0
+    - Name: needKillEnemyNum
+      Entry: 3
+      Data: 0
+    - Name: isNeedDanFarmNum
+      Entry: 5
+      Data: false
+    - Name: needDanFarmId
+      Entry: 3
+      Data: 0
+    - Name: needDanFarmNum
+      Entry: 3
+      Data: 0
+    - Name: needPlayerLevel
+      Entry: 3
+      Data: 0
+    - Name: commonAccomplishCondition
+      Entry: 1
+      Data: 0-10
+    - Name: des
+      Entry: 1
+      Data: "1\u5E741\u6B21\u7684\u88C2\u9699\u5F00\u542F\u65F6\uFF0C\u524D\u5F80\u3010\u4E0B\u5C71\u3011-\u3010\u754C\u57DF\u3011-\u3010\u754C\u57DF\u88C2\u9699\u3011-\u3010\u4E91\u6D77\u5B97\u3011\u901A\u5173\u88C2\u96990-10"
+    - Name: awardList
+      Entry: 7
+      Data: 124|System.Collections.Generic.List`1[[System.String, mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 1
+      Data: 10001|10000
+    - Name: 
+      Entry: 1
+      Data: 365001|10
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: ifAppearInform
+      Entry: 5
+      Data: false
+    - Name: appearTxt
+      Entry: 6
+      Data: 
+    - Name: ifDialogBefore
+      Entry: 5
+      Data: true
+    - Name: dialogList
+      Entry: 7
+      Data: 125|System.Collections.Generic.List`1[[DialogEditorData, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 126|DialogEditorData, Assembly-CSharp
+    - Name: type
+      Entry: 3
+      Data: 2
+    - Name: content
+      Entry: 1
+      Data: "\u7B49\u88C2\u9699\u518D\u5EA6\u5F00\u542F\u65F6\uFF0C\u638C\u95E8\u53EF\u4EE5\u53BB\u89E3\u51B3\u88C2\u9699\u7684\u5996\u517D\u4E86"
+    - Name: ifPlayerAnswer
+      Entry: 5
+      Data: false
+    - Name: answerList
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: ifDialogAfter
+      Entry: 5
+      Data: true
+    - Name: dialogListAfter
+      Entry: 7
+      Data: 127|System.Collections.Generic.List`1[[DialogEditorData, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 128|DialogEditorData, Assembly-CSharp
+    - Name: type
+      Entry: 3
+      Data: 2
+    - Name: content
+      Entry: 1
+      Data: "\u672C\u516C\u4E3B\u4E00\u822C\u4E0D\u8F7B\u6613\u5938\u4EBA\uFF0C\u9664\u975E\u5FCD\u4E0D\u4F4F~\u638C\u95E8\u592A\u5F3A\u4E86\uFF01"
+    - Name: ifPlayerAnswer
+      Entry: 5
+      Data: false
+    - Name: answerList
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 129|SingleTask, Assembly-CSharp
+    - Name: block
+      Entry: 5
+      Data: false
+    - Name: theId
+      Entry: 3
+      Data: 165942089000004184
+    - Name: index
+      Entry: 3
+      Data: 14
+    - Name: tagId
+      Entry: 6
+      Data: 
+    - Name: trackingName
+      Entry: 6
+      Data: 
+    - Name: NPCPos
+      Entry: 3
+      Data: 1
+    - Name: condition
+      Entry: 7
+      Data: 130|System.Collections.Generic.List`1[[TaskCondition, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 131|TaskCondition, Assembly-CSharp
+    - Name: taskConditionType
+      Entry: 3
+      Data: 4
+    - Name: param
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: TaskGuideId
+      Entry: 3
+      Data: 0
+    - Name: taskType
+      Entry: 3
+      Data: 18
+    - Name: taskRepeatType
+      Entry: 3
+      Data: 2
+    - Name: repeatTime
+      Entry: 3
+      Data: 0
+    - Name: isNeedItem
+      Entry: 5
+      Data: false
+    - Name: needReceiveItem
+      Entry: 5
+      Data: false
+    - Name: needItem
+      Entry: 3
+      Data: 0
+    - Name: needNum
+      Entry: 3
+      Data: 0
+    - Name: isNeedKillEnemy
+      Entry: 5
+      Data: false
+    - Name: needKillEnemy
+      Entry: 3
+      Data: 0
+    - Name: needKillEnemyNum
+      Entry: 3
+      Data: 0
+    - Name: isNeedDanFarmNum
+      Entry: 5
+      Data: false
+    - Name: needDanFarmId
+      Entry: 3
+      Data: 0
+    - Name: needDanFarmNum
+      Entry: 3
+      Data: 0
+    - Name: needPlayerLevel
+      Entry: 3
+      Data: 0
+    - Name: commonAccomplishCondition
+      Entry: 1
+      Data: 1|5|30001
+    - Name: des
+      Entry: 1
+      Data: "\u524D\u5F80\u3010\u5C71\u95E8\u3011\u5C06\u51E1\u7EA7\u7075\u6811\u5347\u7EA7\u81F3Lv.5"
+    - Name: awardList
+      Entry: 7
+      Data: 132|System.Collections.Generic.List`1[[System.String, mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 1
+      Data: 91001|600
+    - Name: 
+      Entry: 1
+      Data: 365001|10
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: ifAppearInform
+      Entry: 5
+      Data: false
+    - Name: appearTxt
+      Entry: 6
+      Data: 
+    - Name: ifDialogBefore
+      Entry: 5
+      Data: true
+    - Name: dialogList
+      Entry: 7
+      Data: 133|System.Collections.Generic.List`1[[DialogEditorData, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 3
+    - Name: 
+      Entry: 7
+      Data: 134|DialogEditorData, Assembly-CSharp
+    - Name: type
+      Entry: 3
+      Data: 2
+    - Name: content
+      Entry: 1
+      Data: "\u638C\u95E8\uFF0C\u6211\u770B\u5B97\u95E8\u7684\u7075\u6811\u8BF4\u2014\u2014"
+    - Name: ifPlayerAnswer
+      Entry: 5
+      Data: true
+    - Name: answerList
+      Entry: 7
+      Data: 135|System.Collections.Generic.List`1[[System.String, mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 1
+      Data: "\u7075\u6811\u8BF4\u8BDD\u4E86\uFF1F"
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 136|DialogEditorData, Assembly-CSharp
+    - Name: type
+      Entry: 3
+      Data: 2
+    - Name: content
+      Entry: 1
+      Data: "\u5B83\u8BF4\u522B\u7684\u5EFA\u7B51\u7B49\u7EA7\u90FD\u5F88\u9AD8\uFF0C\u5C31\u7075\u6811\u7684\u7B49\u7EA7\u4E0D\u9AD8\uFF0C\u8981\u4E0D\u2014\u2014"
+    - Name: ifPlayerAnswer
+      Entry: 5
+      Data: true
+    - Name: answerList
+      Entry: 7
+      Data: 137|System.Collections.Generic.List`1[[System.String, mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 1
+      Data: "\u53BB\u7ED9\u7075\u6811\u5347\u4E2A\u7EA7"
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 138|DialogEditorData, Assembly-CSharp
+    - Name: type
+      Entry: 3
+      Data: 2
+    - Name: content
+      Entry: 1
+      Data: "\u4E0D\u6127\u662F\u638C\u95E8\u5927\u4EBA\uFF01"
+    - Name: ifPlayerAnswer
+      Entry: 5
+      Data: false
+    - Name: answerList
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: ifDialogAfter
+      Entry: 5
+      Data: true
+    - Name: dialogListAfter
+      Entry: 7
+      Data: 139|System.Collections.Generic.List`1[[DialogEditorData, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 140|DialogEditorData, Assembly-CSharp
+    - Name: type
+      Entry: 3
+      Data: 2
+    - Name: content
+      Entry: 1
+      Data: "\u4E0D\u6127\u662F\u638C\u95E8\u5927\u4EBA\uFF01"
+    - Name: ifPlayerAnswer
+      Entry: 5
+      Data: false
+    - Name: answerList
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 141|SingleTask, Assembly-CSharp
+    - Name: block
+      Entry: 5
+      Data: false
+    - Name: theId
+      Entry: 3
+      Data: 165942141700005851
+    - Name: index
+      Entry: 3
+      Data: 15
+    - Name: tagId
+      Entry: 6
+      Data: 
+    - Name: trackingName
+      Entry: 6
+      Data: 
+    - Name: NPCPos
+      Entry: 3
+      Data: 1
+    - Name: condition
+      Entry: 7
+      Data: 142|System.Collections.Generic.List`1[[TaskCondition, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 143|TaskCondition, Assembly-CSharp
+    - Name: taskConditionType
+      Entry: 3
+      Data: 4
+    - Name: param
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: TaskGuideId
+      Entry: 3
+      Data: 0
+    - Name: taskType
+      Entry: 3
+      Data: 33
+    - Name: taskRepeatType
+      Entry: 3
+      Data: 2
+    - Name: repeatTime
+      Entry: 3
+      Data: 0
+    - Name: isNeedItem
+      Entry: 5
+      Data: false
+    - Name: needReceiveItem
+      Entry: 5
+      Data: false
+    - Name: needItem
+      Entry: 3
+      Data: 0
+    - Name: needNum
+      Entry: 3
+      Data: 0
+    - Name: isNeedKillEnemy
+      Entry: 5
+      Data: false
+    - Name: needKillEnemy
+      Entry: 3
+      Data: 0
+    - Name: needKillEnemyNum
+      Entry: 3
+      Data: 0
+    - Name: isNeedDanFarmNum
+      Entry: 5
+      Data: false
+    - Name: needDanFarmId
+      Entry: 3
+      Data: 0
+    - Name: needDanFarmNum
+      Entry: 3
+      Data: 0
+    - Name: needPlayerLevel
+      Entry: 3
+      Data: 0
+    - Name: commonAccomplishCondition
+      Entry: 1
+      Data: 101102|20
+    - Name: des
+      Entry: 1
+      Data: "\u524D\u5F80\u3010\u5C71\u95E8\u3011-\u3010\u70BC\u4E39\u623F\u3011\u70BC\u523620\u9897\u4E8C\u54C1\u76CA\u6C14\u4E39"
+    - Name: awardList
+      Entry: 7
+      Data: 144|System.Collections.Generic.List`1[[System.String, mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 1
+      Data: 10001|10000
+    - Name: 
+      Entry: 1
+      Data: 365001|10
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: ifAppearInform
+      Entry: 5
+      Data: false
+    - Name: appearTxt
+      Entry: 6
+      Data: 
+    - Name: ifDialogBefore
+      Entry: 5
+      Data: true
+    - Name: dialogList
+      Entry: 7
+      Data: 145|System.Collections.Generic.List`1[[DialogEditorData, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 146|DialogEditorData, Assembly-CSharp
+    - Name: type
+      Entry: 3
+      Data: 2
+    - Name: content
+      Entry: 1
+      Data: "\u542C\u8BF4\u4E8C\u54C1\u4E39\u836F\u7684\u6027\u4EF7\u6BD4\u8981\u9AD8\u5F88\u591A\uFF0C\u771F\u60F3\u89C1\u8BC6\u4E0B\u5440\u3002"
+    - Name: ifPlayerAnswer
+      Entry: 5
+      Data: false
+    - Name: answerList
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: ifDialogAfter
+      Entry: 5
+      Data: true
+    - Name: dialogListAfter
+      Entry: 7
+      Data: 147|System.Collections.Generic.List`1[[DialogEditorData, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 148|DialogEditorData, Assembly-CSharp
+    - Name: type
+      Entry: 3
+      Data: 2
+    - Name: content
+      Entry: 1
+      Data: "\u54C7\uFF01\u6211\u4EFF\u4F5B\u95FB\u5230\u4E86\u4E39\u836F\u7684\u9999\u5473"
+    - Name: ifPlayerAnswer
+      Entry: 5
+      Data: false
+    - Name: answerList
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 149|SingleTask, Assembly-CSharp
+    - Name: block
+      Entry: 5
+      Data: false
+    - Name: theId
+      Entry: 3
+      Data: 165942191000001321
+    - Name: index
+      Entry: 3
+      Data: 16
+    - Name: tagId
+      Entry: 6
+      Data: 
+    - Name: trackingName
+      Entry: 6
+      Data: 
+    - Name: NPCPos
+      Entry: 3
+      Data: 1
+    - Name: condition
+      Entry: 7
+      Data: 150|System.Collections.Generic.List`1[[TaskCondition, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 151|TaskCondition, Assembly-CSharp
+    - Name: taskConditionType
+      Entry: 3
+      Data: 4
+    - Name: param
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: TaskGuideId
+      Entry: 3
+      Data: 0
+    - Name: taskType
+      Entry: 3
+      Data: 13
+    - Name: taskRepeatType
+      Entry: 3
+      Data: 2
+    - Name: repeatTime
+      Entry: 3
+      Data: 0
+    - Name: isNeedItem
+      Entry: 5
+      Data: false
+    - Name: needReceiveItem
+      Entry: 5
+      Data: false
+    - Name: needItem
+      Entry: 3
+      Data: 0
+    - Name: needNum
+      Entry: 3
+      Data: 0
+    - Name: isNeedKillEnemy
+      Entry: 5
+      Data: false
+    - Name: needKillEnemy
+      Entry: 3
+      Data: 0
+    - Name: needKillEnemyNum
+      Entry: 3
+      Data: 0
+    - Name: isNeedDanFarmNum
+      Entry: 5
+      Data: false
+    - Name: needDanFarmId
+      Entry: 3
+      Data: 0
+    - Name: needDanFarmNum
+      Entry: 3
+      Data: 0
+    - Name: needPlayerLevel
+      Entry: 3
+      Data: 11
+    - Name: commonAccomplishCondition
+      Entry: 6
+      Data: 
+    - Name: des
+      Entry: 1
+      Data: "\u5C06\u638C\u95E8\u4FEE\u4E3A\u63D0\u5347\u81F3\u5185\u81511\u9636"
+    - Name: awardList
+      Entry: 7
+      Data: 152|System.Collections.Generic.List`1[[System.String, mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 1
+      Data: 10001|10000
+    - Name: 
+      Entry: 1
+      Data: 365001|10
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: ifAppearInform
+      Entry: 5
+      Data: false
+    - Name: appearTxt
+      Entry: 6
+      Data: 
+    - Name: ifDialogBefore
+      Entry: 5
+      Data: true
+    - Name: dialogList
+      Entry: 7
+      Data: 153|System.Collections.Generic.List`1[[DialogEditorData, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 7
+      Data: 154|DialogEditorData, Assembly-CSharp
+    - Name: type
+      Entry: 3
+      Data: 2
+    - Name: content
+      Entry: 1
+      Data: "\u638C\u95E8\u64CD\u52B3\u5B97\u95E8\u4E8B\u52A1\uFF0C\u6CA1\u6709\u8352\u5E9F\u81EA\u8EAB\u4FEE\u4E3A\u7684\u7CBE\u8FDB\u5427\u3002"
+    - Name: ifPlayerAnswer
+      Entry: 5
+      Data: true
+    - Name: answerList
+      Entry: 7
+      Data: 155|System.Collections.Generic.List`1[[System.String, mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 1
+      Data: "\u597D\u50CF\u8FD8\u771F\u8352\u5E9F\u4E86\uFF01"
+    - Name: 
+      Entry: 1
+      Data: "\u518D\u4E0D\u4FEE\u70BC\u5C31\u8FDE\u4F60\u90FD\u6253\u4E0D\u8FC7\u4E86\uFF01"
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 156|DialogEditorData, Assembly-CSharp
+    - Name: type
+      Entry: 3
+      Data: 2
+    - Name: content
+      Entry: 1
+      Data: "\u563F\u563F\uFF0C\u5FEB\u53BB\u5427\uFF01"
+    - Name: ifPlayerAnswer
+      Entry: 5
+      Data: false
+    - Name: answerList
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: ifDialogAfter
+      Entry: 5
+      Data: true
+    - Name: dialogListAfter
+      Entry: 7
+      Data: 157|System.Collections.Generic.List`1[[DialogEditorData, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 158|DialogEditorData, Assembly-CSharp
+    - Name: type
+      Entry: 3
+      Data: 2
+    - Name: content
+      Entry: 1
+      Data: "\u54EA\u4F4D\u9AD8\u4FEE\u4E3A\u4EBA\u58EB\u5728\u6211\u9762\u524D\u8D70\u8FC7\uFF0C\u597D\u5F3A\u5927\u7684\u5A01\u538B\uFF01"
+    - Name: ifPlayerAnswer
+      Entry: 5
+      Data: false
+    - Name: answerList
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 159|SingleTask, Assembly-CSharp
+    - Name: block
+      Entry: 5
+      Data: false
+    - Name: theId
+      Entry: 3
+      Data: 165759524700003636
+    - Name: index
+      Entry: 3
+      Data: 17
+    - Name: tagId
+      Entry: 6
+      Data: 
+    - Name: trackingName
+      Entry: 6
+      Data: 
+    - Name: NPCPos
+      Entry: 3
+      Data: 1
+    - Name: condition
+      Entry: 7
+      Data: 160|System.Collections.Generic.List`1[[TaskCondition, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 161|TaskCondition, Assembly-CSharp
+    - Name: taskConditionType
+      Entry: 3
+      Data: 4
+    - Name: param
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: TaskGuideId
+      Entry: 3
+      Data: 0
+    - Name: taskType
+      Entry: 3
+      Data: 44
+    - Name: taskRepeatType
+      Entry: 3
+      Data: 0
+    - Name: repeatTime
+      Entry: 3
+      Data: 0
+    - Name: isNeedItem
+      Entry: 5
+      Data: false
+    - Name: needReceiveItem
+      Entry: 5
+      Data: false
+    - Name: needItem
+      Entry: 3
+      Data: 0
+    - Name: needNum
+      Entry: 3
+      Data: 0
+    - Name: isNeedKillEnemy
+      Entry: 5
+      Data: false
+    - Name: needKillEnemy
+      Entry: 3
+      Data: 0
+    - Name: needKillEnemyNum
+      Entry: 3
+      Data: 0
+    - Name: isNeedDanFarmNum
+      Entry: 5
+      Data: false
+    - Name: needDanFarmId
+      Entry: 3
+      Data: 0
+    - Name: needDanFarmNum
+      Entry: 3
+      Data: 0
+    - Name: needPlayerLevel
+      Entry: 3
+      Data: 0
+    - Name: commonAccomplishCondition
+      Entry: 1
+      Data: 1
+    - Name: des
+      Entry: 1
+      Data: "\u6D3E\u51FA\u4E24\u540D\u5F1F\u5B50\u524D\u5F80\u3010\u5C71\u4E0B\u3011\u7684\u3010\u5929\u547D\u5BAB\u3011\u3010\u592A\u5FAE\u57A3\u3011\u3010\u6597\u6570\u661F\u3011\u3010\u7384\u6B66\u6BBF\u3011\u3010\u5929\u5811\u5CF0\u3011\u53C2\u52A0\u5386\u7EC3\r\n"
+    - Name: awardList
+      Entry: 7
+      Data: 162|System.Collections.Generic.List`1[[System.String, mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 1
+      Data: 152001|2
+    - Name: 
+      Entry: 1
+      Data: 365001|10
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: ifAppearInform
+      Entry: 5
+      Data: false
+    - Name: appearTxt
+      Entry: 6
+      Data: 
+    - Name: ifDialogBefore
+      Entry: 5
+      Data: true
+    - Name: dialogList
+      Entry: 7
+      Data: 163|System.Collections.Generic.List`1[[DialogEditorData, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 164|DialogEditorData, Assembly-CSharp
+    - Name: type
+      Entry: 3
+      Data: 2
+    - Name: content
+      Entry: 1
+      Data: "\u4E0B\u5C71\u5904\u7684\u5386\u7EC3\u70B9\uFF0C\u6D3E\u4E24\u540D\u5F1F\u5B50\u524D\u53BB\uFF0C\u4E0D\u4EC5\u53EF\u4EE5\u52A0\u6DF1\u5F1F\u5B50\u95F4\u7684\u611F\u60C5\uFF0C\u8FD8\u80FD\u83B7\u5F97\u5F3A\u5316\u8840\u8109\u7684\u5B9D\u7269\r"
+    - Name: ifPlayerAnswer
+      Entry: 5
+      Data: false
+    - Name: answerList
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: ifDialogAfter
+      Entry: 5
+      Data: true
+    - Name: dialogListAfter
+      Entry: 7
+      Data: 165|System.Collections.Generic.List`1[[DialogEditorData, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 166|DialogEditorData, Assembly-CSharp
+    - Name: type
+      Entry: 3
+      Data: 2
+    - Name: content
+      Entry: 1
+      Data: "\u7ECF\u8FC7\u4E00\u756A\u5386\u7EC3\uFF0C\u5F1F\u5B50\u662F\u5426\u66F4\u76F8\u4EB2\u76F8\u7231\u4E86\u5462\uFF1F"
+    - Name: ifPlayerAnswer
+      Entry: 5
+      Data: false
+    - Name: answerList
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 167|SingleTask, Assembly-CSharp
+    - Name: block
+      Entry: 5
+      Data: false
+    - Name: theId
+      Entry: 3
+      Data: 165759599700001126
+    - Name: index
+      Entry: 3
+      Data: 18
+    - Name: tagId
+      Entry: 6
+      Data: 
+    - Name: trackingName
+      Entry: 6
+      Data: 
+    - Name: NPCPos
+      Entry: 3
+      Data: 1
+    - Name: condition
+      Entry: 7
+      Data: 168|System.Collections.Generic.List`1[[TaskCondition, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 169|TaskCondition, Assembly-CSharp
+    - Name: taskConditionType
+      Entry: 3
+      Data: 4
+    - Name: param
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: TaskGuideId
+      Entry: 3
+      Data: 10010
+    - Name: taskType
+      Entry: 3
+      Data: 47
+    - Name: taskRepeatType
+      Entry: 3
+      Data: 2
+    - Name: repeatTime
+      Entry: 3
+      Data: 0
+    - Name: isNeedItem
+      Entry: 5
+      Data: false
+    - Name: needReceiveItem
+      Entry: 5
+      Data: false
+    - Name: needItem
+      Entry: 3
+      Data: 0
+    - Name: needNum
+      Entry: 3
+      Data: 0
+    - Name: isNeedKillEnemy
+      Entry: 5
+      Data: false
+    - Name: needKillEnemy
+      Entry: 3
+      Data: 0
+    - Name: needKillEnemyNum
+      Entry: 3
+      Data: 0
+    - Name: isNeedDanFarmNum
+      Entry: 5
+      Data: false
+    - Name: needDanFarmId
+      Entry: 3
+      Data: 0
+    - Name: needDanFarmNum
+      Entry: 3
+      Data: 0
+    - Name: needPlayerLevel
+      Entry: 3
+      Data: 0
+    - Name: commonAccomplishCondition
+      Entry: 1
+      Data: 1
+    - Name: des
+      Entry: 1
+      Data: "\u5F3A\u5316\u4E00\u6B21\u638C\u95E8\u8840\u8109"
+    - Name: awardList
+      Entry: 7
+      Data: 170|System.Collections.Generic.List`1[[System.String, mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 1
+      Data: 10001|5000
+    - Name: 
+      Entry: 1
+      Data: 365001|10
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: ifAppearInform
+      Entry: 5
+      Data: false
+    - Name: appearTxt
+      Entry: 6
+      Data: 
+    - Name: ifDialogBefore
+      Entry: 5
+      Data: true
+    - Name: dialogList
+      Entry: 7
+      Data: 171|System.Collections.Generic.List`1[[DialogEditorData, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 172|DialogEditorData, Assembly-CSharp
+    - Name: type
+      Entry: 3
+      Data: 0
+    - Name: content
+      Entry: 1
+      Data: "\u8840\u8109\u4E43\u4FEE\u4ED9\u4EBA\u4E4B\u6839\u672C\uFF0C\u6CD5\u5B9D\u4E39\u836F\u7686\u4E3A\u5916\u7269\uFF0C\u5C06\u5F1F\u5B50\u4EEC\u5E26\u56DE\u6765\u7684\u8840\u8109\u77F3\u4E00\u4E00\u5F3A\u5316\u770B\u770B\r"
+    - Name: ifPlayerAnswer
+      Entry: 5
+      Data: false
+    - Name: answerList
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: ifDialogAfter
+      Entry: 5
+      Data: true
+    - Name: dialogListAfter
+      Entry: 7
+      Data: 173|System.Collections.Generic.List`1[[DialogEditorData, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 174|DialogEditorData, Assembly-CSharp
+    - Name: type
+      Entry: 3
+      Data: 2
+    - Name: content
+      Entry: 1
+      Data: "\u6709\u6CA1\u6709\u89C9\u5F97\u8EAB\u4E0A\u7684\u529B\u91CF\u66F4\u6F8E\u6E43\u4E86\uFF1F\r"
+    - Name: ifPlayerAnswer
+      Entry: 5
+      Data: false
+    - Name: answerList
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 175|SingleTask, Assembly-CSharp
+    - Name: block
+      Entry: 5
+      Data: false
+    - Name: theId
+      Entry: 3
+      Data: 165759735200001769
+    - Name: index
+      Entry: 3
+      Data: 19
+    - Name: tagId
+      Entry: 6
+      Data: 
+    - Name: trackingName
+      Entry: 6
+      Data: 
+    - Name: NPCPos
+      Entry: 3
+      Data: 1
+    - Name: condition
+      Entry: 7
+      Data: 176|System.Collections.Generic.List`1[[TaskCondition, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 177|TaskCondition, Assembly-CSharp
+    - Name: taskConditionType
+      Entry: 3
+      Data: 0
+    - Name: param
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: TaskGuideId
+      Entry: 3
+      Data: 0
+    - Name: taskType
+      Entry: 3
+      Data: 32
+    - Name: taskRepeatType
+      Entry: 3
+      Data: 2
+    - Name: repeatTime
+      Entry: 3
+      Data: 0
+    - Name: isNeedItem
+      Entry: 5
+      Data: false
+    - Name: needReceiveItem
+      Entry: 5
+      Data: false
+    - Name: needItem
+      Entry: 3
+      Data: 0
+    - Name: needNum
+      Entry: 3
+      Data: 0
+    - Name: isNeedKillEnemy
+      Entry: 5
+      Data: false
+    - Name: needKillEnemy
+      Entry: 3
+      Data: 0
+    - Name: needKillEnemyNum
+      Entry: 3
+      Data: 0
+    - Name: isNeedDanFarmNum
+      Entry: 5
+      Data: false
+    - Name: needDanFarmId
+      Entry: 3
+      Data: 0
+    - Name: needDanFarmNum
+      Entry: 3
+      Data: 0
+    - Name: needPlayerLevel
+      Entry: 3
+      Data: 0
+    - Name: commonAccomplishCondition
+      Entry: 1
+      Data: 2|1
+    - Name: des
+      Entry: 1
+      Data: "\u524D\u5F80\u3010\u4E0B\u5C71\u3011-\u3010\u661F\u8FB0\u6DA7\u3011\uFF0C\u901A\u5173\u4E00\u6B21"
+    - Name: awardList
+      Entry: 7
+      Data: 178|System.Collections.Generic.List`1[[System.String, mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 3
+    - Name: 
+      Entry: 1
+      Data: 131001|2000
+    - Name: 
+      Entry: 1
+      Data: 365001|10
+    - Name: 
+      Entry: 1
+      Data: 10001|300000
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: ifAppearInform
+      Entry: 5
+      Data: false
+    - Name: appearTxt
+      Entry: 6
+      Data: 
+    - Name: ifDialogBefore
+      Entry: 5
+      Data: true
+    - Name: dialogList
+      Entry: 7
+      Data: 179|System.Collections.Generic.List`1[[DialogEditorData, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 180|DialogEditorData, Assembly-CSharp
+    - Name: type
+      Entry: 3
+      Data: 2
+    - Name: content
+      Entry: 1
+      Data: "\u6211\u6765\u65F6\uFF0C\u89C1\u5C71\u4E0B\u7684\u661F\u5C18\u6DA7\u9690\u9690\u6709\u5B9D\u5149\uFF0C\u8BB8\u662F\u4ECA\u65E5\u7684\u91CD\u5B9D\u8FD8\u672A\u88AB\u53D6\u8D70\uFF0C\u4E0D\u8FC7\u90A3\u5904\u602A\u7269\u7684\u5636\u9E23\u58F0\u4E5F\u5F88\u51F6\u731B\uFF0C\u4F60\u53BB\u63A2\u67E5\u65F6\u9700\u5F97\u5C0F\u5FC3\u4E9B"
+    - Name: ifPlayerAnswer
+      Entry: 5
+      Data: false
+    - Name: answerList
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: ifDialogAfter
+      Entry: 5
+      Data: true
+    - Name: dialogListAfter
+      Entry: 7
+      Data: 181|System.Collections.Generic.List`1[[DialogEditorData, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 182|DialogEditorData, Assembly-CSharp
+    - Name: type
+      Entry: 3
+      Data: 2
+    - Name: content
+      Entry: 1
+      Data: "\u4E0D\u9519\u4E0D\u9519\uFF0C\u6536\u83B7\u9887\u4E30\u561B\r"
+    - Name: ifPlayerAnswer
+      Entry: 5
+      Data: false
+    - Name: answerList
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 183|SingleTask, Assembly-CSharp
+    - Name: block
+      Entry: 5
+      Data: false
+    - Name: theId
+      Entry: 3
+      Data: 165760936100004688
+    - Name: index
+      Entry: 3
+      Data: 20
+    - Name: tagId
+      Entry: 6
+      Data: 
+    - Name: trackingName
+      Entry: 6
+      Data: 
+    - Name: NPCPos
+      Entry: 3
+      Data: 1
+    - Name: condition
+      Entry: 7
+      Data: 184|System.Collections.Generic.List`1[[TaskCondition, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 185|TaskCondition, Assembly-CSharp
+    - Name: taskConditionType
+      Entry: 3
+      Data: 4
+    - Name: param
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: TaskGuideId
+      Entry: 3
+      Data: 0
+    - Name: taskType
+      Entry: 3
+      Data: 45
+    - Name: taskRepeatType
+      Entry: 3
+      Data: 2
+    - Name: repeatTime
+      Entry: 3
+      Data: 0
+    - Name: isNeedItem
+      Entry: 5
+      Data: false
+    - Name: needReceiveItem
+      Entry: 5
+      Data: false
+    - Name: needItem
+      Entry: 3
+      Data: 0
+    - Name: needNum
+      Entry: 3
+      Data: 0
+    - Name: isNeedKillEnemy
+      Entry: 5
+      Data: false
+    - Name: needKillEnemy
+      Entry: 3
+      Data: 0
+    - Name: needKillEnemyNum
+      Entry: 3
+      Data: 0
+    - Name: isNeedDanFarmNum
+      Entry: 5
+      Data: false
+    - Name: needDanFarmId
+      Entry: 3
+      Data: 0
+    - Name: needDanFarmNum
+      Entry: 3
+      Data: 0
+    - Name: needPlayerLevel
+      Entry: 3
+      Data: 0
+    - Name: commonAccomplishCondition
+      Entry: 1
+      Data: 1|3|1
+    - Name: des
+      Entry: 1
+      Data: "\u524D\u5F80\u3010\u5C71\u95E8\u3011-\u3010\u516B\u5366\u7089\u3011-\u3010\u9009\u62E9\u5B9D\u77F3\u3011-\u3010\u5408\u6210\u3011\u5408\u62101\u9897\u5B8C\u7F8E\u7684\u51E1\u7EA7\u5B9D\u77F3\r\n"
+    - Name: awardList
+      Entry: 7
+      Data: 186|System.Collections.Generic.List`1[[System.String, mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 1
+      Data: 191001|1
+    - Name: 
+      Entry: 1
+      Data: 365001|10
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: ifAppearInform
+      Entry: 5
+      Data: false
+    - Name: appearTxt
+      Entry: 6
+      Data: 
+    - Name: ifDialogBefore
+      Entry: 5
+      Data: true
+    - Name: dialogList
+      Entry: 7
+      Data: 187|System.Collections.Generic.List`1[[DialogEditorData, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 188|DialogEditorData, Assembly-CSharp
+    - Name: type
+      Entry: 3
+      Data: 2
+    - Name: content
+      Entry: 1
+      Data: "\u8FD9\u661F\u5C18\u53EF\u662F\u96BE\u5F97\u7684\u5B9D\u7269\uFF0C\u4F60\u62FF\u53BB\u653E\u5165\u516B\u5366\u7089\u4E2D\u70BC\u4E0A\u4E00\u70BC\r\n"
+    - Name: ifPlayerAnswer
+      Entry: 5
+      Data: false
+    - Name: answerList
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: ifDialogAfter
+      Entry: 5
+      Data: true
+    - Name: dialogListAfter
+      Entry: 7
+      Data: 189|System.Collections.Generic.List`1[[DialogEditorData, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 190|DialogEditorData, Assembly-CSharp
+    - Name: type
+      Entry: 3
+      Data: 2
+    - Name: content
+      Entry: 1
+      Data: "\u8FD9\u5B9D\u77F3\u7684\u8272\u6CFD\uFF0C\u8574\u542B\u7684\u529B\u91CF\uFF0C\u7B80\u76F4\u4EE4\u4EBA\u7740\u8FF7"
+    - Name: ifPlayerAnswer
+      Entry: 5
+      Data: false
+    - Name: answerList
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 191|SingleTask, Assembly-CSharp
+    - Name: block
+      Entry: 5
+      Data: false
+    - Name: theId
+      Entry: 3
+      Data: 165761546100001309
+    - Name: index
+      Entry: 3
+      Data: 21
+    - Name: tagId
+      Entry: 6
+      Data: 
+    - Name: trackingName
+      Entry: 6
+      Data: 
+    - Name: NPCPos
+      Entry: 3
+      Data: 1
+    - Name: condition
+      Entry: 7
+      Data: 192|System.Collections.Generic.List`1[[TaskCondition, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 193|TaskCondition, Assembly-CSharp
+    - Name: taskConditionType
+      Entry: 3
+      Data: 4
+    - Name: param
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: TaskGuideId
+      Entry: 3
+      Data: 0
+    - Name: taskType
+      Entry: 3
+      Data: 36
+    - Name: taskRepeatType
+      Entry: 3
+      Data: 2
+    - Name: repeatTime
+      Entry: 3
+      Data: 0
+    - Name: isNeedItem
+      Entry: 5
+      Data: false
+    - Name: needReceiveItem
+      Entry: 5
+      Data: false
+    - Name: needItem
+      Entry: 3
+      Data: 0
+    - Name: needNum
+      Entry: 3
+      Data: 0
+    - Name: isNeedKillEnemy
+      Entry: 5
+      Data: false
+    - Name: needKillEnemy
+      Entry: 3
+      Data: 0
+    - Name: needKillEnemyNum
+      Entry: 3
+      Data: 0
+    - Name: isNeedDanFarmNum
+      Entry: 5
+      Data: false
+    - Name: needDanFarmId
+      Entry: 3
+      Data: 0
+    - Name: needDanFarmNum
+      Entry: 3
+      Data: 0
+    - Name: needPlayerLevel
+      Entry: 3
+      Data: 0
+    - Name: commonAccomplishCondition
+      Entry: 1
+      Data: 1|3
+    - Name: des
+      Entry: 1
+      Data: "\u8FDB\u5165\u89D2\u8272\u754C\u9762\uFF0C\u70B9\u51FB\u638C\u95E8\u4FE1\u606F\uFF0C\u70B9\u51FB\u88C5\u5907-\u6CD5\u5668-\u5F3A\u5316-\u5B9D\u77F3\uFF0C\u4E3A\u638C\u95E8\u88C5\u5907\u7684\u6CD5\u5668\u9576\u5D4C\u4EFB\u610F\u4E09\u9897\u51E1\u7EA7\u5B9D\u77F3"
+    - Name: awardList
+      Entry: 7
+      Data: 194|System.Collections.Generic.List`1[[System.String, mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 1
+      Data: 10001|5000
+    - Name: 
+      Entry: 1
+      Data: 365001|10
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: ifAppearInform
+      Entry: 5
+      Data: false
+    - Name: appearTxt
+      Entry: 6
+      Data: 
+    - Name: ifDialogBefore
+      Entry: 5
+      Data: true
+    - Name: dialogList
+      Entry: 7
+      Data: 195|System.Collections.Generic.List`1[[DialogEditorData, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 196|DialogEditorData, Assembly-CSharp
+    - Name: type
+      Entry: 3
+      Data: 2
+    - Name: content
+      Entry: 1
+      Data: "\u5C06\u5B9D\u77F3\u9576\u5D4C\u5230\u6CD5\u5668\u4E0A\u53BB\u5427\uFF0C\u867D\u7136\u6B8B\u7F3A\u7684\u5B9D\u77F3\u4E5F\u53EF\u4EE5\u9576\u5D4C\uFF0C\u4F46\u8D8A\u5B8C\u7F8E\u7684\u5B9D\u77F3\uFF0C\u589E\u5E45\u8D8A\u5F3A\uFF01"
+    - Name: ifPlayerAnswer
+      Entry: 5
+      Data: false
+    - Name: answerList
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: ifDialogAfter
+      Entry: 5
+      Data: true
+    - Name: dialogListAfter
+      Entry: 7
+      Data: 197|System.Collections.Generic.List`1[[DialogEditorData, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 198|DialogEditorData, Assembly-CSharp
+    - Name: type
+      Entry: 3
+      Data: 2
+    - Name: content
+      Entry: 1
+      Data: "\u4F69\u6234\u4E86\u9576\u6EE1\u5B9D\u77F3\u7684\u6CD5\u5668\uFF0C\u4F60\u73B0\u4E0B\u5468\u8EAB\u7684\u7075\u538B\u7B80\u76F4\u6F8E\u6E43\u6C79\u6D8C\r\n"
+    - Name: ifPlayerAnswer
+      Entry: 5
+      Data: false
+    - Name: answerList
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 199|SingleTask, Assembly-CSharp
+    - Name: block
+      Entry: 5
+      Data: false
+    - Name: theId
+      Entry: 3
+      Data: 165759781800002994
+    - Name: index
+      Entry: 3
+      Data: 22
+    - Name: tagId
+      Entry: 6
+      Data: 
+    - Name: trackingName
+      Entry: 6
+      Data: 
+    - Name: NPCPos
+      Entry: 3
+      Data: 1
+    - Name: condition
+      Entry: 7
+      Data: 200|System.Collections.Generic.List`1[[TaskCondition, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 201|TaskCondition, Assembly-CSharp
+    - Name: taskConditionType
+      Entry: 3
+      Data: 4
+    - Name: param
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: TaskGuideId
+      Entry: 3
+      Data: 0
+    - Name: taskType
+      Entry: 3
+      Data: 32
+    - Name: taskRepeatType
+      Entry: 3
+      Data: 2
+    - Name: repeatTime
+      Entry: 3
+      Data: 0
+    - Name: isNeedItem
+      Entry: 5
+      Data: false
+    - Name: needReceiveItem
+      Entry: 5
+      Data: false
+    - Name: needItem
+      Entry: 3
+      Data: 0
+    - Name: needNum
+      Entry: 3
+      Data: 0
+    - Name: isNeedKillEnemy
+      Entry: 5
+      Data: false
+    - Name: needKillEnemy
+      Entry: 3
+      Data: 0
+    - Name: needKillEnemyNum
+      Entry: 3
+      Data: 0
+    - Name: isNeedDanFarmNum
+      Entry: 5
+      Data: false
+    - Name: needDanFarmId
+      Entry: 3
+      Data: 0
+    - Name: needDanFarmNum
+      Entry: 3
+      Data: 0
+    - Name: needPlayerLevel
+      Entry: 3
+      Data: 0
+    - Name: commonAccomplishCondition
+      Entry: 1
+      Data: 1|1
+    - Name: des
+      Entry: 1
+      Data: "\u524D\u5F80\u3010\u4E0B\u5C71\u3011-\u3010\u9668\u6E56\u3011\uFF0C\u901A\u5173\u4E00\u6B21"
+    - Name: awardList
+      Entry: 7
+      Data: 202|System.Collections.Generic.List`1[[System.String, mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 1
+      Data: 81001|800
+    - Name: 
+      Entry: 1
+      Data: 365001|10
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: ifAppearInform
+      Entry: 5
+      Data: false
+    - Name: appearTxt
+      Entry: 6
+      Data: 
+    - Name: ifDialogBefore
+      Entry: 5
+      Data: true
+    - Name: dialogList
+      Entry: 7
+      Data: 203|System.Collections.Generic.List`1[[DialogEditorData, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 204|DialogEditorData, Assembly-CSharp
+    - Name: type
+      Entry: 3
+      Data: 2
+    - Name: content
+      Entry: 1
+      Data: "\u638C\u95E8\u8BA8\u4F10\u7684\u65F6\u5019\u6709\u6CA1\u6709\u8DEF\u8FC7\u9668\u6E56\u554A\uFF0C\u542C\u8BF4\u90A3\u91CC\u6709\u5F3A\u5316\u529F\u6CD5\u7684\u5B9D\u7269\uFF0C\u672C\u516C\u4E3B\u4E00\u76F4\u60F3\u53BB\u4E00\u63A2\u7A76\u7ADF\u5462\uFF01\r"
+    - Name: ifPlayerAnswer
+      Entry: 5
+      Data: false
+    - Name: answerList
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: ifDialogAfter
+      Entry: 5
+      Data: true
+    - Name: dialogListAfter
+      Entry: 7
+      Data: 205|System.Collections.Generic.List`1[[DialogEditorData, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 206|DialogEditorData, Assembly-CSharp
+    - Name: type
+      Entry: 3
+      Data: 2
+    - Name: content
+      Entry: 1
+      Data: "\u54C7\uFF01\u4F60\u5C45\u7136\u6253\u8D25\u4E86\u9668\u6E56\u5B88\u536B\uFF01\u771F\u4E0D\u6127\u662F\u672C\u516C\u4E3B\u770B\u4E0A\u7684\u4EBA\u3002\r"
+    - Name: ifPlayerAnswer
+      Entry: 5
+      Data: false
+    - Name: answerList
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 207|SingleTask, Assembly-CSharp
+    - Name: block
+      Entry: 5
+      Data: false
+    - Name: theId
+      Entry: 3
+      Data: 165942331500002138
+    - Name: index
+      Entry: 3
+      Data: 23
+    - Name: tagId
+      Entry: 6
+      Data: 
+    - Name: trackingName
+      Entry: 6
+      Data: 
+    - Name: NPCPos
+      Entry: 3
+      Data: 1
+    - Name: condition
+      Entry: 7
+      Data: 208|System.Collections.Generic.List`1[[TaskCondition, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 209|TaskCondition, Assembly-CSharp
+    - Name: taskConditionType
+      Entry: 3
+      Data: 4
+    - Name: param
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: TaskGuideId
+      Entry: 3
+      Data: 0
+    - Name: taskType
+      Entry: 3
+      Data: 18
+    - Name: taskRepeatType
+      Entry: 3
+      Data: 2
+    - Name: repeatTime
+      Entry: 3
+      Data: 0
+    - Name: isNeedItem
+      Entry: 5
+      Data: false
+    - Name: needReceiveItem
+      Entry: 5
+      Data: false
+    - Name: needItem
+      Entry: 3
+      Data: 0
+    - Name: needNum
+      Entry: 3
+      Data: 0
+    - Name: isNeedKillEnemy
+      Entry: 5
+      Data: false
+    - Name: needKillEnemy
+      Entry: 3
+      Data: 0
+    - Name: needKillEnemyNum
+      Entry: 3
+      Data: 0
+    - Name: isNeedDanFarmNum
+      Entry: 5
+      Data: false
+    - Name: needDanFarmId
+      Entry: 3
+      Data: 0
+    - Name: needDanFarmNum
+      Entry: 3
+      Data: 0
+    - Name: needPlayerLevel
+      Entry: 3
+      Data: 0
+    - Name: commonAccomplishCondition
+      Entry: 1
+      Data: 1|5|40001
+    - Name: des
+      Entry: 1
+      Data: "\u524D\u5F80\u3010\u5C71\u95E8\u3011\u5C06\u51E1\u7EA7\u85CF\u7ECF\u9601\u5347\u7EA7\u81F3Lv.5"
+    - Name: awardList
+      Entry: 7
+      Data: 210|System.Collections.Generic.List`1[[System.String, mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 7
+    - Name: 
+      Entry: 1
+      Data: 365001|10
+    - Name: 
+      Entry: 1
+      Data: 121004|100
+    - Name: 
+      Entry: 1
+      Data: 121002|100
+    - Name: 
+      Entry: 1
+      Data: 121003|100
+    - Name: 
+      Entry: 1
+      Data: 121005|100
+    - Name: 
+      Entry: 1
+      Data: 121006|100
+    - Name: 
+      Entry: 1
+      Data: 121007|100
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: ifAppearInform
+      Entry: 5
+      Data: false
+    - Name: appearTxt
+      Entry: 6
+      Data: 
+    - Name: ifDialogBefore
+      Entry: 5
+      Data: true
+    - Name: dialogList
+      Entry: 7
+      Data: 211|System.Collections.Generic.List`1[[DialogEditorData, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 212|DialogEditorData, Assembly-CSharp
+    - Name: type
+      Entry: 3
+      Data: 2
+    - Name: content
+      Entry: 1
+      Data: "\u9668\u6E56\u4E2D\u5F97\u6765\u7684\u5B9D\u8D1D\u5F88\u91CD\u8981\u5427\uFF0C\u4F46\u662F\u4F3C\u4E4E\u9700\u8981\u66F4\u591A\u6280\u80FD\u6B8B\u9875\u65B9\u80FD\u9886\u609F"
+    - Name: ifPlayerAnswer
+      Entry: 5
+      Data: false
+    - Name: answerList
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: ifDialogAfter
+      Entry: 5
+      Data: true
+    - Name: dialogListAfter
+      Entry: 7
+      Data: 213|System.Collections.Generic.List`1[[DialogEditorData, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 214|DialogEditorData, Assembly-CSharp
+    - Name: type
+      Entry: 3
+      Data: 2
+    - Name: content
+      Entry: 1
+      Data: "\u5E0C\u671B\u85CF\u7ECF\u9601\u4E5F\u80FD\u8BA9\u6211\u591A\u901B\u901B"
+    - Name: ifPlayerAnswer
+      Entry: 5
+      Data: false
+    - Name: answerList
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 215|SingleTask, Assembly-CSharp
+    - Name: block
+      Entry: 5
+      Data: false
+    - Name: theId
+      Entry: 3
+      Data: 165761588200001106
+    - Name: index
+      Entry: 3
+      Data: 24
+    - Name: tagId
+      Entry: 1
+      Data: suMengLanLeave
+    - Name: trackingName
+      Entry: 6
+      Data: 
+    - Name: NPCPos
+      Entry: 3
+      Data: 8
+    - Name: condition
+      Entry: 7
+      Data: 216|System.Collections.Generic.List`1[[TaskCondition, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 217|TaskCondition, Assembly-CSharp
+    - Name: taskConditionType
+      Entry: 3
+      Data: 4
+    - Name: param
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: TaskGuideId
+      Entry: 3
+      Data: 0
+    - Name: taskType
+      Entry: 3
+      Data: 21
+    - Name: taskRepeatType
+      Entry: 3
+      Data: 2
+    - Name: repeatTime
+      Entry: 3
+      Data: 0
+    - Name: isNeedItem
+      Entry: 5
+      Data: false
+    - Name: needReceiveItem
+      Entry: 5
+      Data: false
+    - Name: needItem
+      Entry: 3
+      Data: 0
+    - Name: needNum
+      Entry: 3
+      Data: 0
+    - Name: isNeedKillEnemy
+      Entry: 5
+      Data: false
+    - Name: needKillEnemy
+      Entry: 3
+      Data: 0
+    - Name: needKillEnemyNum
+      Entry: 3
+      Data: 0
+    - Name: isNeedDanFarmNum
+      Entry: 5
+      Data: false
+    - Name: needDanFarmId
+      Entry: 3
+      Data: 0
+    - Name: needDanFarmNum
+      Entry: 3
+      Data: 0
+    - Name: needPlayerLevel
+      Entry: 3
+      Data: 0
+    - Name: commonAccomplishCondition
+      Entry: 1
+      Data: 0|3
+    - Name: des
+      Entry: 1
+      Data: "\u8FDB\u5165\u89D2\u8272\u754C\u9762\uFF0C\u70B9\u51FB\u638C\u95E8\u4FE1\u606F\uFF0C\u70B9\u51FB\u529F\u6CD5\uFF0C\u9009\u4E2D\u5DF2\u643A\u5E26\u7684\u529F\u6CD5\uFF0C\u5E76\u5C06\u529F\u6CD5\u5347\u7EA7\u81F3Lv3"
+    - Name: awardList
+      Entry: 7
+      Data: 218|System.Collections.Generic.List`1[[System.String, mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 7
+    - Name: 
+      Entry: 1
+      Data: 141001|3
+    - Name: 
+      Entry: 1
+      Data: 365001|10
+    - Name: 
+      Entry: 1
+      Data: 211011|3
+    - Name: 
+      Entry: 1
+      Data: 110001|3
+    - Name: 
+      Entry: 1
+      Data: 880001|3
+    - Name: 
+      Entry: 1
+      Data: 110002|3
+    - Name: 
+      Entry: 1
+      Data: 110003|3
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: ifAppearInform
+      Entry: 5
+      Data: false
+    - Name: appearTxt
+      Entry: 6
+      Data: 
+    - Name: ifDialogBefore
+      Entry: 5
+      Data: true
+    - Name: dialogList
+      Entry: 7
+      Data: 219|System.Collections.Generic.List`1[[DialogEditorData, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 220|DialogEditorData, Assembly-CSharp
+    - Name: type
+      Entry: 3
+      Data: 2
+    - Name: content
+      Entry: 1
+      Data: "\u529F\u6CD5\u7684\u4FEE\u70BC\u4E5F\u4E0D\u80FD\u843D\u4E0B\uFF0C\u5F85\u529F\u6CD5\u4FEE\u81F3\u9AD8\u9636\uFF0C\u4E00\u638C\u53EF\u5F00\u5C71\u7834\u6D77\uFF0C\u98A0\u8986\u5929\u5730\r\n"
+    - Name: ifPlayerAnswer
+      Entry: 5
+      Data: false
+    - Name: answerList
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: ifDialogAfter
+      Entry: 5
+      Data: true
+    - Name: dialogListAfter
+      Entry: 7
+      Data: 221|System.Collections.Generic.List`1[[DialogEditorData, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 222|DialogEditorData, Assembly-CSharp
+    - Name: type
+      Entry: 3
+      Data: 2
+    - Name: content
+      Entry: 1
+      Data: "\u4F60\u7684\u609F\u6027\u4E5F\u592A\u597D\u4E86\uFF0C\u8FD9\u4E48\u5FEB\u5C31\u5C06\u529F\u6CD5\u53C2\u900F\u4E86\u8FD9\u8BB8\u591A\r"
+    - Name: ifPlayerAnswer
+      Entry: 5
+      Data: false
+    - Name: answerList
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 223|SingleTask, Assembly-CSharp
+    - Name: block
+      Entry: 5
+      Data: false
+    - Name: theId
+      Entry: 3
+      Data: 165942369600003254
+    - Name: index
+      Entry: 3
+      Data: 25
+    - Name: tagId
+      Entry: 6
+      Data: 
+    - Name: trackingName
+      Entry: 6
+      Data: 
+    - Name: NPCPos
+      Entry: 3
+      Data: 1
+    - Name: condition
+      Entry: 7
+      Data: 224|System.Collections.Generic.List`1[[TaskCondition, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 225|TaskCondition, Assembly-CSharp
+    - Name: taskConditionType
+      Entry: 3
+      Data: 4
+    - Name: param
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: TaskGuideId
+      Entry: 3
+      Data: 0
+    - Name: taskType
+      Entry: 3
+      Data: 52
+    - Name: taskRepeatType
+      Entry: 3
+      Data: 2
+    - Name: repeatTime
+      Entry: 3
+      Data: 0
+    - Name: isNeedItem
+      Entry: 5
+      Data: false
+    - Name: needReceiveItem
+      Entry: 5
+      Data: false
+    - Name: needItem
+      Entry: 3
+      Data: 0
+    - Name: needNum
+      Entry: 3
+      Data: 0
+    - Name: isNeedKillEnemy
+      Entry: 5
+      Data: false
+    - Name: needKillEnemy
+      Entry: 3
+      Data: 0
+    - Name: needKillEnemyNum
+      Entry: 3
+      Data: 0
+    - Name: isNeedDanFarmNum
+      Entry: 5
+      Data: false
+    - Name: needDanFarmId
+      Entry: 3
+      Data: 0
+    - Name: needDanFarmNum
+      Entry: 3
+      Data: 0
+    - Name: needPlayerLevel
+      Entry: 3
+      Data: 0
+    - Name: commonAccomplishCondition
+      Entry: 1
+      Data: 3|1
+    - Name: des
+      Entry: 1
+      Data: "\u8FDB\u5165\u89D2\u8272\u754C\u9762\uFF0C\u70B9\u51FB\u4FEE\u6B66\u5F1F\u5B50\u4FE1\u606F\uFF0C\u70B9\u51FB\u529F\u6CD5\uFF0C\u8BA9\u4E09\u540D\u4FEE\u6B66\u5F1F\u5B50\u5B66\u4E60\u5E76\u88C5\u5907\u529F\u6CD5"
+    - Name: awardList
+      Entry: 7
+      Data: 226|System.Collections.Generic.List`1[[System.String, mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 1
+      Data: 10001|10000
+    - Name: 
+      Entry: 1
+      Data: 365001|10
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: ifAppearInform
+      Entry: 5
+      Data: false
+    - Name: appearTxt
+      Entry: 6
+      Data: 
+    - Name: ifDialogBefore
+      Entry: 5
+      Data: true
+    - Name: dialogList
+      Entry: 7
+      Data: 227|System.Collections.Generic.List`1[[DialogEditorData, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 228|DialogEditorData, Assembly-CSharp
+    - Name: type
+      Entry: 3
+      Data: 2
+    - Name: content
+      Entry: 1
+      Data: "\u4FEE\u6B66\u5F1F\u5B50\u90FD\u9886\u609F\u529F\u6CD5\u4E86\u5417\uFF1F\u5982\u679C\u6CA1\u6709\uFF0C\u638C\u95E8\u53EF\u4EE5\u52A9\u4ED6\u4EEC\u4E00\u81C2\u4E4B\u529B\u54E6\u3002"
+    - Name: ifPlayerAnswer
+      Entry: 5
+      Data: false
+    - Name: answerList
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: ifDialogAfter
+      Entry: 5
+      Data: true
+    - Name: dialogListAfter
+      Entry: 7
+      Data: 229|System.Collections.Generic.List`1[[DialogEditorData, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 230|DialogEditorData, Assembly-CSharp
+    - Name: type
+      Entry: 3
+      Data: 2
+    - Name: content
+      Entry: 1
+      Data: "\u5F1F\u5B50\u4EEC\u90FD\u597D\u5F3A"
+    - Name: ifPlayerAnswer
+      Entry: 5
+      Data: false
+    - Name: answerList
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 231|SingleTask, Assembly-CSharp
+    - Name: block
+      Entry: 5
+      Data: false
+    - Name: theId
+      Entry: 3
+      Data: 165942473700001515
+    - Name: index
+      Entry: 3
+      Data: 26
+    - Name: tagId
+      Entry: 6
+      Data: 
+    - Name: trackingName
+      Entry: 6
+      Data: 
+    - Name: NPCPos
+      Entry: 3
+      Data: 1
+    - Name: condition
+      Entry: 7
+      Data: 232|System.Collections.Generic.List`1[[TaskCondition, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 233|TaskCondition, Assembly-CSharp
+    - Name: taskConditionType
+      Entry: 3
+      Data: 4
+    - Name: param
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: TaskGuideId
+      Entry: 3
+      Data: 0
+    - Name: taskType
+      Entry: 3
+      Data: 32
+    - Name: taskRepeatType
+      Entry: 3
+      Data: 2
+    - Name: repeatTime
+      Entry: 3
+      Data: 0
+    - Name: isNeedItem
+      Entry: 5
+      Data: false
+    - Name: needReceiveItem
+      Entry: 5
+      Data: false
+    - Name: needItem
+      Entry: 3
+      Data: 0
+    - Name: needNum
+      Entry: 3
+      Data: 0
+    - Name: isNeedKillEnemy
+      Entry: 5
+      Data: false
+    - Name: needKillEnemy
+      Entry: 3
+      Data: 0
+    - Name: needKillEnemyNum
+      Entry: 3
+      Data: 0
+    - Name: isNeedDanFarmNum
+      Entry: 5
+      Data: false
+    - Name: needDanFarmId
+      Entry: 3
+      Data: 0
+    - Name: needDanFarmNum
+      Entry: 3
+      Data: 0
+    - Name: needPlayerLevel
+      Entry: 3
+      Data: 0
+    - Name: commonAccomplishCondition
+      Entry: 1
+      Data: 3|1
+    - Name: des
+      Entry: 1
+      Data: "\u524D\u5F80\u3010\u4E0B\u5C71\u3011-\u3010\u6E05\u7075\u57DF\u3011\uFF0C\u901A\u5173\u4E00\u6B21"
+    - Name: awardList
+      Entry: 7
+      Data: 234|System.Collections.Generic.List`1[[System.String, mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 1
+      Data: 10001|10000
+    - Name: 
+      Entry: 1
+      Data: 365001|10
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: ifAppearInform
+      Entry: 5
+      Data: false
+    - Name: appearTxt
+      Entry: 6
+      Data: 
+    - Name: ifDialogBefore
+      Entry: 5
+      Data: true
+    - Name: dialogList
+      Entry: 7
+      Data: 235|System.Collections.Generic.List`1[[DialogEditorData, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 236|DialogEditorData, Assembly-CSharp
+    - Name: type
+      Entry: 3
+      Data: 2
+    - Name: content
+      Entry: 1
+      Data: "\u5C71\u4E0B\u4E09\u5927\u5B9D\u85CF\u70B9\uFF0C\u8FD8\u5269\u4E00\u4E2A\u6E05\u7075\u57DF\uFF0C\u638C\u95E8\u8BB0\u5F97\u591A\u5E26\u70B9\u4EBA"
+    - Name: ifPlayerAnswer
+      Entry: 5
+      Data: false
+    - Name: answerList
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: ifDialogAfter
+      Entry: 5
+      Data: true
+    - Name: dialogListAfter
+      Entry: 7
+      Data: 237|System.Collections.Generic.List`1[[DialogEditorData, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 238|DialogEditorData, Assembly-CSharp
+    - Name: type
+      Entry: 3
+      Data: 2
+    - Name: content
+      Entry: 1
+      Data: "\u662F\u6E05\u7075\u8349\uFF01\u5FEB\u7ED9\u6211\u95FB\u95FB\uFF01\u55EF~\u597D\u9999"
+    - Name: ifPlayerAnswer
+      Entry: 5
+      Data: false
+    - Name: answerList
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 239|SingleTask, Assembly-CSharp
+    - Name: block
+      Entry: 5
+      Data: false
+    - Name: theId
+      Entry: 3
+      Data: 165942216300002234
+    - Name: index
+      Entry: 3
+      Data: 27
+    - Name: tagId
+      Entry: 6
+      Data: 
+    - Name: trackingName
+      Entry: 6
+      Data: 
+    - Name: NPCPos
+      Entry: 3
+      Data: 1
+    - Name: condition
+      Entry: 7
+      Data: 240|System.Collections.Generic.List`1[[TaskCondition, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 241|TaskCondition, Assembly-CSharp
+    - Name: taskConditionType
+      Entry: 3
+      Data: 4
+    - Name: param
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: TaskGuideId
+      Entry: 3
+      Data: 0
+    - Name: taskType
+      Entry: 3
+      Data: 23
+    - Name: taskRepeatType
+      Entry: 3
+      Data: 2
+    - Name: repeatTime
+      Entry: 3
+      Data: 0
+    - Name: isNeedItem
+      Entry: 5
+      Data: false
+    - Name: needReceiveItem
+      Entry: 5
+      Data: false
+    - Name: needItem
+      Entry: 3
+      Data: 0
+    - Name: needNum
+      Entry: 3
+      Data: 0
+    - Name: isNeedKillEnemy
+      Entry: 5
+      Data: false
+    - Name: needKillEnemy
+      Entry: 3
+      Data: 0
+    - Name: needKillEnemyNum
+      Entry: 3
+      Data: 0
+    - Name: isNeedDanFarmNum
+      Entry: 5
+      Data: false
+    - Name: needDanFarmId
+      Entry: 3
+      Data: 0
+    - Name: needDanFarmNum
+      Entry: 3
+      Data: 0
+    - Name: needPlayerLevel
+      Entry: 3
+      Data: 0
+    - Name: commonAccomplishCondition
+      Entry: 1
+      Data: 5|5
+    - Name: des
+      Entry: 1
+      Data: "\u62E5\u67095\u540D\u7B49\u7EA7\u4E3A5\u7684\u751F\u4EA7\u5F1F\u5B50"
+    - Name: awardList
+      Entry: 7
+      Data: 242|System.Collections.Generic.List`1[[System.String, mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 1
+      Data: 10001|10000
+    - Name: 
+      Entry: 1
+      Data: 365001|10
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: ifAppearInform
+      Entry: 5
+      Data: false
+    - Name: appearTxt
+      Entry: 6
+      Data: 
+    - Name: ifDialogBefore
+      Entry: 5
+      Data: true
+    - Name: dialogList
+      Entry: 7
+      Data: 243|System.Collections.Generic.List`1[[DialogEditorData, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 244|DialogEditorData, Assembly-CSharp
+    - Name: type
+      Entry: 3
+      Data: 2
+    - Name: content
+      Entry: 1
+      Data: "\u751F\u4EA7\u5F1F\u5B50\u6628\u5929\u548C\u6211\u8BF4\uFF0C\u638C\u95E8\u518D\u4E0D\u7ED9\u4ED6\u4EEC\u7A81\u7834\u7B49\u7EA7\uFF0C\u4ED6\u4EEC\u5C31\u4E0D\u5E72\u6D3B\u5566\uFF01"
+    - Name: ifPlayerAnswer
+      Entry: 5
+      Data: false
+    - Name: answerList
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: ifDialogAfter
+      Entry: 5
+      Data: true
+    - Name: dialogListAfter
+      Entry: 7
+      Data: 245|System.Collections.Generic.List`1[[DialogEditorData, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 246|DialogEditorData, Assembly-CSharp
+    - Name: type
+      Entry: 3
+      Data: 2
+    - Name: content
+      Entry: 1
+      Data: "\u5B97\u95E8\u7684\u751F\u4EA7\u6709\u4E86\u5927\u5BB6\u7684\u52A0\u6210\u7B80\u76F4\u5982\u864E\u6DFB\u7FFC\uFF01"
+    - Name: ifPlayerAnswer
+      Entry: 5
+      Data: false
+    - Name: answerList
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 247|SingleTask, Assembly-CSharp
+    - Name: block
+      Entry: 5
+      Data: false
+    - Name: theId
+      Entry: 3
+      Data: 165942529300002295
+    - Name: index
+      Entry: 3
+      Data: 28
+    - Name: tagId
+      Entry: 6
+      Data: 
+    - Name: trackingName
+      Entry: 6
+      Data: 
+    - Name: NPCPos
+      Entry: 3
+      Data: 1
+    - Name: condition
+      Entry: 7
+      Data: 248|System.Collections.Generic.List`1[[TaskCondition, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 249|TaskCondition, Assembly-CSharp
+    - Name: taskConditionType
+      Entry: 3
+      Data: 4
+    - Name: param
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: TaskGuideId
+      Entry: 3
+      Data: 0
+    - Name: taskType
+      Entry: 3
+      Data: 33
+    - Name: taskRepeatType
+      Entry: 3
+      Data: 2
+    - Name: repeatTime
+      Entry: 3
+      Data: 0
+    - Name: isNeedItem
+      Entry: 5
+      Data: false
+    - Name: needReceiveItem
+      Entry: 5
+      Data: false
+    - Name: needItem
+      Entry: 3
+      Data: 0
+    - Name: needNum
+      Entry: 3
+      Data: 0
+    - Name: isNeedKillEnemy
+      Entry: 5
+      Data: false
+    - Name: needKillEnemy
+      Entry: 3
+      Data: 0
+    - Name: needKillEnemyNum
+      Entry: 3
+      Data: 0
+    - Name: isNeedDanFarmNum
+      Entry: 5
+      Data: false
+    - Name: needDanFarmId
+      Entry: 3
+      Data: 0
+    - Name: needDanFarmNum
+      Entry: 3
+      Data: 0
+    - Name: needPlayerLevel
+      Entry: 3
+      Data: 0
+    - Name: commonAccomplishCondition
+      Entry: 1
+      Data: 101102|30
+    - Name: des
+      Entry: 1
+      Data: "\u70BC\u523630\u9897\u4E8C\u54C1\u76CA\u6C14\u4E39"
+    - Name: awardList
+      Entry: 7
+      Data: 250|System.Collections.Generic.List`1[[System.String, mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 1
+      Data: 10001|30
+    - Name: 
+      Entry: 1
+      Data: 365001|10
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: ifAppearInform
+      Entry: 5
+      Data: false
+    - Name: appearTxt
+      Entry: 6
+      Data: 
+    - Name: ifDialogBefore
+      Entry: 5
+      Data: true
+    - Name: dialogList
+      Entry: 7
+      Data: 251|System.Collections.Generic.List`1[[DialogEditorData, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 252|DialogEditorData, Assembly-CSharp
+    - Name: type
+      Entry: 3
+      Data: 2
+    - Name: content
+      Entry: 1
+      Data: "\u7EC3\u529F\u623F\u7684\u4E39\u836F\u597D\u50CF\u53C8\u4E0D\u591F\u5566\uFF01"
+    - Name: ifPlayerAnswer
+      Entry: 5
+      Data: false
+    - Name: answerList
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: ifDialogAfter
+      Entry: 5
+      Data: true
+    - Name: dialogListAfter
+      Entry: 7
+      Data: 253|System.Collections.Generic.List`1[[DialogEditorData, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 254|DialogEditorData, Assembly-CSharp
+    - Name: type
+      Entry: 3
+      Data: 2
+    - Name: content
+      Entry: 1
+      Data: "\u53EF\u4EE5\u7ED9\u5F1F\u5B50\u6E21\u4E00\u4E9B\u4FEE\u4E3A\u5566"
+    - Name: ifPlayerAnswer
+      Entry: 5
+      Data: false
+    - Name: answerList
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 255|SingleTask, Assembly-CSharp
+    - Name: block
+      Entry: 5
+      Data: false
+    - Name: theId
+      Entry: 3
+      Data: 165942556500003779
+    - Name: index
+      Entry: 3
+      Data: 29
+    - Name: tagId
+      Entry: 6
+      Data: 
+    - Name: trackingName
+      Entry: 6
+      Data: 
+    - Name: NPCPos
+      Entry: 3
+      Data: 1
+    - Name: condition
+      Entry: 7
+      Data: 256|System.Collections.Generic.List`1[[TaskCondition, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 257|TaskCondition, Assembly-CSharp
+    - Name: taskConditionType
+      Entry: 3
+      Data: 4
+    - Name: param
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: TaskGuideId
+      Entry: 3
+      Data: 0
+    - Name: taskType
+      Entry: 3
+      Data: 23
+    - Name: taskRepeatType
+      Entry: 3
+      Data: 2
+    - Name: repeatTime
+      Entry: 3
+      Data: 0
+    - Name: isNeedItem
+      Entry: 5
+      Data: false
+    - Name: needReceiveItem
+      Entry: 5
+      Data: false
+    - Name: needItem
+      Entry: 3
+      Data: 0
+    - Name: needNum
+      Entry: 3
+      Data: 0
+    - Name: isNeedKillEnemy
+      Entry: 5
+      Data: false
+    - Name: needKillEnemy
+      Entry: 3
+      Data: 0
+    - Name: needKillEnemyNum
+      Entry: 3
+      Data: 0
+    - Name: isNeedDanFarmNum
+      Entry: 5
+      Data: false
+    - Name: needDanFarmId
+      Entry: 3
+      Data: 0
+    - Name: needDanFarmNum
+      Entry: 3
+      Data: 0
+    - Name: needPlayerLevel
+      Entry: 3
+      Data: 0
+    - Name: commonAccomplishCondition
+      Entry: 6
+      Data: 
+    - Name: des
+      Entry: 1
+      Data: "\u4E3A\u4FEE\u6B66\u5F1F\u5B50\u7A81\u783410\u6B21"
+    - Name: awardList
+      Entry: 7
+      Data: 258|System.Collections.Generic.List`1[[System.String, mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 1
+      Data: 10001|10000
+    - Name: 
+      Entry: 1
+      Data: 365001|10
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: ifAppearInform
+      Entry: 5
+      Data: false
+    - Name: appearTxt
+      Entry: 6
+      Data: 
+    - Name: ifDialogBefore
+      Entry: 5
+      Data: true
+    - Name: dialogList
+      Entry: 7
+      Data: 259|System.Collections.Generic.List`1[[DialogEditorData, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 260|DialogEditorData, Assembly-CSharp
+    - Name: type
+      Entry: 3
+      Data: 2
+    - Name: content
+      Entry: 1
+      Data: "\u4FEE\u6B66\u5F1F\u5B50\u4F3C\u4E4E\u53EF\u4EE5\u7A81\u7834\u4E86"
+    - Name: ifPlayerAnswer
+      Entry: 5
+      Data: false
+    - Name: answerList
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: ifDialogAfter
+      Entry: 5
+      Data: true
+    - Name: dialogListAfter
+      Entry: 7
+      Data: 261|System.Collections.Generic.List`1[[DialogEditorData, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 262|DialogEditorData, Assembly-CSharp
+    - Name: type
+      Entry: 3
+      Data: 2
+    - Name: content
+      Entry: 1
+      Data: "\u5B97\u95E8\u5B9E\u529B\u518D\u6B21\u58EE\u5927\u4E86"
+    - Name: ifPlayerAnswer
+      Entry: 5
+      Data: false
+    - Name: answerList
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 263|SingleTask, Assembly-CSharp
+    - Name: block
+      Entry: 5
+      Data: false
+    - Name: theId
+      Entry: 3
+      Data: 165942575900004275
+    - Name: index
+      Entry: 3
+      Data: 30
+    - Name: tagId
+      Entry: 6
+      Data: 
+    - Name: trackingName
+      Entry: 6
+      Data: 
+    - Name: NPCPos
+      Entry: 3
+      Data: 1
+    - Name: condition
+      Entry: 7
+      Data: 264|System.Collections.Generic.List`1[[TaskCondition, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 265|TaskCondition, Assembly-CSharp
+    - Name: taskConditionType
+      Entry: 3
+      Data: 4
+    - Name: param
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: TaskGuideId
+      Entry: 3
+      Data: 0
+    - Name: taskType
+      Entry: 3
+      Data: 15
+    - Name: taskRepeatType
+      Entry: 3
+      Data: 2
+    - Name: repeatTime
+      Entry: 3
+      Data: 0
+    - Name: isNeedItem
+      Entry: 5
+      Data: false
+    - Name: needReceiveItem
+      Entry: 5
+      Data: false
+    - Name: needItem
+      Entry: 3
+      Data: 0
+    - Name: needNum
+      Entry: 3
+      Data: 0
+    - Name: isNeedKillEnemy
+      Entry: 5
+      Data: false
+    - Name: needKillEnemy
+      Entry: 3
+      Data: 0
+    - Name: needKillEnemyNum
+      Entry: 3
+      Data: 0
+    - Name: isNeedDanFarmNum
+      Entry: 5
+      Data: false
+    - Name: needDanFarmId
+      Entry: 3
+      Data: 0
+    - Name: needDanFarmNum
+      Entry: 3
+      Data: 0
+    - Name: needPlayerLevel
+      Entry: 3
+      Data: 0
+    - Name: commonAccomplishCondition
+      Entry: 1
+      Data: 7
+    - Name: des
+      Entry: 1
+      Data: "\u5C06\u5B97\u95E8\u7B49\u7EA7\u63D0\u5347\u81F3Lv7"
+    - Name: awardList
+      Entry: 7
+      Data: 266|System.Collections.Generic.List`1[[System.String, mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 1
+      Data: 10001|10000
+    - Name: 
+      Entry: 1
+      Data: 365001|10
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: ifAppearInform
+      Entry: 5
+      Data: false
+    - Name: appearTxt
+      Entry: 6
+      Data: 
+    - Name: ifDialogBefore
+      Entry: 5
+      Data: true
+    - Name: dialogList
+      Entry: 7
+      Data: 267|System.Collections.Generic.List`1[[DialogEditorData, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 268|DialogEditorData, Assembly-CSharp
+    - Name: type
+      Entry: 3
+      Data: 2
+    - Name: content
+      Entry: 1
+      Data: "\u73B0\u5728\uFF0C\u4E0D\u914D\u4E2A\u597D\u70B9\u7684\u5B97\u95E8\uFF0C\u4F3C\u4E4E\u6709\u70B9\u8BF4\u4E0D\u8FC7\u53BB\u5462"
+    - Name: ifPlayerAnswer
+      Entry: 5
+      Data: false
+    - Name: answerList
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: ifDialogAfter
+      Entry: 5
+      Data: true
+    - Name: dialogListAfter
+      Entry: 7
+      Data: 269|System.Collections.Generic.List`1[[DialogEditorData, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 270|DialogEditorData, Assembly-CSharp
+    - Name: type
+      Entry: 3
+      Data: 2
+    - Name: content
+      Entry: 1
+      Data: "\u597D\u5927\u7684\u5B97\u95E8\uFF01\u597D\u6C14\u6D3E\uFF01"
+    - Name: ifPlayerAnswer
+      Entry: 5
+      Data: false
+    - Name: answerList
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 271|SingleTask, Assembly-CSharp
+    - Name: block
+      Entry: 5
+      Data: false
+    - Name: theId
+      Entry: 3
+      Data: 165942597300005299
+    - Name: index
+      Entry: 3
+      Data: 31
+    - Name: tagId
+      Entry: 6
+      Data: 
+    - Name: trackingName
+      Entry: 6
+      Data: 
+    - Name: NPCPos
+      Entry: 3
+      Data: 1
+    - Name: condition
+      Entry: 7
+      Data: 272|System.Collections.Generic.List`1[[TaskCondition, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 273|TaskCondition, Assembly-CSharp
+    - Name: taskConditionType
+      Entry: 3
+      Data: 4
+    - Name: param
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: TaskGuideId
+      Entry: 3
+      Data: 0
+    - Name: taskType
+      Entry: 3
+      Data: 18
+    - Name: taskRepeatType
+      Entry: 3
+      Data: 2
+    - Name: repeatTime
+      Entry: 3
+      Data: 0
+    - Name: isNeedItem
+      Entry: 5
+      Data: false
+    - Name: needReceiveItem
+      Entry: 5
+      Data: false
+    - Name: needItem
+      Entry: 3
+      Data: 0
+    - Name: needNum
+      Entry: 3
+      Data: 0
+    - Name: isNeedKillEnemy
+      Entry: 5
+      Data: false
+    - Name: needKillEnemy
+      Entry: 3
+      Data: 0
+    - Name: needKillEnemyNum
+      Entry: 3
+      Data: 0
+    - Name: isNeedDanFarmNum
+      Entry: 5
+      Data: false
+    - Name: needDanFarmId
+      Entry: 3
+      Data: 0
+    - Name: needDanFarmNum
+      Entry: 3
+      Data: 0
+    - Name: needPlayerLevel
+      Entry: 3
+      Data: 0
+    - Name: commonAccomplishCondition
+      Entry: 1
+      Data: 2|1|30001
+    - Name: des
+      Entry: 1
+      Data: "\u89E3\u9501\u4E00\u5757\u7A7A\u5730\u5E76\u5EFA\u90202\u68F5\u51E1\u7EA7\u7075\u6811\r\n"
+    - Name: awardList
+      Entry: 7
+      Data: 274|System.Collections.Generic.List`1[[System.String, mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 1
+      Data: 10001|10000
+    - Name: 
+      Entry: 1
+      Data: 365001|10
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: ifAppearInform
+      Entry: 5
+      Data: false
+    - Name: appearTxt
+      Entry: 6
+      Data: 
+    - Name: ifDialogBefore
+      Entry: 5
+      Data: true
+    - Name: dialogList
+      Entry: 7
+      Data: 275|System.Collections.Generic.List`1[[DialogEditorData, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 7
+      Data: 276|DialogEditorData, Assembly-CSharp
+    - Name: type
+      Entry: 3
+      Data: 2
+    - Name: content
+      Entry: 1
+      Data: "\u8FD8\u4EE5\u4E3A\u8FD9\u4E9B\u4E39\u836F\u80FD\u4F9B\u5F1F\u5B50\u4F7F\u7528\u5F88\u4E45\uFF0C\u770B\u6765\u662F\u6211\u9519\u4E86\u2026\u2026"
+    - Name: ifPlayerAnswer
+      Entry: 5
+      Data: false
+    - Name: answerList
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 277|DialogEditorData, Assembly-CSharp
+    - Name: type
+      Entry: 3
+      Data: 2
+    - Name: content
+      Entry: 1
+      Data: "\u662F\u65F6\u5019\u5EFA\u9020\u65B0\u7684\u7075\u6811\u4E86\uFF01"
+    - Name: ifPlayerAnswer
+      Entry: 5
+      Data: false
+    - Name: answerList
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: ifDialogAfter
+      Entry: 5
+      Data: true
+    - Name: dialogListAfter
+      Entry: 7
+      Data: 278|System.Collections.Generic.List`1[[DialogEditorData, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 279|DialogEditorData, Assembly-CSharp
+    - Name: type
+      Entry: 3
+      Data: 2
+    - Name: content
+      Entry: 1
+      Data: "\u4F60\u770B\u8FD9\u6811\uFF0C\u662F\u591A\u4E48\u8302\u76DB\u554A~"
+    - Name: ifPlayerAnswer
+      Entry: 5
+      Data: false
+    - Name: answerList
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 280|SingleTask, Assembly-CSharp
+    - Name: block
+      Entry: 5
+      Data: false
+    - Name: theId
+      Entry: 3
+      Data: 165942620300006386
+    - Name: index
+      Entry: 3
+      Data: 32
+    - Name: tagId
+      Entry: 6
+      Data: 
+    - Name: trackingName
+      Entry: 6
+      Data: 
+    - Name: NPCPos
+      Entry: 3
+      Data: 1
+    - Name: condition
+      Entry: 7
+      Data: 281|System.Collections.Generic.List`1[[TaskCondition, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 282|TaskCondition, Assembly-CSharp
+    - Name: taskConditionType
+      Entry: 3
+      Data: 4
+    - Name: param
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: TaskGuideId
+      Entry: 3
+      Data: 0
+    - Name: taskType
+      Entry: 3
+      Data: 18
+    - Name: taskRepeatType
+      Entry: 3
+      Data: 2
+    - Name: repeatTime
+      Entry: 3
+      Data: 0
+    - Name: isNeedItem
+      Entry: 5
+      Data: false
+    - Name: needReceiveItem
+      Entry: 5
+      Data: false
+    - Name: needItem
+      Entry: 3
+      Data: 0
+    - Name: needNum
+      Entry: 3
+      Data: 0
+    - Name: isNeedKillEnemy
+      Entry: 5
+      Data: false
+    - Name: needKillEnemy
+      Entry: 3
+      Data: 0
+    - Name: needKillEnemyNum
+      Entry: 3
+      Data: 0
+    - Name: isNeedDanFarmNum
+      Entry: 5
+      Data: false
+    - Name: needDanFarmId
+      Entry: 3
+      Data: 0
+    - Name: needDanFarmNum
+      Entry: 3
+      Data: 0
+    - Name: needPlayerLevel
+      Entry: 3
+      Data: 0
+    - Name: commonAccomplishCondition
+      Entry: 1
+      Data: 2|5|30001
+    - Name: des
+      Entry: 1
+      Data: "\u5C06\u4E24\u5757\u51E1\u7EA7\u7075\u6811\u5347\u81F3Lv.5"
+    - Name: awardList
+      Entry: 7
+      Data: 283|System.Collections.Generic.List`1[[System.String, mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 1
+      Data: 10001|10000
+    - Name: 
+      Entry: 1
+      Data: 365001|10
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: ifAppearInform
+      Entry: 5
+      Data: false
+    - Name: appearTxt
+      Entry: 6
+      Data: 
+    - Name: ifDialogBefore
+      Entry: 5
+      Data: true
+    - Name: dialogList
+      Entry: 7
+      Data: 284|System.Collections.Generic.List`1[[DialogEditorData, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 285|DialogEditorData, Assembly-CSharp
+    - Name: type
+      Entry: 3
+      Data: 2
+    - Name: content
+      Entry: 1
+      Data: "\u611F\u89C9\u8FD8\u662F\u4E0D\u592A\u591F\u5462\uFF0C\u9700\u8981\u5347\u70B9\u7EA7"
+    - Name: ifPlayerAnswer
+      Entry: 5
+      Data: false
+    - Name: answerList
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: ifDialogAfter
+      Entry: 5
+      Data: true
+    - Name: dialogListAfter
+      Entry: 7
+      Data: 286|System.Collections.Generic.List`1[[DialogEditorData, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 287|DialogEditorData, Assembly-CSharp
+    - Name: type
+      Entry: 3
+      Data: 2
+    - Name: content
+      Entry: 1
+      Data: "\u591A\u4E48\u8302\u76DB\u7684\u6811\u6797\u554A~"
+    - Name: ifPlayerAnswer
+      Entry: 5
+      Data: false
+    - Name: answerList
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 288|SingleTask, Assembly-CSharp
+    - Name: block
+      Entry: 5
+      Data: false
+    - Name: theId
+      Entry: 3
+      Data: 165942825600007809
+    - Name: index
+      Entry: 3
+      Data: 33
+    - Name: tagId
+      Entry: 6
+      Data: 
+    - Name: trackingName
+      Entry: 6
+      Data: 
+    - Name: NPCPos
+      Entry: 3
+      Data: 1
+    - Name: condition
+      Entry: 7
+      Data: 289|System.Collections.Generic.List`1[[TaskCondition, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 290|TaskCondition, Assembly-CSharp
+    - Name: taskConditionType
+      Entry: 3
+      Data: 4
+    - Name: param
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: TaskGuideId
+      Entry: 3
+      Data: 0
+    - Name: taskType
+      Entry: 3
+      Data: 18
+    - Name: taskRepeatType
+      Entry: 3
+      Data: 2
+    - Name: repeatTime
+      Entry: 3
+      Data: 0
+    - Name: isNeedItem
+      Entry: 5
+      Data: false
+    - Name: needReceiveItem
+      Entry: 5
+      Data: false
+    - Name: needItem
+      Entry: 3
+      Data: 0
+    - Name: needNum
+      Entry: 3
+      Data: 0
+    - Name: isNeedKillEnemy
+      Entry: 5
+      Data: false
+    - Name: needKillEnemy
+      Entry: 3
+      Data: 0
+    - Name: needKillEnemyNum
+      Entry: 3
+      Data: 0
+    - Name: isNeedDanFarmNum
+      Entry: 5
+      Data: false
+    - Name: needDanFarmId
+      Entry: 3
+      Data: 0
+    - Name: needDanFarmNum
+      Entry: 3
+      Data: 0
+    - Name: needPlayerLevel
+      Entry: 3
+      Data: 0
+    - Name: commonAccomplishCondition
+      Entry: 1
+      Data: 1|3|10006
+    - Name: des
+      Entry: 1
+      Data: "\u5C06\u5B97\u95E8\u5EFA\u7B51\u70BC\u4E39\u623F\u5347\u81F3Lv.3"
+    - Name: awardList
+      Entry: 7
+      Data: 291|System.Collections.Generic.List`1[[System.String, mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 1
+      Data: 10001|10000
+    - Name: 
+      Entry: 1
+      Data: 365001|10
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: ifAppearInform
+      Entry: 5
+      Data: false
+    - Name: appearTxt
+      Entry: 6
+      Data: 
+    - Name: ifDialogBefore
+      Entry: 5
+      Data: true
+    - Name: dialogList
+      Entry: 7
+      Data: 292|System.Collections.Generic.List`1[[DialogEditorData, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 293|DialogEditorData, Assembly-CSharp
+    - Name: type
+      Entry: 3
+      Data: 2
+    - Name: content
+      Entry: 1
+      Data: "\u70BC\u4E39\u623F\u7684\u7B49\u7EA7\u4E5F\u8981\u8DDF\u4E0A\u54E6"
+    - Name: ifPlayerAnswer
+      Entry: 5
+      Data: false
+    - Name: answerList
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: ifDialogAfter
+      Entry: 5
+      Data: true
+    - Name: dialogListAfter
+      Entry: 7
+      Data: 294|System.Collections.Generic.List`1[[DialogEditorData, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 295|DialogEditorData, Assembly-CSharp
+    - Name: type
+      Entry: 3
+      Data: 2
+    - Name: content
+      Entry: 1
+      Data: "\u73B0\u5728\u53EF\u4EE5\u70BC\u5236\u66F4\u597D\u7684\u4E39\u836F\u5566"
+    - Name: ifPlayerAnswer
+      Entry: 5
+      Data: false
+    - Name: answerList
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 296|SingleTask, Assembly-CSharp
+    - Name: block
+      Entry: 5
+      Data: false
+    - Name: theId
+      Entry: 3
+      Data: 165942836100008622
+    - Name: index
+      Entry: 3
+      Data: 34
+    - Name: tagId
+      Entry: 6
+      Data: 
+    - Name: trackingName
+      Entry: 6
+      Data: 
+    - Name: NPCPos
+      Entry: 3
+      Data: 1
+    - Name: condition
+      Entry: 7
+      Data: 297|System.Collections.Generic.List`1[[TaskCondition, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 298|TaskCondition, Assembly-CSharp
+    - Name: taskConditionType
+      Entry: 3
+      Data: 4
+    - Name: param
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: TaskGuideId
+      Entry: 3
+      Data: 0
+    - Name: taskType
+      Entry: 3
+      Data: 33
+    - Name: taskRepeatType
+      Entry: 3
+      Data: 2
+    - Name: repeatTime
+      Entry: 3
+      Data: 0
+    - Name: isNeedItem
+      Entry: 5
+      Data: false
+    - Name: needReceiveItem
+      Entry: 5
+      Data: false
+    - Name: needItem
+      Entry: 3
+      Data: 0
+    - Name: needNum
+      Entry: 3
+      Data: 0
+    - Name: isNeedKillEnemy
+      Entry: 5
+      Data: false
+    - Name: needKillEnemy
+      Entry: 3
+      Data: 0
+    - Name: needKillEnemyNum
+      Entry: 3
+      Data: 0
+    - Name: isNeedDanFarmNum
+      Entry: 5
+      Data: false
+    - Name: needDanFarmId
+      Entry: 3
+      Data: 0
+    - Name: needDanFarmNum
+      Entry: 3
+      Data: 0
+    - Name: needPlayerLevel
+      Entry: 3
+      Data: 0
+    - Name: commonAccomplishCondition
+      Entry: 1
+      Data: 101103|20
+    - Name: des
+      Entry: 1
+      Data: "\u5728\u70BC\u4E39\u623F\u70BC\u523620\u9897\u4E09\u54C1\u76CA\u6C14\u4E39"
+    - Name: awardList
+      Entry: 7
+      Data: 299|System.Collections.Generic.List`1[[System.String, mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 1
+      Data: 10001|10000
+    - Name: 
+      Entry: 1
+      Data: 365001|10
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: ifAppearInform
+      Entry: 5
+      Data: false
+    - Name: appearTxt
+      Entry: 6
+      Data: 
+    - Name: ifDialogBefore
+      Entry: 5
+      Data: true
+    - Name: dialogList
+      Entry: 7
+      Data: 300|System.Collections.Generic.List`1[[DialogEditorData, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 301|DialogEditorData, Assembly-CSharp
+    - Name: type
+      Entry: 3
+      Data: 2
+    - Name: content
+      Entry: 1
+      Data: "\u8BD5\u8BD5\u65B0\u7684\u914D\u65B9\uFF0C\u70BC\u5236\u66F4\u597D\u7684\u4E39\u836F\u5427\u3002"
+    - Name: ifPlayerAnswer
+      Entry: 5
+      Data: false
+    - Name: answerList
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: ifDialogAfter
+      Entry: 5
+      Data: true
+    - Name: dialogListAfter
+      Entry: 7
+      Data: 302|System.Collections.Generic.List`1[[DialogEditorData, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 303|DialogEditorData, Assembly-CSharp
+    - Name: type
+      Entry: 3
+      Data: 2
+    - Name: content
+      Entry: 1
+      Data: "\u4E39\u836F\u54C1\u8D28\u53C8\u4E0A\u4E00\u5C42\u697C\u4E86"
+    - Name: ifPlayerAnswer
+      Entry: 5
+      Data: false
+    - Name: answerList
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 304|SingleTask, Assembly-CSharp
+    - Name: block
+      Entry: 5
+      Data: false
+    - Name: theId
+      Entry: 3
+      Data: 165942851900009354
+    - Name: index
+      Entry: 3
+      Data: 35
+    - Name: tagId
+      Entry: 6
+      Data: 
+    - Name: trackingName
+      Entry: 6
+      Data: 
+    - Name: NPCPos
+      Entry: 3
+      Data: 1
+    - Name: condition
+      Entry: 7
+      Data: 305|System.Collections.Generic.List`1[[TaskCondition, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 306|TaskCondition, Assembly-CSharp
+    - Name: taskConditionType
+      Entry: 3
+      Data: 4
+    - Name: param
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: TaskGuideId
+      Entry: 3
+      Data: 0
+    - Name: taskType
+      Entry: 3
+      Data: 13
+    - Name: taskRepeatType
+      Entry: 3
+      Data: 0
+    - Name: repeatTime
+      Entry: 3
+      Data: 0
+    - Name: isNeedItem
+      Entry: 5
+      Data: false
+    - Name: needReceiveItem
+      Entry: 5
+      Data: false
+    - Name: needItem
+      Entry: 3
+      Data: 0
+    - Name: needNum
+      Entry: 3
+      Data: 0
+    - Name: isNeedKillEnemy
+      Entry: 5
+      Data: false
+    - Name: needKillEnemy
+      Entry: 3
+      Data: 0
+    - Name: needKillEnemyNum
+      Entry: 3
+      Data: 0
+    - Name: isNeedDanFarmNum
+      Entry: 5
+      Data: false
+    - Name: needDanFarmId
+      Entry: 3
+      Data: 0
+    - Name: needDanFarmNum
+      Entry: 3
+      Data: 0
+    - Name: needPlayerLevel
+      Entry: 3
+      Data: 14
+    - Name: commonAccomplishCondition
+      Entry: 6
+      Data: 
+    - Name: des
+      Entry: 1
+      Data: "\u5C06\u638C\u95E8\u4FEE\u4E3A\u63D0\u5347\u81F3\u5185\u81514\u9636"
+    - Name: awardList
+      Entry: 7
+      Data: 307|System.Collections.Generic.List`1[[System.String, mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 1
+      Data: 10001|10000
+    - Name: 
+      Entry: 1
+      Data: 365001|10
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: ifAppearInform
+      Entry: 5
+      Data: false
+    - Name: appearTxt
+      Entry: 6
+      Data: 
+    - Name: ifDialogBefore
+      Entry: 5
+      Data: true
+    - Name: dialogList
+      Entry: 7
+      Data: 308|System.Collections.Generic.List`1[[DialogEditorData, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 309|DialogEditorData, Assembly-CSharp
+    - Name: type
+      Entry: 3
+      Data: 2
+    - Name: content
+      Entry: 1
+      Data: "\u65B0\u7684\u4E39\u836F\u638C\u95E8\u5148\u8BD5\u8BD5\uFF1F"
+    - Name: ifPlayerAnswer
+      Entry: 5
+      Data: false
+    - Name: answerList
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: ifDialogAfter
+      Entry: 5
+      Data: true
+    - Name: dialogListAfter
+      Entry: 7
+      Data: 310|System.Collections.Generic.List`1[[DialogEditorData, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 311|DialogEditorData, Assembly-CSharp
+    - Name: type
+      Entry: 3
+      Data: 2
+    - Name: content
+      Entry: 1
+      Data: "\u638C\u95E8\u53C8\u53D8\u5F3A\u4E86\uFF01"
+    - Name: ifPlayerAnswer
+      Entry: 5
+      Data: false
+    - Name: answerList
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 312|SingleTask, Assembly-CSharp
+    - Name: block
+      Entry: 5
+      Data: false
+    - Name: theId
+      Entry: 3
+      Data: 165942864900010727
+    - Name: index
+      Entry: 3
+      Data: 36
+    - Name: tagId
+      Entry: 6
+      Data: 
+    - Name: trackingName
+      Entry: 6
+      Data: 
+    - Name: NPCPos
+      Entry: 3
+      Data: 1
+    - Name: condition
+      Entry: 7
+      Data: 313|System.Collections.Generic.List`1[[TaskCondition, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 314|TaskCondition, Assembly-CSharp
+    - Name: taskConditionType
+      Entry: 3
+      Data: 4
+    - Name: param
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: TaskGuideId
+      Entry: 3
+      Data: 0
+    - Name: taskType
+      Entry: 3
+      Data: 37
+    - Name: taskRepeatType
+      Entry: 3
+      Data: 2
+    - Name: repeatTime
+      Entry: 3
+      Data: 0
+    - Name: isNeedItem
+      Entry: 5
+      Data: false
+    - Name: needReceiveItem
+      Entry: 5
+      Data: false
+    - Name: needItem
+      Entry: 3
+      Data: 0
+    - Name: needNum
+      Entry: 3
+      Data: 0
+    - Name: isNeedKillEnemy
+      Entry: 5
+      Data: false
+    - Name: needKillEnemy
+      Entry: 3
+      Data: 0
+    - Name: needKillEnemyNum
+      Entry: 3
+      Data: 0
+    - Name: isNeedDanFarmNum
+      Entry: 5
+      Data: false
+    - Name: needDanFarmId
+      Entry: 3
+      Data: 0
+    - Name: needDanFarmNum
+      Entry: 3
+      Data: 0
+    - Name: needPlayerLevel
+      Entry: 3
+      Data: 0
+    - Name: commonAccomplishCondition
+      Entry: 1
+      Data: 20|0
+    - Name: des
+      Entry: 1
+      Data: "\u62DB\u52DF\u5F1F\u5B50\u6570\u8FBE20\u4EBA"
+    - Name: awardList
+      Entry: 7
+      Data: 315|System.Collections.Generic.List`1[[System.String, mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 1
+      Data: 10001|10000
+    - Name: 
+      Entry: 1
+      Data: 365001|10
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: ifAppearInform
+      Entry: 5
+      Data: false
+    - Name: appearTxt
+      Entry: 6
+      Data: 
+    - Name: ifDialogBefore
+      Entry: 5
+      Data: true
+    - Name: dialogList
+      Entry: 7
+      Data: 316|System.Collections.Generic.List`1[[DialogEditorData, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 7
+      Data: 317|DialogEditorData, Assembly-CSharp
+    - Name: type
+      Entry: 3
+      Data: 2
+    - Name: content
+      Entry: 1
+      Data: "\u7ECF\u8FC7\u6570\u6B21\u8BA8\u4F10\uFF0C\u5B97\u95E8\u5DF2\u7ECF\u5C0F\u6709\u540D\u6C14"
+    - Name: ifPlayerAnswer
+      Entry: 5
+      Data: false
+    - Name: answerList
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 318|DialogEditorData, Assembly-CSharp
+    - Name: type
+      Entry: 3
+      Data: 2
+    - Name: content
+      Entry: 1
+      Data: "\u56E0\u6B64\u9700\u8981\u8DB3\u591F\u591A\u7684\u5F1F\u5B50\uFF0C\u624D\u80FD\u914D\u5F97\u4E0A\u5B97\u95E8\u7684\u5A01\u540D"
+    - Name: ifPlayerAnswer
+      Entry: 5
+      Data: false
+    - Name: answerList
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: ifDialogAfter
+      Entry: 5
+      Data: true
+    - Name: dialogListAfter
+      Entry: 7
+      Data: 319|System.Collections.Generic.List`1[[DialogEditorData, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 320|DialogEditorData, Assembly-CSharp
+    - Name: type
+      Entry: 3
+      Data: 2
+    - Name: content
+      Entry: 1
+      Data: "\u8FD9\u91CC\u597D\u70ED\u95F9\uFF0C\u672C\u516C\u4E3B\u90FD\u4E0D\u60F3\u8D70\u4E86"
+    - Name: ifPlayerAnswer
+      Entry: 5
+      Data: false
+    - Name: answerList
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 321|SingleTask, Assembly-CSharp
+    - Name: block
+      Entry: 5
+      Data: false
+    - Name: theId
+      Entry: 3
+      Data: 165942885900011815
+    - Name: index
+      Entry: 3
+      Data: 37
+    - Name: tagId
+      Entry: 6
+      Data: 
+    - Name: trackingName
+      Entry: 6
+      Data: 
+    - Name: NPCPos
+      Entry: 3
+      Data: 1
+    - Name: condition
+      Entry: 7
+      Data: 322|System.Collections.Generic.List`1[[TaskCondition, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 323|TaskCondition, Assembly-CSharp
+    - Name: taskConditionType
+      Entry: 3
+      Data: 4
+    - Name: param
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: TaskGuideId
+      Entry: 3
+      Data: 0
+    - Name: taskType
+      Entry: 3
+      Data: 33
+    - Name: taskRepeatType
+      Entry: 3
+      Data: 2
+    - Name: repeatTime
+      Entry: 3
+      Data: 0
+    - Name: isNeedItem
+      Entry: 5
+      Data: false
+    - Name: needReceiveItem
+      Entry: 5
+      Data: false
+    - Name: needItem
+      Entry: 3
+      Data: 0
+    - Name: needNum
+      Entry: 3
+      Data: 0
+    - Name: isNeedKillEnemy
+      Entry: 5
+      Data: false
+    - Name: needKillEnemy
+      Entry: 3
+      Data: 0
+    - Name: needKillEnemyNum
+      Entry: 3
+      Data: 0
+    - Name: isNeedDanFarmNum
+      Entry: 5
+      Data: false
+    - Name: needDanFarmId
+      Entry: 3
+      Data: 0
+    - Name: needDanFarmNum
+      Entry: 3
+      Data: 0
+    - Name: needPlayerLevel
+      Entry: 3
+      Data: 0
+    - Name: commonAccomplishCondition
+      Entry: 1
+      Data: 101103|60
+    - Name: des
+      Entry: 1
+      Data: "\u70BC\u523660\u9897\u4E09\u54C1\u76CA\u6C14\u4E39"
+    - Name: awardList
+      Entry: 7
+      Data: 324|System.Collections.Generic.List`1[[System.String, mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 1
+      Data: 10001|10000
+    - Name: 
+      Entry: 1
+      Data: 365001|10
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: ifAppearInform
+      Entry: 5
+      Data: false
+    - Name: appearTxt
+      Entry: 6
+      Data: 
+    - Name: ifDialogBefore
+      Entry: 5
+      Data: true
+    - Name: dialogList
+      Entry: 7
+      Data: 325|System.Collections.Generic.List`1[[DialogEditorData, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 326|DialogEditorData, Assembly-CSharp
+    - Name: type
+      Entry: 3
+      Data: 2
+    - Name: content
+      Entry: 1
+      Data: "\u65B0\u7684\u5F1F\u5B50\u9700\u8981\u65B0\u7684\u4E39\u836F\u2026\u2026"
+    - Name: ifPlayerAnswer
+      Entry: 5
+      Data: false
+    - Name: answerList
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: ifDialogAfter
+      Entry: 5
+      Data: true
+    - Name: dialogListAfter
+      Entry: 7
+      Data: 327|System.Collections.Generic.List`1[[DialogEditorData, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 328|DialogEditorData, Assembly-CSharp
+    - Name: type
+      Entry: 3
+      Data: 2
+    - Name: content
+      Entry: 1
+      Data: "\u8FD9\u4E0B\u5B97\u95E8\u540E\u5907\u5145\u8DB3\u4E86\uFF01"
+    - Name: ifPlayerAnswer
+      Entry: 5
+      Data: false
+    - Name: answerList
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 329|SingleTask, Assembly-CSharp
+    - Name: block
+      Entry: 5
+      Data: false
+    - Name: theId
+      Entry: 3
+      Data: 165942899900012098
+    - Name: index
+      Entry: 3
+      Data: 38
+    - Name: tagId
+      Entry: 6
+      Data: 
+    - Name: trackingName
+      Entry: 6
+      Data: 
+    - Name: NPCPos
+      Entry: 3
+      Data: 1
+    - Name: condition
+      Entry: 7
+      Data: 330|System.Collections.Generic.List`1[[TaskCondition, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 331|TaskCondition, Assembly-CSharp
+    - Name: taskConditionType
+      Entry: 3
+      Data: 4
+    - Name: param
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: TaskGuideId
+      Entry: 3
+      Data: 0
+    - Name: taskType
+      Entry: 3
+      Data: 39
+    - Name: taskRepeatType
+      Entry: 3
+      Data: 0
+    - Name: repeatTime
+      Entry: 3
+      Data: 0
+    - Name: isNeedItem
+      Entry: 5
+      Data: false
+    - Name: needReceiveItem
+      Entry: 5
+      Data: false
+    - Name: needItem
+      Entry: 3
+      Data: 0
+    - Name: needNum
+      Entry: 3
+      Data: 0
+    - Name: isNeedKillEnemy
+      Entry: 5
+      Data: false
+    - Name: needKillEnemy
+      Entry: 3
+      Data: 0
+    - Name: needKillEnemyNum
+      Entry: 3
+      Data: 0
+    - Name: isNeedDanFarmNum
+      Entry: 5
+      Data: false
+    - Name: needDanFarmId
+      Entry: 3
+      Data: 0
+    - Name: needDanFarmNum
+      Entry: 3
+      Data: 0
+    - Name: needPlayerLevel
+      Entry: 3
+      Data: 0
+    - Name: commonAccomplishCondition
+      Entry: 1
+      Data: 3|14
+    - Name: des
+      Entry: 1
+      Data: "\u5C06\u4E0A\u9635\u7684\u4E09\u540D\u4FEE\u6B66\u5F1F\u5B50\u4FEE\u4E3A\u63D0\u5347\u81F3\u5185\u81514\u9636\r\n"
+    - Name: awardList
+      Entry: 7
+      Data: 332|System.Collections.Generic.List`1[[System.String, mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 1
+      Data: 10001|10000
+    - Name: 
+      Entry: 1
+      Data: 365001|10
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: ifAppearInform
+      Entry: 5
+      Data: false
+    - Name: appearTxt
+      Entry: 6
+      Data: 
+    - Name: ifDialogBefore
+      Entry: 5
+      Data: true
+    - Name: dialogList
+      Entry: 7
+      Data: 333|System.Collections.Generic.List`1[[DialogEditorData, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 334|DialogEditorData, Assembly-CSharp
+    - Name: type
+      Entry: 3
+      Data: 2
+    - Name: content
+      Entry: 1
+      Data: "\u5F1F\u5B50\u4E5F\u8981\u652F\u695E\u8D77\u6765\u554A\uFF0C\u4E0D\u8981\u88AB\u638C\u95E8\u4E00\u5BB6\u72EC\u5927~"
+    - Name: ifPlayerAnswer
+      Entry: 5
+      Data: false
+    - Name: answerList
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: ifDialogAfter
+      Entry: 5
+      Data: true
+    - Name: dialogListAfter
+      Entry: 7
+      Data: 335|System.Collections.Generic.List`1[[DialogEditorData, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 336|DialogEditorData, Assembly-CSharp
+    - Name: type
+      Entry: 3
+      Data: 2
+    - Name: content
+      Entry: 1
+      Data: "\u5927\u5BB6\u90FD\u53D8\u5F97\u597D\u5F3A\u4E86\uFF01"
+    - Name: ifPlayerAnswer
+      Entry: 5
+      Data: false
+    - Name: answerList
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 337|SingleTask, Assembly-CSharp
+    - Name: block
+      Entry: 5
+      Data: false
+    - Name: theId
+      Entry: 3
+      Data: 165761640000002940
+    - Name: index
+      Entry: 3
+      Data: 39
+    - Name: tagId
+      Entry: 1
+      Data: 
+    - Name: trackingName
+      Entry: 6
+      Data: 
+    - Name: NPCPos
+      Entry: 3
+      Data: 8
+    - Name: condition
+      Entry: 7
+      Data: 338|System.Collections.Generic.List`1[[TaskCondition, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 339|TaskCondition, Assembly-CSharp
+    - Name: taskConditionType
+      Entry: 3
+      Data: 4
+    - Name: param
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: TaskGuideId
+      Entry: 3
+      Data: 0
+    - Name: taskType
+      Entry: 3
+      Data: 26
+    - Name: taskRepeatType
+      Entry: 3
+      Data: 2
+    - Name: repeatTime
+      Entry: 3
+      Data: 0
+    - Name: isNeedItem
+      Entry: 5
+      Data: false
+    - Name: needReceiveItem
+      Entry: 5
+      Data: false
+    - Name: needItem
+      Entry: 3
+      Data: 0
+    - Name: needNum
+      Entry: 3
+      Data: 0
+    - Name: isNeedKillEnemy
+      Entry: 5
+      Data: false
+    - Name: needKillEnemy
+      Entry: 3
+      Data: 0
+    - Name: needKillEnemyNum
+      Entry: 3
+      Data: 0
+    - Name: isNeedDanFarmNum
+      Entry: 5
+      Data: false
+    - Name: needDanFarmId
+      Entry: 3
+      Data: 0
+    - Name: needDanFarmNum
+      Entry: 3
+      Data: 0
+    - Name: needPlayerLevel
+      Entry: 3
+      Data: 0
+    - Name: commonAccomplishCondition
+      Entry: 1
+      Data: 1-10
+    - Name: des
+      Entry: 1
+      Data: "\u901A\u5173\u5B63\u72F8\u56FD\u4E16\u754C1-10\uFF0C\u8FFD\u7D22\u82CF\u68A6\u5C9A\u7684\u8E2A\u8FF9\r"
+    - Name: awardList
+      Entry: 7
+      Data: 340|System.Collections.Generic.List`1[[System.String, mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 1
+      Data: 10001|4000
+    - Name: 
+      Entry: 1
+      Data: 365001|10
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: ifAppearInform
+      Entry: 5
+      Data: false
+    - Name: appearTxt
+      Entry: 6
+      Data: 
+    - Name: ifDialogBefore
+      Entry: 5
+      Data: true
+    - Name: dialogList
+      Entry: 7
+      Data: 341|System.Collections.Generic.List`1[[DialogEditorData, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 342|DialogEditorData, Assembly-CSharp
+    - Name: type
+      Entry: 3
+      Data: 2
+    - Name: content
+      Entry: 1
+      Data: "\u6211\u8981\u79BB\u5F00\u4E86\uFF0C\u7236\u738B\u8FD8\u5728\u7B49\u6211......\u6211\u987B\u5F97\u5C3D\u5FEB\u627E\u5230\u7ED3\u4E39\u8349\u56DE\u53BB\r"
+    - Name: ifPlayerAnswer
+      Entry: 5
+      Data: false
+    - Name: answerList
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: ifDialogAfter
+      Entry: 5
+      Data: false
+    - Name: dialogListAfter
+      Entry: 7
+      Data: 343|System.Collections.Generic.List`1[[DialogEditorData, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 344|SingleTask, Assembly-CSharp
+    - Name: block
+      Entry: 5
+      Data: false
+    - Name: theId
+      Entry: 3
+      Data: 165785595200001773
+    - Name: index
+      Entry: 3
+      Data: 40
+    - Name: tagId
+      Entry: 1
+      Data: suMengLanLeave2
+    - Name: trackingName
+      Entry: 6
+      Data: 
+    - Name: NPCPos
+      Entry: 3
+      Data: 0
+    - Name: condition
+      Entry: 7
+      Data: 345|System.Collections.Generic.List`1[[TaskCondition, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 346|TaskCondition, Assembly-CSharp
+    - Name: taskConditionType
+      Entry: 3
+      Data: 4
+    - Name: param
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: TaskGuideId
+      Entry: 3
+      Data: 0
+    - Name: taskType
+      Entry: 3
+      Data: 26
+    - Name: taskRepeatType
+      Entry: 3
+      Data: 2
+    - Name: repeatTime
+      Entry: 3
+      Data: 0
+    - Name: isNeedItem
+      Entry: 5
+      Data: false
+    - Name: needReceiveItem
+      Entry: 5
+      Data: false
+    - Name: needItem
+      Entry: 3
+      Data: 0
+    - Name: needNum
+      Entry: 3
+      Data: 0
+    - Name: isNeedKillEnemy
+      Entry: 5
+      Data: false
+    - Name: needKillEnemy
+      Entry: 3
+      Data: 0
+    - Name: needKillEnemyNum
+      Entry: 3
+      Data: 0
+    - Name: isNeedDanFarmNum
+      Entry: 5
+      Data: false
+    - Name: needDanFarmId
+      Entry: 3
+      Data: 0
+    - Name: needDanFarmNum
+      Entry: 3
+      Data: 0
+    - Name: needPlayerLevel
+      Entry: 3
+      Data: 0
+    - Name: commonAccomplishCondition
+      Entry: 1
+      Data: 1-20
+    - Name: des
+      Entry: 1
+      Data: "\u901A\u5173\u5B63\u72F8\u56FD\u4E16\u754C1-20\uFF0C\u67E5\u660E\u795E\u79D8\u4EBA\u7684\u8EAB\u4EFD\r"
+    - Name: awardList
+      Entry: 7
+      Data: 347|System.Collections.Generic.List`1[[System.String, mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 1
+      Data: 10001|6000
+    - Name: 
+      Entry: 1
+      Data: 365001|10
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: ifAppearInform
+      Entry: 5
+      Data: false
+    - Name: appearTxt
+      Entry: 6
+      Data: 
+    - Name: ifDialogBefore
+      Entry: 5
+      Data: true
+    - Name: dialogList
+      Entry: 7
+      Data: 348|System.Collections.Generic.List`1[[DialogEditorData, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 349|DialogEditorData, Assembly-CSharp
+    - Name: type
+      Entry: 3
+      Data: 2
+    - Name: content
+      Entry: 1
+      Data: "\u7236\u738B\u4E5F\u8BB8\u662F\u9677\u5165\u74F6\u9888\u8FC7\u4E8E\u90C1\u71E5\uFF0C\u6211\u5148\u5C06\u9AD8\u9636\u7ED3\u4E39\u8349\u7ED9\u7236\u738B\u9001\u53BB\r"
+    - Name: ifPlayerAnswer
+      Entry: 5
+      Data: false
+    - Name: answerList
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: ifDialogAfter
+      Entry: 5
+      Data: false
+    - Name: dialogListAfter
+      Entry: 7
+      Data: 350|System.Collections.Generic.List`1[[DialogEditorData, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+  Icon: {fileID: 0}
+  id: 10009
+  Name: "\u82CF\u68A6\u5C9A"
+  initAdd: 0
+  gender: 2
+  porTraitName: img_sumenglan1_1
+  smallPeopleTextureName: img_sumenglan
+  des: 
+  npcType: 0
+  enemyId: 0

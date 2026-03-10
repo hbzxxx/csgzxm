@@ -1,0 +1,8169 @@
+﻿---
+——
+      Duration
+    Elasticity
+    Randomness
+    Relative
+    Rotation Mode
+    Snapping
+    Vibrato
+   (if you have already done this, please set the 'Straight Alpha Texture' Material parameter to 'true') or\n
+   <
+   Ease Curve
+   Loop Type
+  </Row>
+  <Row>
+ - Application Started At 
+  Prefect Height：
+ - 网络错误: {request.error}
+ - 响应: {request.downloadHandler.text}
+ (
+ (!)
+ (Skeleton)
+ (SkeletonDataAsset)
+ : 
+ [
+ [Override]
+' || c == '“' || c == '”';
+		}
+
+		private static bool IsEndOfStream(char c)
+		{
+			return c == endOfStreamChar;
+		}
+
+		/*
+		 * 	Reads a value (i.e. non-string, non-object) from the stream as a string.
+		 * 	Used mostly in Read_[type]() methods.
+		 */
+		private string GetValueString()
+		{
+			StringBuilder builder = new StringBuilder();
+
+			while(!IsEndOfValue(PeekCharIgnoreWhitespace()))
+				builder.Append((char)baseReader.Read());
+
+			// If it's an empty value, return null.
+			if(builder.Length == 0)
+				return null;
+			return builder.ToString();
+		}
+
+		#endregion
+
+		#region Primitive Read() Methods.
+
+		internal override string Read_string()
+		{
+			if(ReadQuotationMarkOrNullIgnoreWhitespace())
+				return null;
+			char c;
+
+			StringBuilder sb = new StringBuilder();
+
+			while(!IsQuotationMark((c = (char)baseReader.Read())))
+			{
+				// If escape mark is found, generate correct escaped character.
+				if(c == '\\')
+				{
+					c = (char)baseReader.Read();
+					if(IsEndOfStream(c))
+						throw new FormatException(
+ ======= Get Object ======
+ ======= Program End. ======
+ ======= Put Object ======
+- 16周岁以上未满18周岁的用户：单次充值不超过100元，每月累计不超过400元
+- 8周岁以上未满16周岁的用户：单次充值不超过50元，每月累计不超过200元\n
+ animation track (index 0).
+ AnimationStateData
+ at 
+ b:
+' before property name, found '
+ c:
+ clone
+ Controller.controller
+ could not be found.
+ d:
+ does not exist in the type 
+ FlippedX
+ Follower
+' for mask interaction based on '
+ HingeChain Parent 
+ is loaded
+ is not a slot in 
+ is not currently supported, and could not be loaded using reflection.
+ is not supported as it does not have a parameterless constructor. Only value types, Components or ScriptableObjects are supportable without a parameterless constructor. However, you may be able to create an ES3Type script to add support for it.
+ mb
+ mb So It is Cleared
+ not found!
+' of a property name.
+		 * 		- Before the ',' separating properties.
+		 * 		- Before the '}' or ']' terminating this list of properties.
+		 * 	Can be used in conjunction with Read(ES3Type) to read a property.
+		 */
+		public override string ReadPropertyName()
+		{
+			char c = PeekCharIgnoreWhitespace();
+
+			// Check whether there are any properties left to read.
+			if(IsTerminator(c))
+				return null;
+			else if(c == ',')
+				ReadCharIgnoreWhitespace();
+			else if(!IsQuotationMark(c))
+				throw new FormatException(
+ or 
+ rotated
+ rotation:
+ scaleX:
+ scaleY:
+ skew:
+ t:AssemblyDefinitionAsset
+ t:SpinePreferences
+ t:TextAsset
+ Target
+ to apply the root motion to the rigidbody instead of the Transform.
+ to flip by rotation instead of negative scale (required).
+ tx:
+ ty:
+------------- v SEPARATOR v -------------
+ was found, but it does not have an ES3Prefab component attached.
+ y:
+ 错误: 
+
+			char c = json[index++];
+
+			bool failed = false;
+			bool complete = false;
+
+			while (!complete && !failed) {
+				if (index == json.Length)
+					break;
+
+				c = json[index++];
+				if (c == '
+！太好了，我早就知道我是为
+$Type
+%)
+%。
+%\n
+([^
+({0}){1} : {3} + {2} + {4}
+(Clone)
+(Drag and Drop to instantiate.)
+(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+(You can disable this warning in `Edit - Preferences - Spine`)\n
+(剩余:
+(剩余次数
+（体力-
+（天级天赋晶石剩余
+（推荐战斗力:
+（推荐战斗力：
+（未激活）
+（已激活）
+（预计体力-
+（招募令剩余：
+（转魂丹剩余
+')
+					{
+						// Skip initial quotation mark as SkipString() requires this.
+						ReadOrSkipChar(writer, skip);
+						ReadString(writer, skip);
+					}
+					// Else we just need to read until we reach a closing brace.
+					else
+						// While we've not peeked a closing brace.
+						while(!IsEndOfValue((char)baseReader.Peek()))
+							ReadOrSkipChar(writer, skip);
+
+					if(skip)
+						return null;
+					writer.Flush();
+					return ((MemoryStream)writer.BaseStream).ToArray();
+				}
+
+				// Else, we're skipping a type surrounded by braces.
+				// Iterate through every character, logging nesting.
+				while(true)
+				{
+					c = ReadOrSkipChar(writer, skip);
+
+					if(c == endOfStreamChar) // Detect premature end of stream, which denotes missing closing brace.
+						throw new FormatException(
+));
+                else
+                    Set(new JSONNumber(0.0));
+                return 0L;
+            }
+            set
+            {
+                if (longAsString)
+                    Set(new JSONString(value.ToString()));
+                else
+                    Set(new JSONNumber(value));
+            }
+        }
+
+        public override bool AsBool
+        {
+            get { Set(new JSONBool(false)); return false; }
+            set { Set(new JSONBool(value)); }
+        }
+
+        public override JSONArray AsArray
+        {
+            get { return Set(new JSONArray()); }
+        }
+
+        public override JSONObject AsObject
+        {
+            get { return Set(new JSONObject()); }
+        }
+        internal override void WriteToStringBuilder(StringBuilder aSB, int aIndent, int aIndentInc, JSONTextMode aMode)
+        {
+            aSB.Append(
+));
+                else
+                    Set(new JSONNumber(0.0));
+                return 0L;
+            }
+            set
+            {
+                if (longAsString)
+                    Set(new JSONString(value.ToString()));
+                else
+                    Set(new JSONNumber(value));
+            }
+        }
+
+        public override ulong AsULong
+        {
+            get
+            {
+                if (longAsString)
+                    Set(new JSONString(
+).prefab
+）。
+);
+                k.Value.WriteToStringBuilder(aSB, aIndent + aIndentInc, aIndentInc, aMode);
+            }
+            if (aMode == JSONTextMode.Indent)
+                aSB.AppendLine().Append(' ', aIndent);
+            aSB.Append('}');
+        }
+
+    }
+    // End of JSONObject
+
+    public partial class JSONString : JSONNode
+    {
+        private string m_Data;
+
+        public override JSONNodeType Tag { get { return JSONNodeType.String; } }
+        public override bool IsString { get { return true; } }
+
+        public override Enumerator GetEnumerator() { return new Enumerator(); }
+
+
+        public override string Value
+        {
+            get { return m_Data; }
+            set
+            {
+                m_Data = value;
+            }
+        }
+
+        public JSONString(string aData)
+        {
+            m_Data = aData;
+        }
+        public override JSONNode Clone()
+        {
+            return new JSONString(m_Data);
+        }
+
+        internal override void WriteToStringBuilder(StringBuilder aSB, int aIndent, int aIndentInc, JSONTextMode aMode)
+        {
+            aSB.Append('\"').Append(Escape(m_Data)).Append('\"');
+        }
+        public override bool Equals(object obj)
+        {
+            if (base.Equals(obj))
+                return true;
+            string s = obj as string;
+            if (s != null)
+                return m_Data == s;
+            JSONString s2 = obj as JSONString;
+            if (s2 != null)
+                return m_Data == s2.m_Data;
+            return false;
+        }
+        public override int GetHashCode()
+        {
+            return m_Data.GetHashCode();
+        }
+        public override void Clear()
+        {
+            m_Data = 
+);
+            }
+            if (ctx == null)
+                return ParseElement(Token.ToString(), TokenIsQuoted);
+            return ctx;
+        }
+
+    }
+    // End of JSONNode
+
+    public partial class JSONArray : JSONNode
+    {
+        private List<JSONNode> m_List = new List<JSONNode>();
+        private bool inline = false;
+        public override bool Inline
+        {
+            get { return inline; }
+            set { inline = value; }
+        }
+
+        public override JSONNodeType Tag { get { return JSONNodeType.Array; } }
+        public override bool IsArray { get { return true; } }
+        public override Enumerator GetEnumerator() { return new Enumerator(m_List.GetEnumerator()); }
+
+        public override JSONNode this[int aIndex]
+        {
+            get
+            {
+                if (aIndex < 0 || aIndex >= m_List.Count)
+                    return new JSONLazyCreator(this);
+                return m_List[aIndex];
+            }
+            set
+            {
+                if (value == null)
+                    value = JSONNull.CreateOrGet();
+                if (aIndex < 0 || aIndex >= m_List.Count)
+                    m_List.Add(value);
+                else
+                    m_List[aIndex] = value;
+            }
+        }
+
+        public override JSONNode this[string aKey]
+        {
+            get { return new JSONLazyCreator(this); }
+            set
+            {
+                if (value == null)
+                    value = JSONNull.CreateOrGet();
+                m_List.Add(value);
+            }
+        }
+
+        public override int Count
+        {
+            get { return m_List.Count; }
+        }
+
+        public override void Add(string aKey, JSONNode aItem)
+        {
+            if (aItem == null)
+                aItem = JSONNull.CreateOrGet();
+            m_List.Add(aItem);
+        }
+
+        public override JSONNode Remove(int aIndex)
+        {
+            if (aIndex < 0 || aIndex >= m_List.Count)
+                return null;
+            JSONNode tmp = m_List[aIndex];
+            m_List.RemoveAt(aIndex);
+            return tmp;
+        }
+
+        public override JSONNode Remove(JSONNode aNode)
+        {
+            m_List.Remove(aNode);
+            return aNode;
+        }
+
+        public override void Clear()
+        {
+            m_List.Clear();
+        }
+
+        public override JSONNode Clone()
+        {
+            var node = new JSONArray();
+            node.m_List.Capacity = m_List.Capacity;
+            foreach(var n in m_List)
+            {
+                if (n != null)
+                    node.Add(n.Clone());
+                else
+                    node.Add(null);
+            }
+            return node;
+        }
+
+        public override IEnumerable<JSONNode> Children
+        {
+            get
+            {
+                foreach (JSONNode N in m_List)
+                    yield return N;
+            }
+        }
+
+
+        internal override void WriteToStringBuilder(StringBuilder aSB, int aIndent, int aIndentInc, JSONTextMode aMode)
+        {
+            aSB.Append('[');
+            int count = m_List.Count;
+            if (inline)
+                aMode = JSONTextMode.Compact;
+            for (int i = 0; i < count; i++)
+            {
+                if (i > 0)
+                    aSB.Append(',');
+                if (aMode == JSONTextMode.Indent)
+                    aSB.AppendLine();
+
+                if (aMode == JSONTextMode.Indent)
+                    aSB.Append(' ', aIndent + aIndentInc);
+                m_List[i].WriteToStringBuilder(aSB, aIndent + aIndentInc, aIndentInc, aMode);
+            }
+            if (aMode == JSONTextMode.Indent)
+                aSB.AppendLine().Append(' ', aIndent);
+            aSB.Append(']');
+        }
+    }
+    // End of JSONArray
+
+    public partial class JSONObject : JSONNode
+    {
+        private Dictionary<string, JSONNode> m_Dict = new Dictionary<string, JSONNode>();
+
+        private bool inline = false;
+        public override bool Inline
+        {
+            get { return inline; }
+            set { inline = value; }
+        }
+
+        public override JSONNodeType Tag { get { return JSONNodeType.Object; } }
+        public override bool IsObject { get { return true; } }
+
+        public override Enumerator GetEnumerator() { return new Enumerator(m_Dict.GetEnumerator()); }
+
+
+        public override JSONNode this[string aKey]
+        {
+            get
+            {
+                if (m_Dict.ContainsKey(aKey))
+                    return m_Dict[aKey];
+                else
+                    return new JSONLazyCreator(this, aKey);
+            }
+            set
+            {
+                if (value == null)
+                    value = JSONNull.CreateOrGet();
+                if (m_Dict.ContainsKey(aKey))
+                    m_Dict[aKey] = value;
+                else
+                    m_Dict.Add(aKey, value);
+            }
+        }
+
+        public override JSONNode this[int aIndex]
+        {
+            get
+            {
+                if (aIndex < 0 || aIndex >= m_Dict.Count)
+                    return null;
+                return m_Dict.ElementAt(aIndex).Value;
+            }
+            set
+            {
+                if (value == null)
+                    value = JSONNull.CreateOrGet();
+                if (aIndex < 0 || aIndex >= m_Dict.Count)
+                    return;
+                string key = m_Dict.ElementAt(aIndex).Key;
+                m_Dict[key] = value;
+            }
+        }
+
+        public override int Count
+        {
+            get { return m_Dict.Count; }
+        }
+
+        public override void Add(string aKey, JSONNode aItem)
+        {
+            if (aItem == null)
+                aItem = JSONNull.CreateOrGet();
+
+            if (aKey != null)
+            {
+                if (m_Dict.ContainsKey(aKey))
+                    m_Dict[aKey] = aItem;
+                else
+                    m_Dict.Add(aKey, aItem);
+            }
+            else
+                m_Dict.Add(Guid.NewGuid().ToString(), aItem);
+        }
+
+        public override JSONNode Remove(string aKey)
+        {
+            if (!m_Dict.ContainsKey(aKey))
+                return null;
+            JSONNode tmp = m_Dict[aKey];
+            m_Dict.Remove(aKey);
+            return tmp;
+        }
+
+        public override JSONNode Remove(int aIndex)
+        {
+            if (aIndex < 0 || aIndex >= m_Dict.Count)
+                return null;
+            var item = m_Dict.ElementAt(aIndex);
+            m_Dict.Remove(item.Key);
+            return item.Value;
+        }
+
+        public override JSONNode Remove(JSONNode aNode)
+        {
+            try
+            {
+                var item = m_Dict.Where(k => k.Value == aNode).First();
+                m_Dict.Remove(item.Key);
+                return aNode;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        public override void Clear()
+        {
+            m_Dict.Clear();
+        }
+
+        public override JSONNode Clone()
+        {
+            var node = new JSONObject();
+            foreach (var n in m_Dict)
+            {
+                node.Add(n.Key, n.Value.Clone());
+            }
+            return node;
+        }
+
+        public override bool HasKey(string aKey)
+        {
+            return m_Dict.ContainsKey(aKey);
+        }
+
+        public override JSONNode GetValueOrDefault(string aKey, JSONNode aDefault)
+        {
+            JSONNode res;
+            if (m_Dict.TryGetValue(aKey, out res))
+                return res;
+            return aDefault;
+        }
+
+        public override IEnumerable<JSONNode> Children
+        {
+            get
+            {
+                foreach (KeyValuePair<string, JSONNode> N in m_Dict)
+                    yield return N.Value;
+            }
+        }
+
+        internal override void WriteToStringBuilder(StringBuilder aSB, int aIndent, int aIndentInc, JSONTextMode aMode)
+        {
+            aSB.Append('{');
+            bool first = true;
+            if (inline)
+                aMode = JSONTextMode.Compact;
+            foreach (var k in m_Dict)
+            {
+                if (!first)
+                    aSB.Append(',');
+                first = false;
+                if (aMode == JSONTextMode.Indent)
+                    aSB.AppendLine();
+                if (aMode == JSONTextMode.Indent)
+                    aSB.Append(' ', aIndent + aIndentInc);
+                aSB.Append('\"').Append(Escape(k.Key)).Append('\"');
+                if (aMode == JSONTextMode.Compact)
+                    aSB.Append(':');
+                else
+                    aSB.Append(
+);
+        }
+        public override bool Equals(object obj)
+        {
+            if (obj == null)
+                return false;
+            if (obj is bool)
+                return m_Data == (bool)obj;
+            return false;
+        }
+        public override int GetHashCode()
+        {
+            return m_Data.GetHashCode();
+        }
+        public override void Clear()
+        {
+            m_Data = false;
+        }
+    }
+    // End of JSONBool
+
+    public partial class JSONNull : JSONNode
+    {
+        static JSONNull m_StaticInstance = new JSONNull();
+        public static bool reuseSameInstance = true;
+        public static JSONNull CreateOrGet()
+        {
+            if (reuseSameInstance)
+                return m_StaticInstance;
+            return new JSONNull();
+        }
+        private JSONNull() { }
+
+        public override JSONNodeType Tag { get { return JSONNodeType.NullValue; } }
+        public override bool IsNull { get { return true; } }
+        public override Enumerator GetEnumerator() { return new Enumerator(); }
+
+        public override string Value
+        {
+            get { return 
+);
+        }
+    }
+    // End of JSONNull
+
+    internal partial class JSONLazyCreator : JSONNode
+    {
+        private JSONNode m_Node = null;
+        private string m_Key = null;
+        public override JSONNodeType Tag { get { return JSONNodeType.None; } }
+        public override Enumerator GetEnumerator() { return new Enumerator(); }
+
+        public JSONLazyCreator(JSONNode aNode)
+        {
+            m_Node = aNode;
+            m_Key = null;
+        }
+
+        public JSONLazyCreator(JSONNode aNode, string aKey)
+        {
+            m_Node = aNode;
+            m_Key = aKey;
+        }
+
+        private T Set<T>(T aVal) where T : JSONNode
+        {
+            if (m_Key == null)
+                m_Node.Add(aVal);
+            else
+                m_Node.Add(m_Key, aVal);
+            m_Node = null; // Be GC friendly.
+            return aVal;
+        }
+
+        public override JSONNode this[int aIndex]
+        {
+            get { return new JSONLazyCreator(this); }
+            set { Set(new JSONArray()).Add(value); }
+        }
+
+        public override JSONNode this[string aKey]
+        {
+            get { return new JSONLazyCreator(this, aKey); }
+            set { Set(new JSONObject()).Add(aKey, value); }
+        }
+
+        public override void Add(JSONNode aItem)
+        {
+            Set(new JSONArray()).Add(aItem);
+        }
+
+        public override void Add(string aKey, JSONNode aItem)
+        {
+            Set(new JSONObject()).Add(aKey, aItem);
+        }
+
+        public static bool operator ==(JSONLazyCreator a, object b)
+        {
+            if (b == null)
+                return true;
+            return System.Object.ReferenceEquals(a, b);
+        }
+
+        public static bool operator !=(JSONLazyCreator a, object b)
+        {
+            return !(a == b);
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj == null)
+                return true;
+            return System.Object.ReferenceEquals(this, obj);
+        }
+
+        public override int GetHashCode()
+        {
+            return 0;
+        }
+
+        public override int AsInt
+        {
+            get { Set(new JSONNumber(0)); return 0; }
+            set { Set(new JSONNumber(value)); }
+        }
+
+        public override float AsFloat
+        {
+            get { Set(new JSONNumber(0.0f)); return 0.0f; }
+            set { Set(new JSONNumber(value)); }
+        }
+
+        public override double AsDouble
+        {
+            get { Set(new JSONNumber(0.0)); return 0.0; }
+            set { Set(new JSONNumber(value)); }
+        }
+
+        public override long AsLong
+        {
+            get
+            {
+                if (longAsString)
+                    Set(new JSONString(
+);
+						break;
+					case '\f':
+						baseWriter.Write(
+);
+						break;
+					case '\n':
+						baseWriter.Write(
+);
+						break;
+					case '\r':
+						baseWriter.Write(
+);
+						break;
+					case '\t':
+						baseWriter.Write(
+);
+						break;
+					default:
+						baseWriter.Write(c);
+						break;
+				}
+			}
+			baseWriter.Write(
+);
+						return null;
+					}
+
+					// value
+					object value = ParseValue();
+
+					if (errorMessage != null)
+						return null;
+
+					table[name] = value;
+					break;
+				}
+			}
+
+			//return null; // Unreachable code
+		}
+
+		IList<object> ParseArray()
+		{
+			var array = new List<object>();
+
+			// [
+			lexer.NextToken();
+
+			while (true) {
+				var token = lexer.LookAhead();
+
+				switch (token) {
+				case Lexer.Token.None:
+					TriggerError(
+');
+					baseWriter.Write(kvp.Value);
+					baseWriter.Write('\"');
+				}
+			}
+
+			baseWriter.Write('>');
+		}
+
+		internal override void EndWriteProperty(string name)
+		{
+			baseWriter.Write(
+);
+					return null;
+				case Lexer.Token.Comma:
+					lexer.NextToken();
+					break;
+				case Lexer.Token.CurlyClose:
+					lexer.NextToken();
+					return table;
+				default:
+					// name
+					string name = EvalLexer(lexer.ParseString());
+
+					if (errorMessage != null)
+						return null;
+
+					// :
+					token = lexer.NextToken();
+
+					if (token != Lexer.Token.Colon) {
+						TriggerError(
+);
+					return null;
+				case Lexer.Token.Comma:
+					lexer.NextToken();
+					break;
+				case Lexer.Token.SquaredClose:
+					lexer.NextToken();
+					return array;
+				default:
+					object value = ParseValue();
+
+					if (errorMessage != null)
+						return null;
+
+					array.Add(value);
+					break;
+				}
+			}
+
+			//return null; // Unreachable code
+		}
+
+		object ParseValue()
+		{
+			switch (lexer.LookAhead()) {
+			case Lexer.Token.String:
+				return EvalLexer(lexer.ParseString());
+			case Lexer.Token.Number:
+				if (parseNumbersAsFloat)
+					return EvalLexer(lexer.ParseFloatNumber());
+				else
+					return EvalLexer(lexer.ParseDoubleNumber());
+			case Lexer.Token.CurlyOpen:
+				return ParseObject();
+			case Lexer.Token.SquaredOpen:
+				return ParseArray();
+			case Lexer.Token.True:
+				lexer.NextToken();
+				return true;
+			case Lexer.Token.False:
+				lexer.NextToken();
+				return false;
+			case Lexer.Token.Null:
+				lexer.NextToken();
+				return null;
+			case Lexer.Token.None:
+				break;
+			}
+
+			TriggerError(
+);
+			baseWriter.Write(name);
+			baseWriter.Write('>');
+		}
+
+		internal override void StartWriteCollection(int length)
+		{
+			
+		}
+
+		internal override void EndWriteCollection()
+		{
+			
+		}
+
+		internal override void StartWriteCollectionItem(int index)
+		{
+
+		}
+
+		internal override void EndWriteCollectionItem(int index)
+		{
+
+		}
+
+		internal override void StartWriteDictionary(int length)
+		{
+
+		}
+
+		internal override void EndWriteDictionary()
+		{
+
+		}
+
+		internal override void StartWriteDictionaryKey(int index)
+		{
+
+		}
+
+		internal override void EndWriteDictionaryKey(int index)
+		{
+
+		}
+
+		internal override void StartWriteDictionaryValue(int index)
+		{
+
+		}
+
+		internal override void EndWriteDictionaryValue(int index)
+		{
+
+		}
+
+		internal override void WriteNull()
+		{
+			baseWriter.Write(
+);
+			return null;
+		}
+
+		void TriggerError(string message)
+		{
+			errorMessage = string.Format(
+);
+
+					// Handle quoted strings.
+					// According to the RFC, only '\' and '
+);
+
+		if(!cells.TryGetValue(new Index (col, row), out value) || string.IsNullOrEmpty(value))
+			return default(T);
+
+		// IF we're loading a string, simply return the string value.
+		if(typeof(T) == typeof(string))
+			return (T)(object)value;
+
+		var settings = new ES3Settings ();
+		using(var ms = new MemoryStream(settings.encoding.GetBytes(value)))
+			using (var jsonReader = new ES3JSONReader(ms, settings, false))
+				return jsonReader.Read<T>();
+	}
+
+	public void Load(string filePath)
+	{
+		Load(new ES3Settings (filePath));
+	}
+
+	public void Load(string filePath, ES3Settings settings)
+	{
+		Load(new ES3Settings (filePath, settings));
+	}
+
+	public void Load(ES3Settings settings)
+	{
+		using (var reader = new StreamReader (ES3Stream.CreateStream(settings, ES3FileMode.Read)))
+		{
+			int c_int;
+			char c;
+			string value = 
+);
+                } else if ((asList = value as IList) != null) {
+                    SerializeArray(asList);
+                } else if ((asDict = value as IDictionary) != null) {
+                    SerializeObject(asDict);
+                } else if (value is char) {
+                    SerializeString(new string((char) value, 1));
+                } else {
+                    SerializeOther(value);
+                }
+            }
+
+            void SerializeObject(IDictionary obj) {
+                bool first = true;
+
+                builder.Append('{');
+
+                foreach (object e in obj.Keys) {
+                    if (!first) {
+                        builder.Append(',');
+                    }
+
+                    SerializeString(e.ToString());
+                    builder.Append(':');
+
+                    SerializeValue(obj[e]);
+
+                    first = false;
+                }
+
+                builder.Append('}');
+            }
+
+            void SerializeArray(IList anArray) {
+                builder.Append('[');
+
+                bool first = true;
+
+                for (int i=0; i<anArray.Count; i++) {
+                    object obj = anArray[i];
+                    if (!first) {
+                        builder.Append(',');
+                    }
+
+                    SerializeValue(obj);
+
+                    first = false;
+                }
+
+                builder.Append(']');
+            }
+
+            void SerializeString(string str) {
+                builder.Append('\"');
+
+                char[] charArray = str.ToCharArray();
+                for (int i=0; i<charArray.Length; i++) {
+                    char c = charArray[i];
+                    switch (c) {
+                    case '
+);
+                } else if ((asStr = value as string) != null) {
+                    SerializeString(asStr);
+                } else if (value is bool) {
+                    builder.Append((bool) value ? 
+');
+            }
+
+            void SerializeOther(object value) {
+                // NOTE: decimals lose precision during serialization.
+                // They always have, I'm just letting you know.
+                // Previously floats and doubles lost precision too.
+                if (value is float) {
+                    builder.Append(((float) value).ToString(
+*.*
+*.asset
+*Enter a type name in the field below*
+, 
+', '\n' };
+
+	public int ColumnCount
+	{
+		get{ return cols; }
+	}
+
+	public int RowCount
+	{
+		get{ return rows; }
+	}
+
+	public void SetCell<T>(int col, int row, object value)
+	{
+		// If we're writing a string, add it without formatting.
+		if(typeof(T) == typeof(string))
+		{
+			SetCell(col, row, (string)value);
+			return;
+		}
+
+		var settings = new ES3Settings ();
+		using(var ms = new MemoryStream())
+		{
+			using (var jsonWriter = new ES3JSONWriter (ms, settings, false, false))
+				jsonWriter.Write(value, ES3.ReferenceMode.ByValue);
+
+			SetCell(col, row, settings.encoding.GetString(ms.ToArray()));
+		}
+
+		// Expand the spreadsheet if necessary.
+		if(col >= cols)
+			cols = (col+1);
+		if(row >= rows)
+			rows = (row+1);
+	}
+
+	private void SetCell(int col, int row, string value)
+	{
+		cells [new Index (col, row)] = value;
+
+		// Expand the spreadsheet if necessary.
+		if(col >= cols)
+			cols = (col+1);
+		if(row >= rows)
+			rows = (row+1);
+	}
+
+	public T GetCell<T>(int col, int row)
+	{
+		string value;
+
+		if(col >= cols || row >= rows)
+			throw new System.IndexOutOfRangeException(
+, but data contained in file is type of 
+, for slot: 
+, recieved: 
+, skin: 
+, System.Globalization.CultureInfo.InvariantCulture));
+                } else if (value is int
+                    || value is uint
+                    || value is long
+                    || value is sbyte
+                    || value is byte
+                    || value is short
+                    || value is ushort
+                    || value is ulong) {
+                    builder.Append(value);
+                } else if (value is double
+                    || value is decimal) {
+                    builder.Append(Convert.ToDouble(value).ToString(
+,
+			                             message, lexer.lineNumber);
+		}
+
+		T EvalLexer<T>(T value)
+		{
+			if (lexer.hasError)
+				TriggerError(
+，成功率
+，帝殊利用了你……但帝殊从未想过要伤害你。”在你昏迷前，这是帝殊最后对你说的话。
+，对不起……
+,将协助所有建筑的生产
+，那我就成全你们
+,你能不能不要那么幼稚
+，请先建造
+，我会爱上
+'.
+. However, you may be able to add support for it using a custom ES3Type file. For more information see: http://docs.moodkie.com/easy-save-3/es3-guides/controlling-serialization-using-es3types/
+..
+.A
+.asmdef
+.asset
+.atlas
+.atlas 1.txt
+.atlas.txt
+.B
+.bac
+.bytes
+.C
+.controller
+.cs
+.csv
+.D
+.dbbin
+.fontsettings
+.Instance
+.jpeg
+.jpg
+.jpg.meta
+.json
+.mat
+.meta
+.mp3
+.ogg
+.png
+.png.meta
+.prefab
+.R .G .B .A
+.ScaleX
+.ScaleY
+.skel
+.skel.bytes
+.Skin
+.spriteatlas
+.tmp
+.txt
+.WorldX
+.WorldY
+.x
+.xlsx
+.xml
+.y
+.z
+。你放心，我心里永远有个角落是留给你的……
+/ 
+//
+/1
+/2)
+/Archives/archive_
+/Assets/Resources/DataTable/
+/Baked
+/c chcp 65001 >nul && \"{batPath}\"
+/Canvas
+/Download
+/Dur
+/Easy Save 3/Types/ES3Type_
+/GameInfo
+/General Settings
+/General Settings/Split
+/GUI
+/icon-bone.png
+/icon-ik.png
+/icon-image.png
+/icon-mesh.png
+/icon-skeleton.png
+/ksadsdk
+/logs.txt
+/Modifiers
+/New2Archives/
+/New2Archives/archive_0/GameInfo
+/New2BeiFenArchives/
+/res
+/res/DataTable
+/res/DataTable/
+/Resources/DataTable/
+/root,
+/select,
+/StreamingAssets
+/StreamingAssets/
+/StreamingAssets/build_info
+/theVersion.txt
+/Utility
+/年
+/月
+/周
+':
+                        QuoteMode ^= true;
+                        TokenIsQuoted |= QuoteMode;
+                        break;
+
+                    case ',':
+                        if (QuoteMode)
+                        {
+                            Token.Append(aJSON[i]);
+                            break;
+                        }
+                        if (Token.Length > 0 || TokenIsQuoted)
+                            ctx.Add(TokenName, ParseElement(Token.ToString(), TokenIsQuoted));
+                        TokenIsQuoted = false;
+                        TokenName = 
+':
+                        sb.Append(
+':
+						stringBuffer[idx++] = '
+':
+					case '“':
+					case '”':
+					case '\\':
+					case '/':
+						baseWriter.Write('\\');
+						baseWriter.Write(c);
+						break;
+					case '\b':
+						baseWriter.Write(
+':
+				return Token.String;
+			case '0': case '1': case '2': case '3': case '4':
+			case '5': case '6': case '7': case '8': case '9':
+			case '-':
+				return Token.Number;
+			case ':':
+				return Token.Colon;
+			}
+
+			index--;
+
+			int remainingLength = json.Length - index;
+
+			// false
+			if (remainingLength >= 5) {
+				if (json[index] == 'f' &&
+				    json[index + 1] == 'a' &&
+				    json[index + 2] == 'l' &&
+				    json[index + 3] == 's' &&
+				    json[index + 4] == 'e') {
+					index += 5;
+					return Token.False;
+				}
+			}
+
+			// true
+			if (remainingLength >= 4) {
+				if (json[index] == 't' &&
+				    json[index + 1] == 'r' &&
+				    json[index + 2] == 'u' &&
+				    json[index + 3] == 'e') {
+					index += 4;
+					return Token.True;
+				}
+			}
+
+			// null
+			if (remainingLength >= 4) {
+				if (json[index] == 'n' &&
+				    json[index + 1] == 'u' &&
+				    json[index + 2] == 'l' &&
+				    json[index + 3] == 'l') {
+					index += 4;
+					return Token.Null;
+				}
+			}
+
+			return Token.None;
+		}
+	}
+
+	public class JsonDecoder
+	{
+		public string errorMessage {
+			get;
+			private set;
+		}
+
+		public bool parseNumbersAsFloat {
+			get;
+			set;
+		}
+
+		Lexer lexer;
+
+		public JsonDecoder()
+		{
+			errorMessage = null;
+			parseNumbersAsFloat = false;
+		}
+
+		public object Decode(string text)
+		{
+			errorMessage = null;
+
+			lexer = new Lexer(text);
+			lexer.parseNumbersAsFloat = parseNumbersAsFloat;
+
+			return ParseValue();
+		}
+
+		public static object DecodeText(string text)
+		{
+			var builder = new JsonDecoder();
+			return builder.Decode(text);
+		}
+
+		IDictionary<string, object> ParseObject()
+		{
+			var table = new Dictionary<string, object>();
+
+			// {
+			lexer.NextToken();
+
+			while (true) {
+				var token = lexer.LookAhead();
+
+				switch (token) {
+				case Lexer.Token.None:
+					TriggerError(
+':
+                        parsing = false;
+                        break;
+                    case '\\':
+                        if (json.Peek() == -1) {
+                            parsing = false;
+                            break;
+                        }
+
+                        c = NextChar;
+                        switch (c) {
+                        case '
+:
+                        return TOKEN.FALSE;
+                    case 
+:
+                        return TOKEN.NULL;
+                    }
+
+                    return TOKEN.NONE;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Converts a IDictionary / IList object or a simple type (string, int, etc.) into a JSON string
+        /// </summary>
+        /// <param name=
+':
+                        return TOKEN.STRING;
+                    case ':':
+                        return TOKEN.COLON;
+                    case '0':
+                    case '1':
+                    case '2':
+                    case '3':
+                    case '4':
+                    case '5':
+                    case '6':
+                    case '7':
+                    case '8':
+                    case '9':
+                    case '-':
+                        return TOKEN.NUMBER;
+                    }
+
+                    switch (NextWord) {
+                    case 
+:
+                        return TOKEN.TRUE;
+                    case 
+://
+; }
+            set { }
+        }
+        public override bool AsBool
+        {
+            get { return false; }
+            set { }
+        }
+
+        public override JSONNode Clone()
+        {
+            return CreateOrGet();
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (object.ReferenceEquals(this, obj))
+                return true;
+            return (obj is JSONNull);
+        }
+        public override int GetHashCode()
+        {
+            return 0;
+        }
+
+        internal override void WriteToStringBuilder(StringBuilder aSB, int aIndent, int aIndentInc, JSONTextMode aMode)
+        {
+            aSB.Append(
+; charset=utf-8\nhost:
+;
+                        Token.Length = 0;
+                        TokenIsQuoted = false;
+                        break;
+
+                    case '\r':
+                    case '\n':
+                        HasNewlineChar = true;
+                        break;
+
+                    case ' ':
+                    case '\t':
+                        if (QuoteMode)
+                            Token.Append(aJSON[i]);
+                        break;
+
+                    case '\\':
+                        ++i;
+                        if (QuoteMode)
+                        {
+                            char C = aJSON[i];
+                            switch (C)
+                            {
+                                case 't':
+                                    Token.Append('\t');
+                                    break;
+                                case 'r':
+                                    Token.Append('\r');
+                                    break;
+                                case 'n':
+                                    Token.Append('\n');
+                                    break;
+                                case 'b':
+                                    Token.Append('\b');
+                                    break;
+                                case 'f':
+                                    Token.Append('\f');
+                                    break;
+                                case 'u':
+                                    {
+                                        string s = aJSON.Substring(i + 1, 4);
+                                        Token.Append((char)int.Parse(
+                                            s,
+                                            System.Globalization.NumberStyles.AllowHexSpecifier));
+                                        i += 4;
+                                        break;
+                                    }
+                                default:
+                                    Token.Append(C);
+                                    break;
+                            }
+                        }
+                        break;
+                    case '/':
+                        if (allowLineComments && !QuoteMode && i + 1 < aJSON.Length && aJSON[i + 1] == '/')
+                        {
+                            while (++i < aJSON.Length && aJSON[i] != '\n' && aJSON[i] != '\r') ;
+                            break;
+                        }
+                        Token.Append(aJSON[i]);
+                        break;
+                    case '\uFEFF': // remove / ignore BOM (Byte Order Mark)
+                        break;
+
+                    default:
+                        Token.Append(aJSON[i]);
+                        break;
+                }
+                ++i;
+            }
+            if (QuoteMode)
+            {
+                throw new Exception(
+;
+        }
+    }
+    // End of JSONString
+
+    public partial class JSONNumber : JSONNode
+    {
+        private double m_Data;
+
+        public override JSONNodeType Tag { get { return JSONNodeType.Number; } }
+        public override bool IsNumber { get { return true; } }
+        public override Enumerator GetEnumerator() { return new Enumerator(); }
+
+        public override string Value
+        {
+            get { return m_Data.ToString(CultureInfo.InvariantCulture); }
+            set
+            {
+                double v;
+                if (double.TryParse(value, NumberStyles.Float, CultureInfo.InvariantCulture, out v))
+                    m_Data = v;
+            }
+        }
+
+        public override double AsDouble
+        {
+            get { return m_Data; }
+            set { m_Data = value; }
+        }
+        public override long AsLong
+        {
+            get { return (long)m_Data; }
+            set { m_Data = value; }
+        }
+        public override ulong AsULong
+        {
+            get { return (ulong)m_Data; }
+            set { m_Data = value; }
+        }
+
+        public JSONNumber(double aData)
+        {
+            m_Data = aData;
+        }
+
+        public JSONNumber(string aData)
+        {
+            Value = aData;
+        }
+
+        public override JSONNode Clone()
+        {
+            return new JSONNumber(m_Data);
+        }
+
+        internal override void WriteToStringBuilder(StringBuilder aSB, int aIndent, int aIndentInc, JSONTextMode aMode)
+        {
+            aSB.Append(Value);
+        }
+        private static bool IsNumeric(object value)
+        {
+            return value is int || value is uint
+                || value is float || value is double
+                || value is decimal
+                || value is long || value is ulong
+                || value is short || value is ushort
+                || value is sbyte || value is byte;
+        }
+        public override bool Equals(object obj)
+        {
+            if (obj == null)
+                return false;
+            if (base.Equals(obj))
+                return true;
+            JSONNumber s2 = obj as JSONNumber;
+            if (s2 != null)
+                return m_Data == s2.m_Data;
+            if (IsNumeric(obj))
+                return Convert.ToDouble(obj) == m_Data;
+            return false;
+        }
+        public override int GetHashCode()
+        {
+            return m_Data.GetHashCode();
+        }
+        public override void Clear()
+        {
+            m_Data = 0;
+        }
+    }
+    // End of JSONNumber
+
+    public partial class JSONBool : JSONNode
+    {
+        private bool m_Data;
+
+        public override JSONNodeType Tag { get { return JSONNodeType.Boolean; } }
+        public override bool IsBoolean { get { return true; } }
+        public override Enumerator GetEnumerator() { return new Enumerator(); }
+
+        public override string Value
+        {
+            get { return m_Data.ToString(); }
+            set
+            {
+                bool v;
+                if (bool.TryParse(value, out v))
+                    m_Data = v;
+            }
+        }
+        public override bool AsBool
+        {
+            get { return m_Data; }
+            set { m_Data = value; }
+        }
+
+        public JSONBool(bool aData)
+        {
+            m_Data = aData;
+        }
+
+        public JSONBool(string aData)
+        {
+            Value = aData;
+        }
+
+        public override JSONNode Clone()
+        {
+            return new JSONBool(m_Data);
+        }
+
+        internal override void WriteToStringBuilder(StringBuilder aSB, int aIndent, int aIndentInc, JSONTextMode aMode)
+        {
+            aSB.Append((m_Data) ? 
+;
+			int col = 0;
+			int row = 0;
+
+			// Read until the end of the stream.
+			while(true)
+			{
+				c_int = reader.Read();
+				c = (char)c_int;
+				if(c == QUOTE_CHAR)
+				{
+					while (true)
+					{
+						c = (char)reader.Read();
+
+						if(c == QUOTE_CHAR)
+						{
+							// If this quote isn't escaped by another, it is the last quote, so we should stop parsing this value.
+							if(((char)reader.Peek()) != QUOTE_CHAR)
+								break;
+							else
+								c = (char)reader.Read();
+						}
+						value += c;
+					}
+				}
+				// If this is the end of a column, row, or the stream, add the value to the spreadsheet.
+				else if(c == COMMA_CHAR || c == NEWLINE_CHAR || c_int == -1)
+				{
+					SetCell(col, row, value);
+					value = 
+';
+	private const char COMMA_CHAR = ',';
+	private const char NEWLINE_CHAR = '\n';
+	private const string ESCAPED_QUOTE = 
+?（此存档为本地存档，一旦删除将无法找回，包括充值、养成数据。非坏档情况不建议删除此存档，如果您有疑问，可及时咨询客服。）
+？？？
+?好名字，这下出门在外更有面儿了。
+[ ]|[/]|[:]
+[\u4e00-\u9fa50-9A-Za-z：:，,。！？!%（）()·—_《》“”‘’\s]+
+[a]
+[b]
+[BoundingBox]
+[DataTable] 配置文件缺失: {fileName}
+[DragonBones]
+[es3TypeSuffix]
+[fullType]
+[InitAllMap] FixedLevel LevelSetting 不存在, levelId={levelIdStr}, mapId={setting.Id}, FixedLevelIdList={setting.FixedLevelIdList}
+[InitAllMap] LevelSetting 不存在, levelId={levelIdStr}, mapId={setting.Id}, LevelIdList={setting.LevelIdList}
+[object DragonBones.Matrix] a:
+[object dragonBones.Transform] x:
+[propertyNames]
+[reads]
+[SubmeshInstruction: slots {0} to {1}. (Material){2}. preActiveClippingSlotSource:{3}]
+[ta]
+[VersionEditor] {errorMsg}
+[VersionEditor] Luban 警告:\n{stderr}
+[VersionEditor] Luban 输出:\n{stdout}
+[VersionEditor] 版本文件生成成功
+[VersionEditor] 生成 version 文件失败: {e.Message}
+[Weighted Mesh: 
+[WitBaiduAip]
+[WitBaiduAip]response type: 
+[writes]
+[当前产出：
+[动画表情]
+[对方姓名]
+[对方姓名]就是我的朋友，都看清楚了啊，谁来招惹[ta]，就是跟我过不去
+[对方姓名]在哪？！！！别拦我！！！我现在就要去把[ta]狠狠打一顿，气死我了气死我了
+[对方姓名]这王八蛋竟然敢偷袭我？！敢在背后给我下黑手，[ta]死定了，等我伤好了就是[ta]的死期！！
+[对方姓名]走了，我的心也跟着走了......若不是掌门对我有栽培之恩，我真想随[ta]一起离去
+[对方姓名]走了，我再也没有可以交心的朋友了......若不是掌门对我有栽培之恩，我真想随[ta]一起离去
+[对方宗门]
+[玩家名字]
+[玩家宗门]
+[掌门：
+\' or \"null\", found \'
+\"
+\" could not be found in PlayerPrefs
+\" could not be found.
+\" could not be found. If you are using Assembly Definition Files, you should delete this assembly from the \"Assemblies containing ES3Types\" list in Window > Easy Save 3 > Settings, and add the names of the Assemblies you are using instead.
+\" has not been implemented.
+\" in the Dictionary we are loading does not exist in the Dictionary we are loading into
+\" is a different type than expected. Expected \"
+\" is not supported by Easy Save.
+\" not found for atlas asset: 
+\" was not found in file \"
+\" was not found in this ES3File. Use Load<T>(key, defaultValue) if you want to return a default value if the key does not exist.
+\",
+\", found \"
+\".
+\". Use Load<T>(key, defaultValue) if you want to return a default value if the key does not exist.
+\":
+\":\"
+\"armature\":
+\"bool\": true, 
+\"displayName\"\\s*:\\s*\"([^\"]+)\"
+\"float\": 3.1415926, 
+\"int\": 65536, 
+\"null\": null }
+\"object\": {\"key1\":\"value1\", \"key2\":256}, 
+\"string\": \"The quick brown fox \\\"jumps\\\" over the lazy dog \", 
+\"unicode\": \"\\u3041 Men\u00fa sesi\u00f3n\", 
+\"version\"\\s*:\\s*\"([^\"]+)\"
+\', found \'
+\'.
+\\
+\\\"
+\\\\
+\\b
+\\f
+\\n
+\\r
+\\t
+\\u
+\n
+\n\n
+\n\n... (内容过长已截断，请查看 Console 日志获取完整信息)
+\n\nAnimation Curves are sampled at 60fps and are not realtime.
+\n\nBaked Animations do not support the following:
+\n\nBaked Skeletons do not support the following:
+\n\nIt will be deleted when you update. Are you sure you want to continue?
+\n\n根据国家相关规定，未成年人充值有以下限制：\n
+\n\t\t\t\t\tcase \"{0}\":\n\t\t\t\t\t\tinstance.{0} = reader.Read<{1}>({2});\n\t\t\t\t\t\tbreak;
+\n\t\t\t\t\tcase \"{0}\":\n\t\t\t\t\treader.SetPrivateField(\"{0}\", reader.Read<{1}>(), instance);\n\t\t\t\t\tbreak;
+\n\t\t\t\t\tcase \"{0}\":\n\t\t\t\t\treader.SetPrivateProperty(\"{0}\", reader.Read<{1}>(), instance);\n\t\t\t\t\tbreak;
+\n\t\t\twriter.WritePrivate{3}{1}(\"{0}\", instance);
+\n\t\t\twriter.WriteProperty{1}(\"{0}\", instance.{0}{2});
+\n\tAll Constraint types
+\n\tColor Keys
+\n\tDisabled rotation or scale inheritance
+\n\tDraw Order Keys
+\n\tLocal Shear
+\n\tMesh Deform Keys
+\n\tWeighted mesh verts with more than 4 bound bones
+\nConstraint animations are also baked into animation curves.
+\nSaved by reference
+\nSaved by value
+\nSee SkeletonBaker.cs comments for full details.\n
+\nSkeleton baking is not the primary use case for Spine skeletons.
+\nUse baking if you have specialized uses, such as simplified skeletons with movement driven by physics.
+\nWarning: 'Add Normals' required on URP shader to receive shadows!\n\nPlease\n
+\nWarning: 'Add Normals' required when not using 'Fixed Normals'!\n\nPlease\n
+\nWarning: 'Advanced - Tint Black' required when using any 'Tint Black' shader!\n\nPlease\n
+\nWarning: Canvas 'Additional Shader Channels' 'uv1' and 'uv2' are required when 'Advanced - Tint Black' is enabled!\n\n
+\nWarning: 'Canvas Group Tint Black' is enabled at SkeletonGraphic but not 'CanvasGroup Compatible' at the Material!\n\nPlease\n
+\nWarning: Normal non-UI shaders other than 'Spine/SkeletonGraphic *' are not compatible with 'SkeletonGraphic' components! 
+\nWarning: Only enable 'Canvas Group Tint Black' when using a 'SkeletonGraphic Tint Black' shader!\n
+\nWarning: Premultiply-alpha atlas textures not supported in Linear color space!\n\nPlease\n
+\nWarning: 'Solve Tangents' required when using a Normal Map!\n\nPlease\n
+\nWarning: Z Spacing recommended on selected shader configuration!\n\nPlease\n
+\nWarning: Z Spacing required on selected shader! Otherwise you will receive incorrect results.\n\nPlease\n
+\r
+\r\n
+\s*:\s*
+\t
+\t {0}
+\t... {0} more...
+\t--none--
+\u2014
+\u25BA
+] 
+] does not contain any Bounding Box Attachments!
+]：
+]\r\nUnity only supports 4 weight influences per vertex! The 4 strongest influences will be used.\r\n
+]+)
+^[a-zA-Z0-9]*$
+^\d{17}[\dX]$
+_!_
+__Internal
+__type
+_ADDITIVEBLEND
+_ADDITIVEBLEND_SOFT
+_ALPHA_CLIP
+_ALPHABLEND_ON
+_ALPHAPREMULTIPLY_ON
+_AlphaTex
+_AlphaTex_TextureOffset
+_AlphaTex_TextureScale
+_animationName
+_AO
+_Atlas
+_AtmosphereThickness
+_BackTex
+_BackTex_TextureOffset
+_BackTex_TextureScale
+_BaseLight
+_BlendAmount
+_BlendTex
+_Brightness
+_BrushTex
+_BumpMap
+_BumpMap_TextureOffset
+_BumpMap_TextureScale
+_BumpScale
+_BumpSpecMap
+_BumpSpecMap_TextureOffset
+_BumpSpecMap_TextureScale
+_CANVAS_GROUP_COMPATIBLE
+_closeCombineMeshs
+_Color
+_COLOR_ADJUST
+_ColorMask
+_Control
+_Control_TextureOffset
+_Control_TextureScale
+_Controller
+_Cube
+_Cube_TextureOffset
+_Cube_TextureScale
+_Cull
+_CurGameInfo 为空，跳过保存
+_CustomRenderQueue
+_Cutoff
+_Data.asset
+_DecalTex
+_DecalTex_TextureOffset
+_DecalTex_TextureScale
+_Detail
+_Detail_TextureOffset
+_Detail_TextureScale
+_DetailAlbedoMap
+_DetailAlbedoMap_TextureOffset
+_DetailAlbedoMap_TextureScale
+_DetailBump
+_DetailBump_TextureOffset
+_DetailBump_TextureScale
+_DetailMask
+_DetailMask_TextureOffset
+_DetailMask_TextureScale
+_DetailNormalMap
+_DetailNormalMap_TextureOffset
+_DetailNormalMap_TextureScale
+_DetailNormalMapScale
+_DetailTex
+_DetailTex_TextureOffset
+_DetailTex_TextureScale
+_DIFFUSE_RAMP
+_DiffuseRamp
+_DownTex
+_DownTex_TextureOffset
+_DownTex_TextureScale
+_DstBlend
+_EmisColor
+_EMISSION
+_Emission
+_EmissionColor
+_EmissionMap
+_EmissionMap_TextureOffset
+_EmissionMap_TextureScale
+_EmissionPower
+_EnableExternalAlpha
+_ES3Ref
+_Exposure
+_FIXED_NORMALS_MODELSPACE
+_FIXED_NORMALS_MODELSPACE_BACKFACE
+_FIXED_NORMALS_VIEWSPACE
+_FIXED_NORMALS_VIEWSPACE_BACKFACE
+_FIXED_NORMALS_WORLDSPACE
+_FixedNormal
+_Flip
+_flipX
+_flipY
+_Focus
+_FOG
+_FrontTex
+_FrontTex_TextureOffset
+_FrontTex_TextureScale
+_Glossiness
+_GlossMap
+_GlossMap_TextureOffset
+_GlossMap_TextureScale
+_GlossMapScale
+_GlossyReflections
+_GlowColor
+_GlowEffect
+_GlowSize
+_GlowStrength
+_GroundColor
+_HalfOverCutoff
+_hash
+_Hue
+_HueVariation
+_Illum
+_Illum_TextureOffset
+_Illum_TextureScale
+_InsideMask
+_InvFade
+_lastSkin
+_LeftTex
+_LeftTex_TextureOffset
+_LeftTex_TextureScale
+_Level
+_LightMap
+_LightMap_TextureOffset
+_LightMap_TextureScale
+_LightTexture0
+_LightTexture0_TextureOffset
+_LightTexture0_TextureScale
+_LightTextureB0
+_LightTextureB0_TextureOffset
+_LightTextureB0_TextureScale
+_MainBump
+_MainBump_TextureOffset
+_MainBump_TextureScale
+_MainTex
+_MainTex_TextureOffset
+_MainTex_TextureScale
+_Mask
+_Mask_TextureOffset
+_Mask_TextureScale
+_MaskTex
+_Mat
+_Mat.mat
+_Material.mat
+_Metallic
+_Metallic0
+_Metallic1
+_Metallic2
+_Metallic3
+_MetallicGlossMap
+_MetallicGlossMap_TextureOffset
+_MetallicGlossMap_TextureScale
+_MetallicTex
+_MetallicTex_TextureOffset
+_MetallicTex_TextureScale
+_Mode
+_MULTIPLYBLEND
+_MULTIPLYBLEND_X2
+_Normal0
+_Normal0_TextureOffset
+_Normal0_TextureScale
+_Normal1
+_Normal1_TextureOffset
+_Normal1_TextureScale
+_Normal2
+_Normal2_TextureOffset
+_Normal2_TextureScale
+_Normal3
+_Normal3_TextureOffset
+_Normal3_TextureScale
+_NORMALMAP
+_Occlusion
+_OcclusionMap
+_OcclusionMap_TextureOffset
+_OcclusionMap_TextureScale
+_OcclusionStrength
+_OutlineColor
+_OutlineMipLevel
+_OutlineReferenceTexWidth
+_OutlineSmoothness
+_OutlineWidth
+_OutsideMask
+_OverlayColor
+_Parallax
+_ParallaxMap
+_ParallaxMap_TextureOffset
+_ParallaxMap_TextureScale
+_ParamTex
+_playTimes
+_RECEIVE_SHADOWS_OFF
+_ReflectColor
+_RendererColor
+_RenderQueue
+_RightTex
+_RightTex_TextureOffset
+_RightTex_TextureScale
+_RIM_LIGHTING
+_RimColor
+_RimPower
+_Rotation
+_Saturation
+_SecondTex
+_SecondTex_TextureOffset
+_SecondTex_TextureScale
+_ShadowAlphaCutoff
+_ShadowMapTexture
+_ShadowMapTexture_TextureOffset
+_ShadowMapTexture_TextureScale
+_ShadowOffset
+_ShadowOffset_TextureOffset
+_ShadowOffset_TextureScale
+_ShadowOffsetScale
+_ShadowStrength
+_ShadowTex
+_ShadowTex_TextureOffset
+_ShadowTex_TextureScale
+_Shininess
+_Size
+_ske
+_ske t:TextAsset
+_SkeletonData
+_SkyTint
+_Smoothness0
+_Smoothness1
+_Smoothness2
+_Smoothness3
+_SmoothnessTextureChannel
+_SpecColor
+_SpecGlossMap
+_SpecGlossMap_TextureOffset
+_SpecGlossMap_TextureScale
+_SPECULAR
+_Specular
+_SPECULAR_GLOSSMAP
+_SpecularHighlights
+_SPHERICAL_HARMONICS
+_Splat0
+_Splat0_TextureOffset
+_Splat0_TextureScale
+_Splat1
+_Splat1_TextureOffset
+_Splat1_TextureScale
+_Splat2
+_Splat2_TextureOffset
+_Splat2_TextureScale
+_Splat3
+_Splat3_TextureOffset
+_Splat3_TextureScale
+_SpriteAtlas
+_SquashAmount
+_SrcBlend
+_Stencil
+_StencilComp
+_StencilOp
+_StencilReadMask
+_StencilRef
+_StencilWriteMask
+_str
+_STRAIGHT_ALPHA_INPUT
+_StraightAlphaInput
+_Strength
+_Submesh
+_SunDisk
+_SunSize
+_tex
+_Tex
+_tex.json
+_Tex_TextureOffset
+_Tex_TextureScale
+_TexA
+_TexA_TextureOffset
+_TexA_TextureScale
+_TexB
+_TexB_TextureOffset
+_TexB_TextureScale
+_Texel
+_TEXTURE_BLEND
+_ThirdTex
+_ThirdTex_TextureOffset
+_ThirdTex_TextureScale
+_ThresholdEnd
+_timeScale
+_Tint
+_TintColor
+_TransitionTex
+_TranslucencyColor
+_TranslucencyMap
+_TranslucencyMap_TextureOffset
+_TranslucencyMap_TextureScale
+_TranslucencyViewDependency
+_TreeInstanceColor
+_TreeInstanceScale
+_UI_Mat
+_UI_Mat.mat
+_UpTex
+_UpTex_TextureOffset
+_UpTex_TextureScale
+_Use8Neighbourhood
+_UseUIAlphaClip
+_UV
+_UVSec
+_value
+_WaveAndDistance
+_WavingTint
+_WindQuality
+_WireThickness
+_ZBias
+_ZTest
+_ZWrite
+`{0}` : If this file is a Spine atlas, please change its extension to `.atlas.txt`. This is to allow Unity to recognize it and avoid filename collisions. You can also set this file extension when exporting from the Spine editor.
+`{0}` : Problematic Texture Settings found: 
+`{0}` and material `{1}` : Incorrect
+`{0}` and material `{1}` : Problematic 
+`Alpha Is Transparency` on `Premultiply alpha` textures.\n
+`Premultiply alpha` settings.\n
+{ 
+{ \"array\": [1.44,2,3], 
+{}[],:\"
+{0:00}
+'{0}'
+{0} ({1} attachment{2})
+{0} (BoneFollower)
+{0} :: Imported with {1} material
+{0} :: Not all atlas pages were imported. If you rename your image files, please make sure you also edit the filenames specified in the atlas file.
+{0} :: This tween's target and TO target are not of the same type. Please reassign the values
+{0} :: This tween's target is NULL, because the animation was created with a DOTween Pro version older than 0.9.255. To fix this, exit Play mode then simply select this object, and it will update automatically
+{0} :: This tween's TO target is NULL, a Vector3 of (0,0,0) will be used instead
+{0} :: This tween's TO target should be a RectTransform, a Vector3 of (0,0,0) will be used instead
+{0} [{1}]
+{0} {1} {2}
+{0} ignored on vertex {1}!\r\n
+{0} is invalid.\nCannot create new Spine GameObject.
+'{0}' is not compatible JSON. Parser returned an incorrect type while parsing version info.
+'{0}' is not valid JSON.
+{0} regions total
+{0} seconds\n{1} timelines
+{0}/{1}
+{0}/{1}.asset
+{0}/Samples/{1}
+{0}/Samples~/{1}
+{0}: separates into {1}.
+{0}: Texture asset \"{1}\" not found. Skipping. Please check your atlas file for renamed files.
+{0}?cuid={1}&token={2}
+{0}[{1}]
+{0}{1}.{2}
+{0}<{1}>
+{0}={1}&
+{8} - {0} {1}\nBones: {2}\nConstraints: \n {5} IK \n {6} Path \n {7} Transform\n\nSlots: {3}\nSkins: {4}\n\nAnimations: {9}
+{account}_1
+{baseUrl.TrimEnd('/')}{path}
+{baseUrl.TrimEnd('/')}{url}?
+{MyHttpServer.Instance.curAccount}_{curArchiveIndex}
+{p.Name} = {p.GetValue(o)},
+{serverUrl}/api/iAmAlive
+{serverUrl}/api/login
+{serverUrl}/api/recharge
+{serverUrl}/api/register
+{this.baseUrl.TrimEnd('/')}{path}?{queryString}
+{this.baseUrl.TrimEnd('/')}{url}?
+{this.Profile.HttpProfile.Protocol }{endpoint}
+{this.Profile.HttpProfile.Protocol}{endpoint}
+{WebUtility.UrlEncode(kvp.Key)}={WebUtility.UrlEncode(kvp.Value)}&
+“区区人族”，难道这人不是人族？突然，少女的声音打断了你的思考。
+“我不该把复仇的希望放在你身上，你的人生应该由你自己来选择，对不起,
++0
++col+
++cols+
++row+
++rows+
+</
+</b></color>
+</b></color>。
+</Table>
+<?xml version=\"1.0\" encoding=\"utf-8\"?>
+<b>by noobtuts.com</b>
+<color=#388EEE><b>
+<color=#ff0000ff><b>
+<color=green> 个 </color>
+<color=green> 个，Text组件 </color>
+<color=green>@@@ Register {0} : {1}</color>
+<color=green><b>
+<color=red>@@@ Unregister {0} : {1}</color>
+<color=yellow> 当前ProJect共有：Prefab </color>
+<color=yellow> 当前场景共有：物体 </color>
+<color=yellow> 个，Text组件 </color>
+<color=yellow> 个，带有Text组件Prefab </color>
+<empty>
+<Multiple>
+<None>
+<none>
+<Recursively>
+<Table>
+== fail ==
+=======================================================================
+->
+>A Dictionary&lt;string, object&gt; / List&lt;object&gt;</param>
+        /// <returns>A JSON encoded string, or null if object 'json' is not serializable</returns>
+        public static string Serialize(object obj) {
+            return Serializer.Serialize(obj);
+        }
+
+        sealed class Serializer {
+            StringBuilder builder;
+
+            Serializer() {
+                builder = new StringBuilder();
+            }
+
+            public static string Serialize(object obj) {
+                var instance = new Serializer();
+
+                instance.SerializeValue(obj);
+
+                return instance.builder.ToString();
+            }
+
+            void SerializeValue(object value) {
+                IList asList;
+                IDictionary asDict;
+                string asStr;
+
+                if (value == null) {
+                    builder.Append(
+·Lv
+……
+• Actions
+• Actions Overview
+• API Scripting Reference
+• Ask a question in our Easy Save 3 forums
+• Ask a question in the Unity Forum thread
+• Contact us directly
+• Documentation
+• Guides
+• See our Getting Started guide
+• Supported Types
+0 : Loop
+0%
+0.#
+0.##
+0.0
+0.000
+0/1
+00:
+00:00:
+000
+00001
+0-10
+0-5
+0-6
+-1
+1) make sure at least minimal 'Z Spacing' is set at the SkeletonRenderer/SkeletonAnimation component under 'Advanced' and\n
+1. Make your 2D Colliders Static
+2. Press Bake and wait until it's done
+3. Add NavMeshAgent2D to agents
+1.1.0
+1/1
+10
+10001|0$10004|0$10003|0$10005|0$10006|0$10007|0
+10001|0$10004|0$10003|0$10007|0$10005|5$10006|30$10002|0$10008|0$10017|$10018|0
+10001|100$10003|16$10004|16
+10001|100$10004|50|60$10003|50|60
+10001|10000$365001|10,10001|50000$365001|20,10001|100000$365001|40,365001|80,365001|160
+10001|2|70$10001|80|20$81001|5|1$82001|5|1$83001|5|1$84001|5|1$85001|5|1$111001|5|1$112001|5|1$113001|5|1$114001|5|1$115001|5|1$152001|1|1
+10001|30$10003|10$10004|10
+10001|40$10003|13$10004|13
+10001|400|420$10002|0|1$10003|50|60$10004|50|60$10005|5|6$10006|20|21
+10001|400|420$10002|0|1$10003|50|60$10004|50|60$10005|5|6$10006|20|21$10007|0|1$10008|0$10017|0$10018|0
+10001|50$10003|16$10004|16
+10001|500|520$10002|0|1$10003|70|80$10004|70|80$10005|5|6$10006|20|21
+10001|60$10003|20$10004|20
+10001|600|620$10002|0|1$10003|60|70$10004|60|70$10005|5|6$10006|20|21
+10001|666$10004|133$10003|55
+10001|700|720$10002|0|1$10003|70|80$10004|70|80$10005|5|6$10006|20|21
+10002_1
+10002_10
+10002_11
+10002_12
+10002_14
+10002_19
+10002_4
+10002_6
+10002_8
+10003_1
+10003|189$10004|189$10001|975$10005|5$10006|10$10002|6$10008|25
+10003|315$10004|315$10001|1581$10005|10$10006|20$10002|12$10008|31
+10003|432$10004|432$10001|2178$10005|15$10006|30$10002|18$10008|39
+10003|555$10004|555$10001|2781$10005|20$10006|40$10002|25$10008|48
+10003|669$10004|669$10001|3375$10005|24$10006|48$10002|32$10008|61
+10006
+1-10
+1136976
+11x22x35x44x53x12x23x36x45x54x13x31x37x46x61x14x32x41x50x62x15x33x42x51x63x21x34x43x52x64x65x71x81x82x91
+1-21
+1-5
+1to2
+2) ensure that the skeleton has overlapping parts on different Z depth. You can adjust this in Spine via draw order.\n
+2.3
+20001|20002
+20001|40$20002|40
+20001|45$20002|45
+20001|50$20002|50
+20001|55$20002|55
+2019-04-08
+215001|1$381001|1
+260001|20$152001|2
+260001|30$230001|10$152001|3
+260001|50$230001|20$152001|5
+2D/Spine/Sprite
+2to3
+2件套：
+3.0
+3.8.75
+30001|30002
+30001|40$30002|40
+30001|45$30002|45
+30001|50$30002|50
+30001|55$30002|55
+335001|5$152001|1$365001|5,335001|10$152001|2$365001|5,335001|20$152001|3$365001|5,335001|25$152001|4$365001|5,335001|40$152001|10$270001|1$270002|1$270003|1$270004|1$270005|1$365001|10
+37036568
+378861
+3rd Party Settings
+3WIaL6wB9ndQ8ZohNEwyBCPI
+4.0
+4.5
+4boom
+4件套：
+5.0
+5.5
+5.6.300
+50001
+546af75b6221c4768be79d67c9cea1fb
+55144104208640ADA70C8574F80692F6
+60天晶测试
+655538805
+66a26e49ba92be4a5d229c325024f649
+88888
+A B A
+A black and white gradient can be used to create a 'Toon Shading' effect.
+A different version of the sample is already imported at\n\n
+A private field named 
+A private property named 
+A value other than 0 adds a space between each rendered attachment to prevent Z Fighting when using shaders that read or write to the depth buffer. Large values may cause unwanted parallax and spaces depending on camera setup.
+a) disable 'Canvas Group Tint Black' under 'Advanced' or\n
+a) enable 'Add Normals' at the SkeletonRenderer/SkeletonAnimation component under 'Advanced' or\n
+a) enable 'CanvasGroup Compatible' at the Material or\n
+a) enable 'Solve Tangents' at the SkeletonRenderer/SkeletonAnimation component under 'Advanced' or\n
+a) enable 'Tint Black' at the SkeletonRenderer/SkeletonGraphic component under 'Advanced' or\n
+a) re-export atlas as straight alpha texture with 'premultiply alpha' unchecked\n
+A1 B A2
+A1A2 B
+a618b74d3d45e2
+aabb
+access_token.:.(.*?).,
+Action
+action
+action_id
+actions
+Activate Edit Mode
+Activated
+Active
+Active Path
+actName
+add
+Add {0}
+Add a rigidbody to this GameObject to be the Physics body parent of the attached collider.
+Add Basic Serialized Custom Materials
+Add Bone Follower
+Add BoneFollower
+Add BoneFollowerGraphic
+Add BoundingBoxFollower
+Add BoundingBoxFollowerGraphic
+Add Child Bone
+Add Component
+Add Custom Mix
+Add Manager
+Add Normals
+Add Override
+Add Parts Renderer
+Add Parts Renderers
+Add PointFollower
+Add References to Easy Save 3 Reference List
+Add Skeleton Utility
+Add SkeletonRenderSeparator
+Add the missing renderer{1} ({0}) 
+addAddBuff
+AddAddBuff:
+AddAnimation(int, Animation, bool, float)
+addDamage
+AddDamage:
+AddDragonBonesData()
+Added iOS frameworks to project
+addedChar
+additionalOutputTextures
+additionalTextureFormats
+additionalTextureIsLinear
+additionalTexturePropertyIDsToCopy
+additionalVertexStreams
+Additive
+addMinimumPartsRenderers
+addNormals
+Adds a manager component which allows you to choose additional options for this gameObject
+Adds black tint vertex data to the mesh as UV2 and UV3. Black tinting requires that the shader interpret UV2 and UV3 as black tint colors for this effect to work. You may also use the default [Spine/Skeleton Tint Black] shader.\n\nIf you only need to tint the whole skeleton and not individual parts, the [Spine/Skeleton Tint] shader is recommended for better efficiency and changing/animating the _Black material property via MaterialPropertyBlock.
+Adds Sprite slices to atlas texture(s). 
+AddTextureAtlasData()
+Adjust Back-face Tangents
+Adjusted unsuitable SpriteAtlas settings '{0}'
+Adjustment
+Advanced
+Advanced blurring remove common artifacts in the blur effect for uGUI.
+Advanced Option
+Advanced Options
+Advanced Runtime Settings
+Advanced Settings
+Advanced...
+after
+afterDialog
+AfterDialog:
+AGE_RESTRICTION
+Agent Radius
+AKIDxkHYYHitnQmrfCSRAcmfIeiV2IHyPZR2
+Albedo
+Albedo (RGB) and Transparency (A)
+alignByGeometry
+alignment
+alignToDirection
+allCharecters
+allNPCs
+allowHDR
+allowMultipleCanvasRenderers
+alpha
+alphaAffectsIntensity
+AlphaDepth
+alphaKeys
+Already Removed Scripting Define Symbol 
+Already Set Scripting Define Symbol 
+alwaysShow
+AlwaysShow:
+aM
+amount
+An attempt was made to edit a read-only list.
+An element with the same key already exists in the Dictionary
+An error code if an error occurred.
+anchoredPosition
+anchorMax
+anchorMin
+Android checkPayLimit calling
+Android enterGame calling
+Android Init calling:
+Android leaveGame calling
+Android setUnityVersion calling
+Android submitPayResult calling
+angle
+Animation
+animation
+Animation '{0}' not found in SkeletonData : {1}.
+animation cannot be null.
+Animation Editor disabled while in play mode
+Animation name value does not match this asset's name. Inspectors using this asset may be misleading.
+Animation name: 
+Animation named {0} was not found for this Skeleton.
+Animation not found: 
+Animation State Data
+Animation Tracks
+Animation tracks to apply root motion at. Defaults to the first
+Animation was stopped but preview doesn't exist. It's possible that the Preview Panel is closed.
+Animation.Duration
+animationConfig
+animationName
+AnimationName
+animationName cannot be null.
+AnimationReferenceAsset acts as Unity asset for a reference to a Spine.Animation. This can be used in inspectors.\n\nIt serializes a reference to a SkeletonDataAsset and an animationName.\n\nAt runtime, a reference to its Spine.Animation is loaded and cached into the object to be used as needed. This skips the need to find and cache animation references in individual MonoBehaviours.
+animations
+Animations
+Animations [{0}]
+Animations can be previewed if you expand the Preview window below.
+animation's keyed items.
+Animations: 
+AnimationState
+AnimationState argument was null. Coroutine will continue immediately.
+AnimationState.AddAnimation(int, Animation, bool, float)
+AnimationState.AddAnimation(int, Animation, boolean, float)
+AnimationState.AddEmptyAnimation(int, float, float)
+AnimationState.Apply(Skeleton)
+AnimationState.Dispose
+AnimationState.GetCurrent(int)
+AnimationState.SetEmptyAnimation(int, float)
+AnimationState.SetEmptyAnimations(float)
+AnimationState.TimeScale
+AnimationState.Update(float)
+AnimationStateData
+AnimationStateData.GetMix(Animation, Animation)
+AnimationStateListener.Dispose(TrackEntry)
+animationTrackFlags
+Animator is not playing an AnimatorController
+anisoLevel
+answerList
+AnswerList:
+Any stream buffers will be set to this length in bytes.
+aO
+ap-guangzhou
+apiKey
+appearTxt
+AppearTxt:
+appearType
+AppearType:
+application/json
+application/x-www-form-urlencoded
+Applied sprite slices to {2}. {0} added. {1} updated.
+Applies only when 3+ submeshes are used (2+ materials with alternating order, e.g. \"A B A\"). If true, GPU instancing will be disabled at all materials and MaterialPropertyBlocks are assigned at each material to prevent aggressive batching of submeshes by e.g. the LWRP renderer, leading to incorrect draw order (e.g. \"A1 B A2\" changed to \"A1A2 B\"). You can disable this parameter when everything is drawn correctly to save the additional performance cost. Note: the GPU instancing setting will remain disabled at affected material assets after exiting play mode, you have to enable it manually if you accidentally enabled this parameter.
+Apply
+Apply Atlas Texture Settings
+Apply reference settings for Texture Importers.
+Apply Regions as Texture Sprite Slices
+Apply the recommended settings for Texture Importers.
+Apply the selected reference texture import settings at newly imported atlas textures. When exporting atlas textures from Spine with \"Premultiply alpha\" enabled (the default), you can leave it at \"PMAPresetTemplate\". If you have disabled \"Premultiply alpha\", set it to \"StraightAlphaPresetTemplate\". You can also create your own reference texture asset and assign it here.
+Apply the selected texture import settings at newly imported atlas textures. When exporting atlas textures from Spine with \"Premultiply alpha\" enabled (the default), you can leave it at \"PMATexturePreset\". If you have disabled \"Premultiply alpha\", set it to \"StraightAlphaTexturePreset\". You can also create your own TextureImporter Preset asset and assign it here.
+ApplyMixingFrom
+arc
+archive_
+archiveFileName
+archiveIndex
+Archives/archive_{archiveIndex}/GameInfo.es3
+Are you sure you want to reload data
+Are you sure you want to unbake all region prefabs? This cannot be undone.
+Are you sure you wish to clear PlayerPrefs?\nThis action cannot be reversed.
+Are you sure you wish to clear the persistent data path?\n This action cannot be reversed.
+Are you sure you wish to generate new references?
+areaSize
+args
+arm
+arm_l
+armature
+Armature
+Armature name: 
+armatureA
+armatureB
+armatureData
+armatureName
+armatureScale
+array
+arrayIndex
+ars
+ArtRes/
+AS IS
+asdf asdf asdf asdf adsf \n dfgsdfg sdfg sdf gsdfg sfdg sf gsdfg sdfg asdf
+asmdef
+aspect
+Assemblies containing ES3Types
+Assembly \"
+assemblyNames
+asset
+AssetBundleScene
+Assets
+Assets -> Reimport All
+Assets/Create/DragonBones/Armature Object
+Assets/Create/DragonBones/Armature Object(UGUI)
+Assets/Create/DragonBones/Create Unity Data
+Assets/Easy Save 3/Enable Easy Save for Prefab
+Assets/Easy Save 3/Enable Easy Save for Scene
+Assets/Easy Save 3/Generate New Reference IDs for Scene
+Assets/Easy Save 3/Open Easy Save 3 Window...
+Assets/Editor
+Assets/Editor/SpineSettings.asset
+Assets/Navigation2D/logo.png
+Assets/Plugins/Sirenix
+Assets/Plugins/Sirenix/Demos/Sample - RPG Editor/Character
+Assets/Plugins/Sirenix/Demos/SAMPLE - RPG Editor/Items
+Assets/Plugins/Sirenix/Demos/Sample - RPG Editor/Items
+Assets/Resources/Font/FontData.asset
+Assets/Resources/MapEventSO
+Assets/Resources/NPCs
+Assets/Samples/{0}
+Assets/Samples/{0}/{1}/{2}
+Assets/Samples/UIEffect/Import Demo
+Assigned SkeletonGraphic does not have SkeletonData assigned to it.
+Assigned SkeletonGraphic is invalid. Check target SkeletonGraphic, its SkeletonDataAsset or the console for other errors.
+Assigned SkeletonRenderer does not have SkeletonData assigned to it.
+Assigned SkeletonRenderer is invalid. Check target SkeletonRenderer, its SkeletonDataAsset or the console for other errors.
+Assuming `Premultiply alpha` texture because `Straight Alpha Texture` 
+Assuming `Straight alpha` texture because `Straight Alpha Texture` 
+Atlas
+atlas array cannot be null.
+Atlas array cannot have null entries!
+Atlas array should not have null entries!
+Atlas Extension Warning
+Atlas file not set for atlas asset: 
+Atlas not set for SkeletonData asset: 
+Atlas Regions
+Atlas source cannot be null!
+Atlas Texture Reference Settings
+Atlas Texture Settings
+Atlas variable must be of type AtlasAsset!
+Atlas variable must not be null!
+atlas.txt
+atlasAsset
+AtlasAsset elements should not be null.
+AtlasAsset for \"{0}\"
+atlasAssets
+AtlasAssets array is empty. Skeleton's attachments will load without being mapped to images.
+atlasFile
+atlasRegion
+atlasTxtImportWarning
+attachment
+Attachment '{0}' was not a Bounding Box.
+attachment cannot be null.
+Attachment in slot '{0}' named '{1}' not found in skin '{2}'.
+Attachment Names ({0} PolygonCollider2D)
+Attachment not found: 
+attachmentLoader
+attachmentLoader cannot be null.
+attachmentName
+attachmentName cannot be null.
+attachmentName can't be null or empty.
+attachments
+attachments to a single atlas page if possible.
+AttachmentTime
+AttachmentTimeline
+attack
+attackCDAccomplishd未true且logicPause为false，发动攻击！
+attackGroup
+Attempt Reimport
+Attempting to merge two ES3 Reference Managers, but they contain duplicate IDs. If you've made a copy of a scene and you're trying to load it additively into another scene, generate new reference IDs by going to Assets > Easy Save 3 > Generate New Reference IDs for Scene. Alternatively, remove the Easy Save 3 Manager from the scene if you do not intend on saving any data from it.
+audio
+audio.wav
+Audio/
+Audio/monsterJiao/
+Audio/nanJiao/nanJiao
+Audio/nanJiao/nanJiao1
+Audio/nvJiao/nvJiao
+Audio/nvJiao/nvJiao1
+audio/pcm;rate=
+audioClip
+audioPath
+aue
+auofEKqwufakC3qgkKpGY9NVFB8ZfEvs
+Authorization
+Auto Add Manager to Scene
+Auto Reset
+Auto Save
+Auto Update References
+Auto-Import Settings
+AutoKill
+AutoPlay
+Auto-reload scene components
+autoReloadSceneSkeletons
+autoRemove
+AutoRemove:
+autoReset
+Awake
+award
+Award:
+award1
+Award1:
+award2
+Award2:
+award3
+Award3:
+award4
+Award4:
+award5
+Award5:
+awardList
+AwardList:
+b) clear the 'Normal Map' parameter at the Material.\n
+b) disable 'Canvas Group Tint Black' at the SkeletonGraphic component under 'Advanced'.\n
+b) disable 'Receive Shadows' at the Material.\n
+b) enable 'Fixed Normals' at the Material.\n
+b) switch to Gamma color space via\nProject Settings - Player - Other Settings - Color Space.\n
+b) use a different shader at the Material.\n
+b) use a 'SkeletonGraphic Tint Black' Material if you need Tint Black on a CanvasGroup.\n
+b618b761b9241a
+Back
+backgroundColor
+backName
+BackName:
+backupWasRestored
+bad
+Bad:
+Bake
+Bake All
+Bake All ({0} skins)
+Bake Animations
+Bake IK
+Bake Skeleton
+Bake Skeleton with Skin ({0})
+balance
+banhaomode: 开始为账号 {account} 下载服务器1的存档...
+banhaomode: 删除备份存档 {i}: {backupArchivePath}
+banhaomode: 删除本地存档 {i}: {archivePath}
+banhaomode: 删除本地存档时出错: {e.Message}
+banhaomode模式：删除所有本地存档，等待从云端获取
+baoxiang_1
+baoxiang_2
+baoxiang_dakai
+baoxiang_huangdong
+Base animation
+basePro
+BasePro:
+baseSortingOrder
+Battle/img_zhandou_b
+Battle/img_zhandou_g
+battleBuff
+battlePro
+BattlePro:
+be6e6496097d1c603dffa0017ba94950b33c12e784e48046ed7283f3790c3a32
+before
+beforeAddBuff
+BeforeAddBuff:
+beforeDialog
+BeforeDialog:
+beida
+BeiFenArchives/archive_{archiveIndex}/GameInfo.es3
+belongMap
+BelongMap:
+belongMapId
+BelongMapId:
+belongType
+BelongType:
+Bend Clockwise
+bendPositive
+bg
+Bg:
+bigPhaseName
+BigPhaseName:
+bindposes
+biZi
+bizi/
+BiZi:
+bizi_
+Black
+blend
+Blend Mode
+blendMode
+block
+Block:
+blockBtnList
+blue_boom
+blue_fly
+Blur effect mode
+bM
+bO
+body/
+body_
+bofangjieshu
+Bone
+bone
+bone cannot be null.
+Bone named \"
+Bone not found: 
+Bone.Rotation
+Bone.ScaleX
+Bone.ScaleY
+Bone.ShearX
+Bone.ShearY
+Bone.X
+Bone.Y
+boneData
+boneData cannot be null.
+BoneData.SkinRequired
+BoneFollower
+BoneFollower can only follow a skeleton on a separate GameObject.\n\nCreate a new GameObject for your BoneFollower, or choose a SkeletonRenderer from a different GameObject.
+BoneFollowerGraphic can only follow a skeleton on a separate GameObject.\n\nCreate a new GameObject for your BoneFollower, or choose a SkeletonGraphic from a different GameObject.
+boneIndex0
+boneIndex1
+boneIndex2
+boneIndex3
+boneName
+boneName cannot be null.
+bonePose
+boneRoot
+bones
+Bones
+Bones: 
+boneWeights
+border
+Boss
+bot_session
+Bottom
+bottom
+bounce
+bounceCombine
+bounceIntensity
+bounceMultiplier
+bounciness
+Bounding Box Follower not valid! Slot [
+Bounding Box Follower tried to rebuild as a prefab.
+Bounding Boxes
+boundingbox
+BoundingBoxAttachments cannot be previewed in prefabs.
+BoundingBoxFollower
+BoundingBoxFollower automatically assigned: 
+BoundingBoxFollower tried to follow a slot that contains non-boundingbox attachments: 
+BoundingBoxFollower tried to match a non-boundingbox attachment. It will treat it as null.
+BoundingBoxFollowerGraphic
+BoundingBoxFollowerGraphic automatically assigned: 
+BoundingBoxFollowerGraphic tried to follow a slot that contains non-boundingbox attachments: 
+BoundingBoxFollowerGraphic tried to match a non-boundingbox attachment. It will treat it as null.
+bounds
+box
+Brightness
+Brightness for shiny effect.
+Browse Atlas...
+btn
+btn_anniu_shop1
+btn_anniu_shop2
+btn_dizi_ui_Anniu1
+btn_dizi_ui_Anniu2
+btn1Txt
+Btn1Txt:
+btn2Txt
+Btn2Txt:
+buffer
+Buffer Size
+bufferSize
+buffType
+BuffType:
+Build From
+Build from 
+build_info
+buildCost
+BuildCost:
+buildDay
+BuildDay:
+ButtonLeft
+ButtonRight
+by 180 degree rotation. If false, negative Transform scale is used. 
+By default, SkeletonRenderer's MeshRenderer is disabled while the SkeletonRenderSeparator takes over rendering. It is re-enabled when SkeletonRenderSeparator is disabled.
+By doing this, any save files created using these references will no longer work with references in this scene.
+ByRef
+bytes
+C:/myFolder/thisFolder
+C:/myFolder/thisFolder/myFile.txt
+C:\Users\Administrator\Documents\Tencent Files\370365688\FileRecv\文本.txt
+C:\Users\Administrator\Documents\Tencent Files\370365688\FileRecv\文本转换.txt
+c2
+c3
+c4
+calculateNormals
+Calculates the tangents per frame. Use this if you are using lit shaders (usually with normal maps) that require vertex tangents.
+calculateTangents
+callBack
+callback
+cam
+Camera/Aspect
+Camera/BackgroundColor
+Camera/FieldOfView
+Camera/OrthoSize
+Camera/PixelRect
+Camera/Rect
+cameraType
+Can be used to cover the outside of your scene with a NavMesh
+Can not add same name data: 
+Cancel
+Cancel import
+candidate
+candidateList
+cangKu
+Cannot create an instance of 
+Cannot edit Prefabs
+Cannot generate Attachment Hierarchy from string! Not enough components! [
+Cannot perform self-assigning load on a value type.
+Cannot write directly to Resources folder. Try writing to a directory outside of Resources, and then manually move the file there.
+Cannot write to Resources folder at runtime. Use a different save location at runtime instead.
+canQu
+CanQu:
+canStudy
+CanStudy:
+Can't use compressed functions. You need include the SharpZipLib and uncomment the define at the top of SimpleJSON
+canvas
+Canvas/Panel/Layer1
+Canvas/Panel/Layer2
+Canvas/Panel/Layer2/BattlePanel/trans_energy/barBg
+Canvas/Panel/Layer2/BattlePanel/trans_people2/trans_yuanSuShow (1)/startPos
+Canvas/Panel/Layer2/MainPanel/btn_knapsack
+Canvas/Panel/Layer2/PlayerPanel/PlayerPeoplePanel/sonPanelParent/
+Canvas/Panel/Layer3
+capacity
+Capture
+cd
+Cd:
+CD:
+center
+centerPhaseName
+CenterPhaseName:
+centerTime
+CenterTime:
+chain
+championAward
+ChampionAward:
+Change Easy Save 3 References
+ChangeDir
+Changes to '{0}' or atlas detected. Clearing SkeletonDataAsset: {1}
+channelId
+channels
+chapter
+Chapter:
+chapterAward
+ChapterAward:
+Characters
+Charge Request
+Charge Success
+charIndex
+Chat/
+ChatBot
+ChatBotRequest
+ChatBotResponse
+Checking existence of folder in Resources not supported.
+checkPayLimit
+Checks whether a directory exists in another directory
+Checks whether a file exists in a directory.
+Checks whether a key exists in a file.
+Checks whether a key exists in an ES3File.
+child
+children
+Chinese
+choose
+choose1
+Choose1:
+choose1BadDes
+Choose1BadDes:
+choose1GoodAward
+Choose1GoodAward:
+choose1GoodAwardWeight
+Choose1GoodAwardWeight:
+choose1GoodDes
+Choose1GoodDes:
+choose1GoodRate
+Choose1GoodRate:
+choose2
+Choose2:
+choose2BadDes
+Choose2BadDes:
+choose2GoodAward
+Choose2GoodAward:
+choose2GoodAwardWeight
+Choose2GoodAwardWeight:
+choose2GoodDes
+Choose2GoodDes:
+choose2GoodRate
+Choose2GoodRate:
+choose3
+Choose3:
+choose3BadDes
+Choose3BadDes:
+choose3GoodAward
+Choose3GoodAward:
+choose3GoodAwardWeight
+Choose3GoodAwardWeight:
+choose3GoodDes
+Choose3GoodDes:
+choose3GoodRate
+Choose3GoodRate:
+chooseIndex
+Chosen asset was not of type AtlasAssetBase
+ciTuiDialog
+CiTuiDialog:
+Clear
+Clear and Reapply Changes
+Clear Empty Entries
+Clear logs
+Clear logs on new scene loaded
+Clear Parts Renderers
+Clear Persistent Data Path
+Clear PlayerPrefs
+Clear State On Disable
+clearFlags
+Clears all keys from an ES3File.
+Clears unused material references and deletes the corresponding assets. Note: when switching to the corresponding Mask Interaction mode at runtime, a new material is generated on the fly.
+Clears unused material references. Note: when switching to the corresponding Mask Interaction mode at runtime, a new material is generated on the fly.
+clearStateOnDisable
+clearStencilAfterLightingPass
+Click here to edit the ES3Type script
+clickMai
+Clipping end slot not found: 
+clockwise
+cloned skin
+cloneMeshAsLinked
+Close
+CloseCombineMeshs
+closed
+cmd.exe
+CNY
+Code
+Codingworks Game Development
+Coffee.UIEffects.ParameterTexture
+Coffee.UIEffects.UIFlip
+col0
+col1
+col2
+col3
+Collapse logs
+collection
+Collection was modified; enumeration operation may not execute.
+Collider detected. Unity recommends adding a Rigidbody to the Transforms of any colliders that are intended to be dynamically repositioned and rotated.
+Collider for BoundingBoxAttachment named '{0}' was not initialized. It is possibly from a new skin. currentAttachmentName will be null. You may need to call BoundingBoxFollower.Initialize(overwrite: true);
+Collider for BoundingBoxAttachment named '{0}' was not initialized. It is possibly from a new skin. currentAttachmentName will be null. You may need to call BoundingBoxFollowerGraphic.Initialize(overwrite: true);
+collidesWith
+collision
+color
+Color
+Color 1
+Color 2
+Color Adjustment
+Color effect factor between 0(no effect) and 1(complete effect).
+Color effect mode
+Color hexidecimal length must be 
+Color range to affect hsv shift [0 ~ 1].
+Color space to correct color.
+Color:
+Color1: Top or Left.
+Color2: Bottom or Right.
+Color3: For diagonal.
+Color4: For diagonal.
+colorBySpeed
+colorFrame
+colorKeys
+colorMax
+colorMin
+colorOverLifetime
+colorOverTrail
+colors32
+com.tapsdk.antiaddictionui.NativeAntiAddictionUIKitPlugin
+com.tendcloud.tenddata.game.dz
+com.tendcloud.tenddata.TalkingDataGA
+com.tendcloud.tenddata.TDGAItem
+com.tendcloud.tenddata.TDGAMission
+com.tendcloud.tenddata.TDGAProfile
+com.tendcloud.tenddata.TDGAProfile$Gender
+com.tendcloud.tenddata.TDGAProfile$ProfileType
+com.tendcloud.tenddata.TDGAVirtualCurrency
+com.unity3d.player.UnityPlayer
+comeFrom
+ComeFrom:
+Coming Soon
+Commit changes and restart
+Common/
+Common/bg_duihuak
+Common/bg_duihuak_zhangmen
+commonAccomplishCondition
+CommonAccomplishCondition:
+comparer
+compatibleVersion
+complete
+Complex geometry is not supported: 
+Component & Material Warning
+componentMaterialWarning
+components
+Compress
+compress
+Compress single bone IK when the target too close. Not applied when parent bone has nonuniform scale.
+Compressed
+conditionIndex
+ConditionIndex:
+conditionType
+ConditionType:
+Confidence
+console.infoicon.sml
+constant
+constantMax
+constantMin
+constantSpeed
+constraint
+constraint cannot be null.
+constraintName
+constraintName cannot be null.
+Constraints
+consume
+Consume:
+ConsumeOverTime
+contactOffset
+containsBoundingBoxes
+content
+Content:
+contentType
+Content-Type
+ContentType:
+content-type:
+content-type;host
+CONTEXT/BoneFollower/Rename BoneFollower GameObject
+CONTEXT/SkeletonDataAsset/Skeleton Baking
+CONTEXT/SkeletonGraphic/Add all BoundingBoxFollowerGraphic GameObjects
+CONTEXT/SkeletonGraphic/Add Basic Serialized Custom Materials
+CONTEXT/SkeletonGraphic/Add BoneFollower GameObject
+CONTEXT/SkeletonGraphic/Add BoundingBoxFollowerGraphic GameObject
+CONTEXT/SkeletonGraphic/Match RectTransform with Mesh Bounds
+CONTEXT/SkeletonRenderer/Add all BoundingBoxFollower GameObjects
+CONTEXT/SkeletonRenderer/Add Basic Serialized Custom Materials
+CONTEXT/SkeletonRenderer/Add BoneFollower GameObject
+CONTEXT/SkeletonRenderer/Add BoundingBoxFollower GameObject
+CONTEXT/SkeletonRenderer/Add PointFollower GameObject
+CONTEXT/SkeletonRenderer/Add Skeleton Render Separator
+CONTEXT/SkeletonRenderer/Add Slot Blend Modes Component
+CONTEXT/SkeletonRenderer/Open Skeleton Debug Window
+Controller
+controller
+Controller Overwrite Warning
+controlPoint
+converter
+convex
+cookie
+cookieSize
+Copies a file.
+Copies MeshRenderer flags into each parts renderer
+Copy all logs to clipboard
+Copy log to clipboard
+copyMeshRendererFlags
+copyPropertyBlock
+cos.{0}.{1}
+CosClientException: 
+CosException: 
+CosServerException: 
+cost
+Cost:
+costTime
+CostTime:
+Could not automatically set the AtlasAsset for \"{0}\".\n\n (You may resolve this manually later.)
+Could not convert downloaded data to a timestamp. Data downloaded was: 
+Could not enable Easy Save
+Could not enable Easy Save because there is not currently a scene open.
+Could not export Spine Skeleton because SkeletonDataAsset is null or invalid!
+Could not find ES3 Default Settings object in Easy Save 3/Resources/ES3.
+Could not find matching atlas page in the texture array.
+Could not load dragonBones data.
+Could not locate the Easy Save 3 folder because more than one ES3Window script exists in the project, but this needs to be unique to locate the folder.
+Could not locate the Easy Save 3 folder because the ES3Window script has been moved or removed.
+Could not read Compressed SpriteAtlas. Please enable 'Read/Write Enabled' and ensure 'Compression' is set to 'None' in Inspector.
+Couldn't load SkeletonData.
+count
+Count = {Count}
+count is negative
+count is too large
+Count={Count}
+Create
+Create 2D Hinge Chain
+Create 3D Hinge Chain
+Create Animation Reference Assets
+Create Armature Object
+Create Character
+Create ES3Type Script
+Create Hinge Chain
+Create Hinge Chain 2D
+Create Item
+Create NPC
+Create Profile
+Create Reporter Object
+Create Spine GameObject
+Create Spine GameObject ({0})
+Created a UI Skeleton GameObject not under a RectTransform. It may not be visible until you parent it to a canvas.
+Created material '
+Creates a backup of a file which can be restored using the Restore Backup action.
+Creates a new ES3File, and optionally loads a file from storage into it.
+credential
+Credential=
+CSV
+ctp
+ctrl
+cuid
+Culling Mode
+cullingMask
+cullingMatrix
+curDuanWei
+curJingLianNum
+curLevel
+Current Atlases:
+Current location[0-1] for dissolve effect. 0 is not dissolved, 1 is completely dissolved.
+Current skin attachments: 
+currentActivity
+currentSkinOnly
+curTime
+curve
+curveMax
+curveMin
+curveMultiplier
+Custom characters to use in case of ScrambleMode.Custom
+Custom Mix Durations
+Custom MixMode
+Custom Scramble
+Custom/SpriteGlow
+CustomAddStatsButton
+Custome Event
+customMaterialOverrides
+customSimulationSpace
+customSlotMaterials
+customTextureOverrides
+cycleCount
+dacallbang
+dacallbang1
+daiji
+damage
+Damage:
+damageTimeArr
+DamageTimeArr:
+dampen
+dampenMultiplier
+damping
+danFarmId
+danFarmSetting
+danFarmStatusType
+dangerousLevel
+DangerousLevel:
+danPrice
+DanPrice:
+dark
+darken
+data
+data cannot be null.
+Data Counts
+Data error.
+Data error.\n Please reexport DragonBones Data to fixed the bug.
+data.dat
+Data.Uniform
+dataField
+DATE
+Date
+DATE is null
+day
+Day:
+DB_BlendMode_Framebuffer
+DB_BlendMode_Grab
+DB_BlendMode_UIFramebuffer
+DB_BlendMode_UIGrab
+DBDT
+ddd, dd MMM yyyy HH':'mm':'ss 'GMT'
+ddd, dd MMM yyyy HH':'mm':'ss zzz
+Debug
+Debug Colliders
+Debug Selection
+decryptKey
+decryptString
+deDamage
+DeDamage:
+default
+Default
+Default File Path
+Default Loop
+Default Mix
+Default Mix Duration
+Default settings was found, but no ES3DefaultSettings component was attached to it.
+Default settings were not found in Resources folder 'ES3'.
+Default settings were not found, or more than one default settings GameObject was found. Number of settings objects found: 
+Default Shader
+Default SkeletonData Scale
+Default Slot Z-Spacing
+defaultActions
+defaultAsEmptyString
+defaultInstantiateLoop
+defaultMix
+defaultScale
+defaultShader
+Default-Transition
+defaultValue
+defaultZSpacing
+Define TK2D
+deform
+Deform
+Deform attachment not found: 
+deform cannot be null.
+DeformTimeline
+degrees
+delay
+Delay
+Delay before looping.
+Delete
+Delete All Baked Regions
+Delete Baked Region
+Deleted material '
+deleteFile
+Deletes a directory and it's contents.
+Deletes a file.
+Deletes a key from a file.
+Deletes a key from an ES3 File.
+Deleting directories from Resources is not allowed.
+Deleting Directories using PlayerPrefs is not supported.
+Deleting files from Resources is not supported.
+delta
+Demo
+Demo Menu
+density
+Depth
+depth
+Depth Alpha Cutoff
+depthTextureMode
+des
+Des:
+deserialized: 
+desReplace
+DesReplace:
+Destroy
+Destroy Renderers
+Destroy Submesh Renderers
+Determines when a file was last updated.
+Developer callback didGetUserLocation(): 
+Developer callback SDK initFail:
+Developer Develop callback SDK initSuccess
+Developer init video....placementId:
+Developer show video....
+DEVICE_ID_MISMATCH
+deviceId
+di
+Diagonal Color
+dialogDataList
+dialogIndex
+DialogIndex:
+dialogPhase
+DialogPhase:
+dict['array'][0]: 
+dict['float']: 
+dict['int']: 
+dict['string']: 
+dict['unicode']: 
+dictionary
+die
+Die:
+dieWithParticles
+difference
+Diffuse
+Diffuse Ramp
+dipping
+direction
+directories
+Directories are not supported for the PlayerPrefs location.
+Directory
+directory
+directoryPath
+dirName
+Disable
+Disable the graphic's raycast target on hidden.
+display
+displayFrame
+displayIndex
+displayName
+disposeData
+Dissolve edge color.
+Dissolve edge softness.
+Dissolve edge width.
+distance
+Distance:
+Do you really want to destroy all the Parts Renderer GameObjects in the list?
+Do you want to delete the prefab for 
+Documentation and Guides
+doesNotExistEvent
+donghua
+Don't Clear
+DOTween Animation
+DOTween Pro
+DOTween/DOTween Animation
+DownloadArchive
+Downloads a file from the server, overwriting any existing files, or returning error code 3 if no file exists on the server.
+Downloads the names of all of the files on the server for the given user.
+dragonBones
+DragonBones Alert
+DragonBones Data
+DragonBones name: 
+DragonBones Object
+DragonBones.Animation
+DragonBones.AnimationConfig
+DragonBones.AnimationData
+DragonBones.AnimationState
+DragonBones.AnimationState.displayControl
+DragonBones.AnimationState.group
+DragonBones.AnimationState.name
+DragonBones.Armature
+DragonBones.ArmatureData
+DragonBones.ArmatureData.frameRate
+DragonBones.Bone
+DragonBones.Bone.InvalidUpdate()
+dragonBones.Bone.InvalidUpdate()
+DragonBones.BoneData
+DragonBones.CustomData
+DragonBones.DragonBonesData
+DragonBones.DragonBonesData.frameRate
+DragonBones.EllipseData
+DragonBones.EventObject
+DragonBones.IAnimateble
+DragonBones.PolygonData
+DragonBones.RectangleData
+DragonBones.SkinData
+DragonBones.Slot
+DragonBones.Slot.InvalidUpdate()
+DragonBones.Slot.visible
+DragonBones.SlotData
+DragonBones.SlotData.name
+DragonBones.TextureAtlasData
+DragonBones.Transform
+DragonBones.WorldClock
+dragonBonesA
+dragonBonesB
+DragonBonesIcons.cs
+dragonBonesJSON
+dragonBonesJSONPath
+dragonBonesName
+dragonBonesName/armatureName/slotName/displayName
+Draw circle on screen to show logs
+Draw Order and Separators
+draworder
+drawOrder
+DrawOrderTimeline
+dummy
+Duplicate AnimationClips were found named {0}
+Duration
+duration
+Duration.
+Duration: {0} sec
+dynamicFriction
+Easy Save
+Easy Save 3
+Easy Save 3 Loaded Component
+Easy Save 3 Loaded GameObject
+Easy Save 3 Manager
+Easy Save is enabled for this prefab, and can be saved and loaded with the ES3 methods.
+Edge color effect mode.
+Edge color.
+Edge softness.
+Edge width.
+edges
+Edit ES3Type Script
+Edit Mode Commands
+Edit Sorting Order
+Editor
+Editor Bone Scale
+Editor Instantiation
+Editor Settings
+Editor/
+Editor/checkmark.png
+Editor/checkmarkSmall.png
+Editor/es3Logo16x16.png
+EditorDeleteMaskMaterials: Normal materials are kept as a reference and shall never be deleted.
+Editor-instantiated SkeletonAnimation threw an Exception. Destroying GameObject to prevent orphaned GameObject.
+Editor-instantiated SkeletonAnimation threw an Exception. Destroying GameObject to prevent orphaned GameObject.\n
+Effect factor between 0(hidden) and 1(shown).
+Effect factor between 0(no effect) and 1(complete effect).
+Effect mode
+Effect mode.
+Effect Player
+effectName
+EffectName:
+electronic
+Element \\d+
+ellipse
+Emission
+emission
+Emission (RGB)
+Emission Power
+Empty AtlasPage
+Empty AtlasRegion
+Empty entries found
+Enable
+Enable '{0}' of Canvas.additionalShaderChannels to use 'UIEffect'.
+Enable {1} of Canvas.additionalShaderChannels to use {0}.
+Enable Auto Save for Scene
+Enable Emission.
+Enable Fog rendering on this renderer.
+Enable material color adjustment.
+Enable outline rendering. Draws an outline by sampling 4 or 8 neighbourhood pixels at a given distance specified via 'Outline Width'.
+Enable Rim Lighting.
+Enable Separation
+Enable Separator
+Enable Specular.
+Enable this if you are pooling your Spine GameObject
+enable this parameter where possible. When creating hinge chains for a chain of skeleton bones 
+Enable to optimize rendering for skeletons that never change attachment visbility
+Enable to use spherical harmonics to aplpy ambient light and/or light probes. In vertex-lit mode this will be approximated from scenes ambient trilight settings.
+Enable when using Additive blend mode at SkeletonGraphic under a CanvasGroup. 
+enabled
+Enabled Easy Save for Scene
+enableDynamicColliders
+enableSeparatorSlots
+Encryption Password
+Encryption Type
+encryptionPassword
+encryptionType
+encryptKey
+encryptString
+end
+End of stream reached when expecting '
+End of stream reached when expecting quotation mark.
+End of stream reached while peeking, when expecting '
+endCallBack
+endIndex
+endPoint
+enemy
+Enemy:
+enemyGroup
+EnemyGroup:
+enemyGroupLevel
+EnemyGroupLevel:
+enemyId
+EnemyId:
+enemyLevel
+EnemyLevel:
+enemySetting
+energyAddArr
+EnergyAddArr:
+energyAddTimeArr
+EnergyAddTimeArr:
+energyNeed
+EnergyNeed:
+enter
+enterGame
+enterServer
+entity
+en-US
+Equip/
+equipProtoData
+equipSettingId
+erase
+err_msg.:.success
+Error
+Error analyzing SpriteAtlas for SpineSpriteAtlasAsset: 
+Error deserializing JSON. Unknown tag: 
+Error Handling
+Error importing skeleton '{0}': {1}
+Error occurred when trying to perform operation with ES3Cloud: [Error 
+Error reading animation: 
+Error reading atlas file for atlas asset: 
+Error reading atlas file: 
+Error reading attachment: 
+Error reading skeleton JSON file for SkeletonData asset: 
+Error!
+ERROR:
+Error: 
+errorCode
+errorEvent
+errorMessage
+ES3
+ES3 Default Settings t:gameobject
+ES3 File
+ES3.GetDirectories can only be used when the location is set to File.
+ES3.GetFiles can only be used when the location is set to File.
+ES3/ES3 Default Settings
+ES3ClassTypeTemplate.txt
+ES3ComponentTypeTemplate.txt
+ES3Editor.Window.currentWindow
+es3File
+es3Prefab
+ES3Type argument cannot be null.
+ES3Type for primitive could not be found, and the type list is empty. Please contact Easy Save developers at http://www.moodkie.com/contact
+ES3Type for primitive could not be found, but the type list has been initialised and is not empty. Please contact Easy Save developers on mail@moodkie.com
+ES3Type.type is null when trying to create an ES3Type for {0}, possibly because the element type is not supported.
+ES3ValueTypeTemplate.txt
+ES3Window
+event
+Event
+Event Data '{0}' not found in SkeletonData : {1}.
+Event not found: 
+Event Options
+EventAppearType
+EventAppearType:
+eventDataName
+eventDataName cannot be null.
+eventDataReference argument was null. Coroutine will continue immediately.
+eventDes
+EventDes:
+eventMask
+eventName argument was null. Coroutine will continue immediately.
+eventObject
+events
+Events
+EventTimeline
+everything
+exceed max segment size
+exceed max size
+excelFile
+exclude
+exist null pool obj!
+exists
+existsEvent
+exit
+Expected ',' seperating collection items or ']' terminating collection, found '
+Expected ',' seperating Dictionary items or '}' terminating Dictionary, found '
+Expected \'
+Expected quotation mark, found \'
+exploreId
+exploreMapId
+ExploreMapId:
+explorer.exe
+exploreTeamData
+export          
+Extension of file in Resources must be .bytes, but path given was \"
+externalForces
+extraPartsRenderers
+eye/
+eye_
+f3
+face/
+Face/FemaleFace/
+Face/MaleFace/
+Face/SpecialPortrait/
+face_
+Fade
+fadeIn
+fadeInComplete
+fadeInTime
+fadeOut
+fadeOutComplete
+fadeOutMode
+fadeOutTime
+failed
+Failed to read '{0}'. It is likely not a binary Spine SkeletonData file.\n{1}
+Failed to read version info at skeleton '{0}'. It is likely not a valid Spine SkeletonData file.\n{1}
+fallbackToTextField
+False
+false
+familyName
+FamilyName:
+fan
+farClipPlane
+farmNumLimit
+FarmNumLimit:
+featureDes
+FeatureDes:
+feixing
+feixing1
+female
+Female:
+ffd
+Field
+fieldName
+fieldOfView
+Fields
+file
+File \"
+File {0} was not found on the server.
+File directory \"
+File is not valid JSON. Expected '{' at beginning of file, but found '
+File path must have a file extension when using ES3.SaveImage.
+File path must have extension of .png, .jpg or .jpeg when using ES3.SaveImage.
+file://
+fileName
+filenames
+filepath
+filePath
+files
+filterMode
+Finish Compile
+finishShow
+FinishShow:
+firstAward
+FirstAward:
+Fix
+Fix Draw Order
+fixDrawOrder
+Fixed Normal Direction
+Fixed Normal Space
+Fixed Normals
+fixedLevelIdList
+FixedLevelIdList:
+fixedPrefabName
+FixedPrefabName:
+Fixing exec order for 
+Flag
+flare
+Flip
+Flip by Rotation
+Flip horizontally.
+Flip vertically.
+flipBy180DegreeRotation
+flipRotation
+flipU
+flipV
+flipX
+flipY
+float
+floats
+focusbtnPath
+FocusbtnPath:
+Fog
+folderPath
+Follow (Root Only)
+Follow all bones
+followBoneRotation
+followLocalScale
+Follows the skeleton's flip state by controlling this Transform's local scale.
+Follows the target bone's local scale. BoneFollower cannot inherit world/skewed scale because of UnityEngine.Transform property limitations.
+followSkeletonFlip
+followXYPosition
+followZPosition
+font
+Font/FZHTJW
+Font/newnumber 1
+Font/newnumberCrit
+fontSize
+fontStyle
+FontTools/替换场景中所有text字体
+FontTools/替换预设物中所有text字体
+for correct rendering. Consider packing\n
+For Unity UI elements, the target must also be a UI element
+Force Update AnimationClips
+forceLocate
+ForceLocate:
+forceOverLifetime
+foreLevel
+ForeLevel:
+foreMap
+ForeMap:
+foreName
+ForeName:
+foreRollEffectName
+ForeRollEffectName:
+foreRollTime
+ForeRollTime:
+foreTask
+ForeTask:
+Format
+format
+FORWARD_DELTA
+Found BoundingBoxFollower collider components in prefab. These are disposed and regenerated at runtime.
+Found BoundingBoxFollowerGraphic collider components in prefab. These are disposed and regenerated at runtime.
+Foundation.framework
+fps
+fps : 
+frame
+frame 
+frameCount must be > 0: 
+frameEvent
+frameHeight
+frameOverTime
+frameOverTimeMultiplier
+frameRate
+frameWidth
+frameX
+frameY
+freeze
+frequency
+friction
+frictionCombine
+FROM
+from
+from cannot be null.
+fromAnimation
+fromHere
+fromName
+Front
+fsmES3File
+ftp://
+ftp://101.35.87.105:21/
+ftp://101.35.87.105:21/test
+ftpPath
+fu
+fu2
+Full
+function
+Function:
+GameInfo
+GameInfo.es3
+gameObject
+GameObject/DragonBones/Armature Object
+GameObject/DragonBones/Armature Object(UGUI)
+GameObject/Easy Save 3/Enable Easy Save for Prefab
+GameObject/Easy Save 3/Enable Easy Save for Scene
+GameObject/Easy Save 3/Generate New Reference IDs for Scene
+GameObject/Spine/SkeletonAnimation
+GameObject/Spine/SkeletonGraphic (UnityUI)
+GameObject/Spine/SkeletonRenderer
+GameObject/UI/NonRectangularButtonImage
+GB2312
+gb2312
+GC Memory 
+gemData
+gemItem
+gender
+Gender:
+Generate Mecanim Controller
+Generate New Reference IDs
+Generated references
+Generated SpriteAtlas texture '{0}'
+GenerateSkeletonRendererInstruction
+Generic type \"
+GenJob fail
+GET
+getCurrentToken
+getCurrentUserAgeLimit
+getCurrentUserRemainTime
+getDeviceId
+GetDragonBonesData()
+getFile
+getFilenames
+GetFixedLiBao
+getOAID
+GetPackedSprites
+GetPreviewTextures
+Gets an array of key names from a file.
+Gets an array of key names from an ES3File.
+Gets how many keys are in a file.
+Gets the names of any directories in a given directory.
+Gets the names of the files in a given directory.
+GetTextureAtlasData()
+getTimestamp
+globalIlluminationFlags
+Gloss factor for shiny effect.
+gM
+GMOrder_ClientGetItem
+gmt
+GMT
+gO
+Goal
+goID
+gold_boom
+gold_fly
+gotoAndPlay
+gradient
+Gradient Direction.
+Gradient offset for Diagonal.
+Gradient offset for Horizontal, Vertical or Angle.
+Gradient rotation.
+Gradient style for Text.
+gradientMax
+gradientMin
+Graphics Info
+gravityModifier
+gravityModifierMultiplier
+green_boom
+green_fly
+Ground
+group
+GUI/Text Shader
+GuideSlideTalentCanvas调用时停
+GuideSlideTalentCanvas取消时停
+guideType
+GuideType:
+guid是
+HandleAntiAddictionCallbackMsg antiAddictionCallbackDataJSON:
+HandleAntiAddictionCallbackMsg resultCode:
+Handles and Gizmos
+handleScale
+hangNum
+HangNum:
+haoGanAdd
+HaoGanAdd:
+haoGanDu
+HaoGanDu:
+haoGanDuDialog
+HaoGanDuDialog:
+hardlight
+has missing regions.
+hash
+HasSecondColor
+haveAttack
+HaveAttack:
+haveBuff
+HaveBuff:
+Header
+hefeishui
+hefeishui1
+height
+helpBox
+hexString
+Hidden/
+Hidden/{0} (UIDissolve)
+Hidden/{0} (UIEffect)
+Hidden/{0} (UIHsvModifier)
+Hidden/{0} (UIShiny)
+Hidden/{0} (UITransition)
+Hidden/Internal-Colored
+Hidden/Spine/Bones
+Hide
+Hide logs
+Hide or Show tool bar buttons
+hideDes
+hidedes
+HideDes:
+Hidedes:
+hideFlags
+hierarchy
+hierarchyCapacity
+highLightObjPath
+HighLightObjPath:
+HingeChain
+hitAudio
+HitAudio:
+HmacSHA1
+HmacSHA256
+hmVKduVytEgOSfoKyzlbfg3CuuEKlRcs 
+Home
+home
+Horizontal Offset
+horizontalOverflow
+Host
+houFa
+houfa/
+HouFa:
+houfa_
+How far is the blurring from the graphic.
+How far is the blurring shadow from the graphic.
+How much the vector will go beyond the starting position when bouncing backwards
+How much will the punch vibrate
+How much will the shake vibrate
+however causes serious problems with rigidbodies and physics. Therefore, it is recommended to 
+http://
+http://101.35.87.105:8888/
+http://docs.moodkie.com/easy-save-3/es3-playmaker/playmaker-actions-overview/
+http://docs.moodkie.com/easy-save-3/es3-supported-types/
+http://docs.moodkie.com/easy-save-3/getting-started/
+http://docs.moodkie.com/product/easy-save-3/
+http://docs.moodkie.com/product/easy-save-3/es3-api/
+http://docs.moodkie.com/product/easy-save-3/es3-guides/
+http://docs.moodkie.com/product/easy-save-3/es3-playmaker/es3-playmaker-actions/
+http://esotericsoftware.com/forum/Slot-blending-not-work-11281
+http://esotericsoftware.com/spine-api-reference#AnimationStateListener
+http://esotericsoftware.com/spine-ik-constraints
+http://esotericsoftware.com/spine-path-constraints
+http://esotericsoftware.com/spine-point-attachments
+http://esotericsoftware.com/spine-runtime-skeletons#World-transforms
+http://esotericsoftware.com/spine-runtime-skins
+http://esotericsoftware.com/spine-transform-constraints
+http://esotericsoftware.com/spine-unity#BoneFollower
+http://esotericsoftware.com/spine-unity#BoneFollowerGraphic
+http://esotericsoftware.com/spine-unity#BoundingBoxFollower
+http://esotericsoftware.com/spine-unity#BoundingBoxFollowerGraphic
+http://esotericsoftware.com/spine-unity#PointFollower
+http://esotericsoftware.com/spine-unity#SkeletonAnimation-Component
+http://esotericsoftware.com/spine-unity#SkeletonGraphic-Component
+http://esotericsoftware.com/spine-unity#SkeletonGraphicCustomMaterials
+http://esotericsoftware.com/spine-unity#SkeletonMecanim-Component
+http://esotericsoftware.com/spine-unity#SkeletonMecanimRootMotion
+http://esotericsoftware.com/spine-unity#SkeletonRenderer-Component
+http://esotericsoftware.com/spine-unity#SkeletonRendererCustomMaterials
+http://esotericsoftware.com/spine-unity#SkeletonRenderSeparator
+http://esotericsoftware.com/spine-unity#SkeletonRootMotion
+http://esotericsoftware.com/spine-unity#SkeletonUtility
+http://esotericsoftware.com/spine-unity#SkeletonUtilityBone
+http://esotericsoftware.com/spine-unity#SkeletonUtilityConstraint
+http://esotericsoftware.com/spine-unity-events
+http://esotericsoftware.com/spine-unity-skeletondatamodifierassets#BlendModeMaterials
+http://moodkie.com/forum/viewforum.php?f=12
+http://tsn.baidu.com/text2audio
+http://www.moodkie.com/contact/
+http://www.myserver.com/ES3Cloud.php
+HttpProfile
+httpProfile
+https://
+https://101.35.87.105:3443
+https://forum.unity3d.com/threads/easy-save-the-complete-save-load-asset-for-unity.91040/
+https://openapi.baidu.com/oauth/2.0/token?grant_type=client_credentials&client_id={0}&client_secret={1}
+https://tap.cn/X6N3QCUV?channel=rep-rep_zn0vt3faoh1
+https://unit-api.baidu.com/rpc/2.0/unit/service/v3/chat?access_token=
+https://vop.baidu.com/server_api
+https://www.baidu.com
+https://www.taptap.cn/app/378861
+HTTP服务器初始化完成，使用HTTPS连接：
+hua
+hua1
+huang
+Hue
+Hue shift [-0.5 ~ 0.5].
+huiHe
+HuiHe:
+hull
+huoYueDuAdd
+HuoYueDuAdd:
+iap
+icon
+Icon:
+icon_girl
+icon_man
+icon-animation.png
+icon-animationRoot.png
+icon-attachment.png
+icon-bone.png
+icon-boneNib.png
+icon-boundingBox.png
+icon-clipping.png
+icon-constraintIK.png
+icon-constraintNib.png
+icon-constraintPath.png
+icon-constraints.png
+icon-constraintTransform.png
+icon-event.png
+icon-hingeChain.png
+icon-image.png
+icon-mesh.png
+iconName
+IconName:
+icon-null.png
+icon-path.png
+icon-point.png
+icon-poseBones.png
+icon-skeleton.png
+icon-skeletonUtility.png
+icon-skin.png
+icon-skinPlaceholder.png
+icon-skinsRoot.png
+icon-slot.png
+icon-slotRoot.png
+icon-spine.png
+icon-subMeshRenderer.png
+icon-warning
+icon-warning.png
+icon-weights.png
+id
+ID
+Id:
+idCard
+idType
+IEnumerable
+If an error occurs, the error message will be stored in this variable.
+If checked, this will use Time.unscaledDeltaTime to make this update independent of game Time.timeScale. Instance SkeletonGraphic.timeScale will still be applied.
+If selected, the duration will count as units/degree x second
+If selected, the tween will be killed when it completes, and won't be reusable
+If selected, the tween will play automatically
+If this is ticked instead of requiring mesh normals a Fixed Normal will be used instead (it's quicker and can result in better looking lighting effects on 2d objects).
+If true, Skeleton.ScaleX and Skeleton.ScaleY are followed 
+If unchecked, this animation will not be created
+If your atlas was exported with Premultiply Alpha, 
+ifAppearInform
+IfAppearInform:
+ifDialogAfter
+IfDialogAfter:
+ifDialogBefore
+IfDialogBefore:
+ifPlayerAnswer
+IfPlayerAnswer:
+Ignore aspect ratio.
+Ignore TimeScale
+IgnoreProjector
+ik
+IK bone not found: 
+IK Constraints
+IK Constraints ({0})
+IK target bone not found: 
+IkConstraint.BendDirection
+IkConstraint.BendDirection == 1 if clockwise; -1 if counterclockwise.
+IkConstraint.Compress
+IkConstraint.Mix
+IkConstraint.Softness
+IkConstraint.Stretch
+image
+image.png
+imagePath
+images
+Images/back.png
+Images/bar.png
+Images/buildFrom.png
+Images/button_active.png
+Images/chart.png
+Images/clear.png
+Images/clearOnSceneLoaded.png
+Images/close.png
+Images/collapse.png
+Images/ComputerIcon.png
+Images/copy.png
+Images/copyAll.png
+Images/date.png
+Images/error_icon.png
+Images/even_log.png
+Images/fps.png
+Images/graphicCard.png
+Images/info.png
+Images/log_icon.png
+Images/memory.png
+Images/odd_log.png
+Images/reporterScrollerSkin.guiskin
+Images/Save.png
+Images/search.png
+Images/selected.png
+Images/software.png
+Images/timer_1.png
+Images/UnityIcon.png
+Images/user.png
+Images/warning_icon.png
+img
+img_a_kuang_1
+img_a_kuang_2
+img_chouhengzhi
+img_dizijibie
+img_dizijibiek6
+img_dizijibiek7
+img_dizik
+img_dizik_n
+img_dizinpc
+img_fufai3
+img_guaiwu2
+img_guaiwu3
+img_guaiwu4
+img_guaiwu5
+img_guanggao_1
+img_haogan
+img_haogandu
+img_icon_ui_a
+img_icon_ui_b
+img_icon_ui_c
+img_icon_ui_f
+img_icon_ui_s
+img_lilian_chouheng
+img_lilian_xing1
+img_lilian_xing2
+img_lilian_xing3
+img_npcyunhaizzayi
+img_npcyunhaizzayi2
+img_out_qinglingcheng
+img_out_shenqimudi
+img_out_xingchengjian
+img_out_yunhu
+img_paiwei
+img_quan
+img_xuanxiu_paiming1
+img_xuanxiu_paiming2
+img_xuanxiu_paiming3
+img_xuanxiu_paiming4
+img_xuemai_bing
+img_xuemai_huo
+img_xuemai_lei
+img_xuemai_shui
+img_xuemai1
+img_yingzi
+img_yuansu_bing
+img_yuansu_bing1
+img_yuansu_huo
+img_yuansu_huo1
+img_yuansu_lei
+img_yuansu_lei1
+img_yuansu_shui
+img_yuansu_shui1
+img_yuansu_yang
+img_yuansu_yang1
+img_yuansu_ying
+img_yuansu_ying1
+img_zhuangbei_ui1
+img_zhuangbei_ui2
+img_zhuangbei_ui3
+img_zhuangbei_ui4
+img_zhuangbei_ui5
+immortal-1258231114
+Immutable Triangles
+immutableTriangles
+Import anyway
+Import Skeleton
+Import without atlases
+Imported with missing atlases. Skeleton will not render: 
+Include Folder Name in Event
+includeNone
+index
+index and count exceed length of list
+index is negative
+index must be >= 0
+index must be >= 0.
+indexFormat
+inflateMesh
+influence
+Influence:
+Information about application
+inheritAnimation
+inheritDeform
+inheritParticleColor
+inheritReflection
+inheritRotation
+inheritScale
+inheritTranslation
+inheritVelocity
+init
+initAdd
+InitAdd:
+initAddBuff
+InitAddBuff:
+Initial Flip
+Initial play delay.
+Initial Skin
+initialFlipX
+initialFlipY
+initialPlayDelay
+initialSkinName
+initRdm
+InitRdm:
+initSDK
+input
+inPut
+InPut:
+inside
+Inside Mask
+insideUIName
+InsideUIName:
+Inspector automatically assigned BoneFollower.SkeletonRenderer
+Inspector automatically assigned BoneFollowerGraphic.SkeletonGraphic
+Inspector automatically assigned PointFollower.SkeletonRenderer
+install missing framework
+Instance
+instanceLimit
+InstantiateSkeletonAnimation tried to instantiate a skeleton from an invalid SkeletonDataAsset.
+InstantiateSkeletonMecanim tried to instantiate a skeleton from an invalid SkeletonDataAsset.
+instructionOutput
+Instructions
+Insufficient parts renderers. Some parts will not be rendered.
+int
+inTangent
+intenseLevel
+intensity
+intensityMultiplier
+intersectionPointA
+intersectionPointB
+intervalSeconds
+ints
+Invalid assignment.
+Invalid JSON.
+Invalid line: 
+Invalid reference type
+Invalid SkeletonDataAsset
+Invalid timeline type for a bone: 
+Invalid timeline type for a slot: 
+invert
+is disabled at material). 
+is enabled at material). 
+IsBody
+isEndLevel
+IsEndLevel:
+isFirst
+IsFirst:
+isFirstMap
+IsFirstMap:
+isFixed
+IsFixed:
+IsHead
+IsMainHand
+isNeedDanFarmNum
+IsNeedDanFarmNum:
+isNeedItem
+IsNeedItem:
+isNeedKillEnemy
+IsNeedKillEnemy:
+IsOffHand
+isOverride
+isPaused
+isPlaying
+isStatic
+isStopped
+IsSupportedType
+isTrigger
+isUGUI
+item
+Item Purchase
+Item Use
+Item/
+Item:
+itemData
+itemId
+ItemId:
+itemid001
+itemList
+itemName
+ItemName:
+itemNum
+ItemNum:
+itemType
+ItemType:
+It's ideal to add BoundingBoxFollower to a separate child GameObject of the Spine GameObject.
+It's ideal to add BoundingBoxFollowerGraphic to a separate child GameObject of the Spine GameObject.
+java.lang.Double
+java.lang.String
+java.util.HashMap
+jian_1_SkeletonData
+jian_2_SkeletonData
+jian_3_SkeletonData
+jidan
+jidan1
+jieshu_zhuanhuiqu
+jing
+jingMai
+JingMai:
+jingzhi
+JOINQQGROUP
+joinQQGroup
+js
+json
+JSON
+JSON Parse: Too many closing brackets
+JsonPath
+judge
+Judge:
+judge大于零到了1天刷新次数
+judge小于零没到1天不刷新次数
+jyg_2
+kaishi_zhuanchulai
+kang
+Kang:
+Keep effect aspect ratio.
+Key
+key
+Key \"
+keys
+keySelector
+label
+lan
+Language
+last
+lastAnimationState
+LastLoginAccount
+LastLoginPassword_
+lastTime
+layer
+Layer 
+layerBlendModes
+layerCullSpherical
+layerMixModes
+leafGet
+leafRed
+leaveGame
+left
+Left
+length
+lengths
+level
+Level:
+levelIdList
+LevelIdList:
+levelRange
+LevelRange:
+leveltype
+Leveltype:
+levelUp
+lianShi
+lianshi/
+LianShi:
+lianshi_
+lianXing
+LianXing:
+libz.tbd
+License
+lieNum
+LieNum:
+lifetime
+lifetimeLoss
+lifetimeLossMultiplier
+lifetimeMultiplier
+light
+Light Mask
+Light mask texture (secondary Sprite texture)
+Light Probes & Ambient
+lighten
+Lighting Mode
+lightmapIndex
+lightmappingMode
+lightmapScaleOffset
+lightProbeProxyVolumeOverride
+lightProbeUsage
+lights
+Lightweight Render Pipeline/Spine/Sprite
+LiLian/
+lilianSke
+limit
+Limit:
+limitLevel
+limitMultiplier
+limitPerLevel
+LimitPerLevel:
+limitVelocityOverLifetime
+limitX
+limitXMultiplier
+limitY
+limitYMultiplier
+limitZ
+limitZMultiplier
+lineSpacing
+lingshidonghua
+lingShiNeed
+LingShiNeed:
+list
+List is empty. Nothing to pop.
+listener
+Lit Lightweight
+Lit Universal
+Lit Universal2D
+Load Event
+Load regions by entering Play mode
+Load ReporterScene
+Load test1
+Load test2
+Loads a JPG or PNG image file as a Texture2D.
+Loads a value from a file with the given key into an existing object, rather than creating a new instance.
+Loads a value from a file with the given key.
+Loads a value with the given key from the ES3File
+Loads a value with the given key from the ES3File into an existing object
+Loads an audio file as an AudioClip.
+Loads an entire file as a string.
+Loads the entire ES3 File as a string
+local
+Local Position
+Local Rotation
+Local Scale
+Local Shear
+localBounds
+localEulerAnglesBaked
+LocalMove
+localPath
+localPosition
+LocalRotate
+localRotation
+localScale
+LocalToWorld
+location
+Location
+Location for shiny effect.
+Log a warning and recommendation whenever a `.atlas` file is found.
+Log a warning and recommendation whenever Component and Material settings are not compatible.
+Log a warning and recommendation whenever Texture Import Settings are detected that could lead to undesired effects, e.g. white border artifacts.
+log_id
+Login
+LoginScene
+logout
+loop
+Loop
+Loop.
+loopComplete
+loopDelay
+Loops
+LQElQqzrSnreAPO6XhaDZeT0GFxPaU7T
+Luban 导表并生成 version 文件成功！
+Luban 导表成功，但生成 version 文件失败：\n{e.Message}
+Luban 导表失败
+Luban 执行环境错误
+Luban 执行失败，退出码：{process.ExitCode}
+Luban 执行异常：{e.Message}
+Luban/gen_code_json.bat
+Lv
+lv
+Lv.
+lv.
+m_
+m_AdvancedBlur
+m_Alpha
+m_Blur
+m_BlurFactor
+m_BlurMode
+m_Brightness
+m_BuildSettings.agentHeight
+m_BuildSettings.agentRadius
+m_Color
+m_Color1
+m_Color2
+m_Color3
+m_Color4
+m_ColorFactor
+m_ColorMode
+m_ColorSpace
+m_Direction
+m_DissolveColor
+m_DissolveSoftness
+m_DissolveWidth
+m_EffectArea
+m_EffectColor
+m_EffectDistance
+m_EffectFactor
+m_EffectMode
+m_FontData
+m_Gloss
+m_GradientStyle
+m_Highlight
+m_Hue
+m_IgnoreAspectRatio
+m_IsActive
+m_KeepAspectRatio
+m_LastTrackedFont
+m_Location
+m_Material
+m_NoiseTexture
+m_Offset1
+m_Offset2
+m_PassRayOnHidden
+m_Player
+m_Range
+m_RaycastTarget
+m_Reverse
+m_ReverseAnimation
+m_Rotation
+m_Saturation
+m_Softness
+m_SortingLayerID
+m_SortingOrder
+m_Style
+m_TargetColor
+m_Text
+m_TextCache
+m_TextCacheForLayout
+m_ToneLevel
+m_ToneMode
+m_TransitionTexture
+m_UseGraphicAlpha
+m_Value
+m_Width
+Mac OS
+main
+Main Maps
+MainPanel
+makeCost
+MakeCost:
+male
+Male:
+man_dadou_SkeletonData
+man_juese1_yujianfeixing_SkeletonData
+Manage Auto Save Settings
+Map/
+Map/img_mijwenhao
+map_data.db
+MapEvents
+MapEventSO/
+mapEventType
+mapId
+MapId
+mapLevel
+MapLevel:
+marker
+Mask Interaction
+Mask Interaction Materials
+maskable
+maskInteraction
+maskMaterials.materialsInsideMask
+maskMaterials.materialsMaskDisabled
+maskMaterials.materialsOutsideMask
+mat
+match
+Match
+Match RectTransform with Mesh
+matchLevel
+material
+Material
+Material is missing texture: 
+Material with texture name \"
+Material/
+Material/UI_FaGuang
+Material/UI_ImageGreyShader
+materialName
+materialPropertySource
+materials
+Materials cannot be null.
+Materials not set for atlas asset: 
+Materials not set for SpineSpriteAtlasAsset: 
+Materials used for different interaction with sprite masks.
+Materials used when Mask Interaction is set to Inside Mask.
+Materials used when Mask Interaction is set to Outside Mask.
+Max
+Max Height：
+maxCollisionShapes
+maxCount
+MaxCount:
+maximumLOD
+maxKillSpeed
+maxLights
+maxOverLay
+MaxOverLay:
+maxParticles
+maxStudent
+MaxStudent:
+maxValue
+May only apply to type string
+Mecanim Bake Settings
+Mecanim controller was automatically generated and assigned for {0}
+Mecanim Layer
+Mecanim Layers
+Mecanim layers to apply root motion at. Defaults to the first Mecanim layer.
+Mecanim Translator
+mecanimEventIncludeFolderName
+mecanimLayerFlags
+meiMao
+meimao/
+MeiMao:
+meimao_
+Mem Usage Of Graph 
+Mem Usage Of Logs 
+memberReferenceMode
+Memory Usage Reach
+mesh
+Mesh is not weighted.
+Mesh was not previously generated.
+MeshAttachment.UpdateUVs
+meshGenerator
+meshMaterialIndex
+meshRenderer
+MeshRenderer.sortingLayerID
+MeshRenderer.sortingOrder
+meshScale
+meshShapeType
+Message
+Metallic
+Metallic (R) and Smoothness (A)
+method
+Method only support (GET, POST)
+miJingId
+MiJingId:
+minKillSpeed
+min-max
+minValue
+minVertexDistance
+mipMapBias
+mipmapCount
+miss001
+Missing Region: '{0}'
+Missing regions. SkeletonDataAsset requires tk2DSpriteCollectionData or Spine AtlasAssets.
+Missing Regions:
+Missing Skeleton JSON
+Mission Begin
+Mission Completed
+Mission Failed
+mix
+Mix
+Mix Mode
+Mix Settings
+MixBlend.Add
+MixBlend.Replace
+mixDuration
+mode
+Mode
+Model-Space
+Modifies the built in Agent Radius from Window->Navigation
+Modify Stats
+Modifying files from Resources is not allowed.
+Modifying files in Resources is not allowed.
+moneyDanWeight
+MoneyDanWeight:
+motionVectorGenerationMode
+Mountain/farm/
+MountainPanel
+Move
+Move BoundingBoxFollower to new GameObject
+Move BoundingBoxFollowerGraphic to new GameObject
+moveItem
+movieclip
+msg
+multipart/form-data
+'Multiple Canvas Renderers' must be enabled\nwhen 'Enable Separation' is enabled.
+Multiple CanvasRenderers
+multiplier
+multiply
+Multiply
+Multiply x2
+Must have AtlasAsset variable!
+Must have reference to a SkeletonDataAsset
+Must specify both Spine JSON and AtlasAsset array
+mute
+My Window
+myPList
+mysay
+name
+Name
+name cannot be null
+name cannot be null.
+Name:
+NaN
+NAVIGATION2D_AGENT
+Navigation2D_drawMode
+Navigation2D_navmeshExtends
+NAVIGATION2D_OBSTACLE
+NavMesh Extends
+nearClipPlane
+need to enable 'Multiple Canvas Renderers'\n
+needDanFarmId
+NeedDanFarmId:
+needDanFarmNum
+NeedDanFarmNum:
+needExp
+NeedExp:
+needForeItem
+NeedForeItem:
+needItem
+NeedItem:
+needKillEnemy
+NeedKillEnemy:
+needKillEnemyNum
+NeedKillEnemyNum:
+needKuang
+NeedKuang:
+needMat
+NeedMat:
+needMoney
+NeedMoney:
+needNum
+NeedNum:
+needPlayerLevel
+NeedPlayerLevel:
+needQiHuo
+NeedQiHuo:
+needReceiveItem
+NeedReceiveItem:
+needYuanPei
+NeedYuanPei:
+New 
+New Armature Object
+New BoneFollower
+New Parts Renderer GameObject.
+New SkeletonAnimation
+New SkeletonDataAsset
+New SkeletonGraphic
+New SkeletonRenderer
+New Spine Atlas Asset
+New Spine GameObject
+New Spine GameObject was parented to a scaled Transform. It may not be the intended size.
+New Spine SpriteAtlas Asset
+New To Easy Save?
+newFilename
+newFilePath
+NewGuide/
+NewGuide/GuideSlideTalentCanvas
+NewGuide/NewGuideCanvas
+NewGuideCanvas调用时停
+NewGuideCanvas取消时停
+newGuideIdType
+NewGuideManager
+newGuideParam
+NewGuideParam:
+newPlayer
+newSettings
+newSkin
+nextAppearWaitTime
+NextAppearWaitTime:
+nextGem
+NextGem:
+nextLevel
+NextLevel:
+nextLevelDes
+NextLevelDes:
+nextMap
+NextMap:
+nextTask
+NextTask:
+nlp.tencentcloudapi.com
+No
+No animation selected.
+No armature data: 
+No bone selected
+No hierarchy found. Use Spawn Hierarchy to generate GameObjects for bones.
+No log selected
+No materials
+No materials found assigned at 
+No original ignore-mask material found for path 
+No parent SkeletonUtilityBone found!
+No selected object or sharding atlas
+No SkeletonRenderer Spine GameObject selected.
+No Spine GameObject detected. Make sure to set this GameObject as a child of the Spine GameObject; or set BoundingBoxFollowerGraphic's 'Skeleton Graphic' field in the inspector.
+No Spine GameObject detected. Make sure to set this GameObject as a child of the Spine GameObject; or set BoundingBoxFollower's 'Skeleton Renderer' field in the inspector.
+No valid Component was found for the selected animation
+node
+noise
+Noise texture for dissolving (single channel texture).
+Nonce
+none
+None
+Non-existent animation.\n
+nonJitteredProjectionMatrix
+NonRectangularButtonImage
+Nonsupport data version: 
+Nonsupport data.
+NoRender Material
+normal
+Normal Map
+Normal Materials
+Normal materials used when Mask Interaction is set to None.
+normalGroup
+normalOffset
+normalRadians
+normals
+Not Walkable
+NOT_LOGGED_IN
+Note that animation and physics updates are not always in sync.
+Note that 'Spine/SkeletonGraphic *' shall still be used when using URP.\n
+Note that using negative scale is consistent with previous behaviour (hence the default), 
+Note: Material requires a mesh with Normals and Tangents.
+Note: Material requires a mesh with normals.
+Note: Material requires a mesh with tangents.
+NOTE: when using a UI target, the tween will be created during Start instead of Awake
+NOTE: when using DOPlayNext, the sequence is determined by the DOTweenAnimation Components order in the target GameObject's Inspector
+npcId
+NpcId:
+npcPos
+NpcPos:
+NPCs
+NPCs/
+npcSetting是null
+npcType
+NpcType:
+NPCView刷新任务状态报错
+npc类型
+npc任务
+npc再次回复
+null
+Null
+Null entries found. Do you want to remove null entries before adding the new renderer? 
+num
+NumberValue
+numTilesX
+numTilesY
+nvdadou_SkeletonData
+oaifnoiasf��123526
+obj
+obj cannot be null
+-Objc
+objCount
+objectConstructor
+objectContainingProperty
+objectName
+ObjectPoolManager
+objects
+objects cannot be null.
+ObjectSelectorClosed
+ObjectSelectorUpdated
+Obstacle Avoidance
+octaveCount
+octaveMultiplier
+octaveScale
+Off
+offset
+Offset
+offsetMax
+offsetMin
+offsets
+Ok
+OK
+okCb
+oldFilePath
+oldSettings
+onBegin
+OnCharge
+onChargeRequest
+onChargeSuccess
+onComplete
+onCompleted
+onCullStateChanged
+onDestroy
+OnDisable
+One Second Passed
+OnEnable
+OnEnd
+onError
+oneStudentAddFood
+OneStudentAddFood:
+onEvent
+onFailed
+OnHideReporter
+onKill
+OnLog
+Only 2D Toolkit atlases are supported: 
+Only arrays with up to three dimensions are supported by Easy Save.
+Only types of UnityEngine.Component can be written with this method, but argument given is type of 
+Only types of UnityEngine.Object can be written with this method, but argument given is type of 
+Only types of UnityEngine.ScriptableObject can be written with this method, but argument given is type of 
+onlyId
+onPause
+onPlay
+OnPreStart
+onPurchase
+onResume
+onReward
+onRewind
+OnSendRoleData
+OnShare
+OnShowReporter
+onStart
+onStepComplete
+onSuccess
+onTweenCreated
+onUpdate
+onUse
+Opaque
+opaqueSortMode
+open
+Open
+Open Persistent Data Path
+OpenId
+Optional
+Optional Rigidbody: Assign a Rigidbody here if you want 
+Optional Rigidbody2D: Assign a Rigidbody2D here if you want 
+Optional: A value to return if the key does not exist.
+orange_boom
+orange_fly
+order
+Order in Layer
+order01
+OrderedDictionary{TKey, TValue}
+originalPage
+orthographic
+orthographicSize
+other
+Other Linker Flags
+OTHER_LDFLAGS
+Outline
+Outline Color
+Outline Mip Level
+Outline Smoothness
+Outline Threshold
+Outline Width
+OutlineOnly
+outPut
+OutPut:
+outputAttachments
+outside
+Outside Mask
+OutsidePanel
+outTangent
+overLay
+overlay
+Overlay Color
+OverLay:
+Override (Root Only)
+Override all bones
+Override Default Settings
+overrideAlpha
+overwrite
+Overwrite
+overwriteKeys
+p0
+p1
+p2
+packageName
+Packages
+PackAtlases
+page
+page cannot be null. AtlasPage determines which texture region belongs and how it should be rendered. You can use material.ToSpineAtlasPage() to get a shareable AtlasPage from a Material, or use the sprite.ToAtlasRegion(material) overload.
+Page missing material!
+PaintView.cs
+panelBase
+panelName
+param
+Param:
+param1
+Param1:
+param2
+Param2:
+param3
+Param3:
+param4
+Param4:
+parent
+Parent
+Parent bone not found: 
+Parent mesh not found: 
+ParentMesh
+parentReference
+ParseDragonBonesData()
+ParseTextureAtlasData()
+Part
+part
+parts
+partsRenderers
+passedTime
+password
+path
+Path bone not found: 
+Path constraint not found: 
+Path Constraints
+Path Constraints ({0})
+Path Slot
+Path target slot not found: 
+PathConstraint.Position
+PathConstraint.Spacing
+pathConstraintName
+pathConstraintName cannot be null.
+pathCount
+Pathfinding
+paths
+pausePlayhead
+PBKDF2_SHA1
+People/
+PeopleData
+per
+percent
+PerformiOSInit:
+PerformiOSStartup:
+persistedProList
+phase
+Phase:
+phase2Pro
+Phase2Pro:
+phase2Skill
+Phase2Skill:
+phase3Pro
+Phase3Pro:
+phase3Skill
+Phase3Skill:
+Pi
+pifu2_l
+Pipeline/Spine/Sprite
+pit
+pivot
+pivotShiftsMeshUVCoords
+Pixel Lit
+Pixel Snap
+pixelRect
+PixelSnap
+pixelsPerUnit
+place
+Place:
+placeholdersOnly
+placement_custom
+placement_custom_key
+play
+Play
+Playing.
+PlayMaker Documentation
+playOnAwake
+playTimes
+PlayVideo
+Please assign SpriteAtlas file.
+Please change the assigned Material to e.g. 'SkeletonGraphicDefault' or change the used shader to one of the 'Spine/SkeletonGraphic *' shaders.\n\n
+Please convert DragonBones data to support version.\n
+Please enable both 'uv1' and 'uv2' channels at the parent Canvas component parameter 'Additional Shader Channels'.\n
+Please hit 'Load regions ..' to load\nregion info. Play mode is started\nand stopped automatically.
+Please ignore errors \"PlayerSettings Validation: Requested build target group doesn't exist\" above
+Please ignore errors \"PlayerSettings Validation: Requested build target group doesn't exist\" below
+Please select the first physically moving chain node, having a parent GameObject with a SkeletonUtilityBone component attached.
+PluginBridge
+Plugins/ExcelTools
+Plugins/Sirenix/Demos/RPG Editor/Characters
+pma
+-pma-
+PMA Vertex Colors
+PMAPresetTemplate
+PMATexturePreset
+pmaVertexColors
+point
+pointAttachmentName
+PointFollower
+PointFollower can only follow a skeleton on a separate GameObject.\n\nCreate a new GameObject for your PointFollower, or choose a SkeletonRenderer from a different GameObject.
+points
+PointScale
+PointScale:
+polygon
+porTraitName
+PorTraitName:
+pos
+Pos:
+pos1
+pos2
+pose when an animation finishes, according to the 
+posIndex
+Position
+position
+positionMode
+PositionMode.
+possibleAward
+PossibleAward:
+possibleEventId
+PossibleEventId:
+possibleEventWeight
+PossibleEventWeight:
+POST
+post
+postWrapMode
+prefab
+Prefab ID
+Prefab with ID 
+prefabId
+PrefabModel Icon
+prefabName
+PrefabName:
+PreferenceItem' is obsolete: '[PreferenceItem] is deprecated. Use [SettingsProvider] instead.
+Preferences
+Pre-Multiplied Alpha
+premultiplyAlpha
+Prepares material references for switching to the corresponding Mask Interaction mode at runtime. Creates the required materials if they do not exist.
+prepareWeek
+PrepareWeek:
+Preview
+prewarm
+preWrapMode
+price
+Price:
+private List<StatValue> stats
+pro
+Pro:
+pro1
+pro2
+probeAnchor
+Problematic material setup at {0}: {1}
+process
+processAdd
+processSpeed
+ProcessSpeed:
+proChange
+ProChange:
+Products
+profile
+progress
+progress = {0:##.##}%
+proId
+ProId:
+projectionMatrix
+proNum
+properties
+Properties
+property
+Property
+Property:
+propertyId
+PropertyId:
+propertyIdType
+propertyName
+proRange
+ProRange:
+puGong
+PuGong:
+Punch/Position
+Punch/Rotation
+Punch/Scale
+purple_boom
+purple_fly
+put
+Put user date here like his account to know which user is playing on this device
+putFile
+qianFa
+qianfa/
+QianFa:
+qianfa_
+qianyao
+qiHuo
+QiHuo:
+quality
+Quality:
+Query
+query
+query_info
+-R 
+radius
+radiusScale
+randomDirectionAmount
+randomized
+randomizeRotationDirection
+range
+rangeIconName
+RangeIconName:
+rangeMultiplier
+rarity
+Rarity:
+rateOverDistance
+rateOverDistanceMultiplier
+rateOverTime
+rateOverTimeMultiplier
+ratio
+rawData
+rawTextureData
+raycastTarget
+rdmByTime
+RdmByTime:
+rdmDialog
+RdmDialog:
+rdmMonth
+RdmMonth:
+Read
+Read more: https://github.com/DragonBones/Tools/
+reader
+reader cannot be null.
+readInfo
+ReadInto
+ReadInto is not supported for type 
+realName
+realtimeLightmapIndex
+realtimeLightmapScaleOffset
+reason
+Receive Shadows
+receiveShadows
+Recharge error detail => {rawDetail}
+RECHARGE_RESTRICTION
+record
+recordTime
+RecordTime:
+rect
+rectangle
+recursive
+redPoint
+Reference Texture Width
+ReferenceAssets
+References
+Reflection failed.
+reflectionProbeUsage
+Refresh References
+refs
+Region
+region
+Region Baking
+Region name ends with whitespace. This may cause errors. Please check your source image filenames.
+Region not found in atlas: {0} (region attachment: {1})
+regions
+RegisterPanel Tips: {message}
+Reimport All
+relative
+relevantLevel
+RelevantLevel:
+Reload
+Reloads Skeleton components in the scene whenever their SkeletonDataAsset is modified. This makes it so changes in the SkeletonDataAsset inspector are immediately reflected. This may be slow when your scenes have large numbers of SkeletonRenderers or SkeletonGraphic.
+remap
+remapEnabled
+remapMultiplier
+remapX
+remapXMultiplier
+remapY
+remapYMultiplier
+remapZ
+remapZMultiplier
+RememberPassword
+Remove Component
+Remove currently unused CanvasRenderer GameObjects. These will be regenerated whenever needed.
+Remove Hierarchy
+Remove null entries
+removeAddBuff
+RemoveAddBuff:
+RemoveCustomMaterialOverrides
+RemoveCustomSlotMaterials
+RemoveCustomTextureOverrides
+RemoveDragonBonesData()
+removeRemoveBuff
+RemoveRemoveBuff:
+Removes all non-serialized overrides in the SkeletonGraphic and reapplies the overrides on this component.
+Removes all non-serialized overrides in the SkeletonRenderer and reapplies the overrides on this component.
+RemoveTextureAtlasData()
+Removing Scripting Define Symbol 
+renameFile
+Renames a file on the server, overwriting any existing files, or returning error code 3 if no file exists on the server.
+Renames a file.
+Render Queue Offset
+Render this skeleton's slots: start slot, up to but not including endSlot, using this material.
+Renderer
+Renderer Settings
+Renderer{0}
+renderingPath
+renderMode
+renderQueue
+RenderType
+rent
+Rent:
+renwu_jingxingzhong
+renwu_wancheng
+renwu_xinrenwu
+Repacked Attachments
+repeatTime
+RepeatTime:
+Reply
+Reporter
+Reporter/Create
+Reporter_clearOnNewSceneLoaded
+Reporter_collapse
+Reporter_currentView
+Reporter_filterText
+Reporter_show
+Reporter_showClearOnNewSceneLoadedButton
+Reporter_showCopyAllButton
+Reporter_showCopyButton
+Reporter_showError
+Reporter_showFps
+Reporter_showFpsButton
+Reporter_showGraph
+Reporter_showLog
+Reporter_showMemButton
+Reporter_showMemory
+Reporter_showSaveButton
+Reporter_showScene
+Reporter_showSceneButton
+Reporter_showSearchText
+Reporter_showTime
+Reporter_showTimeButton
+Reporter_showWarning
+Reporter_size
+ReporterScene
+req
+request
+RequestClient
+RequestId
+RequestMailList
+res
+res/DataTable
+researchPrice
+ResearchPrice:
+researchTime
+ResearchTime:
+Reset to Default
+Reset to SetupPose
+resetOnAwake
+resizeTextForBestFit
+resizeTextMaxSize
+resizeTextMinSize
+Resolve atlases...
+Resources
+Response
+responses
+Restart
+restore
+RestoreAllSettings 完成：所有 setting 已重新赋值
+Restores a backup of a file created using the Create Backup action.
+result
+result.:..(.*?)..]
+result.extras description:
+result.extras title:
+return true;
+returnAttachmentPath
+ReturnType
+Reverse the dissolve effect.
+Reward
+Rewind
+Rich Text Enabled
+right
+Right
+Rigidbody
+rigidBody
+Rigidbody2D
+rigidBody2D
+Rim Color
+Rim Lighting
+Rim Power
+rM
+rmb
+Rmb:
+rO
+root
+Root Motion
+Root Motion Bone
+Root Motion Scale (X)
+Root Motion Scale (Y)
+Root transform position (X)
+root/hip/bone
+rootBone
+rootMotionBoneName
+rootMotionScaleX
+rootMotionScaleY
+Rotate
+rotate
+Rotate axises by degrees per second
+rotated
+rotateFrame
+RotateMix
+rotateMix
+rotateMode
+RotateMode.
+rotation
+Rotation for shiny effect.
+rotationBySpeed
+rotationOverLifetime
+rotatonBySpeed
+rowIndex
+RRGGBB
+rt
+runInEditMode
+Runtime Settings
+S64432
+Same animation: 
+Same armature: 
+Same bone: 
+Same constraint: 
+Same slot: 
+Same texture: 
+Sample 8 Neighbours
+Sample Importer
+sampleData
+samples
+Saturation
+Saturation shift [-0.5 ~ 0.5].
+Save Event
+Save logs to device
+Save object as
+SaveFile.es3
+Saves a byte array as a file, overwriting any existing files.
+Saves a Texture2D as a PNG or a JPG, depending on the file extension of the supplied image path.
+Saves the value to a file with the given key.
+Saves the value to the ES3File with the given key.
+Saving logs to 
+say
+scale
+Scale
+Scale applied to the horizontal root motion delta. Can be used for delta compensation to e.g. stretch a jump to the desired distance.
+Scale applied to the vertical root motion delta. Can be used for delta compensation to e.g. stretch a jump to the desired distance.
+scaleFrame
+scaleMix
+ScaleMix
+scaleX
+scaleY
+scalingMode
+Scene 
+Scene View
+SceneAsset Icon
+SceneCanvas/fengMian/RawImage
+SceneCanvas/Panel
+SceneCanvas/Panel/Mountain
+SceneCanvas/Panel/MountainPanel/scroll/content/trans_npc/NPCView
+score
+Scramble Mode
+screen
+Screen Height 
+Screen Width 
+screeningStr
+ScreeningStr:
+screenShakeStrength
+ScreenShakeStrength:
+ScriptableObject Icon
+scrollSpeed
+scrollSpeedMultiplier
+scX
+scY
+sdfgsdfg sdfg sdf gsdfg sfdg sf gsdfg sdfg asdfg 
+sdfgsdfg sdfg sdf gsdfg sfdg sf gsdfg sdfg asdfg ssssssssssssssssssssss
+SDK_NET_3.0.461
+sdk登录成功，开始登录服务器
+Search for logs
+Search Results
+Secondary Albedo
+seconds 
+secret
+SecretId
+segment data not enough
+segmentNum
+Select All
+Select all fields and generate ES3Type script
+Select Atlas
+Select AtlasAsset...
+Select None
+Select Photo
+Select SkeletonRenderer
+Selecting Object is not a button!
+Self-assigning Read is not implemented or supported on this type.
+selfDie
+SelfDie:
+sendCollisionMessages
+separateAxes
+separator
+separators
+Separators are empty. Change the size to 1 and choose a slot if you want the render to be separated.
+separatorSlotNames
+serialized: 
+SerializedObjectNotCreatableException: Object at index 0 is null
+Server error: 
+Server returned {0} error with no message
+server1
+serverId
+service_id
+session_id
+sessionId
+Set
+Set Age
+Set DragonBones
+Set Game Server
+Set Gender
+Set Level
+Set Mipmap Bias to 
+Set Profile Name
+Set Profile Type
+Set SkeletonUtility 
+Set to -1 for infinite loops
+setAge
+SetAnimation(int, Animation, bool)
+SetCustomMaterialOverrides
+SetCustomSlotMaterials
+SetCustomTextureOverrides
+setGameServer
+setGender
+SetIconForObject
+setLevel
+SetLocation
+setProfile
+setProfileName
+setProfileType
+Sets 'SkeletonDataAsset.defaultMix' in the asset and 'AnimationState.data.defaultMix' at runtime load time.
+setTextureImporterSettings
+setting
+Setting
+Setting Scripting Define Symbol 
+settingId
+settings
+Settings
+Settings for Current Scene
+setUnityVersion
+Setup Pose
+setVerboseLogDisabled
+shader
+shaderKeywords
+shaderName
+Shaders/
+Shadow Alpha Cutoff
+Shadow effect style.
+shadowBias
+shadowCastingMode
+shadowCustomResolution
+shadowNearPlane
+shadowNormalBias
+shadowResolution
+shadows
+Shadows
+shadowStrength
+Shake/Position
+Shake/Rotation
+Shake/Scale
+shanZei
+shape
+shapeType
+share
+sharedMaterial
+sharedMaterials
+sharedMesh
+shear
+ShearMix
+shearMix
+shearX
+shearY
+sheji
+shenMiShaoNv_beforeLastLevel
+shenTi
+ShenTi:
+shoot
+Shop/
+shopItemData
+shopType
+Should normally be (0,0,1) if in view-space or (0,0,-1) if in model-space.
+Show
+Show Advanced Settings
+Show Attachments
+Show Bone Names
+Show Constraints
+Show ES3 Window on Start
+Show Hide fps
+Show Hide Memory
+Show Hide Scene
+Show Hide Time
+Show Hierarchy Icons
+show or hide errors
+show or hide logs
+show or hide warnings
+Show Paths
+Show relevant icons on GameObjects with Spine Components on them. Disable this if you have large, complex scenes.
+Show Shapes
+Show Slots
+showBar
+ShowBar:
+showHierarchyIcons
+showIcon
+ShowIcon:
+showInKnapsack
+ShowInKnapsack:
+showInMain
+ShowInMain:
+showInTrainPanel
+ShowInTrainPanel:
+showTag
+ShowTag:
+shuole
+Signature
+Signature=
+SignatureMethod
+SignedHeaders=
+signKey
+signMethod
+siJian
+SimpleJSON_ExcludeBinary
+simpleP
+Simplifies submesh generation by assuming you are only using one Material and need only one submesh. This is will disable multiple materials, render separation, and custom slot materials.
+simulationSpace
+simulationSpeed
+singleDailyTaskData
+singleDanFarmData
+singleData
+singleExploreData
+singleGuideBookTaskData
+singleMapEventData
+singleResearchData
+singleSubmesh
+singleTalentView
+size
+Size = 
+Size mismatch found.\nExpected atlas size is {0}x{1}. Texture Import Max Size of texture '{2}'({4}x{5}) is currently set to {3}.
+sizeAffectsLifetime
+sizeAffectsRange
+sizeAffectsWidth
+sizeBySpeed
+sizeDelta
+sizeMultiplier
+sizeOverLifetime
+ske
+Ske:
+Skeleton
+skeleton
+Skeleton Baking
+skeleton cannot be null.
+Skeleton Data Asset error. Please check Skeleton Data Asset.
+Skeleton Data Asset required
+Skeleton data could not be loaded. Data version: {0}. Required version: {1}.\nPlease re-export skeleton data with Spine {1} or change runtime to version {2}.{3}.
+Skeleton data file is not a valid Spine JSON or binary file.
+Skeleton Debug
+Skeleton JSON file not set for SkeletonData asset: 
+Skeleton json/skel file
+Skeleton Mesh
+Skeleton Root
+Skeleton Utility Parent
+Skeleton was rebuilt. Repopulating BoundingBoxFollower.
+Skeleton was rebuilt. Repopulating BoundingBoxFollowerGraphic.
+Skeleton.Bones
+Skeleton.Data.Bones
+Skeleton.Data.Events
+Skeleton.Data.IkConstraints
+Skeleton.Data.PathConstraints
+Skeleton.Data.Skins
+Skeleton.Data.Slots
+Skeleton.Data.TransformConstraints
+Skeleton.DrawOrder
+Skeleton.IkConstraints
+Skeleton.PathConstraints
+Skeleton.ScaleX
+Skeleton.ScaleY
+Skeleton.SetSlotsToSetupPose()
+Skeleton.SetToSetupPose()
+Skeleton.Skin
+Skeleton.Slots
+Skeleton.Time
+Skeleton.TransformConstraints
+Skeleton.UpdateWorldTransform()
+SkeletonAnimation
+skeletonData
+SkeletonData
+SkeletonData Asset
+skeletonData cannot be null.
+SkeletonData loading failed!
+SkeletonData.DefaultSkin
+skeletonDataAsset
+SkeletonDataAsset
+SkeletonDataAsset for \"{0}\"
+SkeletonDataAsset has missing Atlas.
+SkeletonDataAsset Icon.png
+SkeletonDataAsset is missing.
+skeletonDataFile
+skeletonDataModifiers
+SkeletonDebug only debugs Spine GameObjects in the scene.
+SkeletonGraphic
+skeletonGraphic
+SkeletonGraphic ({0})
+SkeletonGraphic (UI)
+skeletonGraphic == null
+SkeletonGraphic is unassigned. Please assign a SkeletonRenderer (SkeletonAnimation or SkeletonMecanim).
+SkeletonGraphic works best with the SkeletonGraphic material.
+SkeletonGraphicDefault t:material
+skeletonJSON
+SkeletonMecanim
+SkeletonMecanim is the Mecanim alternative to SkeletonAnimation.\nIt is not required.
+SkeletonMecanimRootMotion
+skeletonRenderer
+skeletonRenderer == null
+SkeletonRenderer is unassigned. Please assign a SkeletonRenderer (SkeletonAnimation or SkeletonMecanim).
+SkeletonRenderer.maskInteraction
+SkeletonRenderer's interaction with a Sprite Mask.
+SkeletonRootMotion
+SkeletonUtility
+SkeletonUtility.flipBy180DegreeRotation
+SkeletonUtilityBone
+SkeletonUtility-SkeletonRoot
+skew
+skill
+Skill/
+Skill:
+SkillEffect
+skillId
+SkillId:
+skillType
+SkillType:
+Skin
+skin
+Skin 
+Skin bone not found: 
+Skin IK constraint not found: 
+Skin not found: 
+Skin path constraint not found: 
+Skin transform constraint not found: 
+Skin was null
+Skin.Bones
+Skin.Constraints
+Skin/Slot/AttachmentName
+skinField
+skinName
+skinName cannot be null.
+skinnedMeshRenderer
+skinnedMotionVectors
+Skins
+skins
+Skins: 
+Skins: 1 (only default Skin)
+skinToBake
+skinWidth
+skX
+skY
+Slider
+Slot
+slot
+Slot '{0}' does not exist in skeleton.
+Slot '{0}' not found for BoundingBoxFollower on '{1}'. (Previous colliders were disposed.)
+Slot '{0}' not found for BoundingBoxFollowerGraphic on '{1}'. (Previous colliders were disposed.)
+Slot bone not found: 
+slot cannot be null.
+Slot not found: 
+Slot.Attachment
+Slot.attachmentState
+Slot.Color
+Slot.DarkColor
+Slot.Deform
+slotField
+slotIndex
+slotIndex must be >= 0
+slotIndex must be >= 0.
+SlotList
+slotName
+slotName cannot be null.
+slotPose
+slots
+Slots
+Slots: 
+SmallGame
+SmallPeople/
+smallPeopleTextureName
+SmallPeopleTextureName:
+smallPhaseName
+SmallPhaseName:
+Smoothness
+Smoothness scale factor
+Smoothness value
+Soft Additive
+softness
+Softness for shiny effect.
+Software
+Solve Tangents
+Some items in the parts renderers list are null and may cause problems.\n\nYou can right-click on that element and choose 'Delete Array Element' to remove it.
+Some jitter may result at certain framerates.
+Sorting Layer
+Sorting Mode
+SortingLayerField
+sortingLayerID
+sortingLayerName
+sortingLayerNames
+SortingMode.SortByOrder is userd by Unity 5.6 or highter only.
+sortingOrder
+sortingOrderIncrement
+sound
+soundEvent
+source
+sourceAttachments
+sourceList
+sourceMaterial
+space
+spacing
+Spacing
+spacingMode
+SpacingMode.
+Spawn Bone
+Spawn BoundingBox
+Spawn Hierarchy
+Spawn Root
+Spawn Spine GameObjects with loop enabled.
+SpawnSkeletonGraphicFromDrop
+spd
+specialFarmLevelLimit
+SpecialFarmLevelLimit:
+specialMatNeed
+SpecialMatNeed:
+specialPortrait
+SpecialPortrait:
+Specular
+SpeedBased
+sphericalDirectionAmount
+Spine
+spine
+Spine Component invalid. Check Skeleton Data Asset.
+Spine Component is invalid. Check SkeletonData Asset.
+Spine GameObject ({0})
+Spine Mecanim GameObject ({0})
+Spine Skeleton Prefab Baking
+Spine SpriteAtlas Import
+Spine.IUpdatable
+Spine.Skeleton.FindSlotIndex
+Spine.Skeleton.Skin
+Spine.SkeletonData.DefaultSkin
+Spine.SkeletonData.FindSlotIndex
+Spine.Unity.AtlasAssetBase.CreateRuntimeInstance(TextAsset, Material[], bool)
+Spine.Unity.Editor.SkeletonGraphicInspector
+Spine.Unity.SpineAtlasAsset.CreateRuntimeInstance(TextAsset, Material[], bool)
+Spine/
+Spine/Animation Reference Asset
+Spine/BoneFollower
+Spine/Editor/spine-unity/Editor/Util./BuildSettings.cs
+Spine/EventData Reference Asset
+Spine/Outline/
+Spine/Outline/Sprite/Pixel Lit
+Spine/Outline/Sprite/Unlit
+Spine/Outline/Sprite/Vertex Lit
+Spine/Point Follower
+Spine/Skeleton
+Spine/SkeletonAnimation
+Spine/SkeletonData Asset
+Spine/SkeletonData Modifiers/Blend Mode Materials
+Spine/SkeletonGraphic
+Spine/SkeletonGraphic (Unity UI Canvas)
+Spine/SkeletonUtilityBone
+Spine/Special/HiddenPass
+Spine/Spine Atlas Asset
+Spine/Spine SpriteAtlas Asset
+Spine/Sprite/Pixel Lit
+Spine/Sprite/Unlit
+Spine/Sprite/Vertex Lit
+Spine/UI/BoneFollowerGraphic
+SPINE_ATLASTXT_WARNING
+SPINE_AUTO_RELOAD_SCENESKELETONS
+SPINE_COMPONENTMATERIAL_WARNING
+SPINE_DEFAULT_INSTANTIATE_LOOP
+SPINE_DEFAULT_MIX
+SPINE_DEFAULT_SCALE
+SPINE_DEFAULT_SHADER
+SPINE_DEFAULT_ZSPACING
+SPINE_MECANIM_EVENT_INCLUDE_FOLDERNAME
+SPINE_SCENE_ICONS_SCALE
+SPINE_SET_TEXTUREIMPORTER_SETTINGS
+SPINE_SHOW_HIERARCHY_ICONS
+SPINE_TEXTURE_SETTINGS_REFERENCE
+SPINE_TEXTUREIMPORTER_WARNING
+SPINE_TIMELINE_USE_BLEND_DURATION_KEY
+SPINE_TK2D
+SpineAssetDatabaseMarker
+spineSpriteAtlasAsset
+SpineSpriteAtlasAsset
+spine-tk2d
+spine-unity
+spine-unity-editor
+split
+Split
+split/a
+Split/Left
+Split/Left/General Settings
+Split/Left/General Settings/Split/Right
+Split/Left/NPC出现位置
+Split/Left/Stats
+Split/Left/标志性id
+Split/Left/丹炉数量
+Split/Left/任务奖励
+Split/Left/任务类型
+Split/Left/任务要求描述
+Split/Left/任务执行引导
+Split/Left/傻逼
+Split/Left/傻逼/Split
+Split/Left/傻逼/Split/a
+Split/Left/傻逼/Split/b
+Split/Left/条件
+Split/Left/通用完成条件
+Split/Left/统计名字
+Split/Left/需要丹炉数量
+Split/Left/需要丹炉数量/Split
+Split/Left/需要丹炉数量/Split/丹炉id
+Split/Left/需要丹炉数量/Split/丹炉数量
+Split/Left/需要境界等级
+Split/Left/需要杀敌
+Split/Left/需要杀敌/Split
+Split/Left/需要杀敌/Split/敌人id
+Split/Left/需要杀敌/Split/敌人数量
+Split/Left/需要物品
+Split/Left/需要物品/Split
+Split/Left/需要物品/Split/是否回收物品
+Split/Left/需要物品/Split/物品id
+Split/Left/需要物品/Split/物品数量
+Split/Left/重复性质
+Split/Left/重复性质/a
+Split/Meta
+Split/Right
+Split/Right/Description
+Split/Right/Notes
+Split/Right/后置对话列表
+Split/Right/前置对话列表
+spotAngle
+sprite
+Sprite
+Sprite Asset: 
+Sprite must be placed in the Resources folder and selected
+Sprite not found in atlas: 
+SpriteAtlas
+SpriteAtlas '{0}' contains no sprites. Please make sure all assigned images are set to import type 'Sprite'.
+SpriteAtlas '{0}': Tight packing is not supported. Please disable 'Tight Packing' in the SpriteAtlas Inspector.
+SpriteAtlas file not set for SpineSpriteAtlasAsset: 
+SpriteAtlas Icon
+SpriteAtlas imported\nsuccessfully.
+SpriteAtlas source cannot be null!
+spriteAtlasAsset
+spriteAtlasFile
+spriteCollection
+SpriteMaskInteraction.None
+SpriteMaskInteraction.VisibleInsideMask
+SpriteMaskInteraction.VisibleOutsideMask
+SpriteModelSpaceFixedNormal
+SpriteRenderer
+sprites cannot be null.
+Sprites/Default
+SpriteViewSpaceFixedNormal
+stage
+Standard Alpha
+Start
+start
+startColor
+startDelay
+startDelayMultiplier
+startFrame
+startFrameMultiplier
+startIndex
+Starting Equipment
+Starting Inventory
+Starting Stats
+startingAnimation
+startingLoop
+startLifetime
+startLifetimeMultiplier
+startLogicPos
+StartLogicPos:
+startPoint
+startRotation
+startRotation3D
+startRotationMultiplier
+startRotationX
+startRotationXMultiplier
+startRotationY
+startRotationYMultiplier
+startRotationZ
+startRotationZMultiplier
+startSize
+startSize3D
+startSizeMultiplier
+startSizeX
+startSizeXMultiplier
+startSizeY
+startSizeYMultiplier
+startSizeZ
+startSizeZMultiplier
+startSpeed
+startSpeedMultiplier
+startsWith
+startup
+staticFriction
+Stats
+Steering
+Stencil
+Stencil Comparison
+Stencil parameters for mask interaction.
+Stencil Reference
+stereoConvergence
+stereoSeparation
+stereoTargetEye
+Stop
+Stop importing
+stopped agent because of collision in 2D plane
+Stored names of slots where the Skeleton's render will be split into different batches. This is used by separate components that split the render into different MeshRenderers or GameObjects.
+str
+straight
+Stream does not contain a valid binary Skeleton Data.
+Stream does not contain a valid binary Skeleton Data.\n
+Stream isn't positioned before a property.
+StreamingAssets中没有找到存档文件: {streamingArchivePath}
+strength
+strengthMultiplier
+strengthX
+strengthXMultiplier
+strengthY
+strengthYMultiplier
+strengthZ
+strengthZMultiplier
+Stretch
+stretch
+Stretch the parent bone when the target is out of range. Not applied when parent bone has nonuniform scale.
+stride
+string
+String without closing quotation mark detected.
+strings
+StringValue
+strList
+structLayer
+StructLayer:
+str无法转double---
+str无法转float---
+studentLimit
+StudentLimit:
+studentTalent
+studentType
+suanMingAppear
+SuanMingAppear:
+subEmitters
+subMesh
+subMeshCount
+subMeshes
+submeshSeparators
+submitPayResult
+SubTexture
+subtract
+subType
+successDanId
+SuccessDanId:
+successRate
+SuccessRate:
+suMengLanLeave
+suMengLanLeave2
+Support
+SupportedItemTypes
+supportRichText
+sustain
+Sustain:
+sustainDay
+SustainDay:
+SWIFT_VERSION
+Switches to Runtime Edit Mode, where you can change animations values and restart them
+Synchronises a file in storage with the server.
+Synchronises this ES3File with a file in storage.
+syncWithFile
+System Info
+System.ArgumentException
+System.ArgumentNullException
+System.ArgumentOutOfRangeException
+System.Collections.Generic.KeyNotFoundException
+systems
+t:Character
+t:material
+t:Prefab
+t:script SpineEditorUtilities
+t:SpineSpriteAtlasAsset
+t:TextAsset
+t:textasset .atlas
+t:texture icon-subMeshRenderer
+tag
+Tag:
+tagId
+TagId:
+tagName
+TagName:
+talent
+talentType
+TalentType:
+TalkingData
+TalkingData  init completed 
+TalkingData Game Analytics Unity SDK.
+TalkingData init begin 
+tangent
+tangentBuffer
+tangents
+taoFaType
+TaoFaType:
+taoZhuang
+TaoZhuang:
+taptap://taptap.com/app?app_id=230065&source=outer
+target
+Target
+Target color to affect hsv shift.
+target is null ?
+targetDisplay
+targetText
+taskGuideId
+TaskGuideId:
+taskId
+TaskId:
+taskIndex
+TaskIndex:
+taskRepeatType
+TaskRepeatType:
+taskType
+TaskType:
+tbactivity
+TbActivity
+TbBattleBuff
+tbbattlebuff
+TbBuff
+tbbuff
+TbBuilding
+tbbuilding
+TbBuildingUpgrade
+tbbuildingupgrade
+TbChouJiang
+tbchoujiang
+tbdanfarm
+TbDanFarm
+tbdialog
+TbDialog
+TbEnemy
+tbenemy
+tbequipbuildingupgrade
+TbEquipBuildingUpgrade
+tbequipmaketeam
+TbEquipMakeTeam
+tbequipment
+TbEquipment
+tbequiptaozhuang
+TbEquipTaoZhuang
+tbequipupgrade
+TbEquipUpgrade
+tbexploremap
+TbExploreMap
+tbfacescore
+TbFaceScore
+TbGem
+tbgem
+tbguidebook
+TbGuideBook
+tbitem
+TbItem
+TbLeaf
+tbleaf
+TbLeiChong
+tbleichong
+TbLevel
+tblevel
+tblevelpress
+TbLevelPress
+tbliandanbuildingupgrade
+TbLianDanBuildingUpgrade
+tbliangongbuildingupgrade
+TbLianGongBuildingUpgrade
+TbLiLian
+tblilian
+tbmap
+TbMap
+TbMapEvent
+tbmapevent
+tbmatch
+TbMatch
+tbmijing
+TbMiJing
+TbMiJingLevel
+tbmijinglevel
+tbnewfunctionshow
+TbNewFunctionShow
+tbnewguide
+TbNewGuide
+TbNPC
+tbnpc
+TbNPCTask
+tbnpctask
+tbnpctaskcondition
+TbNPCTaskCondition
+TbNPCTaskDialog
+tbnpctaskdialog
+tboutmap
+TbOutMap
+TbOutMapContent
+tboutmapcontent
+TbProperty
+tbproperty
+TbQianDao
+tbqiandao
+TbRdmEvent
+tbrdmevent
+TbRdmName
+tbrdmname
+TbRdmZongMenName
+tbrdmzongmenname
+tbresearch
+TbResearch
+tbscreening
+TbScreening
+TbShop
+tbshop
+tbsingleresearch
+TbSingleResearch
+TbSkill
+tbskill
+TbSkillUpgrade
+tbskillupgrade
+TbStudentProToMoneyDanWeight
+tbstudentprotomoneydanweight
+tbstudentupgrade
+TbStudentUpgrade
+TbTask
+tbtask
+TbTestStudentSingleProInfluence
+tbteststudentsingleproinfluence
+TbTestStudentTotalProInfluence
+tbteststudenttotalproinfluence
+TbTotalADAward
+tbtotaladaward
+TbTrain
+tbtrain
+tbupgrademode
+TbUpgradeMode
+tbxingge
+TbXingGe
+TbXuanXiuAward
+tbxuanxiuaward
+tbxuemaiupgrade
+TbXueMaiUpgrade
+TbZongMenProduce
+tbzongmenproduce
+TbZongMenUpgrade
+tbzongmenupgrade
+TC3
+tc3_request
+TC3-HMAC-SHA256
+temp
+tempTanBuffer
+terminal_id
+test
+Test Collapsed Error
+Test Collapsed log
+Test Collapsed Warning
+Test Error from Thread
+Test Log 
+Test Log from Thread
+Test LogError 
+Test LogWarning 
+test long text sdf asdfg asdfg sdfgsdfg sdfg sfg
+Test Warning from Thread
+test_data
+test_data_pl
+test_user_extra_data
+test_user_id
+test1
+test2
+TestDrawEnumByChinese
+TestRes/ActionScene/
+TestRes/Battle/effect/BattleHitEffect
+TestRes/Battle/effect/LoseHPEffect
+TestRes/BigMap/
+TestRes/Common/PeopleVerticalDraw/
+TestRes/Common/Property/
+tex
+texScale
+TEXT
+text
+Text
+textId
+TextMeshPro/Mobile/
+texture
+Texture / Material Settings found: It is recommended to disable 
+Texture / Material Settings found: It is strongly recommended 
+Texture mipmap bias set to 
+Texture Settings Warning
+texture2D
+textureAtlas
+textureAtlasImageName
+textureAtlasJSONPath
+textureAtlasName
+TextureImporter
+textureImporterWarning
+textureLoader
+textureLoader cannot be null.
+textureMode
+textureRect
+textureSettingsReference
+textureSheetAnimation
+The API key generated when installing ES3 Cloud on your server.
+The API responded with HTTP: {ex.Message}
+The area for effect.
+The armature data has been disposed.\nPlease make sure dispose armature before call factory.clear().
+The armature has been disposed.
+The bone to take the motion from.
+The collection we are loading is longer than the collection provided as a parameter.
+The collection we are loading is shorter than the collection provided as a parameter.
+The Collection we are trying to load is stored as null, which is not allowed when using ReadInto methods.
+The Date and time the file was last updated, as a string formatted as yyyy-MM-ddTHH:mm:ss.
+The default directory in which to store files when using the File save location, and the location which relative paths should be relative to.
+The Default Mix Duration for newly imported SkeletonDataAssets.
+The Default skeleton import scale for newly imported SkeletonDataAssets.
+The Dictionary we are trying to load is stored as null, which is not allowed when using ReadInto methods.
+The directory we want to check the existence of.
+The Easy Save 3 Manager is required in any scenes which use Easy Save, and is automatically added to your scene when you enter Play mode.\n\nTo stop this from automatically being added to your scene, go to 'Window > Easy Save 3 > Settings' and deselect the 'Auto Add Manager to Scene' checkbox.
+The ES3 File we are using, created using the Create ES3 File action.
+The ES3File variable we're using.
+The file we want to check the existence of
+The format we should use when serializing and deserializing data.
+The FsmArray variable we want to use to store our string representing the file.
+The index is negative or outside the bounds of the collection.
+The instance with ID \"
+The int variable we want to load our count into.
+The key \"
+The key we want to check the existence of.
+The key we want to delete.
+The 'Load Into' action requires an object to load the data into, but none was specified in the 'Value' field.
+The name we want to rename the file to.
+The names of assemblies we want to load ES3Types from.
+The object is already in the pool.
+The object we want to load our data into.
+The password to use to encrypt the data if encryption is enabled.
+The path this ES3Settings object points to, if any.
+The rate at which animations progress over time. 1 means normal speed. 0.5 means 50% speed.
+The relative or absolute path of the audio file we want to load.
+The relative or absolute path of the directory we want to delete.
+The relative or absolute path of the directory we want to get the directory names from.
+The relative or absolute path of the directory we want to get the file names from.
+The relative or absolute path of the file this ES3File represents in storage.
+The relative or absolute path of the file we want to backup.
+The relative or absolute path of the file we want to copy.
+The relative or absolute path of the file we want to count the keys of.
+The relative or absolute path of the file we want to create.
+The relative or absolute path of the file we want to delete.
+The relative or absolute path of the file we want to get the keys from.
+The relative or absolute path of the file we want to rename from.
+The relative or absolute path of the file we want to rename to.
+The relative or absolute path of the file we want to restore the backup of.
+The relative or absolute path of the file we want to synchronise with in storage.
+The relative or absolute path of the JPG or PNG image file we want to load.
+The relative or absolute path of the PNG or JPG file we want to store our image to.
+The request with exception: {e.Message}
+The request with exception: {ex.Message }
+The selected file is not a picture
+The shake randomness
+The Spine.Animation named '{0}' was not found for this Skeleton.
+The spine-unity 3.7 runtime introduced SkeletonDataModifierAssets BlendModeMaterials which replaced SlotBlendModes. Will be removed in spine-unity 3.9.
+The storage location where we wish to store data by default.
+The string array variable we want to load our directory names into.
+The string array variable we want to load our file names into.
+The string array variable we want to load our key names into.
+The string we want to append to a file.
+The string we want to save as a file.
+The target effect to synchronize.
+The Texture2D we want to save as an image.
+The type of encryption to use when encrypting data, if any.
+The unique key we want to use to identity the data we are saving.
+The unique key which identifies the data we're loading.
+The URL to the ES3Cloud.php file on your server.
+The value we want to save.
+The variable we want to load our data into.
+The variable we want to put the file size into.
+The variable we want to store our loaded string in.
+The variable we want to use to store our loaded AudioClip.
+The variable we want to use to store our loaded data.
+The variable we want to use to store our loaded texture.
+theList
+There is more than one ES3ReferenceMgr in this scene, but there must only be one.
+There is no ES3 Default Settings script attached to the ES3 Default Settings object in Easy Save 3/Resources/ES3
+theType
+TheType:
+TheVersion
+TheVersion.txt
+theView
+this
+This allows Easy Save to maintain references to objects in your scene.\n\nIt is automatically updated when you enter Playmode or build your project.
+This animation has been toggled as inactive and won't be generated
+This data is not Easy Save Key Value data. Expected property name \"value\", found \"
+This event is triggered if an error occurs.
+This event is triggered if the directory does not exist.
+This event is triggered if the directory exists.
+This event is triggered if the file does not exist.
+This event is triggered if the file exists.
+This event is triggered if the key does not exist.
+This event is triggered if the key exists.
+This GameObject was created because Easy Save could not find a GameObject in the scene with the same instance ID as the GameObject the Component we are loading is attached to.\nTo prevent this from being created, use the LoadInto methods to tell Easy Save what Component the data should be loaded in to.
+This GameObject was created because Easy Save tried to load a Component with an instance ID which does not exist in this scene.\nTo prevent this from being created, use the LoadInto methods to tell Easy Save what Component the data should be loaded in to.\nThis can also happen if you load a class which references another object, but that object has not yet been loaded. In this case, you should load the object the class references before loading the class.
+This is a Spine-Unity Animation Reference Asset. It serializes a reference to a SkeletonDataAsset and an animationName. It does not contain actual animation data. At runtime, it stores a reference to a Spine.Animation.\n\n
+This manages the saving and loading of GameObjects which have the Auto Save component attached to them.\n\nIf there are no Auto Save components in your scene, this component will do nothing.
+This may help textures with mipmaps be less blurry when used for 2D sprites.
+This mesh uses multiple atlas pages. You\n
+This type has no public parameterless constructors.\n\nTo support this type you will need to create an ES3Type script and modify it to use a specific constructor instead of the parameterless constructor.
+This type has no public parameterless constructors.\n\nTo support this type you will need to modify the ES3Type script to use a specific constructor instead of the parameterless constructor.
+This type has no public parameterless constructors.\n\nTo support this type you will need to select the fields you wish to serialize below, and then modify the generated ES3Type script to use a specific constructor instead of the parameterless constructor.
+This type has no serializable fields or properties.
+This type has no serializable fields.
+This type has no serializable properties.
+This will lead to incorrect rendering on some devices.\n\n
+This will lead to incorrect rendering.\n\nPlease\n
+thisObject
+Threshold for depth write alpha cutoff
+Threshold for shadow alpha cutoff
+tian
+TianFuJueXing/
+Tick only if you are going to rotate the sprite to face away from the camera, the tangents will be flipped when this is the case to make lighting correct.
+ticks
+tiliLimit
+TiliLimit:
+time
+Time Scale
+Timeline Extension
+Timeline.Apply(Skeleton, float, float, ExposedList, float, MixBlend, MixDirection)
+Timeline.setFrame(int, float, int[])
+timelines
+timelines cannot be null.
+Timelines: {0}
+timelineUseBlendDuration
+timeScale
+timeStamp
+Timestamp
+timestamp
+timestamp_
+tint black
+Tint Black
+Tint Black (!)
+tintBlack
+tk2d/AdditiveVertexColor
+tk2d/SolidVertexColor
+TKey
+TO
+to
+To allow TK2D support, please modify line 67 in
+To apply your changes when exiting Play mode, use the Component's upper right menu and choose \"Copy Component\", then \"Paste Component Values\" after exiting Play mode
+to cannot be null.
+to disable `sRGB (Color Texture)` on `Premultiply alpha` textures. Otherwise 
+to enable `Alpha Is Transparency` on `Straight alpha` textures.\n
+To use Reporter just create reporter from reporter menu at first scene your game start
+toAnimation
+todayDownloadArchiveNum
+todayUploadArchiveNum
+TogglePause
+tok
+Token
+Token已经匹配
+toName
+Tools
+Tools/CreateFont
+Tools/Odin/Demos/RPG Editor
+top
+Top
+toSelf
+ToSelf:
+Total Attachments: 
+totalDay
+TotalDay:
+totalLevel
+TotalLevel:
+tow manager is exists delete the second
+Track {0}
+TrackEntry was null. Coroutine will continue immediately.
+TrackEntry.AnimationEnd
+TrackEntry.AnimationLast
+TrackEntry.AnimationStart
+TrackEntry.AnimationTime
+TrackEntry.Complete
+TrackEntry.Delay
+TrackEntry.getMixDuration()
+TrackEntry.MixDuration
+TrackEntry.MixTime
+TrackEntry.SetMixDuration(float)
+TrackEntry.TimeScale
+TrackEntry.TrackEnd
+TrackEntry.TrackTime
+trackIndex
+trackingName
+TrackingName:
+trails
+Train/
+trans
+trans_tag
+trans_task_untalked是null
+transform
+Transform constraint bone not found: 
+Transform constraint target bone not found: 
+Transform Constraints
+Transform Constraints ({0})
+transformID
+transformPositionX
+transformPositionY
+Transition texture (single channel texture).
+translate
+translateFrame
+TranslateMix
+translateMix
+translator
+transparencySortMode
+Transparent
+TransparentCutout
+triangleCount
+triangles
+Tried to add SkeletonRenderSeparator to a null SkeletonRenderer reference.
+Tried to ingest null Spine data.
+trigger
+Trim Renderers
+true
+True
+True if a backup was restored, or False if no backup could be found.
+trying reversed polygon
+Trying to load data of type 
+TSF Shaders/UI/OutlineEx
+TSource
+tuZhi
+TuZhi:
+TValue
+tweenEasing
+tweenRotate
+tweenScale
+tweenType
+twoColor
+txt
+Txt:
+type
+Type is explicitly supported
+Type list could not be initialised. Please contact Easy Save developers on mail@moodkie.com.
+Type not selected
+Type not selected. Please ensure you select a type
+Type of 
+Type:
+Types
+types
+TypesWindowRecentType
+TypesWindowSelectedType
+ugui display object and normal display object cannot be replaced with each other
+UI
+ui 14
+ui 15
+ui 16
+ui 17
+UI/Default
+UI/UIEffects/UIDissolve
+UI/UIEffects/UIEffect
+UI/UIEffects/UIFlip
+UI/UIEffects/UIGradient
+UI/UIEffects/UIHsvModifier
+UI/UIEffects/UIShadow
+UI/UIEffects/UIShiny
+UI/UIEffects/UITransitionEffect
+UI_
+UI_Mat
+uiName
+UiName:
+UIPanel
+UIWidthHeight
+Unable to create Spine GameObject.\n\nPlease check your SkeletonDataAsset.
+Unassigned renderers were found. Do you want to delete them? (These may belong to another Render Separator in the same hierarchy. If you don't have another Render Separator component in the children of this GameObject, it's likely safe to delete. Warning: This operation cannot be undone.)
+Unbake All
+undefined
+UndoRedoPerformed
+unicode
+Unidentified Attachment type: \"{0}\". Skeleton may have been exported from an incompatible Spine version.
+uniform
+Uniform Scale
+Uniformly scales a bone when Ik stretches or compresses.
+UnionPay
+unique
+Unique:
+UNIT_DEV_
+unity 5
+Unity UI does not support multiple textures per Renderer. Please enable 'Advanced - Multiple CanvasRenderers' to generate the required CanvasRenderer GameObjects. Otherwise your skeleton will not be rendered correctly.
+Unity Version = 
+unity3d_data
+unity3d_data_pl
+unity3d_test_channel
+unity3d_test_subchannel
+unityArmature
+UnityEditor.SceneHierarchyWindow
+UnityEditor.U2D.SpriteAtlasExtensions,UnityEditor
+UnityEditor.U2D.SpriteAtlasUtility,UnityEditor
+UnityEngine.PolygonCollider2D does not support weighted or animated points. Collider points will not be animated and may have incorrect orientation. If you want to use it as a collider, please remove weights and animations from the bounding box in Spine editor.
+UnityEngine.SpriteMask
+UnityEngine.SpriteRenderer
+UnityFramework
+Unity-iPhone
+Universal Render Pipeline/2D/Spine/Sprite
+Universal Render Pipeline/Spine
+Universal Render Pipeline/Spine/Sprite
+Unknown Controller already exists at: 
+Unlit
+unlockDes
+UnlockDes:
+unlockedBuilding
+UnlockedBuilding:
+unlockedPictureId
+UnlockedPictureId:
+unlockedStudentCount
+UnlockedStudentCount:
+unlockExploreMap
+UnlockExploreMap:
+unlockMapLevel
+UnlockMapLevel:
+unLockProductId
+UnLockProductId:
+unscaledTime
+Unsupported skeleton data, please export with a newer version of Spine.
+up
+Update
+Update Easy Save 3 Prefab
+Update Easy Save 3 Reference List
+Update mode
+Update mode used when the MeshRenderer becomes invisible. Update mode is automatically reset to UpdateMode.FullUpdate when the mesh becomes visible again.
+Update Part Location
+Update separator part GameObject location to match the position of the SkeletonGraphic. This can be helpful when re-parenting parts to a different GameObject.
+Update When Invisible
+updateAabb
+UpdateCache()
+Updated regions of '{0}'
+UpdateGlobalTransform()
+updateMode
+Updates existing slices if ones with matching names exist. \n\n
+updateSeparatorPartLocation
+updateSlot
+updateWhenInvisible
+updateWhenOffscreen
+UpdateWorldTransform
+Updating SpineSpriteAtlasAssets
+upgradeCost
+UpgradeCost:
+upgradeCostId
+UpgradeCostId:
+upgradeDay
+UpgradeDay:
+upgradeDes
+UpgradeDes:
+upgradeDesArr
+UpgradeDesArr:
+upgradeNeedOtherMat
+UpgradeNeedOtherMat:
+upgradeProAdd
+UpgradeProAdd:
+upgradeRent
+UpgradeRent:
+upload_{DateTime.Now:yyyyMMddHHmmssfff}.tmp
+Uploads a file in storage to the server, overwriting any existing files.
+url
+Use AnimationReferenceAssets as an alternative to storing strings or finding animations and caching per component. This only does the lookup by string once, and allows you to store and manage animations via asset references.
+Use Blend Duration
+Use Custom RenderType
+Use Custom RenderType tags
+Use ReadKVP<TKey,TVal>(reader) instead.
+Use ReadKVP<TKey,TVal>(reader, obj) instead.
+Use ScaleX instead. FlipX is when ScaleX is negative.
+Use ScaleY instead. FlipY is when ScaleY is negative.
+Use Single Submesh
+Use SkeletonDataModifierAssets to apply changes to the SkeletonData after being loaded, such as apply blend mode Materials to Attachments under slots with special blend modes.
+Use the Y-movement of the bone.
+Use this if you are pooling or enabling/disabling your Spine GameObject.
+Use this if you are using the default Spine/Skeleton shader or any premultiply-alpha shader.
+Use this if your shader requires vertex normals. A more efficient solution for 2D setups is to modify the shader to assume a single normal value for the whole mesh.
+USE_SharpZipLib
+useAutoRandomSeed
+useBase64Encoding
+useCustomMixMode
+usedByEffector
+useGUILayout
+useJitteredProjectionMatrixForTransparentRendering
+useMeshColors
+useMeshMaterialIndex
+useOcclusionCulling
+useOriginalRegionSize
+useParticleColor
+user
+User
+User (optional)
+user_id
+useRandomDistribution
+useRandomRow
+userData
+username
+utf-8
+UTF-8
+uv
+uv2
+uv3
+uv4
+uvChannelMask
+uvs
+va
+val
+value
+Value shift [-0.5 ~ 0.5].
+valueAtkKey
+valueOf
+values
+Vector2 buffer too small. {0} requires an array of size {1}. Use the attachment's .WorldVerticesLength to get the correct size.
+velocityOverLifetime
+version
+Version
+Version mismatch!
+Vertex Data
+Vertex Lit
+VertexAttachment
+VertexAttachment.ComputeWorldVertices(Slot, int, int, float[], int, int)
+vertexBuffer
+vertexCount
+Vertical Offset
+verticalOverflow
+vertices
+Vertices
+vh
+via SkeletonUtilityBone, it is mandatory to have this parameter enabled.
+view
+View-Space
+VnyRLcBhGpJ0fGX6
+vol
+volume
+voxelSize
+walk
+Warnings
+weapon
+weapon_blabla
+weapon_blabla_project
+weapon_l
+week
+Week:
+week135bookNum
+Week135bookNum:
+week135enemy
+Week135enemy:
+week135Mat
+Week135Mat:
+week135MatNum
+Week135MatNum:
+week135possibleBook
+Week135possibleBook:
+week246bookNum
+Week246bookNum:
+week246enemy
+Week246enemy:
+week246Mat
+Week246Mat:
+week246MatNum
+Week246MatNum:
+week246possibleBook
+Week246possibleBook:
+week7bookNum
+Week7bookNum:
+week7enemy
+Week7enemy:
+week7Mat
+Week7Mat:
+week7MatNum
+Week7MatNum:
+week7possibleBook
+Week7possibleBook:
+weight
+Weight:
+weight0
+weight1
+weight2
+weight3
+weights
+Welcome to Easy Save
+When a secondary albedo texture is set the albedo will be a blended mix of the two textures based on the blend value.
+When disabled, the recommended MixMode is used according to the layer blend mode. Enable to specify a custom MixMode for each Mecanim layer.
+When enabled, Additive alpha value is stored at uv2.g instead of color.a to capture CanvasGroup modifying color.a.
+When enabled, Mecanim events will call methods named 'FolderNameEventName', when disabled it will call 'EventName'.
+When enabled, MixDuration will be synced with timeline clip transition duration 'Ease In Duration'.
+When enabled, other GameObjects can cast shadows onto this GameObject. 'Write to Depth' has to be enabled in Lightweight RP.
+When enabling `Generate Mip Maps` in Gamma color space, it is recommended 
+When set to true, the skeleton state is mixed out to setup-
+When using a tightly packed SpriteAtlas with Spine, you may only access Sprites that are packed as 'FullRect' from it! 
+Whether or not .AnimationName should loop. This only applies to the initial animation specified in the inspector, or any subsequent Animations played through .AnimationName. Animations set through state.SetAnimation are unaffected.
+Whether or not the data we're loading is Base-64 encoded. Usually this should be left unchecked.
+Whether the directory exists. This is set after the action runs.
+Whether the file exists. This is set after the action runs.
+Whether the key exists. This is set after the action runs.
+Whether to enable separation at the above separator slots.
+Whether to encode this string using Base-64 encoding. This will override any default encoding settings.
+Whether we should sync this ES3File with the one in storage immediately after creating it.
+width
+Width for shiny effect.
+widthOverTrail
+widthOverTrailMultiplier
+Window/Easy Save 3...
+Window/Navigation2D
+Window/Spine/SpriteAtlas Import
+Windows
+Wireframe
+woman_SkeletonData
+WorkDayPanel
+workType
+WorkType:
+WorldMapPanel
+worldSpace
+World-Space
+worldToCameraMatrix
+worldVertices
+WorldVerticesLength
+wrapMode
+Write to Depth
+Write to Depth Buffer by clipping alpha.
+X2
+x2
+x4
+X4
+xA
+xB
+xianxiujieshu_2
+xiaoguai
+xingGe
+xiuWeiAddSpeed
+XiuWeiAddSpeed:
+xiuWeiNeed
+XiuWeiNeed:
+XML
+xMultiplier
+X-TC-Action
+X-TC-Language
+X-TC-Region
+X-TC-RequestClient
+X-TC-Timestamp
+X-TC-Token
+X-TC-Version
+xuan
+xuanzhe_xunhuan
+XXX
+xy
+yA
+yanJing
+YanJing:
+yB
+Yes
+yMultiplier
+You can either disable 'Tight Packing' at the whole SpriteAtlas, or change the single Sprite's TextureImporter Setting 'MeshType' to 'Full Rect'.
+You can only load MP3, WAV, XM, IT, MOD or S3M on Unity Standalone
+You can only load Ogg, WAV, XM, IT, MOD or S3M on Unity Standalone
+You can use this in your AnimationState calls instead of a string animation name or a Spine.Animation reference. Use its implicit conversion into Spine.Animation or its .Animation property.\n\n
+You cannot use ES3.LoadAudio with Unity Web Player
+You can't use a UI target for a non UI object
+You may want to duplicate the 'SkeletonGraphicDefault' material and change settings at the duplicate to not affect all instances.
+You must install or update .NET
+You need to assign a SkeletonDataAsset first.
+you will receive white border artifacts on an atlas exported with default 
+Your new SkeletonGraphic will not be visible until it is placed under a Canvas
+your SpriteRenderer should use the generated Spine _Material asset (or any Material with a PMA shader) instead of Sprites-Default.
+your.domain
+your_app_id
+your_channel_id
+yuanSu
+YuanSu/
+YuanSu:
+yuanSuType
+yyyyMMdd
+yyyy-MM-dd
+yyyy年MM月dd日
+Z Space
+Z Spacing
+zh
+zhaoMuDialog
+ZhaoMuDialog:
+zh-CN
+zhongfa/
+zhongfa_
+zhongzhuanzhan
+zhongzhuanzhan2
+zhuZhanDialog
+ZhuZhanDialog:
+zi
+zMultiplier
+zOrder
+zoulu
+zPosition
+zSpacing
+zui
+zui/
+Zui:
+zui_
+zuoZhenPos
+zzz1
+zzz2
+zzz3
+啊……这就是力量吗！
+啊啊啊啊，气死我了，别让我看到[对方姓名]，否则我要把[ta]骂个狗血淋头
+按钮
+按钮没赋值
+嗷嗷嗷嗷嗷！
+嗷——不识好歹的小子！纳命来！
+八强
+把logicpause打开并进入Attack
+把东西放到练功房
+白色  
+版本检查完毕
+版本控制/打开本地目录
+版本控制/导表 (Luban)
+半天取了个名字就这？
+宝石
+宝石粉末
+宝石栏已满，请先卸除部分宝石
+宝石天赋可让弟子驻守【八卦炉】时提高炼制，合成宝石的属性
+保存gameInfo成功: 
+保存成功！
+保留Excel源文件
+暴击率增加50%
+爆炸
+爆蒸
+被占据
+被占据，不生成
+本次战斗无法逃跑
+本年刷新次数已达上限
+必须在联网环境下进行
+标志性id
+冰牢
+冰霜
+补给不够
+不错不错，宗门名字改得正合我意。
+不符合境界需求
+不够
+不够,是否花费
+不够，无法生产
+不过老夫也不是好惹的，大不了和你拼个同归于尽，拿命来！
+不愧是掌门，这名儿起的有水准
+不能再携带更多功法了
+不是我最喜欢的，但既然有这个天赋，今后也要好好努力利用下去呀
+不知道怎么回事，不过几天没见到[对方姓名]，我竟然开始思念[ta]了
+不足
+不足,暂停生产
+才符合我宗气质
+材料不够
+采矿
+采矿天赋可让弟子驻守【矿场】时提高产量
+参赛人数不足
+仓皇逃走(体力-
+仓库没有该onlyId的物品
+测试1
+测试2
+测试中文枚举
+产量：
+尝试从流目录加载
+尝试从流目录加载资源
+尝试失去超过限度的物品
+尝试下载存档 {archiveFileName} 到 {localArchivePath}
+尝试下载存档 {archiveFileName} 时发生异常: {ex.Message}
+超难
+潮湿
+沉魄净赋丹不够
+成功下载存档: {archiveFileName}
+橙色
+冲-爆发
+冲霄
+充值成功
+充值成功！{ response.message}
+充值成功，开始购买商品
+充值成功: 
+充值失败
+充值失败: 
+充值失败: {errorMessage}
+充值失败：{errorMessage}
+充值限制
+充值异常: {ex.Message}
+抽后必得地级以上弟子接引令
+抽后必得天级弟子接引令
+仇恨
+仇恨值
+仇人相见分外眼红，二人互相大骂，骂至激动处忍不住动起手来，将同宗情谊抛至脑后，誓要分出个你死我活。大战一场后，双双重伤。
+仇怨渐深，时常有别的弟子看见他们争吵得面红耳赤，唾沫横飞。
+出生日期：{idCardInfo.birthDate}\n
+出生日期不合理
+出售
+出现了，修士可前往探索一番
+出现时提示文字
+出现是否提示
+出于未知的原因，坏档了，是否恢复备份存档？
+初学
+触发了
+创建datatable到持久化目录成功
+纯阳之体
+磁暴
+次)
+次，请注意护肝养肝。
+次广告可领取
+赐福
+存档
+存档 {archiveFileName} 下载成功
+存档 {archiveFileName} 下载失败（预期行为）: {ex.Message}
+存档时间:
+存在相同弟子
+错误信息：
+搭配不同属性的攻击，会产生强大的反应力量。
+达人
+大境界突破成功
+大摇大摆地离开
+丹炉id
+丹炉数量
+丹药炼制完成，是否前往收获？
+当前成功率为100%，无需服用丹药
+当前丹药服用已达上限
+当前弟子人数已达上限，请提升宗门等级
+当前弟子位已满
+当前建造数量已达上限
+当前空闲
+当前炼制：
+当前仍有空闲弟子未坐镇建筑，将弟子坐镇可更快提升产出速度，确定加速吗？
+当前时间不在允许的游戏时间范围内
+当前是否重叠：
+当前突破成功率：
+当前无空位，请清理存档位
+当前无任何纯灵果
+当前无任何调息丹
+当前无任何修为丹
+当前修为：
+当前已达最大等级
+当前正在界域裂隙，请掌门回到宗门
+当前正在界域裂隙，请掌门回到宗门后再强化吧
+当前正在生产中，请先停止生产
+导表完成
+导表完成但 version 生成失败
+到达上边界
+到达下边界
+到达右边界
+到达左边界
+到底是什么关系，我不听你的解释，你走吧，我再也不想看到你！
+的服务器时间（GMT DATE）
+的属性
+的天赋吗？此决定将影响弟子一生，请慎重选择
+的味道！你们是什么关系？
+的物品
+登陆中
+登录成功
+登录成功！\n欢迎回来，{account}
+登录成功，开始下载云端存档...
+登录成功: 
+登录界面未正确配置！
+登录请求失败: 
+登录失败: 
+登录失败: {errorMsg}
+登录异常: {ex.Message}
+等待队列
+等级
+敌人
+敌人1技能等级
+敌人id
+敌人测试模式
+敌人模型
+敌人血|防|攻
+敌人有几个阶段
+抵抗
+弟子
+弟子感悟值满
+弟子攻击触发连携攻击，造成100%伤害，触发冷却回合数为3
+弟子攻击触发连携攻击，造成50%伤害，触发冷却回合数为5
+弟子攻击触发连携攻击，造成70%伤害，触发冷却回合数为4
+弟子攻击触发连携攻击，造成90%伤害，触发冷却回合数为3
+弟子和掌门所有的宝石数量
+弟子上阵
+弟子升级次数
+弟子使用练功房
+弟子数：
+弟子突破等级
+弟子误入歧途，虽万死不能谢罪，理应自食其果
+弟子镶嵌某level宝石
+弟子一定不辜负掌门的期待！
+弟子拥有a个b等级法器
+弟子拥有超过a级别b等级c数量的法器
+弟子拥有法器
+弟子正在前往目的地，请等待
+弟子只有一种灵根
+帝姝
+帝殊突然朝你发动了攻击！！
+帝殊指尖一阵强烈的光，狸猫人顿时被轰杀
+第二章 厌火
+第三章 白民
+第四章 羽民
+第五章 羽民
+第一章 狸猫
+点到的对的地方
+点到的范围内，不关闭
+点到了外面的按钮，要关闭
+点击确定跳转到登录界面
+点修为
+点源力加速完成吗？
+电流
+调息失败，经脉紊乱，流失真气
+调谐
+调用外面的点击按钮事件
+顶配
+冻僵
+洞府修炼
+洞幽
+渡劫
+段伤害：
+队伍大获全胜，并发现了额外的宝藏。
+队伍人数不满4人，先去上阵一些修武弟子吧
+队伍中有a个b元素的人
+对不起……如果没有
+对敌人造成伤害的同时，会在其身上残留攻击者的属性。
+对方过于强大，弟子不敌，不仅空手而归，反而消耗了额外的体力。
+多谢掌门！
+多谢掌门！弟子以后一定守规矩
+多谢掌门成全
+多谢掌门赐名
+多谢掌门赐名。
+额，胜败乃兵家常事，掌门别在意，下次再战！
+噩魂蛛
+儿拜见掌门！
+而生
+二人向往魔道已久，一拍即合，决定一同叛宗离去，并偷走了
+二十
+发生激烈的争吵，好感度降至冰点
+发现上次登录账号: {lastAccount}，尝试自动登录...
+法器
+法器的等级会影响普攻的伤害,当前普攻加成
+凡级藏经阁
+凡级技能残页
+凡级矿场
+凡级灵树
+凡级太玄果
+凡级益气丹
+凡级月灵矿
+仿佛有个声音告诉自己，上吧，你能赢，你握紧了拳头。
+非常多
+非当前属性
+非登录状态，请等待重连或重启游戏
+费劲九牛二虎之力才逃出生天，消耗了额外的体力。
+分阶段的敌人的配置id
+分解法器
+分钟
+焚焰体
+风-攻速
+服果中……
+服务器登陆中……
+服用
+服用可增加
+复活
+复制StreamingAssets存档失败: {e.Message}
+该tips的contentPos的y坐标为
+该宝石已被镶嵌，合成将消耗该宝石，继续吗？
+该宝石已合成至最高级
+该宝石已经满级
+该宝石已镶嵌，请先卸下宝石
+该存档为旧版本存档，与新版本不兼容，请在存档管理中删除。
+该等级的技能需要调动第二个脉点，及时激活它！
+该弟子的属性与该功法不符
+该弟子等级已达上限
+该弟子感悟值已达上限，请进行突破
+该弟子经验不够
+该弟子潜力已达上限
+该弟子伤势未痊愈，请掌门见谅
+该弟子似乎不需要法器
+该弟子似乎不需要功法
+该弟子已上阵
+该弟子已上阵，请先下阵
+该弟子已上阵，请先下阵。
+该弟子已是最高品级，无需洗髓
+该弟子在练功房，请等待片刻
+该弟子正在
+该弟子正在秘境
+该弟子正在秘境派遣中，无法出战
+该弟子正在秘境探索，请先等待其回来
+该弟子正在秘境探险，请先等待他回来
+该弟子正在其它秘境
+该弟子正在驻守建筑，请先取消其驻守
+该法器已被掌门装备，请先卸下
+该法器已被装备，请先卸下
+该法器已被装备，确认卸下？
+该法器已镶嵌宝石，请先卸下
+该功法与您当前属性不符,是否切换属性？
+该功能必须在联网情况下进行
+该关卡已通关
+该建筑数量已达上限，请提升宗门等级
+该属性功法未解锁，请突破下个大境界
+该数字无法转汉字
+该位置已有丹炉
+该物品
+该章节尚未开放
+该账号未通过实名认证，无法进入。
+该装备已达最高等级
+改变属性成功
+改变属性后，功法需要重新装配，确定改变吗？
+改名卡不够
+刚才不是很狂吗？原来你就这点能耐，灵石我就都收下了，下次给我准备九千，不，九万灵石，听明白了吗？
+高宽比大于16/9 为
+高宽比小于等于16/9 为
+个弟子
+根据国家相关规定，未成年人只能在周五、周六、周日的20:00-21:00时间段内进行游戏。当前时间不在允许范围内，游戏将自动关闭。
+根据输入
+工作，请等待工作完成
+工作，请等待工作完成。
+工作中
+功法等级提升至Lv
+功法冷却中
+功法冷却中，还需
+功法升级材料
+功法书
+功法书不够
+攻击为0
+恭喜获得
+乖乖交出1000灵石
+关闭
+关闭一个不存在的panel！！
+冠军
+冠军角逐！
+广告_改天赋
+广告_历练双倍领取
+广告_买体力
+广告_每日福利观看
+广告_刷新弟子
+广告_双倍离线收益
+广告_双倍裂隙收益
+广告_双倍秘境收益
+广告_增加大比次数
+广告_增加弟子招募上限
+归真
+果然是
+哈哈！我家长老看你可怜饶了你一命，居然赶着来送死！
+哈哈哈哈哈，普天同庆啊！！！[对方姓名]这个人憎狗嫌的玩意终于滚蛋了！！掌门万岁！！掌门英明！！！
+哈哈哈哈哈哈，帝殊啊帝殊，没想到你还是这么伪善
+嗨呀，不愧是掌门！！！
+还可以携带更多弟子，确认不带了么？
+还需
+好感100
+好感31-60
+好感61-90
+好感91-99
+好感动，今天差点遇到危险，没想到[对方姓名]突然出现救了我，[ta]还记着我们的义气！
+好感度
+好伟大的一张脸，简直仙品
+好小子，竟敢反抗！今天就叫你不知道怎么死的！
+呵呵，[对方姓名]简直就是人憎狗嫌，我恨不得打[ta]一顿，我劝你们也离[ta]远点
+呵呵，今天我在山下看到[对方姓名]鬼鬼崇崇的身影，立马就过去打了他一顿，爽了
+呵呵，算你识相,这次我先放过你，下次……可就没这么简单了
+呵呵，算你识相。
+呵呵呵呵……我明白了，我明白了。
+合成
+合成宝石
+合体
+嘿，你别说你还真别说！
+后解锁
+后可继续强化
+忽然想起来一句诗“人生得一知已足矣，斯世当以同怀视之”，能有[对方姓名]这样的好兄弟，是我的幸运
+互相将对方引为人生知己，常结伴同游，一同修炼，一同论道，似有无数说不完的话。
+话不投机，仇恨值略有提升
+坏感
+欢迎欢迎，热烈欢迎
+欢迎新人
+欢迎新人，呐，给你一朵小红花
+恢复备份存档失败: 
+回复
+回合
+慧根
+混混
+混乱的苏梦岚
+活跃度+
+活跃度达到
+获得
+获得冠军！
+获取服务器时间出错！
+击败
+击杀
+积怨渐深，不仅时常讥讽对方，不时还有互相辱骂之举。
+积怨已久，稍有摩擦，就爆发激烈争吵，吵至激动处忍不住动起手来，将同宗情谊抛至脑后，誓要以武力一分高下。
+积怨已久，无论何时遇见，总有一方忍不住反唇相讥，紧接着就是激烈的争吵，二人争执不下几欲动手。
+积怨已深，常常爆发激烈的争吵，但顾及同为同宗弟子，还未做出伤害对方的行为。
+基于等级
+基于属性
+级弟子
+级解锁
+级开放
+级宗门
+极难
+极限
+籍籍无名
+技能等级
+技能携带已达上限
+既然你这么喜欢找
+加速生产次数
+加载存档失败: 
+加载所有存档
+检测到账号异常。
+检查并复制存档
+简单
+建造成功！
+建造或升级完毕
+建造中
+建筑等级提升
+建筑数量：
+渐渐熟稔，偶有闲余，相约论道。
+将随机重置弟子的性格，确定吗？
+交出450灵石，谎称这是全部的灵石
+交谈了一番，好感度略有提升
+交谈甚欢，好感度提升了不少
+角色结束被打
+教化
+接下来我们用掌声欢迎这位新人
+结束攻击
+结下仇怨，常常诋毁对方，互相敌视，势同水火。
+解锁
+解锁空地数量
+解锁了新的赛事，快去看看吧！
+解锁了新的世界
+解锁新建筑：
+解析错误响应失败: 
+解析身份证年龄失败: {ex.Message}
+界域动荡，一年一度的界域裂隙已经打开，请掌门挑选合适的弟子和法器出征吧！
+界域裂隙
+今后我一定会努力,不辜负
+今后行走万界，一定不能丢了掌门的脸。
+今年还可招募
+今年已经用过金手指了，明年再来哦
+今日参加历练次数已达上限
+今日参赛次数：
+今日抽奖次数已达上限（50次），请明天再来！
+今日服丹上限：
+今日服丹数量已达上限
+今日广告次数还剩
+今日广告次数已耗尽
+今日还可抽奖{remainTimes}次，无法进行{num}连抽。
+今日上传次数：todayUploadArchiveNum
+今日剩余
+今日剩余(
+今日剩余抽奖次数：{remainTimes}/{dailyLimit}
+今日剩余次数（
+今日刷新次数已达上限
+今日下载次数：todayDownloadArchiveNum
+今日增加次数已达上限
+今日招募弟子人数已达上限
+今日招募弟子数量已达上限
+今天购买源力次数已达上限，请明天再来哦
+今天金手指获取源力次数已达上限，请明天再来哦
+今天距离昨天过了多久x-的结果：
+今天在山门附近看到了[对方姓名]的身影，我没有出声喊[ta]，可[ta]居然突然回头了,我们傻傻对视着，愣在了原地——我想，我可能真的喜欢上[ta]了
+金色
+金色  
+金石之谊，以山河四海为盟约，从今日起结为道友，从此死生相托，吉凶相救，福祸相依，患难相扶。
+仅限已觉醒天赋弟子使用
+锦衣
+进入
+进入idle attackcdtimer为
+进入前两名！
+进入四强！
+进入探险！
+禁用
+经过一番鏖战，发现了额外的宝藏。
+经文
+经文天赋可让弟子驻守【藏经阁】时提高产量
+惊雷
+精力：
+精通
+精英怪
+竟然没看出来你是个有灵根的......你想动手？呵呵，要是你输了，我就挖了你的灵根
+竟然让你这小子躲开了，刚刚是谁坏了我的事，出来！
+境界，
+境界不够，当前血脉等级已达上限
+九天玄雷决
+就算掌门大人输了，也是我永远敬佩的榜样！
+剧情编辑器/地图事件
+剧情编辑器/新剧情
+聚灵玉佩
+决定了
+觉醒后弟子感悟值满
+觉醒了天赋——
+绝品金丹炉
+厥阴肝经
+开光
+开启
+开启全力将极大提升产出速度，确定开启吗？
+开始充值：账号={currentAccount}, 金额={rechargeAmount}  
+开始登录：账号={account}
+开始获取
+开始下一场战斗
+开始游戏
+看广告提高招募上限
+看看掌门这胜利之姿，跟着掌门大人一路扶摇直上指日可待呀！
+看来，你不是我要找的人。
+看我容颜之旷世，罗衣之璀璨，仿佛轻云蔽月，流风回雪
+看在掌门的面子上，我一忍再忍，今天我真是受不了，[对方姓名]！！！你这@#%@#@#￥%@￥￥%……&*的东西，你最好躲得好好的，不然我定要打得你满地找牙！！
+看招！
+拷贝version到指定路径成功
+拷贝数据到指定路径
+可服用丹药(
+可服用调息丹（
+可领取
+可用仆从：
+空闲
+扣除本年度灵石支出
+扣了正的属性
+昆仑教送来了新的召集令，前去招募新弟子吧！
+昆仑派发布了新的评选活动
+昆仑派举办了选秀比赛，请挑选合适的弟子参加吧！（今日出现次数
+困难
+蓝色
+蓝色  
+劳心劳力，口干舌燥，终于招募得
+了,掌门可要记得我哦
+雷枪
+累计充值
+累计时间：
+冷言冷语，仇恨值提升了不少
+狸猫人带着不可置信的表情倒下，你看着狸猫人的尸体，对帝殊说——
+狸猫人掌门
+离开
+历练
+立绘图片名
+练功房弟子大于等于
+练功房里还有弟子
+炼丹
+炼丹材料
+炼丹成就
+炼丹房空余丹炉位
+炼丹炉
+炼丹天赋可让弟子驻守【炼丹房】时提高炼制高品质丹药的概率
+炼器
+炼器房
+炼器天赋可让弟子驻守【炼器房】时提高炼制法器的属性，强化法器的属性，以及分解法器返还材料的数量
+炼制宝石
+炼制丹药
+炼制法器
+炼制法器数量
+炼制某级别法器数量
+炼制中...
+烈焰
+裂隙
+裂隙后解锁
+裂隙吗？
+裂隙每年12月开启
+临-驱散
+临时宗门
+灵石
+灵石。
+灵石不够
+灵石支出
+灵树
+灵树天赋可让弟子驻守【灵树】时提高产量
+灵田
+领取广告次数奖励
+流目录加载version成功！
+流目录加载文件成功
+流水
+裸属性
+洛雨体
+绿色
+绿色  
+略有声名
+吗？
+没能正确得到服务器时间
+没想到妖族的势力已经渗透到这里，万界的形势看来很严峻。我只知道妖族为祸万界，为了天下苍生，我必除掉所有的妖。这就是天道。
+没有id为
+没有ItemModel
+没有初始化itemModel
+没有初始化ItemModel
+没有定义该类型的对象池枚举
+没有该onlyId的物品
+没有广告 重新加载
+没有这个id的物品
+没有足够多的物品
+每达到一个新的大境界，可以多领悟一个灵根属性，更换灵根属性后，功法也需要更换为对应灵根属性的功法
+每年只能进入一次裂隙，确定进入
+每日高额（
+每月灵石消耗：-
+门下弟子
+迷雾森林
+秘境
+秘境探险，请等待探险完成
+秘境探险，请等待探险完成。
+密码长度应为6-20个字符
+免费
+免疫
+面板描述
+名,看来许多弟子挤破头都想加入你的宗门呢。
+名，其中天级弟子
+名满天下
+名声大震
+名字包含敏感字\n请重新输入
+名字不能为空
+名字是人的第二生命,
+命令交还灵石，不予追究
+魔胎
+魔血者
+目标是将
+目标字体的名字
+目前没有Excel文件被选中哦!
+目前掌门修仙到了
+墓地
+那，掌门大人以后能不能叫我小
+那人看出了你的异样，脸色一变，露出阴狠的狞笑
+呢。这是不是掌门某个重要的人呢，掌门在我心中是唯一的，希望我也是。
+内向
+能放大
+嗯，感觉看着顺眼多了
+嗯，以后，我就叫
+你……短短时间内，居然有了如此强大的实力
+你被狸猫人击倒在地，就在它的爪子即将划开你的喉咙时，帝殊出手了！
+你沉默良久，对帝殊说……
+你吃饭了吗
+你对云海宗掌门摆出战斗的架势，云海宗掌门的身形在滚滚黑烟中撕裂，竟现出了一只巨大的狸猫人！
+你隔这糊弄鬼呢，看来不给你长点教训，你是不会懂得云海宗保护你们的苦心！
+你和
+你居然背着我和
+你居然敢打伤我们云海宗的人，小子，我要你好看！
+你决定——
+你看了看帝殊清澈的眼神，又看了看云海宗掌门笃定的神情，陷入了思索。
+你们快掐掐我，我不是在做梦吧，掌门大人竟然这么强，我好佩服！！！
+你能给我一个解释吗？
+你身上为什么会有
+你什么都好，但我现在心里只有
+你忘记自己什么时候来到这里，这里比你熟悉的世界更古老。眼前是一个破败的宗门，似乎在招手迎接你的到来。你走了进去
+你走进一个小树林，在潺潺的溪水中看见自己的脸，似乎想起了自己的名字和长相……
+年龄：{idCardInfo.age}岁\n\n
+捏脸
+您的密码少于3位
+您的年龄小于8岁，无法注册。
+您的钱已见底
+您的修为不足，无法再减少了
+您观看广告太频繁了，请稍候片刻
+您还没有八卦炉，请先建造一个
+您还没有练功房，请先建造一个
+您还没有炼丹炉，请先建造一个
+您还没有炼器房，请先建造一个
+您还有未收获的丹，请先收获
+您今日还可招募5次弟子
+您没有炼器房，请造一个
+您破产了，看广告复活
+您尚未建造
+您尚未建造该建筑
+您输入的内容含有敏感词,请重新输入。
+您说话太频繁啦
+您已登峰造极
+您至少选择一个弟子
+您至少选择一名弟子
+凝形
+牛啊牛啊，不愧是掌门大人，赢的轻轻松松~
+牛逼
+评分：
+破产
+破境丹
+普通
+普通法器
+其实,一直以来我都觉得自己应该有另外一个名字，是掌门大人圆了我的梦
+奇怪，你的身体里似乎有一股力量在与天地灵气呼应。
+气集满了，调动经脉，释放绝学！
+潜龙在渊，腾必九天！
+潜心修炼，领悟了功法
+潜心修炼，悟有所得，将
+强化
+强化法器等级
+强化法器中……
+强化吗？
+强化血脉
+强化血脉中……
+强化至
+强化至Lv
+强化至Lv.
+强制下线！您的账号已在别处登录或会话已失效。
+切成
+切磋
+亲密无间，行事默契无比，彼此十分信任。
+清理
+清理成功
+清理门户！
+清灵草
+情窦初开，经常互赠一些有趣的小玩意，二人形影不离，相处默契无比。
+情深意浓，常结伴同游，朝夕与共，难舍难分。
+情投意合，以山川日月为盟誓，从今日起结为道侣，山河不改，此情不移，从此死生相托，患难不离。
+情谊渐深，二人所谈所想，有如高山流水，如觅知音。
+请等待
+请等待法器制造完成
+请等待上个研究完成
+请等待生产完成
+请等待元神恢复
+请点击具有
+请点击任意弟子，使其驻守
+请检查您的身份证信息是否正确
+请检查网络状况
+请将建筑拖动到合适的位置
+请让我助你一臂之力。
+请输入密码
+请输入密码！
+请输入身份证号
+请输入姓名
+请输入账号
+请输入账号！
+请输入账号和密码
+请先登录后使用
+请先登录账号！
+请先点击地面上的锁标志，解锁空位
+请先将弟子身上的道具取下
+请先将弟子身上的装备取下
+请先通过前面的关卡
+请先完成神秘少女的任务
+请先完成苏梦岚的任务
+请先选择宝石
+请先选择图纸
+请选择编码类型:
+请选择格式类型:
+区·
+区服信息与该存档不一致！
+区区人族，竟敢踏足此地，若是再不停下，我要你有去无回！
+驱散对方30%气
+取消
+取消将返还未炼制丹药的材料，确定取消吗？
+去你大爷
+全部的灵石？哪怕你是新上任的掌门，也不可能就这点吧
+全力生产
+缺少
+确定
+确定参加
+确定拆除吗？
+确定出售吗？
+确定出售这些物品吗？
+确定分解吗？
+确定购买吗？
+确定花费
+确定加速
+确定将
+确定解锁
+确定觉醒
+确定取消
+确定使用
+确定消耗5点源力进行加速吗？
+确定要建立新存档吗，老存档会被覆盖。
+确定在该位置开新档进行游戏吗?
+确定召回弟子吗？
+让弟子单独前行，不会影响其和任何人的好感度，确定吗？
+人动心的人吧。掌门大人，怎么办，我真的好痛苦。
+人各有志，随他们去
+人生还能遇到几个像[对方姓名]这样的朋友？
+任务参数
+任务类型
+任务条件
+任意法器
+任意类型
+日-集气
+容貌皆为虚妄，只有仙道才是修士应该追求的方向
+融化
+如果支撑不住，可以先撤退，攒满气再来打！
+若是你知道你的哥哥就是那为害苍生的一份子，你又当如何呢？你究竟是为了天下苍生，还是为了你自己……的哥哥？
+杀怪多少只
+杀怪拿东西
+杀了他们
+铩羽而归！
+山海宗门人
+山海宗长老
+山海宗掌门
+山门
+山门新来了一批弟子，快去看看吧。
+山门招募上限：
+山下
+删除
+删除存档
+伤害增加20%
+伤势未痊愈，请掌门见谅
+上传成功，请勿重复点击
+上传失败，请勿重复点击: 
+上次记录的时间:
+上次记录的时间-24小时:
+上前迎战(体力-
+上限：
+尚未满足允许全力生产的建筑
+少废话，要杀要剐随你便（默默地想）
+少侠，您的血脉具有
+少阳三焦经
+少阴心经
+社交恐惧
+社交牛逼
+身份证号必须为18位
+身份证号不能为空
+身份证号格式不正确
+身份证号校验码错误
+身份证号中的出生日期无效
+什……什么！你居然秒杀了我师兄？
+神匠
+神力
+神神秘秘来到你跟前
+神算子
+升华
+升级成功！
+升级丹炉实验室次数
+升级法器
+升级功法中……
+升级技能
+升级某级别法器
+升级需要
+升级中
+生产
+生产弟子突破需要材料类型数量
+声名鹊起
+声名显赫
+声名远扬
+声望达到
+剩余
+剩余时间：
+失去
+十八
+十二
+十分投缘，常来常往，交往渐密。
+十九
+十六
+十六强
+十七
+十三
+十四
+十五
+十一
+时间限制检查已启动
+时间限制检查已停止
+识别结果为空
+食物不够
+使用
+使用banhaomode存档格式: {archiveName}
+使用沉魄净赋丹将重置弟子天赋，其修为，等级，感悟，道具也将清空,请慎重。
+使用成功
+使用高级整容卡随机改变角色相貌（颜值至少为秀气）？
+使用某类型物品多少次
+使用普通存档格式: {archiveName}
+使用整容卡随机改变角色相貌？
+世界
+事件场景
+事件类型
+是否后置对话
+是否回收物品
+是否前置对话
+是否删除存档:
+是否消耗转魂丹更改天赋？
+是否重复
+是你？！帝殊......你龟缩了这么多年，居然在这时出现了。怎么，这小子就是你要找的人？一千年过去了，如今妖族强大无比，我劝你还是乖乖继续龟缩在人族的地盘上，夹好尾巴做人，免得被那家伙知道你的存在，它势必来杀你！
+收获
+收集物品
+收益：
+首次
+枢-护盾
+输出信息：
+输入框
+属性吗？
+刷新次数：
+刷新弟子次数
+水灵体
+说完，
+四强
+送技能的山贼
+虽不甚熟悉，却交流甚欢，相处愉悦。
+虽然
+所选丹药与弟子等级不符
+所选丹药与弟子品级不符
+所有技能都在cd，放普攻
+所有文件加载成功！
+所有字段都是必填的
+太强了吧，我就知道掌门会赢，各位上阵的师兄姐们也都辛苦啦！
+太阴肺经
+太阴脾经
+探索秘境次数
+讨伐
+特定炼丹炉
+提高段位需要宗门等级
+提升宗门等级
+提示
+提示文本
+体力
+体力不够
+体力不够！
+天，
+天赋
+天赋的
+天赋的弟子
+天赋的弟子，使其驻守
+天赋觉醒次数
+天机
+天级天赋晶石不够
+天晶补充
+天晶不够
+天晶不够，是否前往购买？
+天晶不够，是否前往获取？
+添加弟子
+条件/写着玩
+听明白了
+挺进下一轮
+通关
+通关裂隙
+通关世界
+通关云海宗后解锁
+通过关卡
+通过哪一关裂隙
+通过山门招募弟子数量已达上限，请等待刷新
+通过上一个地图后解锁
+通用完成条件
+统计名字
+突破等级中……
+突破境界中……
+突破失败 损失修为，下次突破成功率增加
+突破失败 下次突破成功率增加
+团队没有id为
+外向
+完成
+完成地图事件
+完成了某个主线任务
+完成了上个任务
+完美
+玩家回复
+玩家模型
+玩家是否回复
+玩家提升境界到
+玩家修炼等级大于等于
+玩家修炼等级在某个范围
+玩家血|防|攻
+万界之主
+万众敬仰
+威震寰宇
+微不足道
+为对方施加“虚弱”buff，持续3回合
+为什么要叫
+为自己施加“灵元盾”buff
+未安装手Q或者版本不支持！
+未成年人充值限制提示: 
+未成年人登录限制: 
+未成年人时间限制，强制退出游戏
+未达到领取条件
+未发现保存的登录账号
+未获得该头像
+未获得该头像框
+未觉醒
+未连接到服务器，请重启游戏登录后查看
+未连接到服务器，请重新登录后使用
+未强化
+未习得
+未选择数量
+未找到 Luban 批处理文件：\n{batPath}
+未找到云端存档，使用本地存档
+未知
+位置
+文件出错！
+文件加载失败: 
+我不是天底下唯一一个为两个
+我的人是掌门的，我的名字也是掌门的，掌门愿意叫我什么，我便叫什么
+我对天发誓：[对方姓名]是我这辈子永远的仇人，我此生与[ta]不共戴天！有我在一天，[ta]就别想好过一天！
+我顿时气血沸腾，恨不得立马就让他见识见识，什么叫天选的穿越者！
+我发誓，[对方姓名]以后就是我两肋插刀的朋友！
+我仿佛已经看到未来的万界之主了，掌门冲呀！
+我告诉你们，[对方姓名]就是我的仇人，以后我看到[ta]一次就要打[ta]一顿！！什么东西！
+我告诉他宗门刚刚成立，自己也刚上任不久，对一切都不熟悉，穷尽全力也只找到这些灵石，还望网开一面。
+我还是觉得以前的名字好听，不过现在的也凑合，掌门喜欢就行
+我和
+我没有id为
+我们……知道错了,求掌门大人饶过，我们愿意继续为宗门做事！
+我呸！[对方姓名]怎么这么讨厌，看到[ta]就烦
+我时常会想起跟[对方姓名]一起相处的日子，不管是战斗还是生活，都默契无比
+我喜欢这个新名字，
+我相信你
+我想掌门大人一定是在开玩喜
+我也早就想去万界历练一番啦
+我与[对方姓名]一同以道心起誓：从今日起结为道侣，山河不改，此情不移，从此死生相托，患难不离。
+我与[对方姓名]一同以道心起誓：从今日起结为道友，从此死生相托，吉凶相救，福祸相依，患难相扶。
+我真庆幸交了[对方姓名]这个朋友，我们意气相投，志趣也相投，哈哈哈，这是你们羡慕不来的！
+呜呜呜，[对方姓名]明明对宗门很忠心，掌门为什么要赶[ta]走，[ta]可是我最好的朋友呜呜呜呜
+无法启动 Luban 进程
+无法完成上传
+无法携带同类功法
+无法再服用更多调息丹
+无角色
+无套装效果
+无效兑换码
+五色彩鳞蟒
+五色梦魂花
+武器大师
+物品id
+物品数量大于等于
+希望下次遇见时，我能成长成掌门喜欢的样子
+洗髓
+洗髓失败，下次成功概率+
+下次恢复：
+下次界域裂隙打开将是一年以后，确定离开吗？
+下次刷新：
+下次突破成功率+
+下列项目将被转换为
+下载成功，请勿重复点击
+下载失败
+下载云端存档异常: {ex.Message}
+下载中，请等待10秒再操作
+仙骨
+娴熟
+嫌隙渐深，常对对方恶语相向。
+现实时间（分钟)
+限一次
+相见欢愉，分离落寞，似有别样情愫暗藏于心。
+相信帝殊
+相信云海宗掌门
+镶嵌宝石
+镶嵌宝石中……
+镶嵌某级别宝石
+想要失去一个不存在的仓库物品，id为
+想要失去一个不存在的物品，id为
+想要移除一个不存在的唯一id物品
+消息包含敏感词汇，请修改后重试。
+宵人
+小成
+小怪
+小人图片名
+小有积怨，常常争吵。
+小有嫌隙，屡屡争执。
+效率：
+邪恶
+邪魔之子
+携带技能
+携带绝学后，每次攻击即可积攒气，当气集满，便能释放绝学。
+鞋子
+卸下
+卸下宝石
+卸下技能
+心如止水
+心跳请求错误 - 状态码: {request.responseCode}
+心跳失败: {response.message}
+心跳已启动，用户: {username}, 设备ID: {deviceId}
+心跳已停止。
+心跳正常。
+心照神交，不管讨论修炼之道，还是人生态度，所论所得皆受益匪浅。
+新的pos是
+新面孔啊，这个宗门你管事是吧，我是云海宗长老，你应该认识我吧
+新人
+新人别害怕，来宗里就像来了自己家一样
+新人交保护费了没有？
+新事件
+新手_解决俩混混
+新手引导
+惺惺相惜，觉得对方堪为良友，有意结交。
+醒来时，帝殊和云海宗掌门都已消失不见，你头痛欲裂，天上下着小雨，你仿佛做了许多梦。外面究竟是什么，总有一天你会去调查清楚，等到……你足够强大的时候。
+性别：{idCardInfo.gender}\n
+性格:
+姓名：{name}\n
+姓名长度应为2-10个字符
+凶煞
+修改成功
+修改角色名字
+修改你的名字
+修改宗门名字
+修炼中……
+修为不够
+修为丹
+修武
+修武弟子突破境界成功
+修武弟子突破境界失败
+墟-定身
+需求：具备
+需要
+需要被踢下线! 消息: {response.message}. 新设备ID: {response.newDeviceId}
+需要达到
+需要丹炉数量
+需要境界等级
+需要男弟子
+需要女弟子
+需要杀敌
+需要数量
+需要通过主线
+需要物品
+选拔
+选择天赋
+选择原谅
+学习
+学习功法中……
+学习技能
+亚军
+研究成功！
+研究中
+验证成功
+验证错误,获取AccessToken失败!!!
+叶凡
+一次性
+一旦成功将洗根伐髓，提升弟子品级，但其修为和感悟将清空,请慎重。(当前成功率：
+一觉醒来，名字变了？
+咦，名字又改了，这个宗不会跑路吧。
+移除助战
+遗迹
+已保存账号: {account}
+已保存账号和密码: {account}
+已被封号，无法进入游戏
+已被封脉，无法使用功法
+已成功将
+已成功将技艺提升至Lv.
+已成功镶嵌
+已从StreamingAssets复制存档到持久化目录: {persistentArchivePath}
+已达到最大等级
+已达等级上限
+已达最大等级
+已达最大改命次数
+已达最大建筑队列，请等待建造完成
+已达最大数量限制
+已到达目的地
+已复制到剪贴板
+已回复源力
+已获得免广告权限
+已经开始研究
+已经开始研究,研究将在
+已经学习了该功法
+已清除保存的登录账号
+已清除所有本地存档，方便切换账号
+已上阵
+已上阵，请先下阵
+已售罄
+已突破到
+已退出登录。
+已镶嵌
+已学会技能：
+已装备
+已自动填充账号: {lastAccount}，请手动输入密码后登录
+以后不管遇到什么事，我都会坚定站在[对方姓名]的那边
+以后弟子就叫这个名字了
+以增加5%突破成功率
+意气相投，谈天说地，畅所欲言，忘乎所以。
+因{0},无法下载
+引导id
+引导—招募一名外门弟子
+应该关闭！
+璎珞
+哟呵，这破落地还有活人呢？看样子还是个普通人？速速交出1000灵石，不然给你点颜色看看！
+拥有a个b级c建筑
+拥有a个技能等级为b的弟子
+拥有a名b等级的生产弟子
+拥有a名b等级的修武弟子
+拥有a名b天赋弟子
+用该guid登录maofuwuqi
+用户登录成功：{account}
+用户注册成功：账号={account}, 姓名={name}, 年龄={idCardInfo.age}
+用钱
+优化率：
+幽冥洞穴
+游历到了
+游戏年份
+游戏时间：
+有广告 播放广告
+有人死了
+有傻逼
+有新的空地可以解锁了
+有重复
+又有新人来啦，欢迎~~~~撒花~~~
+渊-削弱
+元神受损，剩余时间：
+元神受损，无法服丹
+元神受损，无法突破
+元婴
+原来的pos是
+原来我不是你心里的唯一，我知道了，我这就退出，祝你们幸福。
+源力结晶
+源力上限增加
+源力已回复满
+远近闻名
+约会，我恨透你啦！
+月灵矿
+月-增益
+云海宗守护这块地这么久，保护费，900灵石，交上来。
+云海宗长老虎视眈眈地把守此处，或许先应该击败他
+云海宗掌门的身体突然冒出滚滚黑烟，所幸有少女的提醒，你及时躲开了这些黑烟。
+再观看
+再想想
+在RoleAttackState中，startSkillCenter值为
+在RoleAttackState中，startSkillForeRoll值为
+在RoleAttackState中，由于技能结束，startSkillCenter值为
+在RoleAttackState中，由于开始攻击，startSkillCenter值为
+在RoleAttackState中，由于开始攻击，startSkillForeRoll值为
+在RoleAttackState中，由于前摇结束，startSkillCenter值为
+在RoleAttackState中，由于前摇结束，startSkillForeRoll值为
+在StartAttack方法中，role为
+在古泉水的润泽下，你的队伍得到了治愈
+在你的治理下蒸蒸日上。
+在无父物体的位置创建single！！！
+在这茫茫仙界中也算是
+战败者无法出战
+战斗力
+战斗力：
+战力
+战力：
+张？
+长安生效
+掌门
+掌门，得罪了
+掌门：
+掌门保重，后会有期！
+掌门别灰心！我们会努力种田给掌门修炼的！加油加油！
+掌门别伤心，咱们修炼一段时间再战！我就不信了，像掌门大人这样的修炼天才，还能输给他们不成！！
+掌门大人，今后我就是您的专属
+掌门大人，我们也是迫不得已，今后咱们恩怨两清，就当是陌生人，江湖险恶，还得小心为上。
+掌门大人，这边建议先解决掉云海宗门人呢
+掌门大人小心！快躲开！！！
+掌门大人执掌宗门已有
+掌门改名字一定有他的用意，我们就不要无端揣测啦，再多哔哔就让掌门禁言你们。
+掌门没受伤吧，别灰心，留的青山在，不怕没柴烧！
+掌门名字包含敏感字\n请重新输入
+掌门无法查看社交属性
+掌门无法下阵
+掌门无需改变性格
+掌门无需洗髓
+掌门无需重修
+掌门修为达到下个大境界可解锁新的属性
+掌门犹如弟子的再生父母，感谢掌门为弟子起的新名字，弟子很喜欢
+掌门真棒！看谁以后还敢瞧不起咱们宗
+账号：{account}\n
+账号已填充: {lastAccount}，请输入密码
+账号长度应为3-20个字符
+账号只可由字母和数字组成
+招募成功
+招募弟子
+招募弟子处
+招募弟子次数
+招募令
+招募令不够，是否前往获取？
+招募消耗食物
+找不到名字为{0}的物体
+召集令
+这才是我梦寐以求的容貌啊！
+这丹药真是不可思议！
+这个仇……我记下了（在心里说）
+这是一个测试chat测试chat
+这位小掌门，你恐怕还不知道吧，你身边的这位美丽姑娘，是个十足的怪物！他们兄妹俩屠杀了无数妖族，取妖族的内丹来修炼，帝殊那美丽的皮囊下，充斥的是滚滚妖气！。你……只不过是她的棋子而已。
+针锋相对，互相看对方不顺眼，仇恨值大幅提升
+真的确定删除吗，选择后不能后悔哦。
+真气不够
+整容
+正当两人的对话让你云里雾里时，云海宗掌门突然将话头转向了你。
+正在
+正在检查版本……
+正在建造中，请等待建造完成
+正在炼制装备，请等待炼制完成
+正在秘境派遣中，无法出战
+正在秘境探险
+正在上传，请勿操作
+正在下载，请勿操作
+正在注册，请稍等...
+正在坐镇
+之力,
+支线
+知己啊知知己！[对方姓名]就是我的人生知己！
+执行任务前的对话
+止步
+只是好朋友。
+只有生产弟子需要服用纯灵果
+只有通关后的关卡可以扫荡
+只有修武弟子可上阵队伍及派遣到秘境
+志趣相投，畅聊许久，好感度大幅提升
+制造宝石
+中境界突破成功
+终于见到[对方姓名]了，可我竟然磕磕巴巴说不出完整的话来，明明没见到[ta]的时候，我有很多想对[ta]说的
+种田
+种田天赋可让弟子驻守【灵田】时提高产量
+重复
+重复性质
+重瞳
+周后开始
+周后完成。
+周叛宗离去
+逐出宗门吗？
+逐灵鸟
+主线
+注册成功
+注册成功!
+注册成功！\n
+注册成功，跳转到登录界面
+注册成功: 
+注册失败: 
+注册失败: {errorMsg}
+注册失败：网络异常 - 
+注册失败：未成年用户不允许注册
+注册失败提示已确认
+注册异常: {ex}
+驻守
+驻守，是否将它换到这个
+驻守，是否取消其驻守?
+驻守八卦炉可提高宝石的优化率
+驻守藏经阁可提高藏经阁产量
+驻守建筑
+驻守矿场可提高矿场产量
+驻守炼丹房可提高炼制出高级丹药的概率
+驻守炼器房可提高装备炼制，装备强化的优化程度，装备分解返还的材料数量
+驻守灵树可提高灵树产量
+驻守灵田可提高灵田产量
+转换
+转换成功
+转魂
+转魂丹不够，是否前往获取？
+赚取灵石已有
+装备
+装备法器
+装备法器中……
+装备了
+状态码:{request.responseCode} 原始:{request.downloadHandler.text}
+准备阶段结束，关闭logicpause 双方开始计时
+灼烧
+紫色
+紫色  
+自动登录异常: {ex.Message}
+自动登录中: {lastAccount}
+字典没有注册该红点就永不显示
+字数过多
+宗门
+宗门Lv.
+宗门大比
+宗门等级：
+宗门等级6级后可继续挑战
+宗门等级提升为Lv
+宗门改名
+宗门名字包含敏感字\n请重新输入
+宗门暂无更多空位，请先收集足够的灵石解锁空位
+总优化率：
+最大讨伐等级
+最多上阵
+作弊了
+坐镇a建筑的弟子数b
+坐镇丹房
+坐镇弟子总数
+坐镇该丹房吗？
+做到天下第一……天下第二，掌门除外！
