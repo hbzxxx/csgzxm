@@ -715,9 +715,12 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
                 
                 foreach (var guide in DataTable._newGuideList)
                 {
-                    gameInfo.NewGuideData.finishedGuideIdList.Add(guide.Id);
-                    gameInfo.NewGuideData.IdList.Add(guide.Id);
-                    gameInfo.NewGuideData.AccomplishStatus.Add(2); // 2 = 已完成
+                    if (int.TryParse(guide.Id, out int guideIdInt))
+                    {
+                        gameInfo.NewGuideData.finishedGuideIdList.Add(guideIdInt);
+                        gameInfo.NewGuideData.IdList.Add(guideIdInt);
+                        gameInfo.NewGuideData.AccomplishStatus.Add(2); // 2 = 已完成
+                    }
                 }
                 gameInfo.NewGuideData.curGuideId = 0;
                 gameInfo.NewGuideData.curGuideStep = 0;
