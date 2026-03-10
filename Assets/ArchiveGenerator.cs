@@ -59,6 +59,10 @@ public class ArchiveGenerator : MonoBehaviour
         if (originalPlayer != null)
         {
             originalPlayer.studentLevel = playerLevel;
+            if (originalPlayer.curEquipItemList == null)
+            {
+                originalPlayer.curEquipItemList = new List<ItemData> { null, null, null, null, null, null };
+            }
         }
         return originalPlayer;
     }
