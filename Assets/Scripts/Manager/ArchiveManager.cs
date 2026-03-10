@@ -64,6 +64,11 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
         GameInfo gameInfo = ArchiveGenerator.Instance.GetGameInfo();
         gameInfo.SaveTime = CGameTime.Instance.GetTimeStamp();
         
+#if UNITY_EDITOR
+        // 测试模式：自动修改存档数据
+        ApplyTestModifications(gameInfo);
+#endif
+        
         // 确保目录存在
         DirectoryInfo destination = new DirectoryInfo(ConstantVal.GetArchiveSaveFolder(archiveIndex));
         if (!destination.Exists)
@@ -635,4 +640,152 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
 
         Debug.Log("RestoreAllSettings 完成：所有 setting 已重新赋值");
     }
+    
+#if UNITY_EDITOR
+    /// <summary>
+    /// 测试模式：自动修改存档数据
+    /// 将玩家等级、属性、建筑、新手教程、地图关卡全部设为最高/完成状态
+    /// </summary>
+    private void ApplyTestModifications(GameInfo gameInfo)
+    {
+        if (gameInfo == null) return;
+        
+        Debug.Log("[TestMod] 开始应用测试修改...");
+        
+        // 1. 设置玩家等级为最高
+        int maxStudentLevel = DataTable._studentUpgradeList.Count;
+        if (gameInfo.playerPeople != null)
+        {
+            gameInfo.playerPeople.studentLevel = maxStudentLevel;
+            gameInfo.playerPeople.studentCurExp = int.MaxValue;
+            gameInfo.playerPeople.curXiuwei = ulong.MaxValue;
+            Debug.Log($"[TestMod] 玩家等级已设为: {maxStudentLevel}");
+            
+            // 设置所有属性为最大值
+            if (gameInfo.playerPeople.propertyList != null)
+            {
+                foreach (var prop in gameInfo.playerPeople.propertyList)
+                {
+                    prop.num = int.MaxValue;
+                    prop.limit = long.MaxValue;
+                }
+            }
+            if (gameInfo.playerPeople.curBattleProList != null)
+            {
+                foreach (var prop in gameInfo.playerPeople.curBattleProList)
+                {
+                    prop.num = int.MaxValue;
+                    prop.limit = long.MaxValue;
+                }
+            }
+            Debug.Log("[TestMod] 玩家属性已设为最大值");
+        }
+        
+        // 2. 设置山门等级为最高
+        if (gameInfo.AllBuildingData != null)
+        {
+            gameInfo.AllBuildingData.MountainLevel = 100; // 设置一个较高的山门等级
+            
+            // 设置所有建筑满级
+            if (gameInfo.AllBuildingData.BuildList != null)
+            {
+                int equipMaxLevel = DataTable._equipBuildingUpgradeList.Count;
+                int lianDanMaxLevel = DataTable._lianDanBuildingUpgradeList.Count;
+                int maxBuildingLevel = Mathf.Max(equipMaxLevel, lianDanMaxLevel, 50);
+                
+                foreach (var building in gameInfo.AllBuildingData.BuildList)
+                {
+                    building.CurBuildLevel = maxBuildingLevel;
+                    building.MaxStudentNum = 100;
+                    building.StudentNum = 0;
+                }
+                Debug.Log($"[TestMod] 建筑已设为满级 (等级 {maxBuildingLevel})");
+            }
+        }
+        
+        // 3. 设置所有新手教程为已完成
+        if (gameInfo.NewGuideData != null)
+        {
+            // 获取所有配置的新手引导ID
+            if (DataTable._newGuideList != null)
+            {
+                gameInfo.NewGuideData.finishedGuideIdList.Clear();
+                gameInfo.NewGuideData.IdList.Clear();
+                gameInfo.NewGuideData.AccomplishStatus.Clear();
+                
+                foreach (var guide in DataTable._newGuideList)
+                {
+                    gameInfo.NewGuideData.finishedGuideIdList.Add(guide.Id);
+                    gameInfo.NewGuideData.IdList.Add(guide.Id);
+                    gameInfo.NewGuideData.AccomplishStatus.Add(2); // 2 = 已完成
+                }
+                gameInfo.NewGuideData.curGuideId = 0;
+                gameInfo.NewGuideData.curGuideStep = 0;
+                Debug.Log($"[TestMod] 新手教程已完成 ({gameInfo.NewGuideData.finishedGuideIdList.Count} 个)");
+            }
+        }
+        
+        // 4. 设置所有地图和关卡为解锁/通关状态
+        if (gameInfo.AllMapData != null && gameInfo.AllMapData.MapList != null)
+        {
+            foreach (var map in gameInfo.AllMapData.MapList)
+            {
+                map.MapStatus = 2; // 2 = 已解锁
+                
+                if (map.LevelList != null)
+                {
+                    foreach (var level in map.LevelList)
+                    {
+                        level.LevelStatus = 2; // 2 = 已通关
+                        level.HaveAccomplished = true;
+                    }
+                }
+                if (map.FixedLevelList != null)
+                {
+                    foreach (var level in map.FixedLevelList)
+                    {
+                        level.LevelStatus = 2;
+                        level.HaveAccomplished = true;
+                    }
+                }
+            }
+            Debug.Log($"[TestMod] 地图和关卡已全部解锁/通关 ({gameInfo.AllMapData.MapList.Count} 个地图)");
+        }
+        
+        // 5. 尝试解锁更多内容（如果存在）
+        // 宗门等级
+        if (gameInfo.allZongMenData != null)
+        {
+            gameInfo.allZongMenData.ZongMenLevel = 100;
+            Debug.Log("[TestMod] 宗门等级已设为满级");
+        }
+        
+        // 探索数据
+        if (gameInfo.AllExploreData != null && gameInfo.AllExploreData.ExploreList != null)
+        {
+            foreach (var explore in gameInfo.AllExploreData.ExploreList)
+            {
+                explore.Unlocked = true;
+                explore.AllEventNum = 999;
+            }
+            Debug.Log("[TestMod] 探索已全部解锁");
+        }
+        
+        // 成就数据
+        if (gameInfo.AllAchievementData != null && gameInfo.AllAchievementData.achievementList != null)
+        {
+            foreach (var achievement in gameInfo.AllAchievementData.achievementList)
+            {
+                if (achievement != null)
+                {
+                    achievement.accomplishStatus = 2; // 2 = 已完成
+                    achievement.curProgress = 9999;
+                }
+            }
+            Debug.Log($"[TestMod] 成就已全部完成 ({gameInfo.AllAchievementData.achievementList.Count} 个)");
+        }
+        
+        Debug.Log("[TestMod] 测试修改应用完成！");
+    }
+#endif
 }
