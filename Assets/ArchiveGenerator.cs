@@ -4,7 +4,7 @@ using Framework.Data;
 using cfg;
 
 /// <summary>
-/// 存档生成器 - 在保存存档时修改地图为全部解锁，玩家等级最高
+/// 存档生成器 - 在保存存档时修改玩家等级、主城等级、新手教程、地图解锁
 /// </summary>
 public class ArchiveGenerator : MonoBehaviour
 {
@@ -13,6 +13,9 @@ public class ArchiveGenerator : MonoBehaviour
 
     [Header("玩家等级")]
     public int playerLevel = 9999;
+
+    [Header("主城等级")]
+    public int mountainLevel = 9999;
 
     private void Awake()
     {
@@ -30,12 +33,44 @@ public class ArchiveGenerator : MonoBehaviour
     {
         if (gameInfo == null) return;
 
+        // 玩家等级
         if (gameInfo.playerPeople != null)
         {
             gameInfo.playerPeople.studentLevel = playerLevel;
         }
 
+        // 主城等级
+        if (gameInfo.AllBuildingData != null)
+        {
+            gameInfo.AllBuildingData.MountainLevel = mountainLevel;
+        }
+
+        // 新手教程 - 全部完成
+        gameInfo.NewGuideData = CreateCompletedNewGuide();
+
+        // 地图数据 - 全部解锁
         gameInfo.AllMapData = CreateUnlockedMaps();
+    }
+
+    private NewGuideData CreateCompletedNewGuide()
+    {
+        var guideData = new NewGuideData
+        {
+            finishedGuideIdList = new List<int>(),
+            IdList = new List<int>(),
+            AccomplishStatus = new List<int>(),
+            curGuideId = 0,
+            curGuideStep = 0
+        };
+
+        for (int i = 1; i <= 100; i++)
+        {
+            guideData.finishedGuideIdList.Add(i);
+            guideData.IdList.Add(i);
+            guideData.AccomplishStatus.Add(2);
+        }
+
+        return guideData;
     }
 
     private AllMapData CreateUnlockedMaps()
