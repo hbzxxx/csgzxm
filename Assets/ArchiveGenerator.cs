@@ -20,10 +20,17 @@ public class ArchiveGenerator : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        DontDestroyOnLoad(gameObject);
     }
 
     public GameInfo GetGameInfo()
     {
+        if (Instance == null)
+        {
+            var go = new GameObject("ArchiveGenerator");
+            go.AddComponent<ArchiveGenerator>();
+        }
+        
         var gameInfo = RoleManager.Instance._CurGameInfo;
         ModifyGameInfo(gameInfo);
         return gameInfo;
