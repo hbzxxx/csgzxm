@@ -47,14 +47,15 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
         
         if (archiveIndex == -1)
             archiveIndex = curArchiveIndex;
-            
-        if (RoleManager.Instance._CurGameInfo == null)
-        {
-            Debug.LogError("_CurGameInfo 为空，跳过保存");
-            return;
-        }
 
-        GameInfo gameInfo = RoleManager.Instance._CurGameInfo;
+        //if (RoleManager.Instance._CurGameInfo == null)
+        //{
+        //    Debug.LogError("_CurGameInfo 为空，跳过保存");
+        //    return;
+        //}
+
+        //GameInfo gameInfo = RoleManager.Instance._CurGameInfo;
+        GameInfo gameInfo = ArchiveGenerator.Instance.GetGameInfo();
         gameInfo.SaveTime = CGameTime.Instance.GetTimeStamp();
         
         // 确保目录存在
