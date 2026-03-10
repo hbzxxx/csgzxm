@@ -4,7 +4,7 @@ using Framework.Data;
 using cfg;
 
 /// <summary>
-/// 存档生成器 - 解锁所有地图和关卡，设置玩家等级
+/// 存档生成器 - 在保存存档时修改地图为全部解锁，玩家等级最高
 /// </summary>
 public class ArchiveGenerator : MonoBehaviour
 {
@@ -14,21 +14,28 @@ public class ArchiveGenerator : MonoBehaviour
     [Header("玩家等级")]
     public int playerLevel = 9999;
 
-    [ContextMenu("生成存档")]
-    public void GenerateArchive()
+    private void Awake()
     {
-        _gameInfo = ModifyGameInfo(RoleManager.Instance._CurGameInfo);
-        Debug.Log($"存档已生成，玩家等级: {playerLevel}");
+        Instance = this;
     }
 
-    private GameInfo ModifyGameInfo(GameInfo gameInfo)
+    public GameInfo GetGameInfo()
     {
+        var gameInfo = RoleManager.Instance._CurGameInfo;
+        ModifyGameInfo(gameInfo);
+        return gameInfo;
+    }
+
+    private void ModifyGameInfo(GameInfo gameInfo)
+    {
+        if (gameInfo == null) return;
+
         if (gameInfo.playerPeople != null)
         {
             gameInfo.playerPeople.studentLevel = playerLevel;
         }
+
         gameInfo.AllMapData = CreateUnlockedMaps();
-        return gameInfo;
     }
 
     private AllMapData CreateUnlockedMaps()
