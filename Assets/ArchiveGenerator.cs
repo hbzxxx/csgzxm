@@ -63,21 +63,40 @@ public class ArchiveGenerator : MonoBehaviour
             gameInfo.playerPeople.studentLevel = playerLevel;
             Debug.Log($"[ArchiveGenerator] 设置玩家等级为: {playerLevel}");
         }
-
-        // 主城等级
-        if (gameInfo.AllBuildingData != null)
+        else
         {
-            gameInfo.AllBuildingData.MountainLevel = mountainLevel;
-            Debug.Log($"[ArchiveGenerator] 设置主城等级为: {mountainLevel}");
+            Debug.LogWarning("[ArchiveGenerator] playerPeople 为空!");
         }
+
+        // 主城等级 - 确保 AllBuildingData 存在
+        if (gameInfo.AllBuildingData == null)
+        {
+            gameInfo.AllBuildingData = new AllBuildingData();
+            Debug.Log("[ArchiveGenerator] 创建新的 AllBuildingData");
+        }
+        gameInfo.AllBuildingData.MountainLevel = mountainLevel;
+        Debug.Log($"[ArchiveGenerator] 设置主城等级为: {mountainLevel}");
 
         // 新手教程 - 全部完成
         gameInfo.NewGuideData = CreateCompletedNewGuide();
-        Debug.Log($"[ArchiveGenerator] 设置新手教程完成");
+        Debug.Log($"[ArchiveGenerator] 设置新手教程完成, 已完成数量: {gameInfo.NewGuideData.finishedGuideIdList.Count}");
 
         // 地图数据 - 全部解锁
         gameInfo.AllMapData = CreateUnlockedMaps();
-        Debug.Log($"[ArchiveGenerator] 设置地图解锁, 地图数量: {gameInfo.AllMapData.MapList.Count}");
+        int unlockedMaps = 0;
+        int unlockedLevels = 0;
+        foreach (var map in gameInfo.AllMapData.MapList)
+        {
+            if (map.MapStatus == 2) unlockedMaps++;
+            if (map.LevelList != null)
+            {
+                foreach (var level in map.LevelList)
+                {
+                    if (level.LevelStatus == 2) unlockedLevels++;
+                }
+            }
+        }
+        Debug.Log($"[ArchiveGenerator] 设置地图解锁, 地图数量: {gameInfo.AllMapData.MapList.Count}, 解锁地图: {unlockedMaps}, 解锁关卡: {unlockedLevels}");
 
         // 装备制造数据 - 清空避免空引用
         if (gameInfo.AllEquipmentData != null)
