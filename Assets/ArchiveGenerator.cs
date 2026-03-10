@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Framework.Data;
+using cfg;
 
 /// <summary>
 /// 存档生成器 - 修改玩家等级和地图解锁状态
