@@ -109,6 +109,29 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
             gameInfo = ES3.Load<GameInfo>(ConstantVal.mm, savePath, settings);
             
             Debug.Log($"[LoadArchive] 加载存档 - 玩家等级: {gameInfo.playerPeople?.studentLevel}, 主城等级: {gameInfo.AllBuildingData?.MountainLevel}");
+            if (gameInfo.AllMapData != null && gameInfo.AllMapData.MapList != null)
+            {
+                int unlockedMapCount = 0;
+                int totalLevelCount = 0;
+                int unlockedLevelCount = 0;
+                foreach (var map in gameInfo.AllMapData.MapList)
+                {
+                    if (map.MapStatus == 2) unlockedMapCount++;
+                    if (map.LevelList != null)
+                    {
+                        totalLevelCount += map.LevelList.Count;
+                        foreach (var level in map.LevelList)
+                        {
+                            if (level.LevelStatus == 2) unlockedLevelCount++;
+                        }
+                    }
+                }
+                Debug.Log($"[LoadArchive] 地图解锁: {unlockedMapCount}/{gameInfo.AllMapData.MapList.Count}, 关卡解锁: {unlockedLevelCount}/{totalLevelCount}");
+            }
+            else
+            {
+                Debug.Log("[LoadArchive] 地图数据为空");
+            }
             
             // 删除 SettingId=70001 的丹田数据
             if (gameInfo.allDanFarmData != null && gameInfo.allDanFarmData.DanFarmList != null)
