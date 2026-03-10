@@ -86,6 +86,29 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
         if (verifyGameInfo != null)
         {
             Debug.Log($"[ArchiveManager] 验证存档 - 玩家等级: {verifyGameInfo.playerPeople?.studentLevel}, 主城等级: {verifyGameInfo.AllBuildingData?.MountainLevel}");
+            if (verifyGameInfo.AllMapData != null && verifyGameInfo.AllMapData.MapList != null)
+            {
+                int unlockedMapCount = 0;
+                int totalLevelCount = 0;
+                int unlockedLevelCount = 0;
+                foreach (var map in verifyGameInfo.AllMapData.MapList)
+                {
+                    if (map.MapStatus == 2) unlockedMapCount++;
+                    if (map.LevelList != null)
+                    {
+                        totalLevelCount += map.LevelList.Count;
+                        foreach (var level in map.LevelList)
+                        {
+                            if (level.LevelStatus == 2) unlockedLevelCount++;
+                        }
+                    }
+                }
+                Debug.Log($"[ArchiveManager] 验证存档 - 地图解锁: {unlockedMapCount}/{verifyGameInfo.AllMapData.MapList.Count}, 关卡解锁: {unlockedLevelCount}/{totalLevelCount}");
+            }
+            else
+            {
+                Debug.Log("[ArchiveManager] 验证存档 - 地图数据为空");
+            }
         }
         
         // 如果被封了就弹窗
