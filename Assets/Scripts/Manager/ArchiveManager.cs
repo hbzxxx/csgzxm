@@ -657,8 +657,8 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
         if (gameInfo.playerPeople != null)
         {
             gameInfo.playerPeople.studentLevel = maxStudentLevel;
-            gameInfo.playerPeople.studentCurExp = int.MaxValue;
-            gameInfo.playerPeople.curXiuwei = ulong.MaxValue;
+            gameInfo.playerPeople.studentCurExp = 99999999;
+            gameInfo.playerPeople.curXiuwei = 99999999;
             Debug.Log($"[TestMod] 玩家等级已设为: {maxStudentLevel}");
             
             // 设置所有属性为最大值
@@ -666,16 +666,16 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
             {
                 foreach (var prop in gameInfo.playerPeople.propertyList)
                 {
-                    prop.num = int.MaxValue;
-                    prop.limit = long.MaxValue;
+                    prop.num = 9999;
+                    prop.limit = 99999;
                 }
             }
             if (gameInfo.playerPeople.curBattleProList != null)
             {
                 foreach (var prop in gameInfo.playerPeople.curBattleProList)
                 {
-                    prop.num = int.MaxValue;
-                    prop.limit = long.MaxValue;
+                    prop.num = 9999;
+                    prop.limit = 99999;
                 }
             }
             Debug.Log("[TestMod] 玩家属性已设为最大值");
@@ -706,26 +706,20 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
         // 3. 设置所有新手教程为已完成
         if (gameInfo.NewGuideData != null)
         {
-            // 获取所有配置的新手引导ID
-            if (DataTable._newGuideList != null)
+            gameInfo.NewGuideData.finishedGuideIdList.Clear();
+            gameInfo.NewGuideData.IdList.Clear();
+            gameInfo.NewGuideData.AccomplishStatus.Clear();
+            
+            // 使用与 ArchiveGenerator 相同的方式，添加 1-100 的引导 ID
+            for (int i = 1; i <= 100; i++)
             {
-                gameInfo.NewGuideData.finishedGuideIdList.Clear();
-                gameInfo.NewGuideData.IdList.Clear();
-                gameInfo.NewGuideData.AccomplishStatus.Clear();
-                
-                foreach (var guide in DataTable._newGuideList)
-                {
-                    if (int.TryParse(guide.Id, out int guideIdInt))
-                    {
-                        gameInfo.NewGuideData.finishedGuideIdList.Add(guideIdInt);
-                        gameInfo.NewGuideData.IdList.Add(guideIdInt);
-                        gameInfo.NewGuideData.AccomplishStatus.Add(2); // 2 = 已完成
-                    }
-                }
-                gameInfo.NewGuideData.curGuideId = 0;
-                gameInfo.NewGuideData.curGuideStep = 0;
-                Debug.Log($"[TestMod] 新手教程已完成 ({gameInfo.NewGuideData.finishedGuideIdList.Count} 个)");
+                gameInfo.NewGuideData.finishedGuideIdList.Add(i);
+                gameInfo.NewGuideData.IdList.Add(i);
+                gameInfo.NewGuideData.AccomplishStatus.Add(2); // 2 = Accomplished
             }
+            gameInfo.NewGuideData.curGuideId = 0;
+            gameInfo.NewGuideData.curGuideStep = 0;
+            Debug.Log($"[TestMod] 新手教程已完成 ({gameInfo.NewGuideData.finishedGuideIdList.Count} 个)");
         }
         
         // 4. 设置所有地图和关卡为解锁/通关状态
@@ -733,13 +727,13 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
         {
             foreach (var map in gameInfo.AllMapData.MapList)
             {
-                map.MapStatus = 2; // 2 = 已解锁
+                map.MapStatus = 2; // 2 = UnAccomplished (已解锁可挑战)
                 
                 if (map.LevelList != null)
                 {
                     foreach (var level in map.LevelList)
                     {
-                        level.LevelStatus = 2; // 2 = 已通关
+                        level.LevelStatus = 4; // 4 = Accomplished (已通关)
                         level.HaveAccomplished = true;
                     }
                 }
@@ -747,7 +741,7 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
                 {
                     foreach (var level in map.FixedLevelList)
                     {
-                        level.LevelStatus = 2;
+                        level.LevelStatus = 4;
                         level.HaveAccomplished = true;
                     }
                 }
