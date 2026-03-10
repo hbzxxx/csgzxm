@@ -35,9 +35,9 @@ public class ArchiveGenerator : MonoBehaviour
     public string savePath = "Assets/StreamingAssets/Archives/archive_0/GameInfo.es3";
 
     [Header("解锁设置")]
-    public int maxLevel = 100;
+    public int maxLevel = 9999;
     public int maxResource = 999999999;
-    public int maxStudentCount = 50;
+    public int maxStudentCount = 9999;
 
     [Header("加密设置")]
     public string encryptionKey = "";
@@ -180,18 +180,18 @@ public class ArchiveGenerator : MonoBehaviour
         player.propertyIdList = new List<int> { 1, 2, 3, 4, 5, 6 }; // 生命、攻击、防御等
         player.propertyList = new List<SinglePropertyData>
         {
-            new SinglePropertyData { id = 1, num = 99999, limit = 99999, quality = 5 }, // 生命
-            new SinglePropertyData { id = 2, num = 9999, limit = 9999, quality = 5 },   // 攻击
-            new SinglePropertyData { id = 3, num = 9999, limit = 9999, quality = 5 },   // 防御
-            new SinglePropertyData { id = 4, num = 9999, limit = 9999, quality = 5 },   // 速度
-            new SinglePropertyData { id = 5, num = 9999, limit = 9999, quality = 5 },   // 暴击
-            new SinglePropertyData { id = 6, num = 500, limit = 500, quality = 5 }      // 暴击伤害
+            new SinglePropertyData { id = 1, num = 9999, limit = 9999, quality = 5 },
+            new SinglePropertyData { id = 2, num = 9999, limit = 9999, quality = 5 },
+            new SinglePropertyData { id = 3, num = 9999, limit = 9999, quality = 5 },
+            new SinglePropertyData { id = 4, num = 9999, limit = 9999, quality = 5 },
+            new SinglePropertyData { id = 5, num = 9999, limit = 9999, quality = 5 },
+            new SinglePropertyData { id = 6, num = 9999, limit = 9999, quality = 5 }
         };
 
         // 弟子相关
         player.studentType = 1;
-        player.studentLevel = maxLevel;
-        player.studentCurExp = maxLevel * 10000;
+        player.studentLevel = 9999;
+        player.studentCurExp = 99999999;
         player.studentRarity = 5;
         player.studentQuality = 5;
         player.studentCurEnergy = 100;
@@ -304,7 +304,7 @@ public class ArchiveGenerator : MonoBehaviour
     {
         AllBuildingData buildingData = new AllBuildingData
         {
-            MountainLevel = maxLevel,
+            MountainLevel = 9999,
             BuildList = new List<SingleBuildingData>()
         };
 
@@ -315,7 +315,7 @@ public class ArchiveGenerator : MonoBehaviour
             SingleBuildingData building = new SingleBuildingData
             {
                 BuildTypeId = typeId,
-                CurBuildLevel = maxLevel,
+                CurBuildLevel = 9999,
                 SettingId = typeId,
                 MaxStudentNum = 20,
                 StudentNum = 10,
@@ -336,7 +336,7 @@ public class ArchiveGenerator : MonoBehaviour
             MapList = new List<SingleMapData>()
         };
 
-        // 创建地图数据
+        // 创建地图数据 - 10个地图，每个地图10个关卡，全部解锁
         for (int mapId = 1; mapId <= 10; mapId++)
         {
             SingleMapData map = new SingleMapData
@@ -349,13 +349,13 @@ public class ArchiveGenerator : MonoBehaviour
                 CurAwardList = new List<ItemData>()
             };
 
-            // 添加关卡
+            // 添加关卡 - 10个关卡全部解锁
             for (int levelId = 1; levelId <= 10; levelId++)
             {
                 SingleLevelData level = new SingleLevelData
                 {
                     LevelId = $"{mapId}_{levelId}",
-                    LevelStatus = 2, // 已通关
+                    LevelStatus = 2, // 已解锁
                     HaveAccomplished = true,
                     Enemy = new List<PeopleData>()
                 };
@@ -434,8 +434,8 @@ public class ArchiveGenerator : MonoBehaviour
             SingleResearchData research = new SingleResearchData
             {
                 SettingId = 2000 + i,
-                CurLevel = maxLevel,
-                LevelLimit = maxLevel,
+                CurLevel = 9999,
+                LevelLimit = 9999,
                 IsResearching = false,
                 TotalTime = 100,
                 RemainTime = 0
@@ -496,7 +496,7 @@ public class ArchiveGenerator : MonoBehaviour
                 {
                     Id = 3000 + i,
                     ItemId = 4000 + i,
-                    RemainCount = 99,
+                    RemainCount = 9999,
                     moonCardReachTime = currentTime + 2592000 // 30天
                 };
                 shop.ShopItemList.Add(item);
@@ -553,23 +553,23 @@ public class ArchiveGenerator : MonoBehaviour
             student.propertyList.Add(new SinglePropertyData
             {
                 id = propId,
-                num = 5000 + index * 100,
-                limit = 10000,
-                quality = 3
+                num = 9999,
+                limit = 9999,
+                quality = 5
             });
         }
 
         // 弟子数据
         student.studentType = 1;
-        student.studentLevel = 80 + index % 20;
-        student.studentCurExp = 50000;
-        student.studentRarity = 3 + index % 3;
-        student.studentQuality = 3 + index % 3;
-        student.studentCurEnergy = 100;
+        student.studentLevel = 9999;
+        student.studentCurExp = 99999999;
+        student.studentRarity = 5;
+        student.studentQuality = 5;
+        student.studentCurEnergy = 9999;
         student.studentStatusType = 1;
 
         // 修为
-        student.curXiuwei = (ulong)(1000000 + index * 10000);
+        student.curXiuwei = 999999999;
         student.lastXiuweiAddTime = System.DateTimeOffset.UtcNow.ToUnixTimeSeconds();
 
         // 技能
@@ -627,7 +627,7 @@ public class ArchiveGenerator : MonoBehaviour
             {
                 OnlyId = (ulong)(3000000 + i),
                 SettingId = 4000 + i,
-                CurLevel = maxLevel,
+                CurLevel = 9999,
                 IsEmpty = false,
                 Index = i,
                 Status = 3, // 工作中
@@ -641,7 +641,7 @@ public class ArchiveGenerator : MonoBehaviour
                 DanFarmType = i % 3 + 1,
                 ProcessSpeed = 100,
                 ProductSettingId = 5000 + i,
-                ProductRemainNum = 999,
+                ProductRemainNum = 9999,
                 DanFarmWorkType = 1,
                 Unlocked = true,
                 TalentType = i % 5 + 1,
@@ -770,7 +770,7 @@ public class ArchiveGenerator : MonoBehaviour
             {
                 onlyId = (ulong)(5000000 + i),
                 settingId = 8000 + i,
-                curLevel = maxLevel,
+                curLevel = 9999,
                 curExp = 10000,
                 curDurability = 100,
                 propertyIdList = new List<int> { 1, 2, 3 },
@@ -863,11 +863,11 @@ public class ArchiveGenerator : MonoBehaviour
         ZongMenData zongMenData = new ZongMenData
         {
             ZongMenName = "测试宗门",
-            ZongMenLevel = maxLevel,
+            ZongMenLevel = 9999,
             CurRankLevel = 10,
             CurStar = 5,
-            TheR = 2000,
-            TiliLimit = 1000,
+            TheR = 99999999,
+            TiliLimit = 9999,
             SendFarmNumLimitAddNum = 10,
             ChangeNameNum = 0
         };
@@ -880,7 +880,7 @@ public class ArchiveGenerator : MonoBehaviour
         ZongMenProduceData produceData = new ZongMenProduceData
         {
             SingleZongMenProduceDataList = new List<SingleZongMenProduceData>(),
-            TotalStudentNum = maxStudentCount,
+            TotalStudentNum = 9999,
             FreeStudentNum = 10
         };
 
@@ -890,10 +890,10 @@ public class ArchiveGenerator : MonoBehaviour
             SingleZongMenProduceData produce = new SingleZongMenProduceData
             {
                 SettingId = 11000 + i,
-                CurLevel = maxLevel,
+                CurLevel = 9999,
                 CurStudentNum = 5,
-                CurStudentLimit = 10,
-                CurProductLimit = 1000
+                CurStudentLimit = 9999,
+                CurProductLimit = 99999999
             };
             produceData.SingleZongMenProduceDataList.Add(produce);
         }
@@ -918,7 +918,7 @@ public class ArchiveGenerator : MonoBehaviour
             SingleSkillData skill = new SingleSkillData
             {
                 skillId = 12000 + i,
-                skillLevel = maxLevel,
+                skillLevel = 9999,
                 damagePercentList = new List<float> { 100f, 150f, 200f },
                 isEquipped = i <= 6,
                 cd = 0,
@@ -1070,15 +1070,15 @@ public class ArchiveGenerator : MonoBehaviour
     {
         AllShenYuanData shenYuanData = new AllShenYuanData
         {
-            curFloor = 100,
-            maxFloor = 100,
-            todayChallengeCount = 10,
+            curFloor = 9999,
+            maxFloor = 9999,
+            todayChallengeCount = 9999,
             lastChallengeTime = System.DateTimeOffset.UtcNow.ToUnixTimeSeconds(),
             ShenYuanList = new List<SingleShenYuanData>()
         };
 
         // 深渊层级
-        for (int i = 1; i <= 100; i++)
+        for (int i = 1; i <= 9999; i++)
         {
             SingleShenYuanData level = new SingleShenYuanData
             {
