@@ -50,6 +50,12 @@ public class ArchiveGenerator : MonoBehaviour
 
         // 地图数据 - 全部解锁
         gameInfo.AllMapData = CreateUnlockedMaps();
+
+        // 装备制造数据 - 清空避免空引用
+        if (gameInfo.AllEquipmentData != null)
+        {
+            gameInfo.AllEquipmentData.curEquipMakeData = null;
+        }
     }
 
     private NewGuideData CreateCompletedNewGuide()
