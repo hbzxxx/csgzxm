@@ -70,8 +70,8 @@ public class ArchiveGenerator : MonoBehaviour
         // 建筑数据
         gameInfo.AllBuildingData = CreateAllBuildings();
 
-        // 地图数据
-        gameInfo.AllMapData = CreateAllMaps();
+        // 地图数据 - 设为null让游戏使用配置表初始化
+        gameInfo.AllMapData = null;
 
         // 成就数据
         gameInfo.AllAchievementData = CreateAllAchievements();
