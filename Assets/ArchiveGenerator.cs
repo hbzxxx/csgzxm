@@ -4,7 +4,7 @@ using Framework.Data;
 using cfg;
 
 /// <summary>
-/// 存档生成器 - 在保存存档时修改玩家等级、主城等级、新手教程、地图解锁
+/// 存档生成器 - 修改玩家等级、主城等级、新手教程、地图解锁
 /// </summary>
 public class ArchiveGenerator : MonoBehaviour
 {
@@ -23,22 +23,39 @@ public class ArchiveGenerator : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
+    /// <summary>
+    /// 获取游戏数据并进行修改
+    /// </summary>
     public GameInfo GetGameInfo()
     {
-        if (Instance == null)
-        {
-            var go = new GameObject("ArchiveGenerator");
-            go.AddComponent<ArchiveGenerator>();
-        }
-        
         var gameInfo = RoleManager.Instance._CurGameInfo;
         ModifyGameInfo(gameInfo);
         return gameInfo;
     }
 
+    /// <summary>
+    /// 修改当前游戏数据
+    /// </summary>
+    public void ModifyCurrentGameInfo()
+    {
+        ModifyGameInfo(RoleManager.Instance._CurGameInfo);
+        Debug.Log($"[ArchiveGenerator] 修改完成: 玩家等级={playerLevel}, 主城等级={mountainLevel}");
+    }
+
+    /// <summary>
+    /// 保存当前游戏数据为新存档
+    /// </summary>
+    public void SaveAsNewArchive(int archiveIndex)
+    {
+        var gameInfo = GetGameInfo();
+        ArchiveManager.Instance.SaveArchive(archiveIndex);
+    }
+
     private void ModifyGameInfo(GameInfo gameInfo)
     {
         if (gameInfo == null) return;
+
+        Debug.Log($"[ArchiveGenerator] 修改前 - 玩家等级: {gameInfo.playerPeople?.studentLevel}, 主城等级: {gameInfo.AllBuildingData?.MountainLevel}");
 
         // 玩家等级
         if (gameInfo.playerPeople != null)
@@ -63,6 +80,8 @@ public class ArchiveGenerator : MonoBehaviour
         {
             gameInfo.AllEquipmentData.curEquipMakeData = null;
         }
+
+        Debug.Log($"[ArchiveGenerator] 修改后 - 玩家等级: {gameInfo.playerPeople?.studentLevel}, 主城等级: {gameInfo.AllBuildingData?.MountainLevel}");
     }
 
     private NewGuideData CreateCompletedNewGuide()

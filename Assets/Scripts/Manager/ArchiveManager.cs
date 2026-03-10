@@ -55,6 +55,12 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
         //}
 
         //GameInfo gameInfo = RoleManager.Instance._CurGameInfo;
+        // 确保 ArchiveGenerator 实例存在
+        if (ArchiveGenerator.Instance == null)
+        {
+            var go = new GameObject("ArchiveGenerator_Auto");
+            go.AddComponent<ArchiveGenerator>();
+        }
         GameInfo gameInfo = ArchiveGenerator.Instance.GetGameInfo();
         gameInfo.SaveTime = CGameTime.Instance.GetTimeStamp();
         
