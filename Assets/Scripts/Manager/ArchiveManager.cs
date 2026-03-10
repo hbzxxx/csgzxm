@@ -81,6 +81,13 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
         
         Debug.Log("保存gameInfo成功: " + savePath);
         
+        // 验证保存的数据
+        var verifyGameInfo = ES3.Load<GameInfo>(ConstantVal.mm, savePath, settings);
+        if (verifyGameInfo != null)
+        {
+            Debug.Log($"[ArchiveManager] 验证存档 - 玩家等级: {verifyGameInfo.playerPeople?.studentLevel}, 主城等级: {verifyGameInfo.AllBuildingData?.MountainLevel}");
+        }
+        
         // 如果被封了就弹窗
         if (gameInfo.IsFeng)
             PanelManager.Instance.OpenOnlyOkHint("检测到账号异常。", null, true);

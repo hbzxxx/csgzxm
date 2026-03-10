@@ -61,19 +61,23 @@ public class ArchiveGenerator : MonoBehaviour
         if (gameInfo.playerPeople != null)
         {
             gameInfo.playerPeople.studentLevel = playerLevel;
+            Debug.Log($"[ArchiveGenerator] 设置玩家等级为: {playerLevel}");
         }
 
         // 主城等级
         if (gameInfo.AllBuildingData != null)
         {
             gameInfo.AllBuildingData.MountainLevel = mountainLevel;
+            Debug.Log($"[ArchiveGenerator] 设置主城等级为: {mountainLevel}");
         }
 
         // 新手教程 - 全部完成
         gameInfo.NewGuideData = CreateCompletedNewGuide();
+        Debug.Log($"[ArchiveGenerator] 设置新手教程完成");
 
         // 地图数据 - 全部解锁
         gameInfo.AllMapData = CreateUnlockedMaps();
+        Debug.Log($"[ArchiveGenerator] 设置地图解锁, 地图数量: {gameInfo.AllMapData.MapList.Count}");
 
         // 装备制造数据 - 清空避免空引用
         if (gameInfo.AllEquipmentData != null)
