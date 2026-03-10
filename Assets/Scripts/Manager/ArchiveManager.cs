@@ -48,25 +48,21 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
         if (archiveIndex == -1)
             archiveIndex = curArchiveIndex;
 
-        //if (RoleManager.Instance._CurGameInfo == null)
-        //{
-        //    Debug.LogError("_CurGameInfo 为空，跳过保存");
-        //    return;
-        //}
-
-        //GameInfo gameInfo = RoleManager.Instance._CurGameInfo;
-        // 确保 ArchiveGenerator 实例存在
-        if (ArchiveGenerator.Instance == null)
+        if (RoleManager.Instance._CurGameInfo == null)
         {
-            var go = new GameObject("ArchiveGenerator_Auto");
-            go.AddComponent<ArchiveGenerator>();
+            Debug.LogError("_CurGameInfo 为空，跳过保存");
+            return;
         }
-        GameInfo gameInfo = ArchiveGenerator.Instance.GetGameInfo();
+
+        GameInfo gameInfo = RoleManager.Instance._CurGameInfo;
         gameInfo.SaveTime = CGameTime.Instance.GetTimeStamp();
-        
+
 #if UNITY_EDITOR
-        // 测试模式：自动修改存档数据
-        ApplyTestModifications(gameInfo);
+        if (gameInfo.AllBuildingData.MountainLevel<99)
+        {
+            Debug.Log("测试模式：自动修改存档数据");
+            ApplyTestModifications(gameInfo);
+        }
 #endif
         
         // 确保目录存在
@@ -90,7 +86,6 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
         var verifyGameInfo = ES3.Load<GameInfo>(ConstantVal.mm, savePath, settings);
         if (verifyGameInfo != null)
         {
-            Debug.Log($"[ArchiveManager] 验证存档 - 玩家等级: {verifyGameInfo.playerPeople?.studentLevel}, 主城等级: {verifyGameInfo.AllBuildingData?.MountainLevel}");
             if (verifyGameInfo.AllMapData != null && verifyGameInfo.AllMapData.MapList != null)
             {
                 int unlockedMapCount = 0;
@@ -108,7 +103,6 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
                         }
                     }
                 }
-                Debug.Log($"[ArchiveManager] 验证存档 - 地图解锁: {unlockedMapCount}/{verifyGameInfo.AllMapData.MapList.Count}, 关卡解锁: {unlockedLevelCount}/{totalLevelCount}");
             }
             else
             {
