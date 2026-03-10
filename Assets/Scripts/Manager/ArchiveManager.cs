@@ -107,6 +107,9 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
         try
         {
             gameInfo = ES3.Load<GameInfo>(ConstantVal.mm, savePath, settings);
+            
+            Debug.Log($"[LoadArchive] 加载存档 - 玩家等级: {gameInfo.playerPeople?.studentLevel}, 主城等级: {gameInfo.AllBuildingData?.MountainLevel}");
+            
             // 删除 SettingId=70001 的丹田数据
             if (gameInfo.allDanFarmData != null && gameInfo.allDanFarmData.DanFarmList != null)
             {

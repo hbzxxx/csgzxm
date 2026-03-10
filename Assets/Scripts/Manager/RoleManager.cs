@@ -198,6 +198,7 @@ public class RoleManager
         initOk = true;
         //新手引导
         NewGuideManager.Instance.Init();
+        Debug.Log($"[RoleManager.Init] 最终数据 - 玩家等级: {_CurGameInfo.playerPeople?.studentLevel}, 主城等级: {_CurGameInfo.AllBuildingData?.MountainLevel}");
         //FixBug();
     }
 
