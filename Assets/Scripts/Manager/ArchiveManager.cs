@@ -722,6 +722,7 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
             foreach (var map in gameInfo.AllMapData.MapList)
             {
                 map.MapStatus = 2; // 2 = UnAccomplished (已解锁可挑战)
+                map.LieXiMapStatus = 4; // 4 = Accomplished (裂隙地图已通关，解锁下一张地图)
                 
                 if (map.LevelList != null)
                 {
