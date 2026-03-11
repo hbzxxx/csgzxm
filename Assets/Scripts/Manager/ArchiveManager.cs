@@ -659,20 +659,34 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
         {
             gameInfo.AllBuildingData.MountainLevel = 100;
             
-            if (gameInfo.AllBuildingData.BuildList != null)
+            gameInfo.AllBuildingData.BuildList.Clear();
+            
+            int equipMaxLevel = DataTable._equipBuildingUpgradeList.Count;
+            int lianDanMaxLevel = DataTable._lianDanBuildingUpgradeList.Count;
+            
+            for (int i = 0; i < 10; i++)
             {
-                int equipMaxLevel = DataTable._equipBuildingUpgradeList.Count;
-                int lianDanMaxLevel = DataTable._lianDanBuildingUpgradeList.Count;
-                int maxBuildingLevel = Mathf.Max(equipMaxLevel, lianDanMaxLevel, 50);
-                
-                foreach (var building in gameInfo.AllBuildingData.BuildList)
-                {
-                    building.CurBuildLevel = maxBuildingLevel;
-                    building.MaxStudentNum = 100;
-                    building.StudentNum = 0;
-                }
-                Debug.Log($"[TestMod] 建筑已设为满级 (等级 {maxBuildingLevel})");
+                SingleBuildingData equipBuilding = new SingleBuildingData();
+                equipBuilding.BuildTypeId = 10002;
+                equipBuilding.SettingId = 10002;
+                equipBuilding.CurBuildLevel = equipMaxLevel;
+                equipBuilding.MaxStudentNum = 100;
+                equipBuilding.StudentNum = 0;
+                gameInfo.AllBuildingData.BuildList.Add(equipBuilding);
             }
+            
+            for (int i = 0; i < 10; i++)
+            {
+                SingleBuildingData lianDanBuilding = new SingleBuildingData();
+                lianDanBuilding.BuildTypeId = 10001;
+                lianDanBuilding.SettingId = 10001;
+                lianDanBuilding.CurBuildLevel = lianDanMaxLevel;
+                lianDanBuilding.MaxStudentNum = 100;
+                lianDanBuilding.StudentNum = 0;
+                gameInfo.AllBuildingData.BuildList.Add(lianDanBuilding);
+            }
+            
+            Debug.Log($"[TestMod] 建筑已设为满级 (炼器房 {equipMaxLevel} 级 x10, 炼丹房 {lianDanMaxLevel} 级 x10)");
         }
         
         // 3. 设置所有新手教程为已完成
