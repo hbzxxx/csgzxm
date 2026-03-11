@@ -1228,7 +1228,7 @@ public class LianDanManager : CommonInstance<LianDanManager>
                 {
                     continue;
                 }
-                if (p.talent == data.TalentType)
+                if (p.talent == data.TalentType && p.propertyList != null && p.propertyList.Count > 0)
                 {
                     //如果天赋是该天赋则加额外值
                     
