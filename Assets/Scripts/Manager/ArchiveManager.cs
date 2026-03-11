@@ -1182,8 +1182,8 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
                     startY + typeIndex * spacingY + rowInType * spacingY
                 );
                 
-                // 状态为工作状态（不需要等待建造时间）
-                danFarm.Status = 1; // Working状态
+                // 状态为空闲（不生产，避免触发物品动画问题）
+                danFarm.Status = 0; // Idle状态
                 danFarm.RemainTime = 0;
                 danFarm.ProcessDanTimer = 0;
                 danFarm.RebuildTotalTime = 0;
