@@ -107,6 +107,11 @@ public class StudentManager : CommonInstance<StudentManager>
     /// 设置头像
     /// </summary>
     public void SetTouxiang(Image icon, PeopleData peopledate) {
+        if (icon == null)
+        {
+            Debug.LogError("[SetTouxiang] icon is null!");
+            return;
+        }
         icon.gameObject.SetActive(true);
         if (peopledate.isPlayer)
         {
@@ -142,10 +147,13 @@ public class StudentManager : CommonInstance<StudentManager>
                 {
                     sb.Append(peopledate.talent);
                 }
-                Sprite talentSprite = ResourceManager.Instance.GetObj<Sprite>(ConstantVal.PeopleTouxiang + sb.ToString());
+                string iconPath = ConstantVal.PeopleTouxiang + sb.ToString();
+                Sprite talentSprite = ResourceManager.Instance.GetObj<Sprite>(iconPath);
+                Debug.Log($"[SetTouxiang] talent={peopledate.talent}, path={iconPath}, sprite={(talentSprite != null ? "found" : "null")}");
                 if (talentSprite == null)
                 {
                     talentSprite = ResourceManager.Instance.GetObj<Sprite>(ConstantVal.specialPortraitFolderPath + ConstantVal.defaultPortraitName);
+                    Debug.Log($"[SetTouxiang] using default portrait, sprite={(talentSprite != null ? "found" : "null")}");
                 }
                 icon.sprite = talentSprite;
             }
