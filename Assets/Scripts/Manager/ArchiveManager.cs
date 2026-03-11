@@ -841,6 +841,10 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
         p.xiSuiRate = 100;
         p.talentRarity = 5;
         
+        p.xueMai = new XueMaiData();
+        p.xueMai.xueMaiTypeList = new List<XueMaiType>();
+        p.xueMai.xueMaiLevelList = new List<int>();
+        
         return p;
     }
     
