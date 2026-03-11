@@ -1181,6 +1181,10 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
                 startY + row * spacingY
             );
             
+            // 获取丹炉满级
+            List<int> upgradeCostList = CommonUtil.SplitCfgOneDepth(danFarmSetting.UpgradeCost);
+            int maxLevel = upgradeCostList.Count;
+            
             // 状态为Idle（空闲状态，可以直接使用）
             danFarm.Status = 1; // Idling状态
             danFarm.RemainTime = 0;
@@ -1204,7 +1208,7 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
             danFarm.SingleDanPrice = 0;
             danFarm.Unlocked = true;
             danFarm.TalentType = 0;
-            danFarm.CurLevel = 1;
+            danFarm.CurLevel = maxLevel;
             
             for (int j = 0; j < 4; j++)
             {
