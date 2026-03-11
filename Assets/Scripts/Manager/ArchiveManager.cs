@@ -1180,6 +1180,7 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
                 danFarm.SingleDanPrice = 0;
                 danFarm.Unlocked = true;
                 danFarm.TalentType = 0;
+                danFarm.CurLevel = 1;
                 
                 for (int j = 0; j < 4; j++)
                 {
