@@ -1190,8 +1190,13 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
             danFarm.QuanLiTotalTime = 0;
             danFarm.QuanliRemainTime = 0;
             danFarm.ProcessSpeed = 0;
-            // 从配置表获取产品ID
-            danFarm.ProductSettingId = danFarmSetting.Param.ToInt32();
+            // 从配置表获取产品ID，如果无效则设置为灵识(10001)
+            int productId = danFarmSetting.Param.ToInt32();
+            if (productId <= 0)
+            {
+                productId = (int)ItemIdType.LingShi;
+            }
+            danFarm.ProductSettingId = productId;
             danFarm.ProductRemainNum = 0;
             danFarm.ProductTotalNum = 0;
             danFarm.HandleStop = false;
