@@ -1150,8 +1150,12 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
         float startX = -1975f;
         float startY = 1835f;
         
-        // 每个建筑之间的间距（垂直排列，不重叠）
-        float spacingY = 250f;
+        // 每个建筑之间的间距
+        float spacingX = 250f;
+        float spacingY = -250f;
+        
+        // 每排最多6个
+        int perRow = 6;
         
         int index = 0;
         
@@ -1169,11 +1173,16 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
             danFarm.Index = index;
             danFarm.DanFarmType = danFarmSetting.Type.ToInt32();
             
-            // 计算位置：按一列排列，Y轴递减，X轴对齐
-            danFarm.LocalPos = new Vector2(startX, startY - index * spacingY);
+            // 计算位置：每排6个，超过换排
+            int row = index / perRow;
+            int col = index % perRow;
+            danFarm.LocalPos = new Vector2(
+                startX + col * spacingX,
+                startY + row * spacingY
+            );
             
-            // 状态为空闲（不生产，避免触发物品动画问题）
-            danFarm.Status = 0; // Idle状态
+            // 状态为Idle（空闲状态，可以直接使用）
+            danFarm.Status = 1; // Idling状态
             danFarm.RemainTime = 0;
             danFarm.ProcessDanTimer = 0;
             danFarm.RebuildTotalTime = 0;
@@ -1211,7 +1220,7 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
             index++;
         }
         
-        Debug.Log($"[TestMod] 已创建 {index} 个丹炉建筑，每种1个，按一列排列");
+        Debug.Log($"[TestMod] 已创建 {index} 个丹炉建筑，每种1个，每排6个按顺序排列");
     }
 #endif
 }
