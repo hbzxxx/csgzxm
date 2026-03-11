@@ -3073,13 +3073,16 @@ public class StudentManager : CommonInstance<StudentManager>
         if (p.talent != (int)StudentTalent.LianGong)
         {
 
-            if (p.studentLevel < StudentManager.Instance.GetStudentLevelLimit(p))
+            if (p.studentLevel > 0 && p.studentLevel < StudentManager.Instance.GetStudentLevelLimit(p))
             {
-                StudentUpgradeSetting setting = DataTable._studentUpgradeList[p.studentLevel - 1];
-                int expLimit = setting.NeedExp.ToInt32();
-                if (p.studentCurExp>= expLimit)
+                if (p.studentLevel <= DataTable._studentUpgradeList.Count)
                 {
-                    return true;
+                    StudentUpgradeSetting setting = DataTable._studentUpgradeList[p.studentLevel - 1];
+                    int expLimit = setting.NeedExp.ToInt32();
+                    if (p.studentCurExp>= expLimit)
+                    {
+                        return true;
+                    }
                 }
                 return false;
             }
