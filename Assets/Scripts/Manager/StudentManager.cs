@@ -936,29 +936,28 @@ public class StudentManager : CommonInstance<StudentManager>
                     }
                 }
             }
-                }
-             
-      
-            }
             else
             {
-                bool itemEnough = true;
-                int limit = DataTable._studentUpgradeList[p.studentLevel - 1].NeedExp.ToInt32();
-                List<List<int>> matList = CommonUtil.SplitCfg(DataTable._studentUpgradeList[p.studentLevel - 1].NeedMat);
-                for (int i = 0; i < matList.Count; i++)
+                if (p.studentLevel > 0 && p.studentLevel <= DataTable._studentUpgradeList.Count)
                 {
-                    List<int> singleMat = matList[i];
-                    int id = singleMat[0];
-                    int num = singleMat[1];
-                    if (!ItemManager.Instance.CheckIfItemEnough(id, (ulong)num))
+                    bool itemEnough = true;
+                    int limit = DataTable._studentUpgradeList[p.studentLevel - 1].NeedExp.ToInt32();
+                    List<List<int>> matList = CommonUtil.SplitCfg(DataTable._studentUpgradeList[p.studentLevel - 1].NeedMat);
+                    for (int i = 0; i < matList.Count; i++)
                     {
-                        itemEnough = false;
-                        break;
+                        List<int> singleMat = matList[i];
+                        int id = singleMat[0];
+                        int num = singleMat[1];
+                        if (!ItemManager.Instance.CheckIfItemEnough(id, (ulong)num))
+                        {
+                            itemEnough = false;
+                            break;
+                        }
                     }
-                }
-                if (p.studentCurExp >= limit&&itemEnough)
-                {  
-                    show = true;
+                    if (p.studentCurExp >= limit&&itemEnough)
+                    {  
+                        show = true;
+                    }
                 }
             }
         }
