@@ -941,8 +941,10 @@ public class KnapsackPanel : PanelBase
 
             if (itemView.setting.ItemType.ToInt32()==(int)ItemType.Equip)
             {
+                ItemData viewItemData = itemView.GetItemData();
+                if (viewItemData == null || viewItemData.equipProtoData == null) continue;
                 itemView.RefreshShow();
-                if (itemView.GetItemData().equipProtoData.onlyId == itemData.onlyId)
+                if (viewItemData.equipProtoData.onlyId == itemData.onlyId)
                 {
                     //ShowCurEquip();
                     itemView.btn.onClick.Invoke();
