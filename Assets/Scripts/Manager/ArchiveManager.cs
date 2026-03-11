@@ -844,6 +844,11 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
         p.xueMai = new XueMaiData();
         p.xueMai.xueMaiTypeList = new List<XueMaiType>();
         p.xueMai.xueMaiLevelList = new List<int>();
+        for (int i = 1; i < 6; i++)
+        {
+            p.xueMai.xueMaiTypeList.Add((XueMaiType)i);
+            p.xueMai.xueMaiLevelList.Add(0);
+        }
         
         return p;
     }
