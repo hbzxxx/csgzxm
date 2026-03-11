@@ -664,6 +664,7 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
             int equipMaxLevel = DataTable._equipBuildingUpgradeList.Count;
             int lianDanMaxLevel = DataTable._lianDanBuildingUpgradeList.Count;
             
+            // 先添加炼器房 (10002)
             for (int i = 0; i < 10; i++)
             {
                 SingleBuildingData equipBuilding = new SingleBuildingData();
@@ -675,6 +676,7 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
                 gameInfo.AllBuildingData.BuildList.Add(equipBuilding);
             }
             
+            // 再添加炼丹房 (10001)
             for (int i = 0; i < 10; i++)
             {
                 SingleBuildingData lianDanBuilding = new SingleBuildingData();
@@ -687,6 +689,64 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
             }
             
             Debug.Log($"[TestMod] 建筑已设为满级 (炼器房 {equipMaxLevel} 级 x10, 炼丹房 {lianDanMaxLevel} 级 x10)");
+        }
+        
+        // 2.1 设置所有丹炉建筑，解锁位置，排序好
+        if (gameInfo.allDanFarmData != null)
+        {
+            gameInfo.allDanFarmData.DanFarmList.Clear();
+            
+            int danFarmCount = 0;
+            
+            // 灵石丹炉 x5
+            for (int i = 0; i < 5; i++)
+            {
+                CreateDanFarm(gameInfo, 1, danFarmCount++);
+            }
+            
+            // 月灵矿炉 x5
+            for (int i = 0; i < 5; i++)
+            {
+                CreateDanFarm(gameInfo, 2, danFarmCount++);
+            }
+            
+            // 灵树 x5
+            for (int i = 0; i < 5; i++)
+            {
+                CreateDanFarm(gameInfo, 3, danFarmCount++);
+            }
+            
+            // 炼丹炉 x5
+            for (int i = 0; i < 5; i++)
+            {
+                CreateDanFarm(gameInfo, 4, danFarmCount++);
+            }
+            
+            // 炼器房 x5
+            for (int i = 0; i < 5; i++)
+            {
+                CreateDanFarm(gameInfo, 5, danFarmCount++);
+            }
+            
+            // 八卦炉 x5
+            for (int i = 0; i < 5; i++)
+            {
+                CreateDanFarm(gameInfo, 6, danFarmCount++);
+            }
+            
+            // 藏经阁 x5
+            for (int i = 0; i < 5; i++)
+            {
+                CreateDanFarm(gameInfo, 7, danFarmCount++);
+            }
+            
+            // 仓库 x5
+            for (int i = 0; i < 5; i++)
+            {
+                CreateDanFarm(gameInfo, 8, danFarmCount++);
+            }
+            
+            Debug.Log($"[TestMod] 丹炉建筑已创建 {danFarmCount} 个，排序好");
         }
         
         // 3. 设置所有新手教程为已完成
@@ -1089,6 +1149,67 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
         }
         
         return best;
+    }
+    
+    private void CreateDanFarm(GameInfo gameInfo, int danFarmType, int index)
+    {
+        SingleDanFarmData danFarm = new SingleDanFarmData();
+        danFarm.OnlyId = (ulong)(gameInfo.TheId++);
+        danFarm.SettingId = danFarmType;
+        danFarm.IsEmpty = false;
+        danFarm.Index = index;
+        
+        int danFarmTypeId = 0;
+        switch (danFarmType)
+        {
+            case 1: danFarmTypeId = 1; break; // MoneyDan
+            case 2: danFarmTypeId = 2; break; // YueLingkuang
+            case 3: danFarmTypeId = 3; break; // LingShu
+            case 4: danFarmTypeId = 4; break; // LianDanLu
+            case 5: danFarmTypeId = 5; break; // LianQi
+            case 6: danFarmTypeId = 6; break; // BaguaLu
+            case 7: danFarmTypeId = 7; break; // CangJingGe
+            case 8: danFarmTypeId = 8; break; // CangKu
+        }
+        danFarm.DanFarmType = danFarmTypeId;
+        
+        int row = index / 5;
+        int col = index % 5;
+        danFarm.LocalPos = new Vector2(col * 200 + 100, row * -200 - 100);
+        
+        danFarm.Status = 0;
+        danFarm.RemainTime = 0;
+        danFarm.ProcessDanTimer = 0;
+        danFarm.RebuildTotalTime = 0;
+        danFarm.OpenQuanLi = false;
+        danFarm.QuanLiTotalTime = 0;
+        danFarm.QuanliRemainTime = 0;
+        danFarm.ProcessSpeed = 0;
+        danFarm.ProductSettingId = 0;
+        danFarm.ProductRemainNum = 0;
+        danFarm.ProductTotalNum = 0;
+        danFarm.HandleStop = false;
+        danFarm.NeedForeItemId = 0;
+        danFarm.SingleDanPrice = 0;
+        danFarm.Unlocked = true;
+        danFarm.TalentType = 0;
+        
+        for (int i = 0; i < 4; i++)
+        {
+            danFarm.ZuoZhenStudentIdList.Add(0);
+        }
+        
+        danFarm.PosUnlockStatusList.Clear();
+        for (int i = 0; i < 100; i++)
+        {
+            danFarm.PosUnlockStatusList.Add(true);
+        }
+        
+        danFarm.StudentUseCangKuDataList = new List<SingleStudentUseCangKuData>();
+        danFarm.ProductItemList = new List<ItemData>();
+        danFarm.UnlockedProductIdList = new List<int>();
+        
+        gameInfo.allDanFarmData.DanFarmList.Add(danFarm);
     }
 #endif
 }
