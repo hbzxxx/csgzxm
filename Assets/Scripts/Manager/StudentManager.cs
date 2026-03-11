@@ -1548,8 +1548,8 @@ public class StudentManager : CommonInstance<StudentManager>
                     || p.studentStatusType == (int)StudentStatusType.DanFarmQuanLi
                    || p.studentStatusType == (int)StudentStatusType.DanFarmRelax)
                 {
-                    SingleDanFarmData danFarmData = BuildingManager.Instance.FindDanFarmDataByOnlyId(p.zuoZhenDanFarmOnlyId); //RoleManager.Instance._CurGameInfo.allDanFarmData.DanFarmList[p.zuoZhenDanFarmIndex];
-                    if (p.talent == danFarmData.TalentType)
+                    SingleDanFarmData danFarmData = BuildingManager.Instance.FindDanFarmDataByOnlyId(p.zuoZhenDanFarmOnlyId);
+                    if (danFarmData != null && p.talent == danFarmData.TalentType)
                     {
                         val = RandomManager.Next(20, 40);
                     }
