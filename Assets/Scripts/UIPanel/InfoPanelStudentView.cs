@@ -36,6 +36,7 @@ public class InfoPanelStudentView : SingleStudentView
         ShowPortrait();
         //如果有enemysetting 则用enemysetting 的icon 如果没有 则用自己的icon 如果都没有 则用默认icon
         img_bgk.gameObject.SetActive(true);
+        Debug.Log($"[InfoPanelStudentView] studentRarity={peopleData.studentRarity}, talent={peopleData.talent}");
         img_bgk.sprite = CommonUtil.StudentBgKuang(peopleData);
         int rarity = peopleData.studentRarity;
         if (rarity == 0)
