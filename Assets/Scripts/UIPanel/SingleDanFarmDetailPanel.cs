@@ -622,7 +622,9 @@ public class SingleDanFarmDetailPanel : PanelBase
                     {
                         exchange = true;
                     }
-                    else if (showStudentList[j].propertyList[0].num <= showStudentList[j + 1].propertyList[0].num)
+                    else if (showStudentList[j].propertyList != null && showStudentList[j].propertyList.Count > 0 
+                        && showStudentList[j + 1].propertyList != null && showStudentList[j + 1].propertyList.Count > 0
+                        && showStudentList[j].propertyList[0].num <= showStudentList[j + 1].propertyList[0].num)
                     {
                         exchange = true;
 
