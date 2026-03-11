@@ -950,6 +950,8 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
         p.curEquipItemList = new List<ItemData> { null, null, null, null, null, null };
         
         p.gender = UnityEngine.Random.Range(0, 2);
+        p.yuanSu = UnityEngine.Random.Range(1, 6);
+        p.enemySettingId = 0;
         p.curPhase = 1;
         p.totalPhase = 10;
         p.xiSuiRate = 100;
