@@ -201,7 +201,82 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
             }, null);
         }
         
+        // 检查并自动装备（如果还没有装备）
+        CheckAndAutoEquip(gameInfo);
+        
         return gameInfo;
+    }
+    
+    private void CheckAndAutoEquip(GameInfo gameInfo)
+    {
+        if (gameInfo == null) return;
+        
+        var allEquipSettings = DataTable.table?.TbEquipment?.DataList;
+        if (allEquipSettings == null || allEquipSettings.Count == 0) return;
+        
+        // 检查玩家是否有装备
+        bool playerHasEquip = false;
+        if (gameInfo.playerPeople?.curEquipItemList != null)
+        {
+            for (int i = 0; i < gameInfo.playerPeople.curEquipItemList.Count; i++)
+            {
+                if (gameInfo.playerPeople.curEquipItemList[i] != null && gameInfo.playerPeople.curEquipItemList[i].settingId > 0)
+                {
+                    playerHasEquip = true;
+                    break;
+                }
+            }
+        }
+        
+        // 如果没有装备，自动添加
+        if (!playerHasEquip)
+        {
+            Debug.Log("[TestMod] 玩家没有装备，正在自动装备...");
+            for (int i = 0; i < 6; i++)
+            {
+                var bestEquip = FindBestEquipmentForSlot(i, allEquipSettings);
+                Debug.Log($"[TestMod] 槽位 {i} 找到最佳装备: {(bestEquip != null ? bestEquip.Name : "null")}");
+                if (bestEquip != null)
+                {
+                    ItemData item = CreateBestEquipItem(bestEquip, gameInfo);
+                    gameInfo.playerPeople.curEquipItemList[i] = item;
+                }
+            }
+            Debug.Log("[TestMod] 玩家自动装备完成");
+        }
+        
+        // 检查弟子是否有装备
+        if (gameInfo.studentData?.allStudentList != null)
+        {
+            foreach (var student in gameInfo.studentData.allStudentList)
+            {
+                if (student == null || student.curEquipItemList == null) continue;
+                
+                bool studentHasEquip = false;
+                for (int i = 0; i < student.curEquipItemList.Count; i++)
+                {
+                    if (student.curEquipItemList[i] != null && student.curEquipItemList[i].settingId > 0)
+                    {
+                        studentHasEquip = true;
+                        break;
+                    }
+                }
+                
+                if (!studentHasEquip)
+                {
+                    for (int i = 0; i < 6; i++)
+                    {
+                        var bestEquip = FindBestEquipmentForSlot(i, allEquipSettings);
+                        if (bestEquip != null)
+                        {
+                            ItemData item = CreateBestEquipItem(bestEquip, gameInfo);
+                            student.curEquipItemList[i] = item;
+                        }
+                    }
+                    Debug.Log($"[TestMod] 弟子 {student.name} 自动装备完成");
+                }
+            }
+        }
     }
 
     /// <summary>
@@ -1266,25 +1341,28 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
         var allEquipSettings = DataTable.table?.TbEquipment?.DataList;
         if (allEquipSettings == null || allEquipSettings.Count == 0)
         {
-            Debug.LogWarning("[TestMod] 没有找到装备配置表，无法自动装备");
+            Debug.Log($"[TestMod] 没有找到装备配置表，无法自动装备");
             return;
         }
+        
+        Debug.Log($"[TestMod] 装备配置表加载成功，共 {allEquipSettings.Count} 个装备");
         
         int equipCount = 0;
         
         // 为玩家装备
         if (gameInfo.playerPeople != null)
         {
-            for (int i = 0; i < 6; i++)
+        for (int i = 0; i < 6; i++)
+        {
+            var bestEquip = FindBestEquipmentForSlot(i, allEquipSettings);
+            Debug.Log($"[TestMod] 槽位 {i} 找到最佳装备: {(bestEquip != null ? bestEquip.Name : "null")}");
+            if (bestEquip != null)
             {
-                var bestEquip = FindBestEquipmentForSlot(i, allEquipSettings);
-                if (bestEquip != null)
-                {
-                    ItemData item = CreateBestEquipItem(bestEquip, gameInfo);
-                    gameInfo.playerPeople.curEquipItemList[i] = item;
-                    equipCount++;
-                }
+                ItemData item = CreateBestEquipItem(bestEquip, gameInfo);
+                gameInfo.playerPeople.curEquipItemList[i] = item;
+                equipCount++;
             }
+        }
             Debug.Log($"[TestMod] 玩家已自动装备 {equipCount} 件装备");
         }
         
