@@ -826,11 +826,25 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
                 Debug.Log($"[TestMod] 丹田空地已全开");
             }
         }
-        
-        // 9. 创建最高品质的各职业随从各4个
+
+        // 9. 设置现有弟子只增加经验不修改等级
+        if (gameInfo.studentData?.allStudentList != null)
+        {
+            foreach (var student in gameInfo.studentData.allStudentList)
+            {
+                if (student != null)
+                {
+                    student.studentCurExp = 99999999;
+                    student.curXiuwei = 99999999;
+                }
+            }
+            Debug.Log($"[TestMod] 现有弟子经验已设为满 ({gameInfo.studentData.allStudentList.Count} 个)");
+        }
+
+        // 10. 创建最高品质的各职业随从各4个
         CreateMaxQualityStudents(gameInfo);
         
-        // 10. 获得所有物品，数量为99
+        // 11. 获得所有物品，数量为99
         AddAllItems(gameInfo);
         
         Debug.Log("[TestMod] 测试修改应用完成！");
