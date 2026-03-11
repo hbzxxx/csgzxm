@@ -748,8 +748,9 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
         // 宗门等级
         if (gameInfo.allZongMenData != null)
         {
-            gameInfo.allZongMenData.ZongMenLevel = 100;
-            Debug.Log("[TestMod] 宗门等级已设为满级");
+            int maxZongMenLevel = DataTable._zongMenUpgradeList.Count;
+            gameInfo.allZongMenData.ZongMenLevel = maxZongMenLevel;
+            Debug.Log($"[TestMod] 宗门等级已设为满级 ({maxZongMenLevel})");
         }
         
         // 探索数据
