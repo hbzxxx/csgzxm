@@ -36,11 +36,12 @@ public class InfoPanelStudentView : SingleStudentView
         ShowPortrait();
         //如果有enemysetting 则用enemysetting 的icon 如果没有 则用自己的icon 如果都没有 则用默认icon
         img_bgk.gameObject.SetActive(true);
-        Debug.Log($"[InfoPanelStudentView] studentRarity={peopleData.studentRarity}, talent={peopleData.talent}");
         img_bgk.sprite = CommonUtil.StudentBgKuang(peopleData);
         int rarity = peopleData.studentRarity;
         if (rarity == 0)
             rarity = 1;
+        // 限制 rarity 在有效范围内（资源文件只有 1-5）
+        rarity = Mathf.Clamp(rarity, 1, 5);
         if (peopleData.talent == (int)StudentTalent.LianGong)
             img_bg.sprite = ResourceManager.Instance.GetObj<Sprite>(ConstantVal.resCommonPath + "img_dizik_" + rarity);
         else

@@ -934,6 +934,8 @@ public static class CommonUtil
         int rarity = p.studentRarity;
         if (rarity == 0)
             rarity = 1;
+        // 限制 rarity 在有效范围内（资源文件只有 1-5）
+        rarity = Mathf.Clamp(rarity, 1, 5);
         if (p.talent == (int)StudentTalent.LianGong)
             return ResourceManager.Instance.GetObj<Sprite>(ConstantVal.resCommonPath + "img_dizikbgk_" + rarity);
         else

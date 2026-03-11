@@ -137,9 +137,7 @@ public class StudentManager : CommonInstance<StudentManager>
                 StringBuilder sb = new StringBuilder();
                 if (peopledate.talent == 3)
                 {
-                    //+  + peopledate.yuanSu
                     sb.Append(peopledate.talent);
-                    if(peopledate.name== "时囡囡") Debug.Log("时囡囡属性："+peopledate.yuanSu);
                     sb.Append('_');
                     sb.Append(peopledate.yuanSu);
                 }
@@ -149,11 +147,9 @@ public class StudentManager : CommonInstance<StudentManager>
                 }
                 string iconPath = ConstantVal.PeopleTouxiang + sb.ToString();
                 Sprite talentSprite = ResourceManager.Instance.GetObj<Sprite>(iconPath);
-                Debug.Log($"[SetTouxiang] talent={peopledate.talent}, path={iconPath}, sprite={(talentSprite != null ? "found" : "null")}");
                 if (talentSprite == null)
                 {
                     talentSprite = ResourceManager.Instance.GetObj<Sprite>(ConstantVal.specialPortraitFolderPath + ConstantVal.defaultPortraitName);
-                    Debug.Log($"[SetTouxiang] using default portrait, sprite={(talentSprite != null ? "found" : "null")}");
                 }
                 icon.sprite = talentSprite;
             }
