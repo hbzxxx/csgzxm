@@ -835,23 +835,24 @@ public class StudentManager : CommonInstance<StudentManager>
             }
             else
             {
-                int limit = DataTable._studentUpgradeList[p.studentLevel-1].NeedExp.ToInt32();
-                p.studentCurExp += num;
-                if (p.studentCurExp >= limit)
+                if (p.studentLevel > 0 && p.studentLevel <= DataTable._studentUpgradeList.Count)
                 {
-                    p.studentCurExp = limit;
-
-                    if (p.talent == (int)StudentTalent.None)
+                    int limit = DataTable._studentUpgradeList[p.studentLevel-1].NeedExp.ToInt32();
+                    p.studentCurExp += num;
+                    if (p.studentCurExp >= limit)
                     {
-                        haveCanTestTalentStudent = true;
-                    }
-                    else
-                    {
-                        haveCanBreakThroughStudent = true;
-                    }
+                        p.studentCurExp = limit;
 
+                        if (p.talent == (int)StudentTalent.None)
+                        {
+                            haveCanTestTalentStudent = true;
+                        }
+                        else
+                        {
+                            haveCanBreakThroughStudent = true;
+                        }
+                    }
                 }
-
             }
             
         }
@@ -1118,7 +1119,10 @@ public class StudentManager : CommonInstance<StudentManager>
         }
         if (p.talent != (int)StudentTalent.LianGong)
         {
-          
+            if (p.studentLevel <= 0 || p.studentLevel > DataTable._studentUpgradeList.Count)
+            {
+                return;
+            }
 
             StudentUpgradeSetting setting = DataTable._studentUpgradeList[p.studentLevel - 1];
             int needExp = setting.NeedExp.ToInt32();
