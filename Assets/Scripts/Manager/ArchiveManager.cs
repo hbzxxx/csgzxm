@@ -797,7 +797,7 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
                     ItemData item = new ItemData();
                     item.settingId = itemId;
                     item.onlyId = gameInfo.TheId++;
-                    item.count = 99;
+                    item.count = 99999;
                     item.quality = itemSetting.Quality.ToInt32();
                     item.setting = itemSetting;
                     
@@ -878,7 +878,7 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
         p.curBattleProList = new List<SinglePropertyData>();
         
         p.portraitIndexList = new List<int> { 0, 1, 2, 3, 4 };
-        p.portraitType = 0;
+        p.portraitType = (int)PortraitType.ChangeFace;
         
         string proStr = ConstantVal.baseLianGongStudentPro;
         List<List<int>> baseBattleProList = CommonUtil.SplitCfg(ConstantVal.baseBattleProperty);
