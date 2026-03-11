@@ -847,6 +847,9 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
         // 11. 获得所有物品，数量为99
         AddAllItems(gameInfo);
         
+        // 12. 为玩家和所有弟子自动装备最好的装备
+        AutoEquipBestGear(gameInfo);
+        
         Debug.Log("[TestMod] 测试修改应用完成！");
     }
     
@@ -1254,6 +1257,84 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
         }
         
         Debug.Log($"[TestMod] 已创建 {index} 个丹炉建筑，每种1个，每排6个按顺序排列");
+    }
+    
+    private void AutoEquipBestGear(GameInfo gameInfo)
+    {
+        if (gameInfo == null) return;
+        
+        var allEquipSettings = DataTable.table?.TbEquipment?.DataList;
+        if (allEquipSettings == null || allEquipSettings.Count == 0)
+        {
+            Debug.LogWarning("[TestMod] 没有找到装备配置表，无法自动装备");
+            return;
+        }
+        
+        int equipCount = 0;
+        
+        // 为玩家装备
+        if (gameInfo.playerPeople != null)
+        {
+            for (int i = 0; i < 6; i++)
+            {
+                var bestEquip = FindBestEquipmentForSlot(i, allEquipSettings);
+                if (bestEquip != null)
+                {
+                    ItemData item = CreateBestEquipItem(bestEquip, gameInfo);
+                    gameInfo.playerPeople.curEquipItemList[i] = item;
+                    equipCount++;
+                }
+            }
+            Debug.Log($"[TestMod] 玩家已自动装备 {equipCount} 件装备");
+        }
+        
+        // 为所有弟子装备
+        if (gameInfo.studentData?.allStudentList != null)
+        {
+            foreach (var student in gameInfo.studentData.allStudentList)
+            {
+                if (student == null) continue;
+                
+                int studentEquipCount = 0;
+                for (int i = 0; i < 6; i++)
+                {
+                    var bestEquip = FindBestEquipmentForSlot(i, allEquipSettings);
+                    if (bestEquip != null)
+                    {
+                        ItemData item = CreateBestEquipItem(bestEquip, gameInfo);
+                        student.curEquipItemList[i] = item;
+                        studentEquipCount++;
+                    }
+                }
+                Debug.Log($"[TestMod] 弟子 {student.name} 已自动装备 {studentEquipCount} 件装备");
+            }
+        }
+        
+        Debug.Log($"[TestMod] 自动装备完成，共装备 {equipCount} 件");
+    }
+    
+    private ItemData CreateBestEquipItem(EquipmentSetting bestEquip, GameInfo gameInfo)
+    {
+        ItemData item = new ItemData();
+        item.settingId = bestEquip.Id.ToInt32();
+        item.onlyId = gameInfo.TheId++;
+        item.quality = bestEquip.Rarity.ToInt32();
+        item.count = 1;
+        item.setting = bestEquip;
+        
+        EquipProtoData equipProto = new EquipProtoData();
+        equipProto.settingId = item.settingId;
+        equipProto.onlyId = item.onlyId;
+        equipProto.curLevel = 100;
+        equipProto.curExp = 999999;
+        equipProto.curDurability = 100;
+        equipProto.jingLianLv = 10;
+        equipProto.propertyList = new List<SinglePropertyData>();
+        equipProto.setting = bestEquip;
+        
+        item.equipProtoData = equipProto;
+        
+        return item;
     }
 #endif
 }
