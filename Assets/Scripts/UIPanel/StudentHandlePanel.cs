@@ -2154,7 +2154,7 @@ public class StudentHandlePanel : PanelBase
                 }
                 else
                 {
-                    if (p.studentLevel < DataTable._studentUpgradeList.Count)
+                    if (p.studentLevel > 0 && p.studentLevel < DataTable._studentUpgradeList.Count)
                     {
                         StudentUpgradeSetting setting = DataTable._studentUpgradeList[p.studentLevel - 1];
                         int needExp = setting.NeedExp.ToInt32();
@@ -2164,6 +2164,8 @@ public class StudentHandlePanel : PanelBase
                             bigTag = StudentBigTag.Product;
                             break;
                         }
+                    }
+                }
                     }
            
                 }
