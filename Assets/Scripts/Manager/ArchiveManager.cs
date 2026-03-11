@@ -695,7 +695,7 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
         if (gameInfo.allDanFarmData != null && gameInfo.allDanFarmData.DanFarmList != null)
         {
             // 先解锁丹炉位置
-            gameInfo.allDanFarmData.DanFarmZuoZhenStudentLimit = 4;
+            gameInfo.allDanFarmData.DanFarmZuoZhenStudentLimit = 16;
             gameInfo.allDanFarmData.UnlockedDanFarmNumLimit = 100;
             gameInfo.allDanFarmData.UnlockedFarmNum = 100;
             
@@ -721,7 +721,7 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
                 if (danFarm != null)
                 {
                     danFarm.PosUnlockStatusList.Clear();
-                    for (int i = 0; i < 4; i++)
+                    for (int i = 0; i < 16; i++)
                     {
                         danFarm.PosUnlockStatusList.Add(true);
                     }
@@ -1163,8 +1163,8 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
             
             int settingId = danFarmSetting.Id.ToInt32();
             
-            // 每个类型的丹炉创建4个
-            for (int i = 0; i < 4; i++)
+            // 每个类型的丹炉创建1个
+            for (int i = 0; i < 1; i++)
             {
                 SingleDanFarmData danFarm = new SingleDanFarmData();
                 danFarm.OnlyId = (ulong)(gameInfo.TheId++);
