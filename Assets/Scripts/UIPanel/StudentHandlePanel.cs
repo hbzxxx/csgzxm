@@ -2166,10 +2166,7 @@ public class StudentHandlePanel : PanelBase
                         }
                     }
                 }
-                    }
-           
-                }
-     
+      
             }
         }
         if (choosedP != null)
