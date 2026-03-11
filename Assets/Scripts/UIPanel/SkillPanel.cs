@@ -426,12 +426,15 @@ public class SkillPanel : PanelBase
             Transform trans = curEquippedSkillGridList[i];
             ClearCertainParentAllSingle<SingleSkillView>(trans);
         }
-        for(int i = 1; i <p.allSkillData.equippedSkillIdList.Count; i++)
+        if (p.allSkillData != null && p.allSkillData.equippedSkillIdList != null)
         {
-            SingleSkillData singleSkillData =SkillManager.Instance.GetSingleSkillDataByEquippedSkillId(p.allSkillData.equippedSkillIdList[i], p.allSkillData);
-            Transform trans = curEquippedSkillGridList[i-1];
+            for(int i = 1; i < p.allSkillData.equippedSkillIdList.Count; i++)
+            {
+                SingleSkillData singleSkillData =SkillManager.Instance.GetSingleSkillDataByEquippedSkillId(p.allSkillData.equippedSkillIdList[i], p.allSkillData);
+                Transform trans = curEquippedSkillGridList[i-1];
 
-            AddSingle<SingleSkillView>(trans, singleSkillData, SkillViewType.EquippedSkill,this);
+                AddSingle<SingleSkillView>(trans, singleSkillData, SkillViewType.EquippedSkill,this);
+            }
         }
     }
 
