@@ -1797,29 +1797,32 @@ public class ItemManager:CommonInstance<ItemManager>
 
         }else if (p.talent != (int)StudentTalent.None)
         {
-            int needExp = DataTable._studentUpgradeList[p.studentLevel - 1].NeedExp.ToInt32();
-            if (p.studentCurExp < needExp)
+            if (p.studentLevel > 0 && p.studentLevel <= DataTable._studentUpgradeList.Count)
             {
-                for (int i = 0; i < RoleManager.Instance._CurGameInfo.ItemModel.itemDataList.Count; i++)
+                int needExp = DataTable._studentUpgradeList[p.studentLevel - 1].NeedExp.ToInt32();
+                if (p.studentCurExp < needExp)
                 {
-                    ItemData data = RoleManager.Instance._CurGameInfo.ItemModel.itemDataList[i];
-                    ItemSetting setting = DataTable.FindItemSetting(data.settingId);
-                    if (setting!=null && setting.ItemType.ToInt32() == (int)ItemType.ProductExpDan)
+                    for (int i = 0; i < RoleManager.Instance._CurGameInfo.ItemModel.itemDataList.Count; i++)
                     {
-                        List<int> levelRange = CommonUtil.SplitCfgOneDepth(setting.Param2);
-                        if (p.studentLevel >= levelRange[0]
-                            && p.studentLevel <= levelRange[1])
+                        ItemData data = RoleManager.Instance._CurGameInfo.ItemModel.itemDataList[i];
+                        ItemSetting setting = DataTable.FindItemSetting(data.settingId);
+                        if (setting!=null && setting.ItemType.ToInt32() == (int)ItemType.ProductExpDan)
                         {
-                            //ItemData needItem = new ItemData();
-                            //needItem.settingId = data.settingId;
-                            //needItem.count = 1;
-                            res.Add(data);
+                            List<int> levelRange = CommonUtil.SplitCfgOneDepth(setting.Param2);
+                            if (p.studentLevel >= levelRange[0]
+                                && p.studentLevel <= levelRange[1])
+                            {
+                                //ItemData needItem = new ItemData();
+                                //needItem.settingId = data.settingId;
+                                //needItem.count = 1;
+                                res.Add(data);
+                            }
                         }
                     }
                 }
             }
         }
-     
+      
         return res;
     }
 
