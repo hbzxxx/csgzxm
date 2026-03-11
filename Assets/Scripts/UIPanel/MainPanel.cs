@@ -582,23 +582,14 @@ public class MainPanel : PanelBase
                 if (p.talent != (int)StudentTalent.LianGong)
                 {
                     int maxLevel = DataTable._studentUpgradeList.Count;
-                    if (p.studentLevel < maxLevel)
+                    if (p.studentLevel > 0 && p.studentLevel < maxLevel)
                     {
-                        ////如果坐镇 则经验更多
-                        //if (p.studentStatusType == (int)StudentStatusType.DanFarmWork
-                        //    || p.studentStatusType == (int)StudentStatusType.DanFarmQuanLi
-                        //   || p.studentStatusType == (int)StudentStatusType.DanFarmRelax)
-                        //{
-                        //    SingleDanFarmData danFarmData = RoleManager.Instance._CurGameInfo.allDanFarmData.DanFarmList[p.zuoZhenDanFarmIndex];
-                       
-                        //}
                         int limit = DataTable._studentUpgradeList[p.studentLevel - 1].NeedExp.ToInt32();
                         if (p.studentCurExp >= limit)
                         {
                             valid = true;
                             break;
                         }
-
                     }
 
                 }
