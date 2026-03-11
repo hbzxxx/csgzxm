@@ -341,6 +341,8 @@ public class SkillPanel : PanelBase
         int bigLevel = (level - 1) / 10+1;
         for(int i = 0; i < bigLevel + 1; i++)
         {
+            if (i >= skillMaiList.Count)
+                break;
             int index = skillMaiList[i];
             upgradeFireList[index].SetActive(true);
             //闪电链子
