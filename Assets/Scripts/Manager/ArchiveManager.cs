@@ -927,8 +927,8 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
         p.studentQuality = quality;
         p.studentRarity = rarity;
         
-        int maxStudentLevel = DataTable._studentUpgradeList.Count;
-        p.studentLevel = maxStudentLevel;
+        // 只增加经验，不修改等级（和玩家设置一致）
+        p.studentLevel = 1;
         p.studentCurExp = 99999999;
         p.curXiuwei = 99999999;
         
@@ -1041,10 +1041,8 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
     
     private void SetupLianGongStudentMax(PeopleData p, GameInfo gameInfo)
     {
-        int maxLevel = DataTable._studentUpgradeList.Count;
-        int maxEquipLevel = DataTable._equipUpgradeList.Count;
-        
-        p.studentLevel = maxLevel;
+        // 只增加经验，不修改等级（和玩家设置一致）
+        p.studentLevel = 1;
         p.studentCurExp = 99999999;
         p.curXiuwei = 99999999;
         
