@@ -430,6 +430,8 @@ public class SkillPanel : PanelBase
         {
             for(int i = 1; i < p.allSkillData.equippedSkillIdList.Count; i++)
             {
+                if (i - 1 >= curEquippedSkillGridList.Count)
+                    break;
                 SingleSkillData singleSkillData =SkillManager.Instance.GetSingleSkillDataByEquippedSkillId(p.allSkillData.equippedSkillIdList[i], p.allSkillData);
                 Transform trans = curEquippedSkillGridList[i-1];
 
