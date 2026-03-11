@@ -669,7 +669,6 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
                 // 清理无效的装备数据（ES3反序列化可能创建空对象）
                 if (item.settingId <= 0)
                 {
-                    Debug.LogError($"[存档异常] 玩家槽位 {i} 有空的 ItemData 对象，已清理");
                     gameInfo.playerPeople.curEquipItemList[i] = null;
                     continue;
                 }
@@ -694,7 +693,6 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
                     // 清理无效的装备数据（ES3反序列化可能创建空对象）
                     if (item.settingId <= 0)
                     {
-                        Debug.LogError($"[存档异常] 弟子 {student.name} (onlyId={student.onlyId}) 槽位 {i} 有空的 ItemData 对象，已清理");
                         student.curEquipItemList[i] = null;
                         continue;
                     }
@@ -707,7 +705,6 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
             }
         }
 
-        Debug.Log("RestoreAllSettings 完成：所有 setting 已重新赋值");
     }
     
 #if UNITY_EDITOR
@@ -726,7 +723,6 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
         {
             gameInfo.playerPeople.studentCurExp = 99999999;
             gameInfo.playerPeople.curXiuwei = 99999999;
-            Debug.Log("[TestMod] 主角经验已设为 99999999");
         }
         
         // 2. 设置山门等级为最高，建筑全满
@@ -736,7 +732,7 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
             
             gameInfo.AllBuildingData.BuildList.Clear();
             
-            int equipMaxLevel = DataTable._equipBuildingUpgradeList.Count;
+            int equipMaxLevel = 5;
             int lianDanMaxLevel = DataTable._lianDanBuildingUpgradeList.Count;
             
             // 先添加炼器房 (10002)
@@ -909,8 +905,8 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
             {
                 if (student != null)
                 {
-                    student.studentCurExp = 99999999;
-                    student.curXiuwei = 99999999;
+                    student.studentCurExp = 0;
+                    student.curXiuwei = 0;
                 }
             }
             Debug.Log($"[TestMod] 现有弟子经验已设为满 ({gameInfo.studentData.allStudentList.Count} 个)");
@@ -918,8 +914,8 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
 
         // 10. 创建最高品质的各职业随从各4个
         CreateMaxQualityStudents(gameInfo);
-        
-        // 11. 获得所有物品，数量为99
+
+        // 11. 获得所有物品，数量为99999
         AddAllItems(gameInfo);
         
         // 12. 为玩家和所有弟子自动装备最好的装备
@@ -948,7 +944,7 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
                     ItemData item = new ItemData();
                     item.settingId = itemId;
                     item.onlyId = gameInfo.TheId++;
-                    item.count = 99;
+                    item.count = 99999;
                     item.quality = itemSetting.Quality.ToInt32();
                     item.setting = itemSetting;
                     
@@ -956,7 +952,7 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
                     gameInfo.ItemModel.onlyIdList.Add(item.onlyId);
                     gameInfo.ItemModel.itemDataList.Add(item);
                 }
-                Debug.Log($"[TestMod] 已添加 {allItems.Count} 种物品，每种 99 个");
+                Debug.Log($"[TestMod] 已添加 {allItems.Count} 种物品，每种 99999 个");
             }
         }
     }

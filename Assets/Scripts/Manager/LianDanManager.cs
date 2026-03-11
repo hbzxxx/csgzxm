@@ -520,7 +520,7 @@ public class LianDanManager : CommonInstance<LianDanManager>
         if (setting == null) return;
         
         List<int> upgradeCostList = CommonUtil.SplitCfgOneDepth(setting.UpgradeCost);
-        int maxLevel = upgradeCostList.Count;
+        int maxLevel = 5;
         
         for (int level = danFarm.CurLevel; level < maxLevel; level++)
         {
