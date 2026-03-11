@@ -900,7 +900,8 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
             for (int i = 0; i < 4; i++)
             {
                 PeopleData student = CreateMaxQualityStudent(talent, maxQuality, maxRarity, gameInfo);
-                gameInfo.studentData.allStudentList.Add(student);
+                // 使用正常招募流程添加弟子
+                StudentManager.Instance.AddStudent(student);
                 studentCount++;
                 
                 if (talent == StudentTalent.LianGong)
@@ -1001,6 +1002,9 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
         p.totalPhase = 10;
         p.xiSuiRate = 100;
         p.talentRarity = 5;
+        
+        // 设置随机头像（和正常招募流程一致）
+        RoleManager.Instance.RdmFace(p);
         
         p.xueMai = new XueMaiData();
         p.xueMai.xueMaiTypeList = new List<XueMaiType>();
