@@ -695,7 +695,7 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
         if (gameInfo.allDanFarmData != null && gameInfo.allDanFarmData.DanFarmList != null)
         {
             // 先解锁丹炉位置
-            gameInfo.allDanFarmData.DanFarmZuoZhenStudentLimit = 100;
+            gameInfo.allDanFarmData.DanFarmZuoZhenStudentLimit = 4;
             gameInfo.allDanFarmData.UnlockedDanFarmNumLimit = 100;
             gameInfo.allDanFarmData.UnlockedFarmNum = 100;
             
@@ -721,7 +721,7 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
                 if (danFarm != null)
                 {
                     danFarm.PosUnlockStatusList.Clear();
-                    for (int i = 0; i < 100; i++)
+                    for (int i = 0; i < 4; i++)
                     {
                         danFarm.PosUnlockStatusList.Add(true);
                     }
@@ -819,7 +819,7 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
             foreach (var danFarm in gameInfo.allDanFarmData.DanFarmList)
             {
                 danFarm.PosUnlockStatusList.Clear();
-                for (int i = 0; i < 100; i++)
+                for (int i = 0; i < 4; i++)
                 {
                     danFarm.PosUnlockStatusList.Add(true);
                 }
@@ -1208,7 +1208,7 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
                 }
                 
                 danFarm.PosUnlockStatusList.Clear();
-                for (int j = 0; j < 100; j++)
+                for (int j = 0; j < 4; j++)
                 {
                     danFarm.PosUnlockStatusList.Add(true);
                 }
