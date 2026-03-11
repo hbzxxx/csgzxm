@@ -646,41 +646,13 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
         
         Debug.Log("[TestMod] 开始应用测试修改...");
         
-        // 1. 设置玩家等级为最高
-        int maxStudentLevel = DataTable._studentUpgradeList.Count;
-        if (gameInfo.playerPeople != null)
-        {
-            gameInfo.playerPeople.studentLevel = maxStudentLevel;
-            gameInfo.playerPeople.studentCurExp = 99999999;
-            gameInfo.playerPeople.curXiuwei = 99999999;
-            Debug.Log($"[TestMod] 玩家等级已设为: {maxStudentLevel}");
-            
-            // 设置所有属性为最大值
-            if (gameInfo.playerPeople.propertyList != null)
-            {
-                foreach (var prop in gameInfo.playerPeople.propertyList)
-                {
-                    prop.num = 9999;
-                    prop.limit = 99999;
-                }
-            }
-            if (gameInfo.playerPeople.curBattleProList != null)
-            {
-                foreach (var prop in gameInfo.playerPeople.curBattleProList)
-                {
-                    prop.num = 9999;
-                    prop.limit = 99999;
-                }
-            }
-            Debug.Log("[TestMod] 玩家属性已设为最大值");
-        }
+        // 1. 不修改人物属性
         
-        // 2. 设置山门等级为最高
+        // 2. 设置山门等级为最高，建筑全满
         if (gameInfo.AllBuildingData != null)
         {
-            gameInfo.AllBuildingData.MountainLevel = 100; // 设置一个较高的山门等级
+            gameInfo.AllBuildingData.MountainLevel = 100;
             
-            // 设置所有建筑满级
             if (gameInfo.AllBuildingData.BuildList != null)
             {
                 int equipMaxLevel = DataTable._equipBuildingUpgradeList.Count;
@@ -704,12 +676,11 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
             gameInfo.NewGuideData.IdList.Clear();
             gameInfo.NewGuideData.AccomplishStatus.Clear();
             
-            // 使用与 ArchiveGenerator 相同的方式，添加 1-100 的引导 ID
             for (int i = 1; i <= 100; i++)
             {
                 gameInfo.NewGuideData.finishedGuideIdList.Add(i);
                 gameInfo.NewGuideData.IdList.Add(i);
-                gameInfo.NewGuideData.AccomplishStatus.Add(2); // 2 = Accomplished
+                gameInfo.NewGuideData.AccomplishStatus.Add(2);
             }
             gameInfo.NewGuideData.curGuideId = 0;
             gameInfo.NewGuideData.curGuideStep = 0;
@@ -721,14 +692,14 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
         {
             foreach (var map in gameInfo.AllMapData.MapList)
             {
-                map.MapStatus = 4; // 4 = Accomplished (地图已通关，可进入裂隙)
-                map.LieXiMapStatus = 4; // 4 = Accomplished (裂隙地图已通关，解锁下一张地图)
+                map.MapStatus = 4;
+                map.LieXiMapStatus = 4;
                 
                 if (map.LevelList != null)
                 {
                     foreach (var level in map.LevelList)
                     {
-                        level.LevelStatus = 4; // 4 = Accomplished (已通关)
+                        level.LevelStatus = 4;
                         level.HaveAccomplished = true;
                     }
                 }
@@ -744,8 +715,7 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
             Debug.Log($"[TestMod] 地图和关卡已全部解锁/通关 ({gameInfo.AllMapData.MapList.Count} 个地图)");
         }
         
-        // 5. 尝试解锁更多内容（如果存在）
-        // 宗门等级
+        // 5. 宗门等级满
         if (gameInfo.allZongMenData != null)
         {
             int maxZongMenLevel = DataTable._zongMenUpgradeList.Count;
@@ -753,7 +723,7 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
             Debug.Log($"[TestMod] 宗门等级已设为满级 ({maxZongMenLevel})");
         }
         
-        // 探索数据
+        // 6. 探索数据全解锁
         if (gameInfo.AllExploreData != null && gameInfo.AllExploreData.ExploreList != null)
         {
             foreach (var explore in gameInfo.AllExploreData.ExploreList)
@@ -764,21 +734,231 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
             Debug.Log("[TestMod] 探索已全部解锁");
         }
         
-        // 成就数据
+        // 7. 成就数据全完成
         if (gameInfo.AllAchievementData != null && gameInfo.AllAchievementData.achievementList != null)
         {
             foreach (var achievement in gameInfo.AllAchievementData.achievementList)
             {
                 if (achievement != null)
                 {
-                    achievement.accomplishStatus = 2; // 2 = 已完成
+                    achievement.accomplishStatus = 2;
                     achievement.curProgress = 9999;
                 }
             }
             Debug.Log($"[TestMod] 成就已全部完成 ({gameInfo.AllAchievementData.achievementList.Count} 个)");
         }
         
+        // 8. 空地全开 - 设置最大的挖掘格子数
+        if (gameInfo.allDanFarmData != null && gameInfo.allDanFarmData.danFarmList != null)
+        {
+            foreach (var danFarm in gameInfo.allDanFarmData.danFarmList)
+            {
+                if (danFarm.mineData != null)
+                {
+                    danFarm.mineData.maxGridCount = 1000;
+                    danFarm.mineData.curGridCount = 1000;
+                    Debug.Log($"[TestMod] 丹田空地已全开 (maxGridCount: {danFarm.mineData.maxGridCount})");
+                }
+            }
+        }
+        
+        // 9. 创建最高品质的各职业随从各4个
+        CreateMaxQualityStudents(gameInfo);
+        
         Debug.Log("[TestMod] 测试修改应用完成！");
+    }
+    
+    private void CreateMaxQualityStudents(GameInfo gameInfo)
+    {
+        if (gameInfo == null) return;
+        
+        if (gameInfo.studentData == null)
+        {
+            gameInfo.studentData = new StudentData();
+        }
+        
+        int maxQuality = (int)Quality.Gold;
+        int maxRarity = (int)Rarity.red;
+        
+        var talents = new List<StudentTalent>
+        {
+            StudentTalent.LianJing,
+            StudentTalent.DuanZhao,
+            StudentTalent.LianGong,
+            StudentTalent.CaiKuang,
+            StudentTalent.ChaoYao,
+            StudentTalent.JingWen,
+            StudentTalent.BaoShi,
+            StudentTalent.JingShang
+        };
+        
+        int studentCount = 0;
+        
+        foreach (var talent in talents)
+        {
+            for (int i = 0; i < 4; i++)
+            {
+                PeopleData student = CreateMaxQualityStudent(talent, maxQuality, maxRarity, gameInfo);
+                gameInfo.studentData.allStudentList.Add(student);
+                studentCount++;
+                
+                if (talent == StudentTalent.LianGong)
+                {
+                    SetupLianGongStudentMax(student, gameInfo);
+                }
+            }
+        }
+        
+        gameInfo.studentData.CurStudentNum = gameInfo.studentData.allStudentList.Count;
+        gameInfo.studentData.MaxStudentNum = 1000;
+        
+        Debug.Log($"[TestMod] 已创建 {studentCount} 个各职业随从（每职业4个）");
+    }
+    
+    private PeopleData CreateMaxQualityStudent(StudentTalent talent, int quality, int rarity, GameInfo gameInfo)
+    {
+        PeopleData p = new PeopleData();
+        p.onlyId = gameInfo.TheId++;
+        p.name = GetStudentNameByTalent(talent);
+        p.studentType = (int)StudentType.WaiMen;
+        p.talent = (int)talent;
+        p.studentQuality = quality;
+        p.studentRarity = rarity;
+        
+        int maxStudentLevel = DataTable._studentUpgradeList.Count;
+        p.studentLevel = maxStudentLevel;
+        p.studentCurExp = 99999999;
+        p.curXiuwei = 99999999;
+        
+        p.propertyList = new List<SinglePropertyData>();
+        p.curBattleProList = new List<SinglePropertyData>();
+        p.allSkillData = new AllSkillData();
+        p.curEquipItemList = new List<ItemData> { null, null, null, null, null, null };
+        
+        p.gender = UnityEngine.Random.Range(0, 2);
+        p.curPhase = 1;
+        p.totalPhase = 10;
+        p.xiSuiRate = 100;
+        p.talentRarity = 5;
+        
+        return p;
+    }
+    
+    private string GetStudentNameByTalent(StudentTalent talent)
+    {
+        switch (talent)
+        {
+            case StudentTalent.LianJing: return "炼丹弟子";
+            case StudentTalent.DuanZhao: return "炼器弟子";
+            case StudentTalent.LianGong: return "修武弟子";
+            case StudentTalent.CaiKuang: return "采矿弟子";
+            case StudentTalent.ChaoYao: return "灵田弟子";
+            case StudentTalent.JingWen: return "经文弟子";
+            case StudentTalent.BaoShi: return "宝石弟子";
+            case StudentTalent.JingShang: return "经商弟子";
+            default: return "弟子";
+        }
+    }
+    
+    private void SetupLianGongStudentMax(PeopleData p, GameInfo gameInfo)
+    {
+        int maxLevel = DataTable._studentUpgradeList.Count;
+        int maxEquipLevel = DataTable._equipUpgradeList.Count;
+        
+        p.studentLevel = maxLevel;
+        p.studentCurExp = 99999999;
+        p.curXiuwei = 99999999;
+        
+        if (p.allSkillData != null)
+        {
+            var allSkills = DataTable.table.TbSkill.DataList;
+            if (allSkills != null && allSkills.Count > 0)
+            {
+                for (int i = 0; i < Mathf.Min(10, allSkills.Count); i++)
+                {
+                    var skillSetting = allSkills[UnityEngine.Random.Range(0, allSkills.Count)];
+                    if (skillSetting != null)
+                    {
+                        SingleSkillData skill = new SingleSkillData();
+                        skill.skillId = skillSetting.Id.ToInt32();
+                        skill.skillLevel = 100;
+                        skill.isEquipped = true;
+                        p.allSkillData.skillList.Add(skill);
+                        p.allSkillData.equippedSkillIdList.Add(skill.skillId);
+                    }
+                }
+            }
+        }
+        
+        if (p.curEquipItemList != null && DataTable.table.TbEquipment != null)
+        {
+            var allEquipSettings = DataTable.table.TbEquipment.DataList;
+            if (allEquipSettings != null && allEquipSettings.Count > 0)
+            {
+                for (int i = 0; i < 6; i++)
+                {
+                    var bestEquip = FindBestEquipmentForSlot(i, allEquipSettings);
+                    if (bestEquip != null)
+                    {
+                        ItemData item = new ItemData();
+                        item.settingId = bestEquip.Id.ToInt32();
+                        item.onlyId = gameInfo.TheId++;
+                        item.quality = (int)Quality.Gold;
+                        item.count = 1;
+                        
+                        EquipProtoData equipProto = new EquipProtoData();
+                        equipProto.settingId = item.settingId;
+                        equipProto.onlyId = item.onlyId;
+                        equipProto.curLevel = maxEquipLevel;
+                        equipProto.curExp = 999999;
+                        equipProto.curDurability = 100;
+                        equipProto.jingLianLv = 10;
+                        equipProto.propertyList = new List<SinglePropertyData>();
+                        
+                        item.equipProtoData = equipProto;
+                        p.curEquipItemList[i] = item;
+                    }
+                }
+            }
+        }
+        
+        Debug.Log($"[TestMod] 修武弟子已设置：等级 {p.studentLevel}，技能 {p.allSkillData.skillList.Count} 个，装备 {p.curEquipItemList.FindAll(x => x != null).Count} 件");
+    }
+    
+    private EquipmentSetting FindBestEquipmentForSlot(int slotIndex, List<EquipmentSetting> allEquipSettings)
+    {
+        EquipmentSetting best = null;
+        int bestRarity = 0;
+        
+        foreach (var equip in allEquipSettings)
+        {
+            if (equip == null) continue;
+            
+            int equipType = equip.Type.ToInt32();
+            bool matchesSlot = false;
+            
+            switch (slotIndex)
+            {
+                case 0: matchesSlot = (equipType == 1); break;
+                case 1: matchesSlot = (equipType == 2); break;
+                case 2: matchesSlot = (equipType == 3); break;
+                case 3: matchesSlot = (equipType == 4); break;
+                case 4: matchesSlot = (equipType == 5); break;
+                case 5: matchesSlot = (equipType == 6); break;
+            }
+            
+            if (matchesSlot)
+            {
+                int rarity = equip.Rarity.ToInt32();
+                if (rarity > bestRarity)
+                {
+                    bestRarity = rarity;
+                    best = equip;
+                }
+            }
+        }
+        
+        return best;
     }
 #endif
 }
