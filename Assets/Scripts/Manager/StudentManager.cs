@@ -921,16 +921,21 @@ public class StudentManager : CommonInstance<StudentManager>
 
             }else if (p.talent == (int)StudentTalent.None)
             {
-                StudentUpgradeSetting setting = DataTable._studentUpgradeList[p.studentLevel - 1];
-                int expLimit = setting.NeedExp.ToInt32();
-                if (p.studentCurExp >= expLimit)
+                if (p.studentLevel > 0 && p.studentLevel <= DataTable._studentUpgradeList.Count)
                 {
-                    int cost = 1500;//基础是1500
-                    cost = Mathf.RoundToInt(cost * ConstantVal.GetValAddByRarity((Rarity)(int)p.studentRarity));
-                    if (ItemManager.Instance.FindLingShiCount() >= cost)
+                    StudentUpgradeSetting setting = DataTable._studentUpgradeList[p.studentLevel - 1];
+                    int expLimit = setting.NeedExp.ToInt32();
+                    if (p.studentCurExp >= expLimit)
                     {
-                        show = true;
+                        int cost = 1500;//基础是1500
+                        cost = Mathf.RoundToInt(cost * ConstantVal.GetValAddByRarity((Rarity)(int)p.studentRarity));
+                        if (ItemManager.Instance.FindLingShiCount() >= cost)
+                        {
+                            show = true;
+                        }
                     }
+                }
+            }
                 }
              
       

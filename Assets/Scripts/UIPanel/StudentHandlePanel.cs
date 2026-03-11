@@ -918,7 +918,7 @@ public class StudentHandlePanel : PanelBase
             else
                 txt_nextJingJieInXiulianPanel.SetText("极限");
 
-            if (curChoosedP.studentLevel < lvLimit)
+            if (curChoosedP.studentLevel > 0 && curChoosedP.studentLevel < lvLimit)
             {
                 StudentUpgradeSetting setting = DataTable._studentUpgradeList[curChoosedP.studentLevel - 1];
                 int expLimit = setting.NeedExp.ToInt32();
