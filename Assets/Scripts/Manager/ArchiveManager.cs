@@ -649,9 +649,9 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
         // 1. 主角经验设为满
         if (gameInfo.playerPeople != null)
         {
-            gameInfo.playerPeople.studentCurExp = 99999;
-            gameInfo.playerPeople.curXiuwei = 99999;
-            Debug.Log("[TestMod] 主角经验已设为 99999");
+            gameInfo.playerPeople.studentCurExp = 99999999;
+            gameInfo.playerPeople.curXiuwei = 99999999;
+            Debug.Log("[TestMod] 主角经验已设为 99999999");
         }
         
         // 2. 设置山门等级为最高，建筑全满
@@ -771,7 +771,43 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
         // 9. 创建最高品质的各职业随从各4个
         CreateMaxQualityStudents(gameInfo);
         
+        // 10. 获得所有物品，数量为99
+        AddAllItems(gameInfo);
+        
         Debug.Log("[TestMod] 测试修改应用完成！");
+    }
+    
+    private void AddAllItems(GameInfo gameInfo)
+    {
+        if (gameInfo.ItemModel == null)
+        {
+            gameInfo.ItemModel = new ItemModel();
+        }
+        
+        if (DataTable.table != null && DataTable.table.TbItem != null)
+        {
+            var allItems = DataTable.table.TbItem.DataList;
+            if (allItems != null)
+            {
+                foreach (var itemSetting in allItems)
+                {
+                    if (itemSetting == null) continue;
+                    
+                    int itemId = itemSetting.Id.ToInt32();
+                    ItemData item = new ItemData();
+                    item.settingId = itemId;
+                    item.onlyId = gameInfo.TheId++;
+                    item.count = 99;
+                    item.quality = itemSetting.Quality.ToInt32();
+                    item.setting = itemSetting;
+                    
+                    gameInfo.ItemModel.itemIdList.Add(itemId);
+                    gameInfo.ItemModel.onlyIdList.Add(item.onlyId);
+                    gameInfo.ItemModel.itemDataList.Add(item);
+                }
+                Debug.Log($"[TestMod] 已添加 {allItems.Count} 种物品，每种 99 个");
+            }
+        }
     }
     
     private void CreateMaxQualityStudents(GameInfo gameInfo)
@@ -833,13 +869,16 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
         
         int maxStudentLevel = DataTable._studentUpgradeList.Count;
         p.studentLevel = maxStudentLevel;
-        p.studentCurExp = 99999;
-        p.curXiuwei = 99999;
+        p.studentCurExp = 99999999;
+        p.curXiuwei = 99999999;
         
         p.propertyIdList = new List<int>();
         p.propertyList = new List<SinglePropertyData>();
         p.curBattleProIdList = new List<int>();
         p.curBattleProList = new List<SinglePropertyData>();
+        
+        p.portraitIndexList = new List<int> { 0, 1, 2, 3, 4 };
+        p.portraitType = 0;
         
         string proStr = ConstantVal.baseLianGongStudentPro;
         List<List<int>> baseBattleProList = CommonUtil.SplitCfg(ConstantVal.baseBattleProperty);
