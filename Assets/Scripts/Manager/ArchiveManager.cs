@@ -856,7 +856,7 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
                     ItemData item = new ItemData();
                     item.settingId = itemId;
                     item.onlyId = gameInfo.TheId++;
-                    item.count = 999999999999999;
+                    item.count = 99;
                     item.quality = itemSetting.Quality.ToInt32();
                     item.setting = itemSetting;
                     
