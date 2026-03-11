@@ -1103,7 +1103,7 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
                         EquipProtoData equipProto = new EquipProtoData();
                         equipProto.settingId = item.settingId;
                         equipProto.onlyId = item.onlyId;
-                        equipProto.curLevel = maxEquipLevel;
+                        equipProto.curLevel = 100;
                         equipProto.curExp = 999999;
                         equipProto.curDurability = 100;
                         equipProto.jingLianLv = 10;
@@ -1320,7 +1320,7 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
         item.onlyId = gameInfo.TheId++;
         item.quality = bestEquip.Rarity.ToInt32();
         item.count = 1;
-        item.setting = bestEquip;
+        item.setting = DataTable.FindItemSetting(item.settingId);
         
         EquipProtoData equipProto = new EquipProtoData();
         equipProto.settingId = item.settingId;
