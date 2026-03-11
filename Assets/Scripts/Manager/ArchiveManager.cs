@@ -64,7 +64,7 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
             ApplyTestModifications(gameInfo);
         }
 #endif
-        
+
         // 确保目录存在
         DirectoryInfo destination = new DirectoryInfo(ConstantVal.GetArchiveSaveFolder(archiveIndex));
         if (!destination.Exists)
