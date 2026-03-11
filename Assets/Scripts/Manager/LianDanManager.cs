@@ -510,6 +510,51 @@ public class LianDanManager : CommonInstance<LianDanManager>
     }
 
     /// <summary>
+    /// 测试用：同步升级丹炉到满级
+    /// </summary>
+    public void DanFarmUpgradeToMaxForTest(SingleDanFarmData danFarm)
+    {
+        if (danFarm == null) return;
+        
+        DanFarmSetting setting = DataTable.FindDanFarmSetting(danFarm.SettingId);
+        if (setting == null) return;
+        
+        List<int> upgradeCostList = CommonUtil.SplitCfgOneDepth(setting.UpgradeCost);
+        int maxLevel = upgradeCostList.Count;
+        
+        for (int level = danFarm.CurLevel; level < maxLevel; level++)
+        {
+            danFarm.CurLevel = level + 1;
+            
+            if (setting.WorkType.ToInt32() == (int)DanFarmWorkType.Common)
+            {
+                List<int> priceList = CommonUtil.SplitCfgOneDepth(setting.DanPrice);
+                if (level < priceList.Count)
+                {
+                    danFarm.SingleDanPrice = priceList[level];
+                }
+            }
+            
+            UnlockStudentPos(danFarm, setting);
+            
+            if (setting.Id.ToInt32() == (int)DanFarmIdType.LianDanLu)
+            {
+                UnlockDanFarmProduct(danFarm, setting);
+            }
+            else if (setting.Id.ToInt32() == (int)DanFarmIdType.EquipMake)
+            {
+                OnEquipMakeBuildingUpgrade(danFarm);
+            }
+            else if (setting.Id.ToInt32() == (int)DanFarmIdType.BaGuaLu)
+            {
+                OnBaGuaLuUpgrade(danFarm);
+            }
+        }
+        
+        Debug.Log($"[TestMod] 丹炉 {setting.Id} 已升级到满级 {maxLevel}");
+    }
+
+    /// <summary>
     /// 开始建新丹田
     /// </summary>
     public void OnBuildNewDanFarm(int settingId,Vector2 localPos)
