@@ -830,8 +830,65 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
         p.studentCurExp = 99999999;
         p.curXiuwei = 99999999;
         
+        p.propertyIdList = new List<int>();
         p.propertyList = new List<SinglePropertyData>();
+        p.curBattleProIdList = new List<int>();
         p.curBattleProList = new List<SinglePropertyData>();
+        
+        string proStr = ConstantVal.baseLianGongStudentPro;
+        List<List<int>> baseBattleProList = CommonUtil.SplitCfg(ConstantVal.baseBattleProperty);
+        List<List<int>> proList = CommonUtil.SplitCfg(proStr);
+        
+        List<int> haveValIdList = new List<int>();
+        List<int> haveValValList = new List<int>();
+        
+        for (int i = 0; i < proList.Count; i++)
+        {
+            List<int> thePro = proList[i];
+            haveValIdList.Add(thePro[0]);
+            haveValValList.Add(thePro[1]);
+        }
+        
+        for (int i = 0; i < baseBattleProList.Count; i++)
+        {
+            List<int> singlePro = baseBattleProList[i];
+            int theId = singlePro[0];
+            int theNum = singlePro[1];
+            
+            if (haveValIdList.Contains(theId))
+            {
+                int index = haveValIdList.IndexOf(theId);
+                theNum = haveValValList[index];
+            }
+            
+            theNum = 999999;
+            
+            SinglePropertyData pro = new SinglePropertyData();
+            pro.id = theId;
+            pro.num = theNum;
+            pro.quality = 5;
+            if (theId == (int)PropertyIdType.MpNum)
+            {
+                pro.limit = 100;
+            }
+            else if (theId == (int)PropertyIdType.Hp)
+            {
+                pro.limit = theNum;
+            }
+            
+            p.propertyIdList.Add(theId);
+            p.propertyList.Add(pro);
+            
+            SinglePropertyData battlePro = new SinglePropertyData();
+            battlePro.id = theId;
+            battlePro.num = theNum;
+            battlePro.limit = pro.limit;
+            battlePro.quality = 5;
+            
+            p.curBattleProIdList.Add(theId);
+            p.curBattleProList.Add(battlePro);
+        }
+        
         p.allSkillData = new AllSkillData();
         p.curEquipItemList = new List<ItemData> { null, null, null, null, null, null };
         
