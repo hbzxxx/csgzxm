@@ -1143,15 +1143,28 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
         var allDanFarms = DataTable.table.TbDanFarm.DataList;
         if (allDanFarms == null || allDanFarms.Count == 0) return;
         
+        // 第一个建筑位置
+        float startX = -1975f;
+        float startY = 1835f;
+        
+        // 每个建筑之间的间距（不重叠）
+        float spacingX = 250f;
+        float spacingY = -250f;
+        
+        // 每行4个
+        int perRow = 4;
+        
         int index = 0;
+        int typeIndex = 0;
+        
         foreach (var danFarmSetting in allDanFarms)
         {
             if (danFarmSetting == null) continue;
             
             int settingId = danFarmSetting.Id.ToInt32();
             
-            // 每个类型的丹炉创建5个
-            for (int i = 0; i < 5; i++)
+            // 每个类型的丹炉创建4个
+            for (int i = 0; i < 4; i++)
             {
                 SingleDanFarmData danFarm = new SingleDanFarmData();
                 danFarm.OnlyId = (ulong)(gameInfo.TheId++);
@@ -1160,11 +1173,17 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
                 danFarm.Index = index;
                 danFarm.DanFarmType = danFarmSetting.Type.ToInt32();
                 
-                int row = index / 5;
-                int col = index % 5;
-                danFarm.LocalPos = new Vector2(col * 200 + 100 + (settingId / 10000) * 1000, row * -200 - 100);
+                // 计算位置：每种类型一行，第一个位置(-1975, 1835)
+                int rowInType = i / perRow;
+                int colInType = i % perRow;
                 
-                danFarm.Status = 0;
+                danFarm.LocalPos = new Vector2(
+                    startX + colInType * spacingX + typeIndex * 50f,
+                    startY + typeIndex * spacingY + rowInType * spacingY
+                );
+                
+                // 状态为工作状态（不需要等待建造时间）
+                danFarm.Status = 1; // Working状态
                 danFarm.RemainTime = 0;
                 danFarm.ProcessDanTimer = 0;
                 danFarm.RebuildTotalTime = 0;
@@ -1200,9 +1219,10 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
                 gameInfo.allDanFarmData.DanFarmList.Add(danFarm);
                 index++;
             }
+            typeIndex++;
         }
         
-        Debug.Log($"[TestMod] 已创建 {index} 个丹炉建筑");
+        Debug.Log($"[TestMod] 已创建 {index} 个丹炉建筑，每种4个，位置排序好");
     }
 #endif
 }
