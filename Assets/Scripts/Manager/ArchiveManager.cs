@@ -691,9 +691,31 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
             Debug.Log($"[TestMod] 建筑已设为满级 (炼器房 {equipMaxLevel} 级 x10, 炼丹房 {lianDanMaxLevel} 级 x10)");
         }
         
-        // 2.1 设置所有丹炉建筑，解锁位置，排序好（已通过普通建筑创建，此处保留空实现）
+        // 2.1 设置所有丹炉建筑，解锁位置，排序好
         if (gameInfo.allDanFarmData != null && gameInfo.allDanFarmData.DanFarmList != null)
         {
+            // 先解锁丹炉位置
+            gameInfo.allDanFarmData.DanFarmZuoZhenStudentLimit = 100;
+            gameInfo.allDanFarmData.UnlockedDanFarmNumLimit = 100;
+            gameInfo.allDanFarmData.UnlockedFarmNum = 100;
+            
+            // 解锁所有丹炉类型
+            if (DataTable.table != null && DataTable.table.TbDanFarm != null)
+            {
+                var allDanFarms = DataTable.table.TbDanFarm.DataList;
+                if (allDanFarms != null)
+                {
+                    foreach (var danFarmSetting in allDanFarms)
+                    {
+                        if (danFarmSetting != null && !gameInfo.allDanFarmData.UnlockedDanFarmId.Contains(danFarmSetting.Id.ToInt32()))
+                        {
+                            gameInfo.allDanFarmData.UnlockedDanFarmId.Add(danFarmSetting.Id.ToInt32());
+                        }
+                    }
+                }
+            }
+            
+            // 解锁所有丹炉位置
             foreach (var danFarm in gameInfo.allDanFarmData.DanFarmList)
             {
                 if (danFarm != null)
@@ -705,7 +727,11 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
                     }
                 }
             }
-            Debug.Log($"[TestMod] 丹炉建筑空地已全开");
+            
+            // 使用正确的配置表ID创建丹炉建筑
+            CreateAllDanFarms(gameInfo);
+            
+            Debug.Log($"[TestMod] 丹炉建筑已创建，解锁位置，空地全开");
         }
         
         // 3. 设置所有新手教程为已完成
@@ -1108,6 +1134,74 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
         }
         
         return best;
+    }
+    
+    private void CreateAllDanFarms(GameInfo gameInfo)
+    {
+        if (DataTable.table == null || DataTable.table.TbDanFarm == null) return;
+        
+        var allDanFarms = DataTable.table.TbDanFarm.DataList;
+        if (allDanFarms == null || allDanFarms.Count == 0) return;
+        
+        int index = 0;
+        foreach (var danFarmSetting in allDanFarms)
+        {
+            if (danFarmSetting == null) continue;
+            
+            int settingId = danFarmSetting.Id.ToInt32();
+            
+            // 每个类型的丹炉创建5个
+            for (int i = 0; i < 5; i++)
+            {
+                SingleDanFarmData danFarm = new SingleDanFarmData();
+                danFarm.OnlyId = (ulong)(gameInfo.TheId++);
+                danFarm.SettingId = settingId;
+                danFarm.IsEmpty = false;
+                danFarm.Index = index;
+                danFarm.DanFarmType = danFarmSetting.Type.ToInt32();
+                
+                int row = index / 5;
+                int col = index % 5;
+                danFarm.LocalPos = new Vector2(col * 200 + 100 + (settingId / 10000) * 1000, row * -200 - 100);
+                
+                danFarm.Status = 0;
+                danFarm.RemainTime = 0;
+                danFarm.ProcessDanTimer = 0;
+                danFarm.RebuildTotalTime = 0;
+                danFarm.OpenQuanLi = false;
+                danFarm.QuanLiTotalTime = 0;
+                danFarm.QuanliRemainTime = 0;
+                danFarm.ProcessSpeed = 0;
+                danFarm.ProductSettingId = 0;
+                danFarm.ProductRemainNum = 0;
+                danFarm.ProductTotalNum = 0;
+                danFarm.HandleStop = false;
+                danFarm.NeedForeItemId = 0;
+                danFarm.SingleDanPrice = 0;
+                danFarm.Unlocked = true;
+                danFarm.TalentType = 0;
+                
+                for (int j = 0; j < 4; j++)
+                {
+                    danFarm.ZuoZhenStudentIdList.Add(0);
+                }
+                
+                danFarm.PosUnlockStatusList.Clear();
+                for (int j = 0; j < 100; j++)
+                {
+                    danFarm.PosUnlockStatusList.Add(true);
+                }
+                
+                danFarm.StudentUseCangKuDataList = new List<SingleStudentUseCangKuData>();
+                danFarm.ProductItemList = new List<ItemData>();
+                danFarm.UnlockedProductIdList = new List<int>();
+                
+                gameInfo.allDanFarmData.DanFarmList.Add(danFarm);
+                index++;
+            }
+        }
+        
+        Debug.Log($"[TestMod] 已创建 {index} 个丹炉建筑");
     }
 #endif
 }
