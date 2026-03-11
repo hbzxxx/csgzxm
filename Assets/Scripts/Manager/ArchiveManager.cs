@@ -1209,6 +1209,18 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
             danFarm.Unlocked = true;
             danFarm.TalentType = 0;
             
+            // 先初始化坐镇位置列表，确保有足够的元素
+            for (int j = 0; j < 4; j++)
+            {
+                danFarm.ZuoZhenStudentIdList.Add(0);
+            }
+            
+            danFarm.PosUnlockStatusList.Clear();
+            for (int j = 0; j < 4; j++)
+            {
+                danFarm.PosUnlockStatusList.Add(false);
+            }
+            
             // 初始等级为1，然后调用升级逻辑到满级
             danFarm.CurLevel = 1;
             
@@ -1246,17 +1258,6 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
             }
             
             danFarm.Status = 1; // Idling状态
-            
-            for (int j = 0; j < 4; j++)
-            {
-                danFarm.ZuoZhenStudentIdList.Add(0);
-            }
-            
-            danFarm.PosUnlockStatusList.Clear();
-            for (int j = 0; j < 4; j++)
-            {
-                danFarm.PosUnlockStatusList.Add(true);
-            }
             
             danFarm.StudentUseCangKuDataList = new List<SingleStudentUseCangKuData>();
             danFarm.ProductItemList = new List<ItemData>();
