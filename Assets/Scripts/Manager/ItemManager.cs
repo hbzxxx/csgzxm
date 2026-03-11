@@ -2407,6 +2407,7 @@ public class ItemManager:CommonInstance<ItemManager>
         for(int i = 0; i < RoleManager.Instance._CurGameInfo.ItemModel.itemDataList.Count; i++)
         {
             ItemData data = RoleManager.Instance._CurGameInfo.ItemModel.itemDataList[i];
+            if(data.settingId <= 0) continue;
             if(data.equipProtoData!=null
                 && data.equipProtoData.setting != null
                 && data.equipProtoData.setting.Pos.ToInt32() == posIndex)
