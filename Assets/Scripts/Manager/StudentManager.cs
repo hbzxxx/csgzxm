@@ -1414,9 +1414,9 @@ public class StudentManager : CommonInstance<StudentManager>
     public List<int> FindStudentExpAndLimit(PeopleData p)
     {
         List<int> res = new List<int>();
-        if(p.studentLevel < DataTable._studentUpgradeList.Count)
+        if(p.studentLevel > 0 && p.studentLevel <= DataTable._studentUpgradeList.Count)
         {
-            StudentUpgradeSetting setting = DataTable._studentUpgradeList[p.studentQuality];
+            StudentUpgradeSetting setting = DataTable._studentUpgradeList[p.studentLevel - 1];
             int expLimit = setting.NeedExp.ToInt32();
             int curExp = p.studentCurExp;
             res.Add(curExp);
