@@ -257,7 +257,15 @@ namespace Framework.Data
         #endregion
 
         #region Item
-        public static ItemSetting FindItemSetting(string id) => table.TbItem.GetOrDefault(id);
+        public static ItemSetting FindItemSetting(string id)
+        {
+            var setting = table.TbItem.GetOrDefault(id);
+            if (setting == null)
+            {
+                Debug.LogWarning($"[配置表] 找不到物品配置, id={id}");
+            }
+            return setting;
+        }
         public static ItemSetting FindItemSetting(int id) => FindItemSetting(id.ToString());
         public static List<ItemSetting> FindRarityTypeItemSetting(string itemType, int rarity = 0)
         {
