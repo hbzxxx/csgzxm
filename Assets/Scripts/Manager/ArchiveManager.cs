@@ -748,17 +748,17 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
             Debug.Log($"[TestMod] 成就已全部完成 ({gameInfo.AllAchievementData.achievementList.Count} 个)");
         }
         
-        // 8. 空地全开 - 设置最大的挖掘格子数
-        if (gameInfo.allDanFarmData != null && gameInfo.allDanFarmData.danFarmList != null)
+        // 8. 空地全开 - 解锁所有丹田位置
+        if (gameInfo.allDanFarmData != null && gameInfo.allDanFarmData.DanFarmList != null)
         {
-            foreach (var danFarm in gameInfo.allDanFarmData.danFarmList)
+            foreach (var danFarm in gameInfo.allDanFarmData.DanFarmList)
             {
-                if (danFarm.mineData != null)
+                danFarm.PosUnlockStatusList.Clear();
+                for (int i = 0; i < 100; i++)
                 {
-                    danFarm.mineData.maxGridCount = 1000;
-                    danFarm.mineData.curGridCount = 1000;
-                    Debug.Log($"[TestMod] 丹田空地已全开 (maxGridCount: {danFarm.mineData.maxGridCount})");
+                    danFarm.PosUnlockStatusList.Add(true);
                 }
+                Debug.Log($"[TestMod] 丹田空地已全开");
             }
         }
         
@@ -778,7 +778,7 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
         }
         
         int maxQuality = (int)Quality.Gold;
-        int maxRarity = (int)Rarity.red;
+        int maxRarity = (int)cfg.Rarity.red;
         
         var talents = new List<StudentTalent>
         {
@@ -934,7 +934,7 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
         {
             if (equip == null) continue;
             
-            int equipType = equip.Type.ToInt32();
+            int equipType = equip.Pos.ToInt32();
             bool matchesSlot = false;
             
             switch (slotIndex)
