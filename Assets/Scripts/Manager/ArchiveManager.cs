@@ -58,7 +58,7 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
         gameInfo.SaveTime = CGameTime.Instance.GetTimeStamp();
 
 #if UNITY_EDITOR
-        if (gameInfo.AllBuildingData.MountainLevel<99)
+        if (gameInfo.AllBuildingData != null && gameInfo.AllBuildingData.MountainLevel < 99)
         {
             Debug.Log("测试模式：自动修改存档数据");
             ApplyTestModifications(gameInfo);
