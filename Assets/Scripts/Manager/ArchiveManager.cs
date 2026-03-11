@@ -911,6 +911,11 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
             p.xueMai.xueMaiLevelList.Add(0);
         }
         
+        p.socializationData = new SocializationData();
+        p.socializationData.knowPeopleList = new List<ulong>();
+        p.socializationData.haoGanDu = new List<int>();
+        p.socializationData.socialRecordList = new List<SocializationRecordData>();
+        
         return p;
     }
     
