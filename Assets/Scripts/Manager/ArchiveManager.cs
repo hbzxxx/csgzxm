@@ -1208,7 +1208,44 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
             danFarm.SingleDanPrice = 0;
             danFarm.Unlocked = true;
             danFarm.TalentType = 0;
-            danFarm.CurLevel = maxLevel;
+            
+            // 初始等级为1，然后调用升级逻辑到满级
+            danFarm.CurLevel = 1;
+            
+            // 调用升级逻辑到满级
+            for (int level = 1; level < maxLevel; level++)
+            {
+                danFarm.CurLevel = level + 1;
+                
+                // 升级逻辑
+                if (danFarmSetting.WorkType.ToInt32() == (int)DanFarmWorkType.Common)
+                {
+                    List<int> priceList = CommonUtil.SplitCfgOneDepth(danFarmSetting.DanPrice);
+                    if (level < priceList.Count)
+                    {
+                        danFarm.SingleDanPrice = priceList[level];
+                    }
+                }
+                
+                // 解锁坐镇位置
+                LianDanManager.Instance.UnlockStudentPos(danFarm, danFarmSetting);
+                
+                // 解锁丹方产品
+                if (danFarmSetting.Id.ToInt32() == (int)DanFarmIdType.LianDanLu)
+                {
+                    LianDanManager.Instance.UnlockDanFarmProduct(danFarm, danFarmSetting);
+                }
+                else if (danFarmSetting.Id.ToInt32() == (int)DanFarmIdType.EquipMake)
+                {
+                    LianDanManager.Instance.OnEquipMakeBuildingUpgrade(danFarm);
+                }
+                else if (danFarmSetting.Id.ToInt32() == (int)DanFarmIdType.BaGuaLu)
+                {
+                    LianDanManager.Instance.OnBaGuaLuUpgrade(danFarm);
+                }
+            }
+            
+            danFarm.Status = 1; // Idling状态
             
             for (int j = 0; j < 4; j++)
             {
