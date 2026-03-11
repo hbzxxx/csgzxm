@@ -870,7 +870,7 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
             SinglePropertyData pro = new SinglePropertyData();
             pro.id = theId;
             pro.num = theNum;
-            pro.quality = 1;
+            pro.quality = 5;
             if (theId == (int)PropertyIdType.MpNum)
             {
                 pro.limit = 100;
@@ -887,7 +887,7 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
             battlePro.id = theId;
             battlePro.num = theNum;
             battlePro.limit = pro.limit;
-            battlePro.quality = 1;
+            battlePro.quality = 5;
             
             p.curBattleProIdList.Add(theId);
             p.curBattleProList.Add(battlePro);
