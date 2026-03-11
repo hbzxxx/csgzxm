@@ -1143,19 +1143,17 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
         var allDanFarms = DataTable.table.TbDanFarm.DataList;
         if (allDanFarms == null || allDanFarms.Count == 0) return;
         
+        // 清空现有丹炉列表，重新创建
+        gameInfo.allDanFarmData.DanFarmList.Clear();
+        
         // 第一个建筑位置
         float startX = -1975f;
         float startY = 1835f;
         
-        // 每个建筑之间的间距（不重叠）
-        float spacingX = 250f;
-        float spacingY = -250f;
-        
-        // 每行4个
-        int perRow = 4;
+        // 每个建筑之间的间距（垂直排列，不重叠）
+        float spacingY = 250f;
         
         int index = 0;
-        int typeIndex = 0;
         
         foreach (var danFarmSetting in allDanFarms)
         {
@@ -1164,66 +1162,56 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
             int settingId = danFarmSetting.Id.ToInt32();
             
             // 每个类型的丹炉创建1个
-            for (int i = 0; i < 1; i++)
+            SingleDanFarmData danFarm = new SingleDanFarmData();
+            danFarm.OnlyId = (ulong)(gameInfo.TheId++);
+            danFarm.SettingId = settingId;
+            danFarm.IsEmpty = false;
+            danFarm.Index = index;
+            danFarm.DanFarmType = danFarmSetting.Type.ToInt32();
+            
+            // 计算位置：按一列排列，Y轴递减，X轴对齐
+            danFarm.LocalPos = new Vector2(startX, startY - index * spacingY);
+            
+            // 状态为空闲（不生产，避免触发物品动画问题）
+            danFarm.Status = 0; // Idle状态
+            danFarm.RemainTime = 0;
+            danFarm.ProcessDanTimer = 0;
+            danFarm.RebuildTotalTime = 0;
+            danFarm.OpenQuanLi = false;
+            danFarm.QuanLiTotalTime = 0;
+            danFarm.QuanliRemainTime = 0;
+            danFarm.ProcessSpeed = 0;
+            // 从配置表获取产品ID
+            danFarm.ProductSettingId = danFarmSetting.Param.ToInt32();
+            danFarm.ProductRemainNum = 0;
+            danFarm.ProductTotalNum = 0;
+            danFarm.HandleStop = false;
+            danFarm.NeedForeItemId = 0;
+            danFarm.SingleDanPrice = 0;
+            danFarm.Unlocked = true;
+            danFarm.TalentType = 0;
+            danFarm.CurLevel = 1;
+            
+            for (int j = 0; j < 4; j++)
             {
-                SingleDanFarmData danFarm = new SingleDanFarmData();
-                danFarm.OnlyId = (ulong)(gameInfo.TheId++);
-                danFarm.SettingId = settingId;
-                danFarm.IsEmpty = false;
-                danFarm.Index = index;
-                danFarm.DanFarmType = danFarmSetting.Type.ToInt32();
-                
-                // 计算位置：每种类型一行，第一个位置(-1975, 1835)
-                int rowInType = i / perRow;
-                int colInType = i % perRow;
-                
-                danFarm.LocalPos = new Vector2(
-                    startX + colInType * spacingX + typeIndex * 50f,
-                    startY + typeIndex * spacingY + rowInType * spacingY
-                );
-                
-                // 状态为空闲（不生产，避免触发物品动画问题）
-                danFarm.Status = 0; // Idle状态
-                danFarm.RemainTime = 0;
-                danFarm.ProcessDanTimer = 0;
-                danFarm.RebuildTotalTime = 0;
-                danFarm.OpenQuanLi = false;
-                danFarm.QuanLiTotalTime = 0;
-                danFarm.QuanliRemainTime = 0;
-                danFarm.ProcessSpeed = 0;
-                // 从配置表获取产品ID
-                danFarm.ProductSettingId = danFarmSetting.Param.ToInt32();
-                danFarm.ProductRemainNum = 0;
-                danFarm.ProductTotalNum = 0;
-                danFarm.HandleStop = false;
-                danFarm.NeedForeItemId = 0;
-                danFarm.SingleDanPrice = 0;
-                danFarm.Unlocked = true;
-                danFarm.TalentType = 0;
-                danFarm.CurLevel = 1;
-                
-                for (int j = 0; j < 4; j++)
-                {
-                    danFarm.ZuoZhenStudentIdList.Add(0);
-                }
-                
-                danFarm.PosUnlockStatusList.Clear();
-                for (int j = 0; j < 4; j++)
-                {
-                    danFarm.PosUnlockStatusList.Add(true);
-                }
-                
-                danFarm.StudentUseCangKuDataList = new List<SingleStudentUseCangKuData>();
-                danFarm.ProductItemList = new List<ItemData>();
-                danFarm.UnlockedProductIdList = new List<int>();
-                
-                gameInfo.allDanFarmData.DanFarmList.Add(danFarm);
-                index++;
+                danFarm.ZuoZhenStudentIdList.Add(0);
             }
-            typeIndex++;
+            
+            danFarm.PosUnlockStatusList.Clear();
+            for (int j = 0; j < 4; j++)
+            {
+                danFarm.PosUnlockStatusList.Add(true);
+            }
+            
+            danFarm.StudentUseCangKuDataList = new List<SingleStudentUseCangKuData>();
+            danFarm.ProductItemList = new List<ItemData>();
+            danFarm.UnlockedProductIdList = new List<int>();
+            
+            gameInfo.allDanFarmData.DanFarmList.Add(danFarm);
+            index++;
         }
         
-        Debug.Log($"[TestMod] 已创建 {index} 个丹炉建筑，每种1个，位置4个");
+        Debug.Log($"[TestMod] 已创建 {index} 个丹炉建筑，每种1个，按一列排列");
     }
 #endif
 }
