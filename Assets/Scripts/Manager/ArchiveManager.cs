@@ -1330,6 +1330,22 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
         equipProto.curDurability = 100;
         equipProto.jingLianLv = 10;
         equipProto.propertyList = new List<SinglePropertyData>();
+        
+        // 从装备配置表中解析基础属性
+        List<List<int>> baseProList = CommonUtil.SplitCfg(bestEquip.BasePro);
+        for (int i = 0; i < baseProList.Count; i++)
+        {
+            List<int> singlePro = baseProList[i];
+            if (singlePro.Count >= 2)
+            {
+                SinglePropertyData proData = new SinglePropertyData();
+                proData.id = singlePro[0];
+                proData.num = singlePro[1];
+                proData.quality = (int)Quality.None;
+                equipProto.propertyList.Add(proData);
+            }
+        }
+        
         equipProto.setting = bestEquip;
         
         item.equipProtoData = equipProto;
