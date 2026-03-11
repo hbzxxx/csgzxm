@@ -695,7 +695,7 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
         if (gameInfo.allDanFarmData != null && gameInfo.allDanFarmData.DanFarmList != null)
         {
             // 先解锁丹炉位置
-            gameInfo.allDanFarmData.DanFarmZuoZhenStudentLimit = 16;
+            gameInfo.allDanFarmData.DanFarmZuoZhenStudentLimit = 4;
             gameInfo.allDanFarmData.UnlockedDanFarmNumLimit = 100;
             gameInfo.allDanFarmData.UnlockedFarmNum = 100;
             
@@ -721,7 +721,7 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
                 if (danFarm != null)
                 {
                     danFarm.PosUnlockStatusList.Clear();
-                    for (int i = 0; i < 16; i++)
+                    for (int i = 0; i < 4; i++)
                     {
                         danFarm.PosUnlockStatusList.Add(true);
                     }
@@ -1223,7 +1223,7 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
             typeIndex++;
         }
         
-        Debug.Log($"[TestMod] 已创建 {index} 个丹炉建筑，每种4个，位置排序好");
+        Debug.Log($"[TestMod] 已创建 {index} 个丹炉建筑，每种1个，位置4个");
     }
 #endif
 }
