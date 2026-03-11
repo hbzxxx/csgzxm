@@ -125,7 +125,7 @@ public class StudentManager : CommonInstance<StudentManager>
             EnemySetting enemySetting = DataTable.FindEnemySetting(peopledate.enemySettingId);
             if (enemySetting != null)
             {
-                icon.sprite = ResourceManager.Instance.GetObj<Sprite>(ConstantVal.specialPortraitFolderPath + peopledate.yuanSu.ToString());
+                icon.sprite = ResourceManager.Instance.GetObj<Sprite>(ConstantVal.specialPortraitFolderPath + enemySetting.SpecialPortrait);
             }
             else
             {
@@ -142,7 +142,12 @@ public class StudentManager : CommonInstance<StudentManager>
                 {
                     sb.Append(peopledate.talent);
                 }
-                icon.sprite = ResourceManager.Instance.GetObj<Sprite>(ConstantVal.PeopleTouxiang + sb.ToString());
+                Sprite talentSprite = ResourceManager.Instance.GetObj<Sprite>(ConstantVal.PeopleTouxiang + sb.ToString());
+                if (talentSprite == null)
+                {
+                    talentSprite = ResourceManager.Instance.GetObj<Sprite>(ConstantVal.specialPortraitFolderPath + ConstantVal.defaultPortraitName);
+                }
+                icon.sprite = talentSprite;
             }
         }
     }
