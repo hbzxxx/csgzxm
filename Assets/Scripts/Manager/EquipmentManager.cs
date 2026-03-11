@@ -1346,6 +1346,10 @@ public class EquipmentManager : CommonInstance<EquipmentManager>
     {
         //找最高等级的
         List<ItemData> allEqiupList = ItemManager.Instance.FindItemListByType(ItemType.Equip);
+        //过滤掉没有装备原型数据的物品
+        allEqiupList = allEqiupList.FindAll(x => x.equipProtoData != null && x.setting != null);
+        if (allEqiupList.Count == 0) return;
+        
         //先按品级排
         for (int i = 0; i < allEqiupList.Count - 1; i++)
         {
