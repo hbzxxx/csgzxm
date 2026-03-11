@@ -646,7 +646,13 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
         
         Debug.Log("[TestMod] 开始应用测试修改...");
         
-        // 1. 不修改人物属性
+        // 1. 主角经验设为满
+        if (gameInfo.playerPeople != null)
+        {
+            gameInfo.playerPeople.studentCurExp = 99999;
+            gameInfo.playerPeople.curXiuwei = 99999;
+            Debug.Log("[TestMod] 主角经验已设为 99999");
+        }
         
         // 2. 设置山门等级为最高，建筑全满
         if (gameInfo.AllBuildingData != null)
@@ -827,8 +833,8 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
         
         int maxStudentLevel = DataTable._studentUpgradeList.Count;
         p.studentLevel = maxStudentLevel;
-        p.studentCurExp = 99999999;
-        p.curXiuwei = 99999999;
+        p.studentCurExp = 99999;
+        p.curXiuwei = 99999;
         
         p.propertyIdList = new List<int>();
         p.propertyList = new List<SinglePropertyData>();
@@ -861,12 +867,10 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
                 theNum = haveValValList[index];
             }
             
-            theNum = 999999;
-            
             SinglePropertyData pro = new SinglePropertyData();
             pro.id = theId;
             pro.num = theNum;
-            pro.quality = 5;
+            pro.quality = 1;
             if (theId == (int)PropertyIdType.MpNum)
             {
                 pro.limit = 100;
@@ -883,7 +887,7 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
             battlePro.id = theId;
             battlePro.num = theNum;
             battlePro.limit = pro.limit;
-            battlePro.quality = 5;
+            battlePro.quality = 1;
             
             p.curBattleProIdList.Add(theId);
             p.curBattleProList.Add(battlePro);
