@@ -717,31 +717,39 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
 
         if (gameInfo.playerPeople != null)
         {
-            // 主角满级设置为150级（游戏最大等级）
+            // 主角满级设置为150级
             int maxLevel = 150;
             
-            // 直接设置满级属性
-            gameInfo.playerPeople.studentLevel = maxLevel;
-            gameInfo.playerPeople.studentCurExp = 0;
-            gameInfo.playerPeople.curXiuwei = 0;
-            
-            // 计算满级时的属性值（每次升级增加属性，上限300）
-            if (gameInfo.playerPeople.propertyList != null && gameInfo.playerPeople.propertyList.Count > 0)
+            // 计算升到满级需要的总经验
+            int totalExpNeeded = 0;
+            if (DataTable._studentUpgradeList != null)
             {
-                float qualityMultiplier = 1 + ((int)gameInfo.playerPeople.studentQuality - 1) * 0.2f;
-                float propertyPerLevel = qualityMultiplier * 2.4f;
-                int upgradeCount = maxLevel - 1;
-                int propertyAdd = Mathf.RoundToInt(upgradeCount * propertyPerLevel);
-                
-                for (int i = 0; i < gameInfo.playerPeople.propertyList.Count; i++)
+                for (int lvl = 1; lvl < maxLevel; lvl++)
                 {
-                    gameInfo.playerPeople.propertyList[i].num = Mathf.Min(300, propertyAdd);
+                    if (lvl <= DataTable._studentUpgradeList.Count)
+                    {
+                        totalExpNeeded += DataTable._studentUpgradeList[lvl - 1].NeedExp.ToInt32();
+                    }
                 }
             }
             
-            Debug.Log($"[TestMod] 主角等级已设为满级 ({maxLevel})，属性已满");
+            // 设置足够的经验值
+            gameInfo.playerPeople.studentLevel = 1;
+            gameInfo.playerPeople.studentCurExp = totalExpNeeded;
+            gameInfo.playerPeople.curXiuwei = 0;
             
-            // 主角技能强化到满级
+            // 使用正常升级方法逐级提升
+            if (StudentManager.Instance != null)
+            {
+                for (int lvl = 1; lvl < maxLevel; lvl++)
+                {
+                    StudentManager.Instance.BreakThrough(gameInfo.playerPeople);
+                }
+            }
+            
+            Debug.Log($"[TestMod] 主角等级已设为满级 ({gameInfo.playerPeople.studentLevel})，通过正常升级流程");
+            
+            // 主角技能强化到满级（使用正常升级方法）
             if (gameInfo.playerPeople.allSkillData != null)
             {
                 var allSkills = DataTable.table.TbSkill.DataList;
@@ -759,9 +767,17 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
                             gameInfo.playerPeople.allSkillData.skillList.Add(skill);
                             gameInfo.playerPeople.allSkillData.equippedSkillIdList.Add(skill.skillId);
                             
-                            // 直接设置技能满级
+                            // 使用正常方式逐级升级技能到满级
                             List<SkillUpgradeSetting> upgradeList = DataTable.FindSkillUpgradeListBySkillId(skill.skillId);
-                            if (upgradeList != null && upgradeList.Count > 0)
+                            if (upgradeList != null && upgradeList.Count > 0 && SkillManager.Instance != null)
+                            {
+                                int maxSkillLevel = upgradeList.Count;
+                                while (skill.skillLevel < maxSkillLevel)
+                                {
+                                    SkillManager.Instance.OnUpgradeSkill(skill);
+                                }
+                            }
+                            else if (upgradeList != null && upgradeList.Count > 0)
                             {
                                 skill.skillLevel = upgradeList.Count;
                             }
@@ -1234,22 +1250,30 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
         // 修武弟子满级设置为150级
         int maxLevel = 150;
         
-        // 直接设置满级属性
-        p.studentLevel = maxLevel;
-        p.studentCurExp = 0;
+        // 计算升到满级需要的总经验
+        int totalExpNeeded = 0;
+        if (DataTable._studentUpgradeList != null)
+        {
+            for (int lvl = 1; lvl < maxLevel; lvl++)
+            {
+                if (lvl <= DataTable._studentUpgradeList.Count)
+                {
+                    totalExpNeeded += DataTable._studentUpgradeList[lvl - 1].NeedExp.ToInt32();
+                }
+            }
+        }
+        
+        // 设置足够的经验值
+        p.studentLevel = 1;
+        p.studentCurExp = totalExpNeeded;
         p.curXiuwei = 0;
         
-        // 计算满级时的属性值（每次升级增加属性，上限300）
-        if (p.propertyList != null && p.propertyList.Count > 0)
+        // 使用正常升级方法逐级提升
+        if (StudentManager.Instance != null)
         {
-            float qualityMultiplier = 1 + ((int)p.studentQuality - 1) * 0.2f;
-            float propertyPerLevel = qualityMultiplier * 2.4f;
-            int upgradeCount = maxLevel - 1;
-            int propertyAdd = Mathf.RoundToInt(upgradeCount * propertyPerLevel);
-            
-            for (int i = 0; i < p.propertyList.Count; i++)
+            for (int lvl = 1; lvl < maxLevel; lvl++)
             {
-                p.propertyList[i].num = Mathf.Min(300, propertyAdd);
+                StudentManager.Instance.BreakThrough(p);
             }
         }
         
@@ -1270,9 +1294,17 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
                         p.allSkillData.skillList.Add(skill);
                         p.allSkillData.equippedSkillIdList.Add(skill.skillId);
                         
-                        // 直接设置技能满级
+                        // 使用正常方式逐级升级技能到满级
                         List<SkillUpgradeSetting> upgradeList = DataTable.FindSkillUpgradeListBySkillId(skill.skillId);
-                        if (upgradeList != null && upgradeList.Count > 0)
+                        if (upgradeList != null && upgradeList.Count > 0 && SkillManager.Instance != null)
+                        {
+                            int maxSkillLevel = upgradeList.Count;
+                            while (skill.skillLevel < maxSkillLevel)
+                            {
+                                SkillManager.Instance.OnUpgradeSkill(skill);
+                            }
+                        }
+                        else if (upgradeList != null && upgradeList.Count > 0)
                         {
                             skill.skillLevel = upgradeList.Count;
                         }
