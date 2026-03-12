@@ -912,6 +912,12 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
             }
         }
 
+        // 9.5 玩家升级到999级（与修武弟子一样的升级流程）
+        if (gameInfo.playerPeople != null)
+        {
+            UpgradePlayerTo999Level(gameInfo.playerPeople);
+        }
+
         // 9. 设置现有弟子只增加经验不修改等级 (不修改)
         // if (gameInfo.studentData?.allStudentList != null)
         // {
@@ -959,7 +965,6 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
         if (LiLianManager.Instance != null)
         {
             LiLianManager.Instance.SetLiLianEnabled(true);
-            RoleManager.Instance._CurGameInfo.playerPeople.trainIndex = 10;
             Debug.Log("[TestMod] 历练功能已开启");
         }
         Debug.Log("[TestMod] 测试修改应用完成！");
@@ -1183,6 +1188,61 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
             
             Debug.Log($"[TestMod] 弟子 {p.name} 升级完成，当前等级 {p.studentLevel}");
         }
+    }
+
+    private void UpgradePlayerTo999Level(PeopleData p)
+    {
+        if (p == null) return;
+
+        int targetLevel = 999;
+
+        if (p.trainIndex == 0)
+        {
+            p.trainIndex = 0;
+        }
+        if (p.curXiuwei == 0)
+        {
+            p.curXiuwei = 0;
+        }
+
+        Debug.Log($"[TestMod] 开始将玩家 {p.name} 从 trainIndex {p.trainIndex} 升级到 {targetLevel}");
+
+        while (p.trainIndex < targetLevel)
+        {
+            int curLevelLimit = StudentManager.Instance.GetStudentLevelLimit(p);
+
+            if (p.trainIndex >= curLevelLimit)
+            {
+                Debug.Log($"[TestMod] 玩家 {p.name} 达到境界上限 {curLevelLimit}，停止升级");
+                break;
+            }
+
+            if (p.trainIndex >= DataTable._trainList.Count - 1)
+            {
+                Debug.Log($"[TestMod] 玩家 {p.name} 达到配置表上限，停止升级");
+                break;
+            }
+
+            TrainSetting curTrainSetting = DataTable._trainList[p.trainIndex];
+            ulong xiuweiNeed = curTrainSetting.XiuWeiNeed.ToUInt64();
+
+            if (p.curXiuwei < xiuweiNeed)
+            {
+                p.curXiuwei += (ulong)(xiuweiNeed - p.curXiuwei + 10000000);
+            }
+
+            int originalNextBreak = p.nextBreakThroughAdd;
+            int originalEatedDanNum = p.curEatedDanNum;
+            p.nextBreakThroughAdd = 100;
+            p.curEatedDanNum = 10;
+
+            StudentManager.Instance.OnBreakThrough(p);
+
+            p.nextBreakThroughAdd = originalNextBreak;
+            p.curEatedDanNum = originalEatedDanNum;
+        }
+
+        Debug.Log($"[TestMod] 玩家 {p.name} 升级完成，当前 trainIndex {p.trainIndex}");
     }
     
     private PeopleData CreateMaxQualityStudent(StudentTalent talent, int quality, int rarity, GameInfo gameInfo)
