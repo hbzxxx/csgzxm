@@ -717,18 +717,32 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
 
         if (gameInfo.playerPeople != null)
         {
-            // 设置主角等级为满级
+            // 设置主角等级为满级（使用正常升级方法）
             int maxLevel = 1;
             if (DataTable._zongMenUpgradeList != null && DataTable._zongMenUpgradeList.Count > 0)
             {
                 maxLevel = DataTable._zongMenUpgradeList.Count;
             }
-            gameInfo.playerPeople.studentLevel = maxLevel;
+            
+            // 使用正常方式升级主角等级（逐级升级触发事件）
+            gameInfo.playerPeople.studentLevel = 1;
             gameInfo.playerPeople.studentCurExp = 0;
             gameInfo.playerPeople.curXiuwei = 0;
-            Debug.Log($"[TestMod] 主角等级已设为满级 ({maxLevel})");
             
-            // 主角技能强化到满级
+            if (StudentManager.Instance != null)
+            {
+                for (int lvl = 1; lvl < maxLevel; lvl++)
+                {
+                    StudentManager.Instance.BreakThrough(gameInfo.playerPeople);
+                }
+            }
+            else
+            {
+                gameInfo.playerPeople.studentLevel = maxLevel;
+            }
+            Debug.Log($"[TestMod] 主角等级已设为满级 ({gameInfo.playerPeople.studentLevel})");
+            
+            // 主角技能强化到满级（使用正常升级方法）
             if (gameInfo.playerPeople.allSkillData != null)
             {
                 var allSkills = DataTable.table.TbSkill.DataList;
@@ -746,15 +760,19 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
                             gameInfo.playerPeople.allSkillData.skillList.Add(skill);
                             gameInfo.playerPeople.allSkillData.equippedSkillIdList.Add(skill.skillId);
                             
-                            // 使用正常方式升级技能到满级
+                            // 使用正常方式逐级升级技能到满级
                             List<SkillUpgradeSetting> upgradeList = DataTable.FindSkillUpgradeListBySkillId(skill.skillId);
-                            if (upgradeList != null)
+                            if (upgradeList != null && SkillManager.Instance != null)
                             {
                                 int maxSkillLevel = upgradeList.Count;
                                 while (skill.skillLevel < maxSkillLevel)
                                 {
-                                    skill.skillLevel++;
+                                    SkillManager.Instance.OnUpgradeSkill(skill);
                                 }
+                            }
+                            else if (upgradeList != null)
+                            {
+                                skill.skillLevel = upgradeList.Count;
                             }
                         }
                     }
@@ -1222,18 +1240,30 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
     
     private void SetupLianGongStudentMax(PeopleData p, GameInfo gameInfo)
     {
-        // 设置弟子等级为满级
+        // 设置弟子等级为满级（使用正常升级方法）
         p.studentLevel = 1;
         p.studentCurExp = 0;
         p.curXiuwei = 0;
         
-        // 获取最大等级并设置满级
+        // 获取最大等级
         int maxLevel = 1;
         if (DataTable._zongMenUpgradeList != null && DataTable._zongMenUpgradeList.Count > 0)
         {
             maxLevel = DataTable._zongMenUpgradeList.Count;
         }
-        p.studentLevel = maxLevel;
+        
+        // 使用正常方式逐级升级弟子等级
+        if (StudentManager.Instance != null)
+        {
+            for (int lvl = 1; lvl < maxLevel; lvl++)
+            {
+                StudentManager.Instance.BreakThrough(p);
+            }
+        }
+        else
+        {
+            p.studentLevel = maxLevel;
+        }
         
         if (p.allSkillData != null)
         {
@@ -1252,15 +1282,19 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
                         p.allSkillData.skillList.Add(skill);
                         p.allSkillData.equippedSkillIdList.Add(skill.skillId);
                         
-                        // 使用正常方式升级技能到满级
+                        // 使用正常方式逐级升级技能到满级
                         List<SkillUpgradeSetting> upgradeList = DataTable.FindSkillUpgradeListBySkillId(skill.skillId);
-                        if (upgradeList != null)
+                        if (upgradeList != null && SkillManager.Instance != null)
                         {
                             int maxSkillLevel = upgradeList.Count;
                             while (skill.skillLevel < maxSkillLevel)
                             {
-                                skill.skillLevel++;
+                                SkillManager.Instance.OnUpgradeSkill(skill);
                             }
+                        }
+                        else if (upgradeList != null)
+                        {
+                            skill.skillLevel = upgradeList.Count;
                         }
                     }
                 }
