@@ -853,40 +853,25 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
             Debug.Log($"[TestMod] 地图和关卡已全部解锁/通关 ({gameInfo.AllMapData.MapList.Count} 个地图)");
         }
         
-        // 5. 宗门等级满（通过正常升级流程）
+        // 5. 宗门等级满（直接设置数据）
         if (gameInfo.allZongMenData != null)
         {
             int maxZongMenLevel = DataTable._zongMenUpgradeList.Count;
-            int curLevel = gameInfo.allZongMenData.ZongMenLevel;
-            
-            // 循环升级到满级
-            while (curLevel < maxZongMenLevel)
-            {
-                ZongMenManager.Instance.UpgradeZongMen();
-                curLevel = gameInfo.allZongMenData.ZongMenLevel;
-            }
+            gameInfo.allZongMenData.ZongMenLevel = maxZongMenLevel;
             Debug.Log($"[TestMod] 宗门等级已设为满级 ({maxZongMenLevel})");
         }
         
-        // 6. 探索数据全解锁（通过正常流程）
+        // 6. 探索数据全解锁（直接设置数据）
         if (gameInfo.AllExploreData != null && gameInfo.AllExploreData.ExploreList != null)
         {
-            // 获取配置表中的所有探索地图ID
-            List<int> allExploreIds = new List<int>();
-            for (int i = 0; i < DataTable._exploreMapList.Count; i++)
+            foreach (var exploreData in gameInfo.AllExploreData.ExploreList)
             {
-                allExploreIds.Add(DataTable._exploreMapList[i].Id.ToInt32());
+                if (exploreData != null)
+                {
+                    exploreData.Unlocked = true;
+                }
             }
-            
-            // 使用 MapManager 解锁所有探索地图
-            foreach (var exploreId in allExploreIds)
-            {
-                MapManager.Instance.UnlockExploreMap(exploreId);
-            }
-            
-            // 触发任务检查
-            TaskManager.Instance.TryAccomplishAllTask();
-            Debug.Log($"[TestMod] 探索已全部解锁 ({allExploreIds.Count} 个)");
+            Debug.Log($"[TestMod] 探索已全部解锁 ({gameInfo.AllExploreData.ExploreList.Count} 个)");
         }
         
         // 7. 成就数据全完成（通过正常流程）
@@ -963,10 +948,23 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
                     if (itemSetting == null) continue;
                     
                     int itemId = itemSetting.Id.ToInt32();
-                    // 使用正常的游戏流程添加物品
-                    ItemManager.Instance.GetItem(itemId, 99999);
+                    
+                    ItemData newItem = new ItemData();
+                    newItem.settingId = itemId;
+                    newItem.count = 99999;
+                    newItem.onlyId = ConstantVal.SetId;
+                    
+                    if (itemSetting.Quality != "-1")
+                    {
+                        newItem.quality = itemSetting.Quality.ToInt32();
+                    }
+                    newItem.setting = itemSetting;
+                    
+                    gameInfo.ItemModel.itemIdList.Add(itemId);
+                    gameInfo.ItemModel.itemDataList.Add(newItem);
+                    gameInfo.ItemModel.onlyIdList.Add(newItem.onlyId);
                 }
-                Debug.Log($"[TestMod] 已添加 {allItems.Count} 种物品，每种 99999 个（通过正常流程）");
+                Debug.Log($"[TestMod] 已添加 {allItems.Count} 种物品，每种 99999 个（直接添加数据）");
             }
         }
     }
