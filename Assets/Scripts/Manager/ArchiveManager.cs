@@ -717,43 +717,33 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
 
         if (gameInfo.playerPeople != null)
         {
-            // 设置主角等级为满级（使用正常升级和突破方法）
+            // 设置主角等级为满级
             int maxLevel = 1;
             if (DataTable._zongMenUpgradeList != null && DataTable._zongMenUpgradeList.Count > 0)
             {
                 maxLevel = DataTable._zongMenUpgradeList.Count;
             }
             
-            // 计算升到满级需要的总经验
-            int totalExpNeeded = 0;
-            if (DataTable._studentUpgradeList != null)
-            {
-                for (int lvl = 1; lvl < maxLevel; lvl++)
-                {
-                    if (lvl <= DataTable._studentUpgradeList.Count)
-                    {
-                        totalExpNeeded += DataTable._studentUpgradeList[lvl - 1].NeedExp.ToInt32();
-                    }
-                }
-            }
-            
-            // 设置足够的经验值
-            gameInfo.playerPeople.studentLevel = 1;
-            gameInfo.playerPeople.studentCurExp = totalExpNeeded;
+            // 直接设置满级属性
+            gameInfo.playerPeople.studentLevel = maxLevel;
+            gameInfo.playerPeople.studentCurExp = 0;
             gameInfo.playerPeople.curXiuwei = 0;
             
-            if (StudentManager.Instance != null)
+            // 计算满级时的属性值（每次升级增加属性，上限300）
+            if (gameInfo.playerPeople.propertyList != null && gameInfo.playerPeople.propertyList.Count > 0)
             {
-                for (int lvl = 1; lvl < maxLevel; lvl++)
+                float qualityMultiplier = 1 + ((int)gameInfo.playerPeople.studentQuality - 1) * 0.2f;
+                float propertyPerLevel = qualityMultiplier * 2.4f;
+                int upgradeCount = maxLevel - 1;
+                int propertyAdd = Mathf.RoundToInt(upgradeCount * propertyPerLevel);
+                
+                for (int i = 0; i < gameInfo.playerPeople.propertyList.Count; i++)
                 {
-                    StudentManager.Instance.BreakThrough(gameInfo.playerPeople);
+                    gameInfo.playerPeople.propertyList[i].num = Mathf.Min(300, propertyAdd);
                 }
             }
-            else
-            {
-                gameInfo.playerPeople.studentLevel = maxLevel;
-            }
-            Debug.Log($"[TestMod] 主角等级已设为满级 ({gameInfo.playerPeople.studentLevel})，共消耗经验 {totalExpNeeded}");
+            
+            Debug.Log($"[TestMod] 主角等级已设为满级 ({maxLevel})，属性已满");
             
             // 主角技能强化到满级（使用正常升级方法）
             if (gameInfo.playerPeople.allSkillData != null)
@@ -1253,42 +1243,30 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
     
     private void SetupLianGongStudentMax(PeopleData p, GameInfo gameInfo)
     {
-        // 设置弟子等级为满级（使用正常升级和突破方法）
+        // 设置弟子等级为满级
         int maxLevel = 1;
         if (DataTable._zongMenUpgradeList != null && DataTable._zongMenUpgradeList.Count > 0)
         {
             maxLevel = DataTable._zongMenUpgradeList.Count;
         }
         
-        // 计算升到满级需要的总经验
-        int totalExpNeeded = 0;
-        if (DataTable._studentUpgradeList != null)
-        {
-            for (int lvl = 1; lvl < maxLevel; lvl++)
-            {
-                if (lvl <= DataTable._studentUpgradeList.Count)
-                {
-                    totalExpNeeded += DataTable._studentUpgradeList[lvl - 1].NeedExp.ToInt32();
-                }
-            }
-        }
-        
-        // 设置足够的经验值
-        p.studentLevel = 1;
-        p.studentCurExp = totalExpNeeded;
+        // 直接设置满级属性
+        p.studentLevel = maxLevel;
+        p.studentCurExp = 0;
         p.curXiuwei = 0;
         
-        // 使用正常方式逐级升级弟子等级
-        if (StudentManager.Instance != null)
+        // 计算满级时的属性值（每次升级增加属性，上限300）
+        if (p.propertyList != null && p.propertyList.Count > 0)
         {
-            for (int lvl = 1; lvl < maxLevel; lvl++)
+            float qualityMultiplier = 1 + ((int)p.studentQuality - 1) * 0.2f;
+            float propertyPerLevel = qualityMultiplier * 2.4f;
+            int upgradeCount = maxLevel - 1;
+            int propertyAdd = Mathf.RoundToInt(upgradeCount * propertyPerLevel);
+            
+            for (int i = 0; i < p.propertyList.Count; i++)
             {
-                StudentManager.Instance.BreakThrough(p);
+                p.propertyList[i].num = Mathf.Min(300, propertyAdd);
             }
-        }
-        else
-        {
-            p.studentLevel = maxLevel;
         }
         
         if (p.allSkillData != null)
