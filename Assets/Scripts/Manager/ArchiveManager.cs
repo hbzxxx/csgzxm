@@ -1996,6 +1996,13 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
         // 设置优化等级
         equipData.youHuaLv = 5;
         
+        // 初始化宝石槽
+        equipData.gemList = new List<ItemData>();
+        for (int i = 0; i < 4; i++)
+        {
+            equipData.gemList.Add(null);
+        }
+        
         // 获取 ItemSetting
         int itemId = bestEquip.ItemId.ToInt32();
         ItemSetting itemSetting = DataTable.FindItemSetting(itemId);
