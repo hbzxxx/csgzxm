@@ -57,11 +57,11 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
         GameInfo gameInfo = RoleManager.Instance._CurGameInfo;
         gameInfo.SaveTime = CGameTime.Instance.GetTimeStamp();
 
-        if (gameInfo.AllBuildingData == null)
-        {
-            Debug.Log("测试模式：自动修改存档数据");
-            ApplyTestModifications(gameInfo);
-        }
+        //if (gameInfo.AllBuildingData == null)
+        //{
+        //    Debug.Log("测试模式：自动修改存档数据");
+        //    ApplyTestModifications(gameInfo);
+        //}
 
         // 确保目录存在
         DirectoryInfo destination = new DirectoryInfo(ConstantVal.GetArchiveSaveFolder(archiveIndex));
@@ -937,7 +937,7 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
                     
                     ItemData newItem = new ItemData();
                     newItem.settingId = itemId;
-                    newItem.count = 99999;
+                    newItem.count = 9999999999999999;
                     newItem.onlyId = ConstantVal.SetId;
                     
                     if (itemSetting.Quality != "-1")
@@ -950,7 +950,7 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
                     gameInfo.ItemModel.itemDataList.Add(newItem);
                     gameInfo.ItemModel.onlyIdList.Add(newItem.onlyId);
                 }
-                Debug.Log($"[TestMod] 已添加 {allItems.Count} 种物品，每种 99999 个（直接添加数据）");
+                Debug.Log($"[TestMod] 已添加 {allItems.Count} 种物品，每种 99999999999999 个（直接添加数据）");
             }
         }
     }

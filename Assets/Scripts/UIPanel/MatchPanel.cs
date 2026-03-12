@@ -193,6 +193,8 @@ public class MatchPanel : PanelBase
 
         for(int i = 0; i < todayWinAwardBtnList.Count; i++)
         {
+            if (i >= RoleManager.Instance._CurGameInfo.MatchData.TodayWinAwardGetStatusList.Count)
+                continue;
             SkeletonGraphic ske = todayWinAwardBtnList[i].GetComponentInChildren<SkeletonGraphic>();
             if (RoleManager.Instance._CurGameInfo.MatchData.TodayWinAwardGetStatusList[i] == (int)AccomplishStatus.Accomplished)
             {
