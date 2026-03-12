@@ -1058,36 +1058,58 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
     {
         if (p == null) return;
         
+        bool isLianGong = (p.talent == (int)StudentTalent.LianGong);
         int targetLevel = 999;
-        Debug.Log($"[TestMod] 开始将弟子 {p.name} 从等级 {p.studentLevel} 升级到 {targetLevel}");
         
-        while (p.studentLevel < targetLevel)
+        if (isLianGong)
         {
-            int curLevelLimit = StudentManager.Instance.GetStudentLevelLimit(p);
+            Debug.Log($"[TestMod] 开始将修武弟子 {p.name} 从 trainIndex {p.trainIndex} 升级到 {targetLevel}");
             
-            if (p.studentLevel >= curLevelLimit)
+            while (p.trainIndex < targetLevel)
             {
-                Debug.Log($"[TestMod] 弟子 {p.name} 达到等级上限 {curLevelLimit}，停止升级");
-                break;
+                int curLevelLimit = StudentManager.Instance.GetStudentLevelLimit(p);
+                
+                if (p.trainIndex >= curLevelLimit)
+                {
+                    Debug.Log($"[TestMod] 修武弟子 {p.name} 达到境界上限 {curLevelLimit}，停止升级");
+                    break;
+                }
+                
+                if (p.trainIndex >= DataTable._trainList.Count - 1)
+                {
+                    Debug.Log($"[TestMod] 修武弟子 {p.name} 达到配置表上限，停止升级");
+                    break;
+                }
+                
+                TrainSetting curTrainSetting = DataTable._trainList[p.trainIndex];
+                ulong xiuweiNeed = curTrainSetting.XiuWeiNeed.ToUInt64();
+                
+                if (p.curXiuwei < xiuweiNeed)
+                {
+                    p.curXiuwei += (ulong)(xiuweiNeed - p.curXiuwei + 10000000);
+                }
+                
+                int originalNextBreak = p.nextBreakThroughAdd;
+                p.nextBreakThroughAdd = 100;
+                
+                StudentManager.Instance.OnBreakThrough(p);
+                
+                p.nextBreakThroughAdd = originalNextBreak;
             }
             
-            if (p.studentLevel > 0 && p.studentLevel <= DataTable._studentUpgradeList.Count)
-            {
-                StudentUpgradeSetting setting = DataTable._studentUpgradeList[p.studentLevel - 1];
-                int needExp = setting.NeedExp.ToInt32();
-                p.studentCurExp += needExp;
-            }
-            else
-            {
-                p.studentCurExp += 1000000;
-            }
+            Debug.Log($"[TestMod] 修武弟子 {p.name} 升级完成，当前 trainIndex {p.trainIndex}");
+        }
+        else
+        {
+            Debug.Log($"[TestMod] 开始将弟子 {p.name} 从等级 {p.studentLevel} 升级到 {targetLevel}");
             
             while (p.studentLevel < targetLevel)
             {
-                curLevelLimit = StudentManager.Instance.GetStudentLevelLimit(p);
+                int curLevelLimit = StudentManager.Instance.GetStudentLevelLimit(p);
                 
                 if (p.studentLevel >= curLevelLimit)
                 {
+                    Debug.Log($"[TestMod] 弟子 {p.name} 达到等级上限 {curLevelLimit}，停止升级");
                     break;
                 }
                 
@@ -1095,51 +1117,72 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
                 {
                     StudentUpgradeSetting setting = DataTable._studentUpgradeList[p.studentLevel - 1];
                     int needExp = setting.NeedExp.ToInt32();
-                    
-                    if (p.studentCurExp < needExp)
-                    {
-                        Debug.Log($"[TestMod] 弟子 {p.name} 经验不足，停止升级，当前等级 {p.studentLevel}");
-                        return;
-                    }
-                    
-                    p.studentLevel++;
-                    p.studentCurExp -= needExp;
+                    p.studentCurExp += needExp;
                 }
                 else
                 {
-                    if (p.studentCurExp < 1000000)
-                    {
-                        return;
-                    }
-                    p.studentLevel++;
-                    p.studentCurExp -= 1000000;
+                    p.studentCurExp += 1000000;
                 }
                 
-                for (int i = 0; i < p.propertyList.Count; i++)
+                while (p.studentLevel < targetLevel)
                 {
-                    Quality proQuality = (Quality)(int)p.propertyList[i].quality;
-                    int valEquip = StudentManager.Instance.StudentBreakThroughAdd((StudentTalent)(int)p.talent, proQuality);
-                    p.propertyList[i].num += valEquip;
-                    if (p.propertyList[i].num >= 300)
+                    curLevelLimit = StudentManager.Instance.GetStudentLevelLimit(p);
+                    
+                    if (p.studentLevel >= curLevelLimit)
                     {
-                        p.propertyList[i].num = 300;
+                        break;
                     }
-                }
-                
-                for (int i = 0; i < p.curBattleProList.Count; i++)
-                {
-                    Quality proQuality = (Quality)(int)p.curBattleProList[i].quality;
-                    int valEquip = StudentManager.Instance.StudentBreakThroughAdd((StudentTalent)(int)p.talent, proQuality);
-                    p.curBattleProList[i].num += valEquip;
-                    if (p.curBattleProList[i].num >= 300)
+                    
+                    if (p.studentLevel > 0 && p.studentLevel <= DataTable._studentUpgradeList.Count)
                     {
-                        p.curBattleProList[i].num = 300;
+                        StudentUpgradeSetting setting = DataTable._studentUpgradeList[p.studentLevel - 1];
+                        int needExp = setting.NeedExp.ToInt32();
+                        
+                        if (p.studentCurExp < needExp)
+                        {
+                            Debug.Log($"[TestMod] 弟子 {p.name} 经验不足，停止升级，当前等级 {p.studentLevel}");
+                            return;
+                        }
+                        
+                        p.studentLevel++;
+                        p.studentCurExp -= needExp;
+                    }
+                    else
+                    {
+                        if (p.studentCurExp < 1000000)
+                        {
+                            return;
+                        }
+                        p.studentLevel++;
+                        p.studentCurExp -= 1000000;
+                    }
+                    
+                    for (int i = 0; i < p.propertyList.Count; i++)
+                    {
+                        Quality proQuality = (Quality)(int)p.propertyList[i].quality;
+                        int valEquip = StudentManager.Instance.StudentBreakThroughAdd((StudentTalent)(int)p.talent, proQuality);
+                        p.propertyList[i].num += valEquip;
+                        if (p.propertyList[i].num >= 300)
+                        {
+                            p.propertyList[i].num = 300;
+                        }
+                    }
+                    
+                    for (int i = 0; i < p.curBattleProList.Count; i++)
+                    {
+                        Quality proQuality = (Quality)(int)p.curBattleProList[i].quality;
+                        int valEquip = StudentManager.Instance.StudentBreakThroughAdd((StudentTalent)(int)p.talent, proQuality);
+                        p.curBattleProList[i].num += valEquip;
+                        if (p.curBattleProList[i].num >= 300)
+                        {
+                            p.curBattleProList[i].num = 300;
+                        }
                     }
                 }
             }
+            
+            Debug.Log($"[TestMod] 弟子 {p.name} 升级完成，当前等级 {p.studentLevel}");
         }
-        
-        Debug.Log($"[TestMod] 弟子 {p.name} 升级完成，当前等级 {p.studentLevel}");
     }
     
     private PeopleData CreateMaxQualityStudent(StudentTalent talent, int quality, int rarity, GameInfo gameInfo)
