@@ -1192,7 +1192,7 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
         }
         
         p.allSkillData = new AllSkillData();
-        p.curEquipItemList = new List<ItemData> { null, null, null, null };
+        p.curEquipItemList = new List<ItemData> { null, null, null, null, null, null };
         
         p.gender = UnityEngine.Random.Range(0, 2);
         p.yuanSu = UnityEngine.Random.Range(1, 6);
@@ -1306,7 +1306,7 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
             var allEquipSettings = DataTable.table.TbEquipment.DataList;
             if (allEquipSettings != null && allEquipSettings.Count > 0)
             {
-                for (int i = 0; i < 4; i++)
+                for (int i = 0; i < 6; i++)
                 {
                     var bestEquip = FindBestEquipmentForSlot(i, allEquipSettings);
                     if (bestEquip != null)
