@@ -1514,8 +1514,10 @@ public class StudentManager : CommonInstance<StudentManager>
                 }
             }
         }
-      
+       
         res += p.trainIndex * 10;
+        if (res >= DataTable._trainList.Count)
+            res = DataTable._trainList.Count - 1;
         return res;
     }
 
