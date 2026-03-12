@@ -1117,7 +1117,7 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
                 
                 for (int i = 0; i < p.propertyList.Count; i++)
                 {
-                    cfg.Quality proQuality = (cfg.Quality)(int)p.propertyList[i].quality;
+                    Quality proQuality = (Quality)(int)p.propertyList[i].quality;
                     int valEquip = StudentManager.Instance.StudentBreakThroughAdd((StudentTalent)(int)p.talent, proQuality);
                     p.propertyList[i].num += valEquip;
                     if (p.propertyList[i].num >= 300)
@@ -1128,7 +1128,7 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
                 
                 for (int i = 0; i < p.curBattleProList.Count; i++)
                 {
-                    cfg.Quality proQuality = (cfg.Quality)(int)p.curBattleProList[i].quality;
+                    Quality proQuality = (Quality)(int)p.curBattleProList[i].quality;
                     int valEquip = StudentManager.Instance.StudentBreakThroughAdd((StudentTalent)(int)p.talent, proQuality);
                     p.curBattleProList[i].num += valEquip;
                     if (p.curBattleProList[i].num >= 300)
