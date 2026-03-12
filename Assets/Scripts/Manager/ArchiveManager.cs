@@ -1038,11 +1038,16 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
                 StudentManager.Instance.AddStudent(student);
                 studentCount++;
                 
-                // 调用升级流程将弟子升级到999级
-                UpgradeStudentTo999Level(student);
+                // 非修武弟子调用升级流程将弟子升级到999级
+                if (talent != StudentTalent.LianGong)
+                {
+                    UpgradeStudentTo999Level(student);
+                }
                 
                 if (talent == StudentTalent.LianGong)
                 {
+                    // 修武弟子直接设置trainIndex为999
+                    student.trainIndex = 999;
                     SetupLianGongStudentMax(student, gameInfo);
                 }
             }
