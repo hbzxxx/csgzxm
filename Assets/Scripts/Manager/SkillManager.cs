@@ -221,10 +221,14 @@ public class SkillManager : CommonInstance<SkillManager>
     public void OnUpgradeSkill(SingleSkillData singleSkillData)
     {
         List<SkillUpgradeSetting> settingList = DataTable.FindSkillUpgradeListBySkillId(singleSkillData.skillId);
-
+        
+        if (settingList == null || settingList.Count == 0)
+        {
+            return;
+        }
+        
         if (singleSkillData.skillLevel < settingList.Count)
         {
-          
             singleSkillData.skillLevel++;
             EventCenter.Broadcast(TheEventType.SkillUpgrade, singleSkillData);
             TaskManager.Instance.TryAccomplishAllTask();
@@ -234,13 +238,8 @@ public class SkillManager : CommonInstance<SkillManager>
             for (int i = 0; i < RoleManager.Instance._CurGameInfo.studentData.allStudentList.Count; i++)
             {
                 StudentManager.Instance.RefreshRedPointShow(RoleManager.Instance._CurGameInfo.studentData.allStudentList[i]);
-
             }
         }
-    
-
-
-        //singleSkillData.SkillLevel++;
     }
     //public int SkillBigLevelBySmallLevel()
     //{
