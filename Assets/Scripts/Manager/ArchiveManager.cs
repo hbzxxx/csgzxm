@@ -259,6 +259,14 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
             {
                 gameInfo.playerPeople.allSkillData.equippedSkillIdList = new List<int> { 0 };
             }
+            if (gameInfo.playerPeople.allSkillData.skillList == null || gameInfo.playerPeople.allSkillData.skillList.Count == 0)
+            {
+                gameInfo.playerPeople.allSkillData.skillList = new List<SingleSkillData>();
+                SingleSkillData defaultSkill = new SingleSkillData();
+                defaultSkill.skillId = 1;
+                defaultSkill.skillLevel = 1;
+                gameInfo.playerPeople.allSkillData.skillList.Add(defaultSkill);
+            }
 
             Debug.Log("[TestMod] 玩家没有装备，正在自动装备...");
             for (int i = 0; i < 4; i++)
@@ -314,6 +322,14 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
                 if (student.allSkillData.equippedSkillIdList == null || student.allSkillData.equippedSkillIdList.Count == 0)
                 {
                     student.allSkillData.equippedSkillIdList = new List<int> { 0 };
+                }
+                if (student.allSkillData.skillList == null || student.allSkillData.skillList.Count == 0)
+                {
+                    student.allSkillData.skillList = new List<SingleSkillData>();
+                    SingleSkillData defaultSkill = new SingleSkillData();
+                    defaultSkill.skillId = 1;
+                    defaultSkill.skillLevel = 1;
+                    student.allSkillData.skillList.Add(defaultSkill);
                 }
                 
                 bool studentHasEquip = false;
@@ -1658,6 +1674,15 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
             {
                 gameInfo.playerPeople.allSkillData.equippedSkillIdList = new List<int> { 0 };
             }
+            if (gameInfo.playerPeople.allSkillData.skillList == null || gameInfo.playerPeople.allSkillData.skillList.Count == 0)
+            {
+                gameInfo.playerPeople.allSkillData.skillList = new List<SingleSkillData>();
+                // 添加一个默认技能
+                SingleSkillData defaultSkill = new SingleSkillData();
+                defaultSkill.skillId = 1;
+                defaultSkill.skillLevel = 1;
+                gameInfo.playerPeople.allSkillData.skillList.Add(defaultSkill);
+            }
 
             for (int i = 0; i < 4; i++)
             {
@@ -1709,6 +1734,14 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
                 if (student.allSkillData.equippedSkillIdList == null || student.allSkillData.equippedSkillIdList.Count == 0)
                 {
                     student.allSkillData.equippedSkillIdList = new List<int> { 0 };
+                }
+                if (student.allSkillData.skillList == null || student.allSkillData.skillList.Count == 0)
+                {
+                    student.allSkillData.skillList = new List<SingleSkillData>();
+                    SingleSkillData defaultSkill = new SingleSkillData();
+                    defaultSkill.skillId = 1;
+                    defaultSkill.skillLevel = 1;
+                    student.allSkillData.skillList.Add(defaultSkill);
                 }
                 
                 int studentEquipCount = 0;
