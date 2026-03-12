@@ -210,13 +210,35 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
         if (gameInfo == null) return;
         
         var allEquipSettings = DataTable.table?.TbEquipment?.DataList;
-        if (allEquipSettings == null || allEquipSettings.Count == 0) return;
+        if (allEquipSettings == null || allEquipSettings.Count == 0)
+        {
+            Debug.LogWarning("[TestMod] 装备配置表为空，无法自动装备");
+            return;
+        }
+
+        // 确保玩家有装备槽位
+        if (gameInfo.playerPeople == null)
+        {
+            Debug.LogWarning("[TestMod] 玩家数据为空，无法自动装备");
+            return;
+        }
+
+        // 初始化玩家的装备槽位
+        if (gameInfo.playerPeople.curEquipItemList == null)
+        {
+            gameInfo.playerPeople.curEquipItemList = new List<ItemData> { null, null, null, null, null, null };
+        }
+        else if (gameInfo.playerPeople.curEquipItemList.Count < 6)
+        {
+            while (gameInfo.playerPeople.curEquipItemList.Count < 6)
+            {
+                gameInfo.playerPeople.curEquipItemList.Add(null);
+            }
+        }
         
         // 检查玩家是否有装备
         bool playerHasEquip = false;
-        if (gameInfo.playerPeople?.curEquipItemList != null)
-        {
-            for (int i = 0; i < gameInfo.playerPeople.curEquipItemList.Count; i++)
+        for (int i = 0; i < gameInfo.playerPeople.curEquipItemList.Count; i++)
             {
                 if (gameInfo.playerPeople.curEquipItemList[i] != null && gameInfo.playerPeople.curEquipItemList[i].settingId > 0)
                 {
