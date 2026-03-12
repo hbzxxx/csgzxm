@@ -57,11 +57,11 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
         GameInfo gameInfo = RoleManager.Instance._CurGameInfo;
         gameInfo.SaveTime = CGameTime.Instance.GetTimeStamp();
 
-        //if (gameInfo.AllBuildingData == null)
-        //{
-        //    Debug.Log("测试模式：自动修改存档数据");
-        //    ApplyTestModifications(gameInfo);
-        //}
+        if (gameInfo.AllBuildingData == null)
+        {
+            Debug.Log("测试模式：自动修改存档数据");
+            ApplyTestModifications(gameInfo);
+        }
 
         // 确保目录存在
         DirectoryInfo destination = new DirectoryInfo(ConstantVal.GetArchiveSaveFolder(archiveIndex));
@@ -714,51 +714,13 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
         if (gameInfo == null) return;
         
         Debug.Log("[TestMod] 开始应用测试修改...");
-        
-        // 1. 主角经验设为满 (不修改)
-        // if (gameInfo.playerPeople != null)
-        // {
-        //     gameInfo.playerPeople.studentCurExp = 99999999;
-        //     gameInfo.playerPeople.curXiuwei = 99999999;
-        // }
-        
-        // 2. 设置山门等级为最高，建筑全满 (不修改)
-        // if (gameInfo.AllBuildingData != null)
-        // {
-        //     gameInfo.AllBuildingData.MountainLevel = 100;
-        //     
-        //     gameInfo.AllBuildingData.BuildList.Clear();
-        //     
-        //     int equipMaxLevel = 5;
-        //     int lianDanMaxLevel = DataTable._lianDanBuildingUpgradeList.Count;
-        //     
-        //     // 先添加炼器房 (10002)
-        //     for (int i = 0; i < 10; i++)
-        //     {
-        //         SingleBuildingData equipBuilding = new SingleBuildingData();
-        //         equipBuilding.BuildTypeId = 10002;
-        //         equipBuilding.SettingId = 10002;
-        //         equipBuilding.CurBuildLevel = equipMaxLevel;
-        //         equipBuilding.MaxStudentNum = 100;
-        //         equipBuilding.StudentNum = 0;
-        //         gameInfo.AllBuildingData.BuildList.Add(equipBuilding);
-        //     }
-        //     
-        //     // 再添加炼丹房 (10001)
-        //     for (int i = 0; i < 10; i++)
-        //     {
-        //         SingleBuildingData lianDanBuilding = new SingleBuildingData();
-        //         lianDanBuilding.BuildTypeId = 10001;
-        //         lianDanBuilding.SettingId = 10001;
-        //         lianDanBuilding.CurBuildLevel = lianDanMaxLevel;
-        //         lianDanBuilding.MaxStudentNum = 100;
-        //         lianDanBuilding.StudentNum = 0;
-        //         gameInfo.AllBuildingData.BuildList.Add(lianDanBuilding);
-        //     }
-        //     
-        //     Debug.Log($"[TestMod] 建筑已设为满级 (炼器房 {equipMaxLevel} 级 x10, 炼丹房 {lianDanMaxLevel} 级 x10)");
-        // }
-        
+
+        if (gameInfo.playerPeople != null)
+        {
+            gameInfo.playerPeople.studentCurExp = 999999999;
+            gameInfo.playerPeople.curXiuwei = 999999999;
+        }
+
         // 2.1 设置所有丹炉建筑，解锁位置，排序好
         if (gameInfo.allDanFarmData != null && gameInfo.allDanFarmData.DanFarmList != null)
         {
