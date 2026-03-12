@@ -1806,21 +1806,25 @@ public class ItemManager:CommonInstance<ItemManager>
             if (p.studentLevel < levelLimit && p.studentLevel <= DataTable._studentUpgradeList.Count)
             {
                 int needExp = DataTable._studentUpgradeList[p.studentLevel - 1].NeedExp.ToInt32();
-                Debug.Log($"[FindValidXiuWeiDan] needExp={needExp}");
+                Debug.Log($"[FindValidXiuWeiDan] needExp={needExp} curExp < needExp={p.studentCurExp < needExp}");
                 if (p.studentCurExp < needExp)
                 {
+                    Debug.Log($"[FindValidXiuWeiDan] 开始遍历物品列表，Count={RoleManager.Instance._CurGameInfo.ItemModel.itemDataList.Count}");
                     for (int i = 0; i < RoleManager.Instance._CurGameInfo.ItemModel.itemDataList.Count; i++)
                     {
                         ItemData data = RoleManager.Instance._CurGameInfo.ItemModel.itemDataList[i];
                         ItemSetting setting = DataTable.FindItemSetting(data.settingId);
+                        Debug.Log($"[FindValidXiuWeiDan] 物品 settingId={data.settingId} ItemType={setting?.ItemType}");
                         if (setting!=null && setting.ItemType.ToInt32() == (int)ItemType.ProductExpDan)
                         {
+                            Debug.Log($"[FindValidXiuWeiDan] 找到经验丹物品 settingId={setting.Id}");
                             List<int> levelRange = CommonUtil.SplitCfgOneDepth(setting.Param2);
-                            Debug.Log($"[FindValidXiuWeiDan] found ProductExpDan settingId={setting.Id} Param2={setting.Param2} levelRange count={levelRange?.Count}");
+                            Debug.Log($"[FindValidXiuWeiDan] Param2={setting.Param2} levelRange count={levelRange?.Count}");
                             if (levelRange != null && levelRange.Count >= 2 
                                 && p.studentLevel >= levelRange[0]
                                 && p.studentLevel <= levelRange[1])
                             {
+                                Debug.Log($"[FindValidXiuWeiDan] 添加经验丹 studentLevel={p.studentLevel} range={levelRange[0]}-{levelRange[1]}");
                                 //ItemData needItem = new ItemData();
                                 //needItem.settingId = data.settingId;
                                 //needItem.count = 1;
