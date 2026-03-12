@@ -1853,7 +1853,10 @@ public class LianDanManager : CommonInstance<LianDanManager>
         else
         {
             ItemSetting itemSetting = DataTable.FindItemSetting(data.NeedForeItemId);
-            PanelManager.Instance.OpenFloatWindow(itemSetting.Name + "不够，无法生产");
+            if (itemSetting != null)
+                PanelManager.Instance.OpenFloatWindow(itemSetting.Name + "不够，无法生产");
+            else
+                PanelManager.Instance.OpenFloatWindow("材料不够，无法生产");
         }
     }
 
