@@ -1038,6 +1038,9 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
                 StudentManager.Instance.AddStudent(student);
                 studentCount++;
                 
+                // 调用升级流程将弟子升级到999级
+                UpgradeStudentTo999Level(student);
+                
                 if (talent == StudentTalent.LianGong)
                 {
                     SetupLianGongStudentMax(student, gameInfo);
@@ -1049,6 +1052,94 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
         gameInfo.studentData.MaxStudentNum = 1000;
         
         Debug.Log($"[TestMod] 已创建 {studentCount} 个各职业随从（每职业4个）");
+    }
+
+    private void UpgradeStudentTo999Level(PeopleData p)
+    {
+        if (p == null) return;
+        
+        int targetLevel = 999;
+        Debug.Log($"[TestMod] 开始将弟子 {p.name} 从等级 {p.studentLevel} 升级到 {targetLevel}");
+        
+        while (p.studentLevel < targetLevel)
+        {
+            int curLevelLimit = StudentManager.Instance.GetStudentLevelLimit(p);
+            
+            if (p.studentLevel >= curLevelLimit)
+            {
+                Debug.Log($"[TestMod] 弟子 {p.name} 达到等级上限 {curLevelLimit}，停止升级");
+                break;
+            }
+            
+            if (p.studentLevel > 0 && p.studentLevel <= DataTable._studentUpgradeList.Count)
+            {
+                StudentUpgradeSetting setting = DataTable._studentUpgradeList[p.studentLevel - 1];
+                int needExp = setting.NeedExp.ToInt32();
+                p.studentCurExp += needExp;
+            }
+            else
+            {
+                p.studentCurExp += 1000000;
+            }
+            
+            while (p.studentLevel < targetLevel)
+            {
+                curLevelLimit = StudentManager.Instance.GetStudentLevelLimit(p);
+                
+                if (p.studentLevel >= curLevelLimit)
+                {
+                    break;
+                }
+                
+                if (p.studentLevel > 0 && p.studentLevel <= DataTable._studentUpgradeList.Count)
+                {
+                    StudentUpgradeSetting setting = DataTable._studentUpgradeList[p.studentLevel - 1];
+                    int needExp = setting.NeedExp.ToInt32();
+                    
+                    if (p.studentCurExp < needExp)
+                    {
+                        Debug.Log($"[TestMod] 弟子 {p.name} 经验不足，停止升级，当前等级 {p.studentLevel}");
+                        return;
+                    }
+                    
+                    p.studentLevel++;
+                    p.studentCurExp -= needExp;
+                }
+                else
+                {
+                    if (p.studentCurExp < 1000000)
+                    {
+                        return;
+                    }
+                    p.studentLevel++;
+                    p.studentCurExp -= 1000000;
+                }
+                
+                for (int i = 0; i < p.propertyList.Count; i++)
+                {
+                    cfg.Quality proQuality = (cfg.Quality)(int)p.propertyList[i].quality;
+                    int valEquip = StudentManager.Instance.StudentBreakThroughAdd((StudentTalent)(int)p.talent, proQuality);
+                    p.propertyList[i].num += valEquip;
+                    if (p.propertyList[i].num >= 300)
+                    {
+                        p.propertyList[i].num = 300;
+                    }
+                }
+                
+                for (int i = 0; i < p.curBattleProList.Count; i++)
+                {
+                    cfg.Quality proQuality = (cfg.Quality)(int)p.curBattleProList[i].quality;
+                    int valEquip = StudentManager.Instance.StudentBreakThroughAdd((StudentTalent)(int)p.talent, proQuality);
+                    p.curBattleProList[i].num += valEquip;
+                    if (p.curBattleProList[i].num >= 300)
+                    {
+                        p.curBattleProList[i].num = 300;
+                    }
+                }
+            }
+        }
+        
+        Debug.Log($"[TestMod] 弟子 {p.name} 升级完成，当前等级 {p.studentLevel}");
     }
     
     private PeopleData CreateMaxQualityStudent(StudentTalent talent, int quality, int rarity, GameInfo gameInfo)
