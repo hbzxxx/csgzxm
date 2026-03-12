@@ -265,6 +265,7 @@ public class StudentHandlePanel : PanelBase
  
             StudentManager.Instance.BreakThrough(curChoosedP);
             PanelManager.Instance.CloseTaskGuidePanel();
+            trans_xiuWeiDanParent.gameObject.SetActive(true);
             RefreshXiuWeiShow();
         });
 
