@@ -1038,9 +1038,6 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
                 StudentManager.Instance.AddStudent(student);
                 studentCount++;
                 
-                // 调用正常升级流程将弟子升级到999级
-                StudentManager.Instance.UpgradeStudentToLevelForTest(student, 999);
-                
                 if (talent == StudentTalent.LianGong)
                 {
                     SetupLianGongStudentMax(student, gameInfo);
