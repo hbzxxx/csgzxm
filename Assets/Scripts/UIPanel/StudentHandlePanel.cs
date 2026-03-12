@@ -1561,6 +1561,7 @@ public class StudentHandlePanel : PanelBase
             {
                 ShowStudentInfoPanel();
             }
+            RefreshXiuWeiShow(true);
         }
 
     }
