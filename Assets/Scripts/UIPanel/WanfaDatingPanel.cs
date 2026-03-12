@@ -59,35 +59,40 @@ public class WanfaDatingPanel : PanelBase
                 settingId=10001,
                 title="天命宫",
                 bgName = "mine_bg",
-                iconName="mine_icon"
+                iconName="mine_icon",
+                unlockLevel=10
             },
             new LeLiLianData
             {
                 settingId=10002,
                 title="玄武殿",
                 bgName = "mine_bg",
-                iconName="mine_icon"
+                iconName="mine_icon",
+                unlockLevel=20
             },
             new LeLiLianData
             {
                 settingId=10003,
                 title="斗化星",
                 bgName = "mine_bg",
-                iconName="mine_icon"
+                iconName="mine_icon",
+                unlockLevel=30
             },
             new LeLiLianData
             {
                 settingId=10004,
                 title="太微垣",
                 bgName = "mine_bg",
-                iconName="mine_icon"
+                iconName="mine_icon",
+                unlockLevel=40
             },
             new LeLiLianData
             {
                 settingId=10005,
                 title="天堑峰",
                 bgName = "mine_bg",
-                iconName="mine_icon"
+                iconName="mine_icon",
+                unlockLevel=50
             },
         };
         
@@ -141,4 +146,5 @@ public class LeLiLianData
     public string title; // 标题
     public string bgName;
     public string iconName; // 图标资源名
+    public int unlockLevel; // 解锁等级
 }

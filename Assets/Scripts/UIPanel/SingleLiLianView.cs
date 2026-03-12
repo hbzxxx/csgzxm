@@ -25,6 +25,26 @@ public class SingleLiLianView : SingleViewBase
         //标题
         txt_title.SetText(data.title);
 
+        //根据关卡是否解锁来设置背景
+        int curLevel = RoleManager.Instance._CurGameInfo.playerPeople.trainIndex;
+        bool isUnlocked = curLevel >= data.unlockLevel;
+        if (isUnlocked)
+        {
+            //解锁时设置为对应的bgName
+            if (img_bg != null && !string.IsNullOrEmpty(data.bgName))
+            {
+                img_bg.sprite = ResourceManager.Instance.GetObj<Sprite>(ConstantVal.resCommonPath + data.bgName);
+            }
+        }
+        else
+        {
+            //未解锁时可以设置一个默认的锁定背景
+            if (img_bg != null)
+            {
+                img_bg.sprite = ResourceManager.Instance.GetObj<Sprite>(ConstantVal.resCommonPath + "jqqd_bg");
+            }
+        }
+
         LiLianSetting setting = DataTable.FindLiLianSetting(id);
         int timeIndex = DataTable._liLianList.IndexOf(setting);
         int curParticipatedNum = RoleManager.Instance._CurGameInfo.timeData.TodayParticipatedLiLianStatus[timeIndex];
@@ -33,7 +53,7 @@ public class SingleLiLianView : SingleViewBase
         addBtnListener(btn, () =>
         {
             OnClickedView();
-         
+          
         });
     }
 

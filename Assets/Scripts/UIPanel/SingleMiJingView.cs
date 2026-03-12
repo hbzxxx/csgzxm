@@ -31,6 +31,27 @@ public class SingleMiJingView : SingleViewBase
         img_icon.sprite = ResourceManager.Instance.GetObj<Sprite>(ConstantVal.resCommonPath + singleMiJingData.iconName);
         //标题
         txt_title.SetText(singleMiJingData.title);
+
+        //根据关卡是否解锁来设置背景
+        int curLevel = RoleManager.Instance._CurGameInfo.playerPeople.trainIndex;
+        bool isUnlocked = curLevel >= singleMiJingData.unlockLevel;
+        if (isUnlocked)
+        {
+            //解锁时设置为对应的bgName
+            if (img_bg != null && !string.IsNullOrEmpty(singleMiJingData.bgName))
+            {
+                img_bg.sprite = ResourceManager.Instance.GetObj<Sprite>(ConstantVal.resCommonPath + singleMiJingData.bgName);
+            }
+        }
+        else
+        {
+            //未解锁时可以设置一个默认的锁定背景
+            if (img_bg != null)
+            {
+                img_bg.sprite = ResourceManager.Instance.GetObj<Sprite>(ConstantVal.resCommonPath + "jqqd_bg");
+            }
+        }
+
         //按钮
         miJingSetting = DataTable.FindMiJingSetting(singleMiJingData.settingId);
         addBtnListener(btn, OnChoose);
