@@ -2572,6 +2572,8 @@ public class ItemManager:CommonInstance<ItemManager>
         // 消耗物品
         RemoveAItem(item.onlyId);
         
+        EventCenter.Broadcast(TheEventType.StudentStatusChange, p);
+        
         Debug.Log($"[UseExpDan] {p.name} 使用经验丹增加 {expAdd} 经验，等级从 {beforeLevel} 升到 {p.studentLevel}");
         
         return true;
