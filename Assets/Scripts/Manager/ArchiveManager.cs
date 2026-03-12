@@ -1955,7 +1955,7 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
         equipData.onlyId = gameInfo.TheId++;
         equipData.settingId = bestEquip.Id.ToInt32();
         equipData.setting = bestEquip;
-        equipData.curLevel = 100;
+        equipData.curLevel = 1;
         equipData.curDurability = 100;
         
         // 设置满级属性（模拟练器房的属性设置）
