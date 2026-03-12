@@ -1927,6 +1927,7 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
                 proData.id = singlePro[0];
                 proData.num = singlePro[1];
                 proData.quality = (int)Quality.None;
+                equipProto.propertyIdList.Add(proData.id);
                 equipProto.propertyList.Add(proData);
             }
         }
