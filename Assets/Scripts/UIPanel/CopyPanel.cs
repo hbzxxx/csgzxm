@@ -32,7 +32,6 @@ public class CopyPanel : PanelBase
                 bgName = "mine_bg",
                 title="焦土深渊",
                 iconName="mine_icon",
-                unlockLevel=10
             },
             new SingleMiJingData
             {
@@ -40,7 +39,6 @@ public class CopyPanel : PanelBase
                 bgName = "mine_bg",
                 title="尘埃峡谷",
                 iconName="mine_icon",
-                unlockLevel=20
             },
             new SingleMiJingData
             {
@@ -48,7 +46,6 @@ public class CopyPanel : PanelBase
                 bgName = "mine_bg",
                 title="幽深废墟",
                 iconName="mine_icon",
-                unlockLevel=30
             },
             new SingleMiJingData
             {
@@ -56,7 +53,6 @@ public class CopyPanel : PanelBase
                 bgName = "mine_bg",
                 title="神兵遗址",
                 iconName="mine_icon",
-                unlockLevel=40
             },
         };
 
@@ -110,5 +106,4 @@ public class SingleMiJingData
     public string bgName;
     public string title; // 标题
     public string iconName; // 图标资源名
-    public int unlockLevel; // 解锁等级
 }

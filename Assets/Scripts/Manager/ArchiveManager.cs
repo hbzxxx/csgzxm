@@ -57,13 +57,11 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
         GameInfo gameInfo = RoleManager.Instance._CurGameInfo;
         gameInfo.SaveTime = CGameTime.Instance.GetTimeStamp();
 
-#if UNITY_EDITOR
-        if (gameInfo.AllBuildingData == null)
-        {
-            Debug.Log("测试模式：自动修改存档数据");
-            ApplyTestModifications(gameInfo);
-        }
-#endif
+        //if (gameInfo.AllBuildingData == null)
+        //{
+        //    Debug.Log("测试模式：自动修改存档数据");
+        //    ApplyTestModifications(gameInfo);
+        //}
 
         // 确保目录存在
         DirectoryInfo destination = new DirectoryInfo(ConstantVal.GetArchiveSaveFolder(archiveIndex));
@@ -498,7 +496,8 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
     {
         return $"New2BeiFenArchives/archive_{archiveIndex}/GameInfo.es3";
     }
-    
+
+    #region
     /// <summary>
     /// 存档前处理：遍历所有装备，将 gemList 转换为 gemSaveList
     /// </summary>
@@ -706,8 +705,6 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
         }
 
     }
-    
-#if UNITY_EDITOR
     /// <summary>
     /// 测试模式：自动修改存档数据
     /// 将玩家等级、属性、建筑、新手教程、地图关卡全部设为最高/完成状态
@@ -927,7 +924,34 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
         
         // 12. 为玩家和所有弟子自动装备最好的装备
         AutoEquipBestGear(gameInfo);
-        
+        // 13. 初始化历练数据 - 解锁所有历练关卡
+        if (gameInfo.timeData != null)
+        {
+            // 初始化今日参与历练状态
+            gameInfo.timeData.TodayParticipatedLiLianStatus.Clear();
+            gameInfo.timeData.LastParticipatedLiLianTime.Clear();
+
+            if (DataTable._liLianList != null)
+            {
+                for (int i = 0; i < DataTable._liLianList.Count; i++)
+                {
+                    gameInfo.timeData.TodayParticipatedLiLianStatus.Add(0);
+                    gameInfo.timeData.LastParticipatedLiLianTime.Add(0);
+                }
+            }
+
+            // 设置每日最大历练次数
+            gameInfo.timeData.MaxLiLianTimePerDay = 2;
+
+            Debug.Log($"[TestMod] 历练数据已初始化，解锁所有历练关卡");
+        }
+        // 14. 开启历练功能
+        if (LiLianManager.Instance != null)
+        {
+            LiLianManager.Instance.SetLiLianEnabled(true);
+            RoleManager.Instance._CurGameInfo.playerPeople.trainIndex = 10;
+            Debug.Log("[TestMod] 历练功能已开启");
+        }
         Debug.Log("[TestMod] 测试修改应用完成！");
     }
     
@@ -1437,5 +1461,5 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
         
         return item;
     }
-#endif
+    #endregion
 }

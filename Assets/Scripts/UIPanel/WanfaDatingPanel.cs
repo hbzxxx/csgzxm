@@ -60,7 +60,6 @@ public class WanfaDatingPanel : PanelBase
                 title="天命宫",
                 bgName = "mine_bg",
                 iconName="mine_icon",
-                unlockLevel=10
             },
             new LeLiLianData
             {
@@ -68,7 +67,6 @@ public class WanfaDatingPanel : PanelBase
                 title="玄武殿",
                 bgName = "mine_bg",
                 iconName="mine_icon",
-                unlockLevel=20
             },
             new LeLiLianData
             {
@@ -76,7 +74,6 @@ public class WanfaDatingPanel : PanelBase
                 title="斗化星",
                 bgName = "mine_bg",
                 iconName="mine_icon",
-                unlockLevel=30
             },
             new LeLiLianData
             {
@@ -84,7 +81,6 @@ public class WanfaDatingPanel : PanelBase
                 title="太微垣",
                 bgName = "mine_bg",
                 iconName="mine_icon",
-                unlockLevel=40
             },
             new LeLiLianData
             {
@@ -92,21 +88,20 @@ public class WanfaDatingPanel : PanelBase
                 title="天堑峰",
                 bgName = "mine_bg",
                 iconName="mine_icon",
-                unlockLevel=50
             },
         };
-        
+
+        // 创建 SingleLiLianView
+        for (int i = 0; i < leLiLianData.Count; i++)
+        {
+            SingleLiLianView view = PanelManager.Instance.OpenSingle<SingleLiLianView>(tran_grid, leLiLianData[i], this);
+            singleLiLianViewList.Add(view);
+        }
         // 创建 WanfaView
         for (int i = 0; i < wanfaDataList.Count; i++)
         {
             WanfaView view = PanelManager.Instance.OpenSingle<WanfaView>(tran_grid, wanfaDataList[i], this);
             wanfaViewList.Add(view);
-        }
-        // 创建 SingleLiLianView
-        for (int i = 0; i < wanfaDataList.Count; i++)
-        {
-            SingleLiLianView view = PanelManager.Instance.OpenSingle<SingleLiLianView>(tran_grid, leLiLianData[i], this);
-            singleLiLianViewList.Add(view);
         }
     }
 
@@ -146,5 +141,4 @@ public class LeLiLianData
     public string title; // 标题
     public string bgName;
     public string iconName; // 图标资源名
-    public int unlockLevel; // 解锁等级
 }
