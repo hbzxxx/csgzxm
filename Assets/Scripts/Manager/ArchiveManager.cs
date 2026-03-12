@@ -250,6 +250,16 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
         // 如果没有装备，自动添加 - 使用正常装备方式
         if (!playerHasEquip)
         {
+            // 确保技能数据已初始化
+            if (gameInfo.playerPeople.allSkillData == null)
+            {
+                gameInfo.playerPeople.allSkillData = new AllSkillData();
+            }
+            if (gameInfo.playerPeople.allSkillData.equippedSkillIdList == null || gameInfo.playerPeople.allSkillData.equippedSkillIdList.Count == 0)
+            {
+                gameInfo.playerPeople.allSkillData.equippedSkillIdList = new List<int> { 0 };
+            }
+
             Debug.Log("[TestMod] 玩家没有装备，正在自动装备...");
             for (int i = 0; i < 4; i++)
             {
@@ -294,6 +304,16 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
                     {
                         student.curEquipItemList.Add(null);
                     }
+                }
+
+                // 确保技能数据已初始化
+                if (student.allSkillData == null)
+                {
+                    student.allSkillData = new AllSkillData();
+                }
+                if (student.allSkillData.equippedSkillIdList == null || student.allSkillData.equippedSkillIdList.Count == 0)
+                {
+                    student.allSkillData.equippedSkillIdList = new List<int> { 0 };
                 }
                 
                 bool studentHasEquip = false;
@@ -1378,7 +1398,7 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
         }
         
         p.allSkillData = new AllSkillData();
-        p.curEquipItemList = new List<ItemData> { null, null, null, null, null, null };
+        p.curEquipItemList = new List<ItemData> { null, null, null, null };
         
         p.gender = UnityEngine.Random.Range(0, 2);
         p.yuanSu = UnityEngine.Random.Range(1, 6);
@@ -1629,6 +1649,16 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
         // 为玩家装备 - 使用正常装备方式
         if (gameInfo.playerPeople != null)
         {
+            // 确保技能数据已初始化
+            if (gameInfo.playerPeople.allSkillData == null)
+            {
+                gameInfo.playerPeople.allSkillData = new AllSkillData();
+            }
+            if (gameInfo.playerPeople.allSkillData.equippedSkillIdList == null || gameInfo.playerPeople.allSkillData.equippedSkillIdList.Count == 0)
+            {
+                gameInfo.playerPeople.allSkillData.equippedSkillIdList = new List<int> { 0 };
+            }
+
             for (int i = 0; i < 4; i++)
             {
                 var bestEquip = FindBestEquipmentForSlot(i, allEquipSettings);
@@ -1670,6 +1700,16 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
             foreach (var student in gameInfo.studentData.allStudentList)
             {
                 if (student == null) continue;
+
+                // 确保技能数据已初始化
+                if (student.allSkillData == null)
+                {
+                    student.allSkillData = new AllSkillData();
+                }
+                if (student.allSkillData.equippedSkillIdList == null || student.allSkillData.equippedSkillIdList.Count == 0)
+                {
+                    student.allSkillData.equippedSkillIdList = new List<int> { 0 };
+                }
                 
                 int studentEquipCount = 0;
                 for (int i = 0; i < 4; i++)
