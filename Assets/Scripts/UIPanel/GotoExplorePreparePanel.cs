@@ -185,9 +185,16 @@ public class GotoExplorePreparePanel : PanelBase
         List<int> itemIdList = CommonUtil.SplitCfgOneDepth(exploreMapSetting.PossibleAward);
         for(int i = 0; i < itemIdList.Count; i++)
         {
+            int settingId = itemIdList[i];
+            ItemSetting setting = DataTable.FindItemSetting(settingId);
+            if (setting == null)
+            {
+                Debug.LogWarning($"[GotoExplorePreparePanel] 物品配置不存在，settingId={settingId}，已替换为灵石");
+                settingId = 10001;
+            }
             ItemData data = new ItemData();
             data.count = 1;
-            data.settingId = itemIdList[i];
+            data.settingId = settingId;
             AddSingle<ShowTipsItemView>(grid_possibleAward, data);
         }
     }
