@@ -1351,9 +1351,13 @@ public class StudentHandlePanel : PanelBase
     || p.studentStatusType == (int)StudentStatusType.DanFarmRelax
     || p.studentStatusType == (int)StudentStatusType.DanFarmQuanLi)
             {
-                SingleDanFarmData singleDanFarmData = BuildingManager.Instance.FindDanFarmDataByOnlyId(p.zuoZhenDanFarmOnlyId);// RoleManager.Instance._CurGameInfo.allDanFarmData.DanFarmList[p.zuoZhenDanFarmOnlyId];
-                DanFarmSetting setting = DataTable.FindDanFarmSetting(singleDanFarmData.SettingId);
-                txt_curWork.SetText(setting.Name + "驻守");
+                SingleDanFarmData singleDanFarmData = BuildingManager.Instance.FindDanFarmDataByOnlyId(p.zuoZhenDanFarmOnlyId);
+                if (singleDanFarmData != null)
+                {
+                    DanFarmSetting setting = DataTable.FindDanFarmSetting(singleDanFarmData.SettingId);
+                    if (setting != null)
+                        txt_curWork.SetText(setting.Name + "驻守");
+                }
             }
             else if (p.studentStatusType == (int)StudentStatusType.AtExplore)
             {
