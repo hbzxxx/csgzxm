@@ -715,82 +715,6 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
         
         Debug.Log("[TestMod] 开始应用测试修改...");
 
-        if (gameInfo.playerPeople != null)
-        {
-            // 主角满级是149级（由GetStudentLevelLimit决定）
-            int maxLevel = 149;
-            
-            // 确保主角有足够的修炼指数来突破等级限制
-            gameInfo.playerPeople.trainIndex = 1;  // 修炼指数设为1，可以突破更高等级
-            
-            // 计算升到满级需要的总经验
-            int totalExpNeeded = 0;
-            if (DataTable._studentUpgradeList != null)
-            {
-                for (int lvl = 1; lvl < maxLevel; lvl++)
-                {
-                    if (lvl <= DataTable._studentUpgradeList.Count)
-                    {
-                        totalExpNeeded += DataTable._studentUpgradeList[lvl - 1].NeedExp.ToInt32();
-                    }
-                }
-            }
-            
-            // 设置足够的经验值
-            gameInfo.playerPeople.studentLevel = 1;
-            gameInfo.playerPeople.studentCurExp = totalExpNeeded;
-            gameInfo.playerPeople.curXiuwei = 0;
-            
-            // 使用正常升级方法逐级提升
-            if (StudentManager.Instance != null)
-            {
-                for (int lvl = 1; lvl < maxLevel; lvl++)
-                {
-                    StudentManager.Instance.BreakThrough(gameInfo.playerPeople);
-                }
-            }
-            
-            Debug.Log($"[TestMod] 主角等级已设为满级 ({gameInfo.playerPeople.studentLevel})，通过正常升级流程");
-            
-            // 主角技能强化到满级（使用正常升级方法）
-            if (gameInfo.playerPeople.allSkillData != null)
-            {
-                var allSkills = DataTable.table.TbSkill.DataList;
-                if (allSkills != null && allSkills.Count > 0)
-                {
-                    for (int i = 0; i < Mathf.Min(5, allSkills.Count); i++)
-                    {
-                        var skillSetting = allSkills[i];
-                        if (skillSetting != null)
-                        {
-                            SingleSkillData skill = new SingleSkillData();
-                            skill.skillId = skillSetting.Id.ToInt32();
-                            skill.skillLevel = 1;
-                            skill.isEquipped = true;
-                            gameInfo.playerPeople.allSkillData.skillList.Add(skill);
-                            gameInfo.playerPeople.allSkillData.equippedSkillIdList.Add(skill.skillId);
-                            
-                            // 使用正常方式逐级升级技能到满级
-                            List<SkillUpgradeSetting> upgradeList = DataTable.FindSkillUpgradeListBySkillId(skill.skillId);
-                            if (upgradeList != null && upgradeList.Count > 0 && SkillManager.Instance != null)
-                            {
-                                int maxSkillLevel = upgradeList.Count;
-                                while (skill.skillLevel < maxSkillLevel)
-                                {
-                                    SkillManager.Instance.OnUpgradeSkill(skill);
-                                }
-                            }
-                            else if (upgradeList != null && upgradeList.Count > 0)
-                            {
-                                skill.skillLevel = upgradeList.Count;
-                            }
-                        }
-                    }
-                }
-                Debug.Log($"[TestMod] 主角技能已强化到满级 ({gameInfo.playerPeople.allSkillData.skillList.Count} 个)");
-            }
-        }
-
         // 2.1 设置所有丹炉建筑，解锁位置，排序好
         if (gameInfo.allDanFarmData != null && gameInfo.allDanFarmData.DanFarmList != null)
         {
@@ -1250,75 +1174,6 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
     
     private void SetupLianGongStudentMax(PeopleData p, GameInfo gameInfo)
     {
-        // 修武弟子满级是149级（天品）+ trainIndex*10
-        // 设置足够的修炼指数来达到更高等级
-        p.trainIndex = 1;
-        int maxLevel = 149 + p.trainIndex * 10;
-        if (maxLevel > 150) maxLevel = 150;  // 不超过配置表上限
-        
-        // 计算升到满级需要的总经验
-        int totalExpNeeded = 0;
-        if (DataTable._studentUpgradeList != null)
-        {
-            for (int lvl = 1; lvl < maxLevel; lvl++)
-            {
-                if (lvl <= DataTable._studentUpgradeList.Count)
-                {
-                    totalExpNeeded += DataTable._studentUpgradeList[lvl - 1].NeedExp.ToInt32();
-                }
-            }
-        }
-        
-        // 设置足够的经验值
-        p.studentLevel = 1;
-        p.studentCurExp = totalExpNeeded;
-        p.curXiuwei = 0;
-        
-        // 使用正常升级方法逐级提升
-        if (StudentManager.Instance != null)
-        {
-            for (int lvl = 1; lvl < maxLevel; lvl++)
-            {
-                StudentManager.Instance.BreakThrough(p);
-            }
-        }
-        
-        if (p.allSkillData != null)
-        {
-            var allSkills = DataTable.table.TbSkill.DataList;
-            if (allSkills != null && allSkills.Count > 0)
-            {
-                for (int i = 0; i < Mathf.Min(10, allSkills.Count); i++)
-                {
-                    var skillSetting = allSkills[UnityEngine.Random.Range(0, allSkills.Count)];
-                    if (skillSetting != null)
-                    {
-                        SingleSkillData skill = new SingleSkillData();
-                        skill.skillId = skillSetting.Id.ToInt32();
-                        skill.skillLevel = 1;
-                        skill.isEquipped = true;
-                        p.allSkillData.skillList.Add(skill);
-                        p.allSkillData.equippedSkillIdList.Add(skill.skillId);
-                        
-                        // 使用正常方式逐级升级技能到满级
-                        List<SkillUpgradeSetting> upgradeList = DataTable.FindSkillUpgradeListBySkillId(skill.skillId);
-                        if (upgradeList != null && upgradeList.Count > 0 && SkillManager.Instance != null)
-                        {
-                            int maxSkillLevel = upgradeList.Count;
-                            while (skill.skillLevel < maxSkillLevel)
-                            {
-                                SkillManager.Instance.OnUpgradeSkill(skill);
-                            }
-                        }
-                        else if (upgradeList != null && upgradeList.Count > 0)
-                        {
-                            skill.skillLevel = upgradeList.Count;
-                        }
-                    }
-                }
-            }
-        }
-        
         if (p.curEquipItemList != null && DataTable.table.TbEquipment != null)
         {
             var allEquipSettings = DataTable.table.TbEquipment.DataList;
@@ -1351,7 +1206,7 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
             }
         }
         
-        Debug.Log($"[TestMod] 修武弟子已设置：等级 {p.studentLevel}，技能 {p.allSkillData.skillList.Count} 个，装备 {p.curEquipItemList.FindAll(x => x != null).Count} 件");
+        Debug.Log($"[TestMod] 修武弟子已设置：装备 {p.curEquipItemList.FindAll(x => x != null).Count} 件");
     }
     
     private EquipmentSetting FindBestEquipmentForSlot(int slotIndex, List<EquipmentSetting> allEquipSettings)
