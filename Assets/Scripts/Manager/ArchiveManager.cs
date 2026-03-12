@@ -1496,6 +1496,20 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
         string[] slotNames = { "法器", "锦衣", "鞋子", "璎珞", "饰品", "腰带" };
         string slotName = slotIndex < slotNames.Length ? slotNames[slotIndex] : "未知";
         
+        Debug.Log($"[TestMod] 开始查找槽位 {slotIndex}({slotName})，装备总数: {allEquipSettings.Count}");
+        
+        // 先统计各类型的装备数量
+        Dictionary<int, int> typeCount = new Dictionary<int, int>();
+        foreach (var equip in allEquipSettings)
+        {
+            if (equip == null) continue;
+            int equipType = equip.Pos.ToInt32();
+            if (!typeCount.ContainsKey(equipType))
+                typeCount[equipType] = 0;
+            typeCount[equipType]++;
+        }
+        Debug.Log($"[TestMod] 装备类型分布: {string.Join(", ", typeCount.Select(x => $"类型{x.Key}={x.Value}个"))}");
+        
         foreach (var equip in allEquipSettings)
         {
             if (equip == null) continue;
