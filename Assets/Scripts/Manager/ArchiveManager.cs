@@ -223,22 +223,22 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
             return;
         }
 
-        // 初始化玩家的装备槽位
+        // 初始化玩家的装备槽位（只有4个：法器、锦衣、鞋子、璎珞）
         if (gameInfo.playerPeople.curEquipItemList == null)
         {
-            gameInfo.playerPeople.curEquipItemList = new List<ItemData> { null, null, null, null, null, null };
+            gameInfo.playerPeople.curEquipItemList = new List<ItemData> { null, null, null, null };
         }
-        else if (gameInfo.playerPeople.curEquipItemList.Count < 6)
+        else if (gameInfo.playerPeople.curEquipItemList.Count < 4)
         {
-            while (gameInfo.playerPeople.curEquipItemList.Count < 6)
+            while (gameInfo.playerPeople.curEquipItemList.Count < 4)
             {
                 gameInfo.playerPeople.curEquipItemList.Add(null);
             }
         }
         
-        // 检查玩家是否有装备
+        // 检查玩家是否有装备（4个槽位）
         bool playerHasEquip = false;
-        for (int i = 0; i < gameInfo.playerPeople.curEquipItemList.Count && i < 6; i++)
+        for (int i = 0; i < gameInfo.playerPeople.curEquipItemList.Count && i < 4; i++)
         {
             if (gameInfo.playerPeople.curEquipItemList[i] != null && gameInfo.playerPeople.curEquipItemList[i].settingId > 0)
             {
@@ -281,8 +281,8 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
             Debug.Log("[TestMod] ====================");
 
             Debug.Log("[TestMod] 玩家没有装备，正在自动装备...");
-            // 玩家有6个装备槽位：法器、锦衣、鞋子、璎珞、饰品、腰带
-            for (int i = 0; i < 6; i++)
+            // 玩家有4个装备槽位：法器、锦衣、鞋子、璎珞
+            for (int i = 0; i < 4; i++)
             {
                 // 先从背包中查找可用的装备
                 ItemData existingEquip = FindEquipmentFromBag(gameInfo.ItemModel.itemDataList, i);
@@ -1530,7 +1530,7 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
         ItemData best = null;
         int bestRarity = -1;
 
-        string[] slotNames = { "法器", "锦衣", "鞋子", "璎珞", "饰品", "腰带" };
+        string[] slotNames = { "法器", "锦衣", "鞋子", "璎珞" };
         string slotName = slotIndex < slotNames.Length ? slotNames[slotIndex] : "未知";
 
         int targetEquipType = slotIndex + 1;
