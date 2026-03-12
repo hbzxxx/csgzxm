@@ -1950,16 +1950,10 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
     
     private ItemData CreateBestEquipItem(EquipmentSetting bestEquip, GameInfo gameInfo)
     {
-        ItemData item = new ItemData();
-        item.settingId = bestEquip.Id.ToInt32();
-        item.onlyId = gameInfo.TheId++;
-        item.quality = bestEquip.Rarity.ToInt32();
-        item.count = 1;
-        item.setting = DataTable.FindItemSetting(item.settingId);
-        
+        // 创建装备原型数据
         EquipProtoData equipProto = new EquipProtoData();
-        equipProto.settingId = item.settingId;
-        equipProto.onlyId = item.onlyId;
+        equipProto.settingId = bestEquip.Id.ToInt32();
+        equipProto.onlyId = gameInfo.TheId++;
         equipProto.curLevel = 100;
         equipProto.curExp = 999999;
         equipProto.curDurability = 100;
@@ -1984,7 +1978,9 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
         
         equipProto.setting = bestEquip;
         
-        item.equipProtoData = equipProto;
+        // 使用正常流程创建装备
+        int rarity = bestEquip.Rarity.ToInt32();
+        ItemData item = RoleManager.Instance.GetEquipment(equipProto, rarity);
         
         return item;
     }
