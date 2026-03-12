@@ -520,7 +520,7 @@ public class LianDanManager : CommonInstance<LianDanManager>
         if (setting == null) return;
         
         List<int> upgradeCostList = CommonUtil.SplitCfgOneDepth(setting.UpgradeCost);
-        int maxLevel = 5;
+        int maxLevel = upgradeCostList.Count;
         
         for (int level = danFarm.CurLevel; level < maxLevel; level++)
         {
@@ -549,6 +549,9 @@ public class LianDanManager : CommonInstance<LianDanManager>
             {
                 OnBaGuaLuUpgrade(danFarm);
             }
+            
+            // 触发建筑升级事件，通知UI和相关系统
+            EventCenter.Broadcast(TheEventType.UpgradeDanFarm, danFarm);
         }
         
         Debug.Log($"[TestMod] 丹炉 {setting.Id} 已升级到满级 {maxLevel}");
