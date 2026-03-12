@@ -301,10 +301,8 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
                         // 创建装备
                         ItemData item = CreateBestEquipItem(bestEquip, gameInfo);
                         
-                        // 添加到背包
-                        gameInfo.ItemModel.itemIdList.Add(item.settingId);
-                        gameInfo.ItemModel.itemDataList.Add(item);
-                        gameInfo.ItemModel.onlyIdList.Add(item.onlyId);
+                        // 使用正常流程添加到背包
+                        ItemManager.Instance.AddANewItem(item);
 
                         // 使用正常装备方式装备
                         EquipmentManager.Instance.OnEquip(gameInfo.playerPeople, item, i);
@@ -363,14 +361,13 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
                             // 创建装备
                             ItemData item = CreateBestEquipItem(bestEquip, gameInfo);
                             
-                            // 添加到背包
+                            // 使用正常流程添加到背包
+                            // 确保背包已初始化
                             if (gameInfo.ItemModel == null)
                             {
                                 gameInfo.ItemModel = new ItemModel();
                             }
-                            gameInfo.ItemModel.itemIdList.Add(item.settingId);
-                            gameInfo.ItemModel.itemDataList.Add(item);
-                            gameInfo.ItemModel.onlyIdList.Add(item.onlyId);
+                            ItemManager.Instance.AddANewItem(item);
 
                             // 使用正常装备方式装备
                             EquipmentManager.Instance.OnEquip(student, item, i);
