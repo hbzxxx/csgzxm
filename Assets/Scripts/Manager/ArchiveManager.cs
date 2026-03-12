@@ -1534,16 +1534,43 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
 
         int targetEquipType = slotIndex + 1;
 
+        Debug.Log($"[TestMod] 查找槽位 {slotIndex}({slotName}), 目标类型={targetEquipType}");
+
         foreach (var item in bagItems)
         {
             if (item == null || item.settingId <= 0) continue;
-            if (item.equipProtoData == null) continue;
+            
+            // 调试信息
+            string equipInfo = $"[TestMod] 检查物品: {item.setting?.Name ?? "unknown"}, settingId={item.settingId}";
+            if (item.equipProtoData == null)
+            {
+                Debug.LogWarning($"{equipInfo}, equipProtoData=null");
+                continue;
+            }
+            equipInfo += $", isEquipped={item.equipProtoData.isEquipped}";
+
             if (item.equipProtoData.isEquipped) continue;
 
             var equipSetting = item.equipProtoData.setting;
-            if (equipSetting == null) continue;
+            if (equipSetting == null)
+            {
+                // 尝试从配置表获取
+                equipSetting = DataTable.FindEquipSetting(item.equipProtoData.settingId);
+                if (equipSetting != null)
+                {
+                    item.equipProtoData.setting = equipSetting;
+                    Debug.Log($"{equipInfo}, 从配置表加载了setting");
+                }
+                else
+                {
+                    Debug.LogWarning($"{equipInfo}, setting=null, 无法获取");
+                    continue;
+                }
+            }
 
             int equipType = equipSetting.Pos.ToInt32();
+            Debug.Log($"{equipInfo}, equipType={equipType}");
+
             if (equipType != targetEquipType) continue;
 
             int rarity = equipSetting.Rarity.ToInt32();
@@ -1557,6 +1584,10 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
         if (best != null)
         {
             Debug.Log($"[TestMod] 背包中找到槽位 {slotIndex}({slotName}) 的装备: {best.setting.Name}, 稀有度={bestRarity}");
+        }
+        else
+        {
+            Debug.LogWarning($"[TestMod] 背包中未找到槽位 {slotIndex}({slotName}) 的装备");
         }
 
         return best;
