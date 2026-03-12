@@ -505,6 +505,7 @@ public class StudentHandlePanel : PanelBase
         RegisterEvent(TheEventType.FailStudentBreakThrough, OnFailStudentBreakthrough);
         RegisterEvent(TheEventType.UseTiaoXiDan, OnUseTiaoXiDan);
         RegisterEvent(TheEventType.ZhengRong, OnZhengRong);
+        RegisterEvent(TheEventType.StudentStatusChange, OnStudentStatusChange);
 
         //OnBigTagClick(0);
 
@@ -632,6 +633,20 @@ public class StudentHandlePanel : PanelBase
     {
         RefreshXiuWeiShow();
 
+    }
+    /// <summary>
+    /// 弟子状态改变，刷新经验丹显示
+    /// </summary>
+    public void OnStudentStatusChange(object[] args)
+    {
+        if (curChoosedP != null && args.Length > 0)
+        {
+            PeopleData p = args[0] as PeopleData;
+            if (p != null && p.onlyId == curChoosedP.onlyId)
+            {
+                RefreshXiuWeiShow(true);
+            }
+        }
     }
     /// <summary>
     /// 显示所有破境丹
