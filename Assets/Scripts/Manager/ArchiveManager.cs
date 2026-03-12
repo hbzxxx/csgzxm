@@ -247,7 +247,7 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
             }
         }
         
-        // 如果没有装备，自动添加
+        // 如果没有装备，自动添加 - 使用正常装备方式
         if (!playerHasEquip)
         {
             Debug.Log("[TestMod] 玩家没有装备，正在自动装备...");
@@ -257,8 +257,20 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
                 Debug.Log($"[TestMod] 槽位 {i} 找到最佳装备: {(bestEquip != null ? bestEquip.Name : "null")}");
                 if (bestEquip != null)
                 {
+                    // 创建装备
                     ItemData item = CreateBestEquipItem(bestEquip, gameInfo);
-                    gameInfo.playerPeople.curEquipItemList[i] = item;
+                    
+                    // 添加到背包
+                    if (gameInfo.ItemModel == null)
+                    {
+                        gameInfo.ItemModel = new ItemModel();
+                    }
+                    gameInfo.ItemModel.itemIdList.Add(item.settingId);
+                    gameInfo.ItemModel.itemDataList.Add(item);
+                    gameInfo.ItemModel.onlyIdList.Add(item.onlyId);
+
+                    // 使用正常装备方式装备
+                    EquipmentManager.Instance.OnEquip(gameInfo.playerPeople, item, i);
                 }
             }
             Debug.Log("[TestMod] 玩家自动装备完成");
@@ -301,8 +313,20 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
                         var bestEquip = FindBestEquipmentForSlot(i, allEquipSettings);
                         if (bestEquip != null)
                         {
+                            // 创建装备
                             ItemData item = CreateBestEquipItem(bestEquip, gameInfo);
-                            student.curEquipItemList[i] = item;
+                            
+                            // 添加到背包
+                            if (gameInfo.ItemModel == null)
+                            {
+                                gameInfo.ItemModel = new ItemModel();
+                            }
+                            gameInfo.ItemModel.itemIdList.Add(item.settingId);
+                            gameInfo.ItemModel.itemDataList.Add(item);
+                            gameInfo.ItemModel.onlyIdList.Add(item.onlyId);
+
+                            // 使用正常装备方式装备
+                            EquipmentManager.Instance.OnEquip(student, item, i);
                         }
                     }
                     Debug.Log($"[TestMod] 弟子 {student.name} 自动装备完成");
@@ -1602,24 +1626,45 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
         
         int equipCount = 0;
         
-        // 为玩家装备
+        // 为玩家装备 - 使用正常装备方式
         if (gameInfo.playerPeople != null)
         {
-        for (int i = 0; i < 6; i++)
-        {
-            var bestEquip = FindBestEquipmentForSlot(i, allEquipSettings);
-            Debug.Log($"[TestMod] 槽位 {i} 找到最佳装备: {(bestEquip != null ? bestEquip.Name : "null")}");
-            if (bestEquip != null)
+            for (int i = 0; i < 4; i++)
             {
-                ItemData item = CreateBestEquipItem(bestEquip, gameInfo);
-                gameInfo.playerPeople.curEquipItemList[i] = item;
-                equipCount++;
+                var bestEquip = FindBestEquipmentForSlot(i, allEquipSettings);
+                Debug.Log($"[TestMod] 槽位 {i} 找到最佳装备: {(bestEquip != null ? bestEquip.Name : "null")}");
+                if (bestEquip != null)
+                {
+                    // 先从背包移除该物品（如果已存在）
+                    ItemData existingItem = gameInfo.playerPeople.curEquipItemList[i];
+                    if (existingItem != null && existingItem.settingId > 0)
+                    {
+                        // 卸下现有装备
+                        existingItem.equipProtoData.isEquipped = false;
+                        existingItem.equipProtoData.belongP = 0;
+                    }
+
+                    // 创建新装备
+                    ItemData item = CreateBestEquipItem(bestEquip, gameInfo);
+                    
+                    // 添加到背包
+                    if (gameInfo.ItemModel == null)
+                    {
+                        gameInfo.ItemModel = new ItemModel();
+                    }
+                    gameInfo.ItemModel.itemIdList.Add(item.settingId);
+                    gameInfo.ItemModel.itemDataList.Add(item);
+                    gameInfo.ItemModel.onlyIdList.Add(item.onlyId);
+
+                    // 使用正常装备方式装备
+                    EquipmentManager.Instance.OnEquip(gameInfo.playerPeople, item, i);
+                    equipCount++;
+                }
             }
-        }
             Debug.Log($"[TestMod] 玩家已自动装备 {equipCount} 件装备");
         }
         
-        // 为所有弟子装备
+        // 为所有弟子装备 - 使用正常装备方式
         if (gameInfo.studentData?.allStudentList != null)
         {
             foreach (var student in gameInfo.studentData.allStudentList)
@@ -1632,8 +1677,28 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
                     var bestEquip = FindBestEquipmentForSlot(i, allEquipSettings);
                     if (bestEquip != null)
                     {
+                        // 先从背包移除该物品（如果已存在）
+                        ItemData existingItem = student.curEquipItemList[i];
+                        if (existingItem != null && existingItem.settingId > 0)
+                        {
+                            existingItem.equipProtoData.isEquipped = false;
+                            existingItem.equipProtoData.belongP = 0;
+                        }
+
+                        // 创建新装备
                         ItemData item = CreateBestEquipItem(bestEquip, gameInfo);
-                        student.curEquipItemList[i] = item;
+                        
+                        // 添加到背包
+                        if (gameInfo.ItemModel == null)
+                        {
+                            gameInfo.ItemModel = new ItemModel();
+                        }
+                        gameInfo.ItemModel.itemIdList.Add(item.settingId);
+                        gameInfo.ItemModel.itemDataList.Add(item);
+                        gameInfo.ItemModel.onlyIdList.Add(item.onlyId);
+
+                        // 使用正常装备方式装备
+                        EquipmentManager.Instance.OnEquip(student, item, i);
                         studentEquipCount++;
                     }
                 }
