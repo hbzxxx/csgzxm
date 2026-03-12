@@ -2570,7 +2570,7 @@ public class ItemManager:CommonInstance<ItemManager>
         CheckAndUpgradeStudent(p);
         
         // 消耗物品
-        RemoveItem(item.settingId, 1);
+        RemoveAItem(item.onlyId);
         
         Debug.Log($"[UseExpDan] {p.name} 使用经验丹增加 {expAdd} 经验，等级从 {beforeLevel} 升到 {p.studentLevel}");
         
