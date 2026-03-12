@@ -250,23 +250,8 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
         // 如果没有装备，自动添加 - 使用正常装备方式
         if (!playerHasEquip)
         {
-            // 确保技能数据已初始化
-            if (gameInfo.playerPeople.allSkillData == null)
-            {
-                gameInfo.playerPeople.allSkillData = new AllSkillData();
-            }
-            if (gameInfo.playerPeople.allSkillData.equippedSkillIdList == null || gameInfo.playerPeople.allSkillData.equippedSkillIdList.Count == 0)
-            {
-                gameInfo.playerPeople.allSkillData.equippedSkillIdList = new List<int> { 0 };
-            }
-            if (gameInfo.playerPeople.allSkillData.skillList == null || gameInfo.playerPeople.allSkillData.skillList.Count == 0)
-            {
-                gameInfo.playerPeople.allSkillData.skillList = new List<SingleSkillData>();
-                SingleSkillData defaultSkill = new SingleSkillData();
-                defaultSkill.skillId = 1;
-                defaultSkill.skillLevel = 1;
-                gameInfo.playerPeople.allSkillData.skillList.Add(defaultSkill);
-            }
+            // 确保技能数据已初始化 - 使用正常流程
+            InitPlayerSkillsFullLevel(gameInfo.playerPeople);
 
             Debug.Log("[TestMod] 玩家没有装备，正在自动装备...");
             for (int i = 0; i < 4; i++)
@@ -319,18 +304,9 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
                 {
                     student.allSkillData = new AllSkillData();
                 }
-                if (student.allSkillData.equippedSkillIdList == null || student.allSkillData.equippedSkillIdList.Count == 0)
-                {
-                    student.allSkillData.equippedSkillIdList = new List<int> { 0 };
-                }
-                if (student.allSkillData.skillList == null || student.allSkillData.skillList.Count == 0)
-                {
-                    student.allSkillData.skillList = new List<SingleSkillData>();
-                    SingleSkillData defaultSkill = new SingleSkillData();
-                    defaultSkill.skillId = 1;
-                    defaultSkill.skillLevel = 1;
-                    student.allSkillData.skillList.Add(defaultSkill);
-                }
+                
+                // 使用正常流程初始化弟子技能
+                InitPlayerSkillsFullLevel(student);
                 
                 bool studentHasEquip = false;
                 for (int i = 0; i < student.curEquipItemList.Count; i++)
@@ -1532,6 +1508,86 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
         
         return best;
     }
+
+    private void InitPlayerSkillsFullLevel(PeopleData p)
+    {
+        if (p == null) return;
+
+        // 初始化技能数据
+        if (p.allSkillData == null)
+        {
+            p.allSkillData = new AllSkillData();
+        }
+        if (p.allSkillData.equippedSkillIdList == null)
+        {
+            p.allSkillData.equippedSkillIdList = new List<int>();
+        }
+        if (p.allSkillData.skillList == null)
+        {
+            p.allSkillData.skillList = new List<SingleSkillData>();
+        }
+
+        // 解锁所有技能槽位
+        p.allSkillData.unlockedSkillPos = 3;
+        if (p.allSkillData.unlockedTypeList == null)
+        {
+            p.allSkillData.unlockedTypeList = new List<int>();
+        }
+        else
+        {
+            p.allSkillData.unlockedTypeList.Clear();
+        }
+        for (int i = 0; i < 8; i++)
+        {
+            p.allSkillData.unlockedTypeList.Add((int)UnlockType.UnLocked);
+        }
+
+        // 获取所有可用的技能ID列表
+        List<int> skillIdList = new List<int>();
+        if (DataTable.table != null && DataTable.table.TbSkill != null)
+        {
+            var allSkills = DataTable.table.TbSkill.DataList;
+            if (allSkills != null)
+            {
+                // 添加一些基础技能
+                skillIdList.Add(1); //  LingDan
+                skillIdList.Add(2); //  PuGong
+                skillIdList.Add(3); //  FangYu
+                skillIdList.Add(4); //  ZhiLiao
+                
+                // 获取弟子天赋对应的技能
+                if (p.talent == (int)StudentTalent.LianGong)
+                {
+                    skillIdList.Add(5); // XiuLian
+                }
+            }
+        }
+
+        // 清空现有技能并添加满级技能
+        p.allSkillData.skillList.Clear();
+        p.allSkillData.equippedSkillIdList.Clear();
+
+        // 获取技能升级配置表的最大等级
+        int maxSkillLevel = 50; // 默认最大等级
+        if (DataTable._skillUpgradeList != null && DataTable._skillUpgradeList.Count > 0)
+        {
+            maxSkillLevel = DataTable._skillUpgradeList.Count;
+        }
+
+        // 添加技能并设置为满级
+        foreach (int skillId in skillIdList)
+        {
+            SingleSkillData skillData = new SingleSkillData();
+            skillData.skillId = skillId;
+            skillData.skillLevel = maxSkillLevel;
+            p.allSkillData.skillList.Add(skillData);
+            
+            // 装备这个技能
+            p.allSkillData.equippedSkillIdList.Add(skillId);
+        }
+
+        Debug.Log($"[TestMod] 技能已设置为满级 {maxSkillLevel}，共 {p.allSkillData.skillList.Count} 个技能");
+    }
     
     private void CreateAllDanFarms(GameInfo gameInfo)
     {
@@ -1665,24 +1721,8 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
         // 为玩家装备 - 使用正常装备方式
         if (gameInfo.playerPeople != null)
         {
-            // 确保技能数据已初始化
-            if (gameInfo.playerPeople.allSkillData == null)
-            {
-                gameInfo.playerPeople.allSkillData = new AllSkillData();
-            }
-            if (gameInfo.playerPeople.allSkillData.equippedSkillIdList == null || gameInfo.playerPeople.allSkillData.equippedSkillIdList.Count == 0)
-            {
-                gameInfo.playerPeople.allSkillData.equippedSkillIdList = new List<int> { 0 };
-            }
-            if (gameInfo.playerPeople.allSkillData.skillList == null || gameInfo.playerPeople.allSkillData.skillList.Count == 0)
-            {
-                gameInfo.playerPeople.allSkillData.skillList = new List<SingleSkillData>();
-                // 添加一个默认技能
-                SingleSkillData defaultSkill = new SingleSkillData();
-                defaultSkill.skillId = 1;
-                defaultSkill.skillLevel = 1;
-                gameInfo.playerPeople.allSkillData.skillList.Add(defaultSkill);
-            }
+            // 确保技能数据已初始化 - 使用正常流程
+            InitPlayerSkillsFullLevel(gameInfo.playerPeople);
 
             for (int i = 0; i < 4; i++)
             {
@@ -1726,23 +1766,8 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
             {
                 if (student == null) continue;
 
-                // 确保技能数据已初始化
-                if (student.allSkillData == null)
-                {
-                    student.allSkillData = new AllSkillData();
-                }
-                if (student.allSkillData.equippedSkillIdList == null || student.allSkillData.equippedSkillIdList.Count == 0)
-                {
-                    student.allSkillData.equippedSkillIdList = new List<int> { 0 };
-                }
-                if (student.allSkillData.skillList == null || student.allSkillData.skillList.Count == 0)
-                {
-                    student.allSkillData.skillList = new List<SingleSkillData>();
-                    SingleSkillData defaultSkill = new SingleSkillData();
-                    defaultSkill.skillId = 1;
-                    defaultSkill.skillLevel = 1;
-                    student.allSkillData.skillList.Add(defaultSkill);
-                }
+                // 使用正常流程初始化弟子技能
+                InitPlayerSkillsFullLevel(student);
                 
                 int studentEquipCount = 0;
                 for (int i = 0; i < 4; i++)
