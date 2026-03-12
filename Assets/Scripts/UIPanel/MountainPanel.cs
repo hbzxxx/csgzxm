@@ -174,6 +174,15 @@ public class MountainPanel : PanelBase
     /// </summary>
     void ReArrangeFarmLayer()
     {
+        if (farmList == null || RoleManager.Instance._CurGameInfo.allDanFarmData.DanFarmList == null)
+            return;
+        
+        if (farmList.Count != RoleManager.Instance._CurGameInfo.allDanFarmData.DanFarmList.Count)
+        {
+            Debug.LogWarning($"[ReArrangeFarmLayer] farmList.Count ({farmList.Count}) != DanFarmList.Count ({RoleManager.Instance._CurGameInfo.allDanFarmData.DanFarmList.Count}), skip rearrange");
+            return;
+        }
+        
         //排序
         for (int i = 0; i < RoleManager.Instance._CurGameInfo.allDanFarmData.DanFarmList.Count - 1; i++)
         {
