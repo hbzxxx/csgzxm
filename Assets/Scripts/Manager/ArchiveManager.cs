@@ -862,50 +862,55 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
             // 先设置为1级
             gameInfo.allZongMenData.ZongMenLevel = 1;
             
-            // 逐步升级到满级，触发每个等级的建筑解锁逻辑
+            // 逐步升级到满级，使用正常升级方法触发建筑解锁、空地数量、体力上限、弟子数量等变化
             for (int level = 1; level < maxZongMenLevel; level++)
             {
-                ZongMenUpgradeSetting curSetting = DataTable._zongMenUpgradeList[level - 1];
-                ZongMenUpgradeSetting afterSetting = DataTable._zongMenUpgradeList[level];
-                
-                // 解锁建筑
-                List<List<int>> beforeBuilding = CommonUtil.SplitCfg(curSetting.UnlockedBuilding);
-                List<List<int>> afterBuilding = CommonUtil.SplitCfg(afterSetting.UnlockedBuilding);
-                
-                for (int i = 0; i < beforeBuilding.Count; i++)
+                if (RoleManager.Instance != null && ZongMenManager.Instance != null)
                 {
-                    List<int> before = beforeBuilding[i];
-                    List<int> after = afterBuilding[i];
+                    ZongMenManager.Instance.UpgradeZongMenLevel();
+                }
+                else
+                {
+                    // 降级处理：如果 Manager 未初始化，直接设置数据
+                    ZongMenUpgradeSetting curSetting = DataTable._zongMenUpgradeList[level - 1];
+                    ZongMenUpgradeSetting afterSetting = DataTable._zongMenUpgradeList[level];
                     
-                    int buildId = before[0];
-                    int beforeNum = before[1];
-                    int afterNum = after[1];
+                    List<List<int>> beforeBuilding = CommonUtil.SplitCfg(curSetting.UnlockedBuilding);
+                    List<List<int>> afterBuilding = CommonUtil.SplitCfg(afterSetting.UnlockedBuilding);
                     
-                    int existedNum = 0;
-                    for (int j = 0; j < gameInfo.allDanFarmData.UnlockedDanFarmId.Count; j++)
+                    for (int i = 0; i < beforeBuilding.Count; i++)
                     {
-                        int id = gameInfo.allDanFarmData.UnlockedDanFarmId[j];
-                        if (id == buildId)
+                        List<int> before = beforeBuilding[i];
+                        List<int> after = afterBuilding[i];
+                        int buildId = before[0];
+                        int beforeNum = before[1];
+                        int afterNum = after[1];
+                        
+                        int existedNum = 0;
+                        for (int j = 0; j < gameInfo.allDanFarmData.UnlockedDanFarmId.Count; j++)
                         {
+                            int id = gameInfo.allDanFarmData.UnlockedDanFarmId[j];
+                            if (id == buildId)
+                            {
+                                existedNum++;
+                            }
+                        }
+                        while (afterNum > existedNum)
+                        {
+                            LianDanManager.Instance.UnlockDanFarm(buildId);
                             existedNum++;
                         }
                     }
-                    while (afterNum > existedNum)
+                    
+                    int farmNumBefore = curSetting.FarmNumLimit.ToInt32();
+                    int farmNumAfter = afterSetting.FarmNumLimit.ToInt32();
+                    if (farmNumAfter > farmNumBefore)
                     {
-                        LianDanManager.Instance.UnlockDanFarm(buildId);
-                        existedNum++;
+                        gameInfo.allDanFarmData.UnlockedDanFarmNumLimit = farmNumAfter + gameInfo.allZongMenData.SendFarmNumLimitAddNum;
                     }
+                    
+                    gameInfo.allZongMenData.ZongMenLevel++;
                 }
-                
-                // 空地数量
-                int farmNumBefore = curSetting.FarmNumLimit.ToInt32();
-                int farmNumAfter = afterSetting.FarmNumLimit.ToInt32();
-                if (farmNumAfter > farmNumBefore)
-                {
-                    gameInfo.allDanFarmData.UnlockedDanFarmNumLimit = farmNumAfter + gameInfo.allZongMenData.SendFarmNumLimitAddNum;
-                }
-                
-                gameInfo.allZongMenData.ZongMenLevel++;
             }
             
             Debug.Log($"[TestMod] 宗门等级已设为满级 ({maxZongMenLevel})，建筑已按等级解锁");
