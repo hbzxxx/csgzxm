@@ -269,7 +269,20 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
         {
             foreach (var student in gameInfo.studentData.allStudentList)
             {
-                if (student == null || student.curEquipItemList == null) continue;
+                if (student == null) continue;
+
+                // 初始化弟子的装备槽位
+                if (student.curEquipItemList == null)
+                {
+                    student.curEquipItemList = new List<ItemData> { null, null, null, null, null, null };
+                }
+                else if (student.curEquipItemList.Count < 6)
+                {
+                    while (student.curEquipItemList.Count < 6)
+                    {
+                        student.curEquipItemList.Add(null);
+                    }
+                }
                 
                 bool studentHasEquip = false;
                 for (int i = 0; i < student.curEquipItemList.Count; i++)
@@ -283,7 +296,7 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
                 
                 if (!studentHasEquip)
                 {
-                    for (int i = 0; i < 4; i++)
+                    for (int i = 0; i < 6; i++)
                     {
                         var bestEquip = FindBestEquipmentForSlot(i, allEquipSettings);
                         if (bestEquip != null)

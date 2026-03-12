@@ -1199,7 +1199,12 @@ public class EquipmentManager : CommonInstance<EquipmentManager>
             case 3:
                 res = LanguageUtil.GetLanguageText((int)LanguageIdType.璎珞);
                 break;
-
+            case 4:
+                res = LanguageUtil.GetLanguageText((int)LanguageIdType.饰品);
+                break;
+            case 5:
+                res = LanguageUtil.GetLanguageText((int)LanguageIdType.腰带);
+                break;
         }
         return res;
 
