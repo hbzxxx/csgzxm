@@ -717,12 +717,8 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
 
         if (gameInfo.playerPeople != null)
         {
-            // 设置主角等级为满级
-            int maxLevel = 1;
-            if (DataTable._zongMenUpgradeList != null && DataTable._zongMenUpgradeList.Count > 0)
-            {
-                maxLevel = DataTable._zongMenUpgradeList.Count;
-            }
+            // 主角满级设置为150级（游戏最大等级）
+            int maxLevel = 150;
             
             // 直接设置满级属性
             gameInfo.playerPeople.studentLevel = maxLevel;
@@ -745,7 +741,7 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
             
             Debug.Log($"[TestMod] 主角等级已设为满级 ({maxLevel})，属性已满");
             
-            // 主角技能强化到满级（使用正常升级方法）
+            // 主角技能强化到满级
             if (gameInfo.playerPeople.allSkillData != null)
             {
                 var allSkills = DataTable.table.TbSkill.DataList;
@@ -763,17 +759,9 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
                             gameInfo.playerPeople.allSkillData.skillList.Add(skill);
                             gameInfo.playerPeople.allSkillData.equippedSkillIdList.Add(skill.skillId);
                             
-                            // 使用正常方式逐级升级技能到满级
+                            // 直接设置技能满级
                             List<SkillUpgradeSetting> upgradeList = DataTable.FindSkillUpgradeListBySkillId(skill.skillId);
-                            if (upgradeList != null && upgradeList.Count > 0 && SkillManager.Instance != null)
-                            {
-                                int maxSkillLevel = upgradeList.Count;
-                                while (skill.skillLevel < maxSkillLevel)
-                                {
-                                    SkillManager.Instance.OnUpgradeSkill(skill);
-                                }
-                            }
-                            else if (upgradeList != null && upgradeList.Count > 0)
+                            if (upgradeList != null && upgradeList.Count > 0)
                             {
                                 skill.skillLevel = upgradeList.Count;
                             }
@@ -1243,12 +1231,8 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
     
     private void SetupLianGongStudentMax(PeopleData p, GameInfo gameInfo)
     {
-        // 设置弟子等级为满级
-        int maxLevel = 1;
-        if (DataTable._zongMenUpgradeList != null && DataTable._zongMenUpgradeList.Count > 0)
-        {
-            maxLevel = DataTable._zongMenUpgradeList.Count;
-        }
+        // 修武弟子满级设置为150级
+        int maxLevel = 150;
         
         // 直接设置满级属性
         p.studentLevel = maxLevel;
@@ -1286,17 +1270,9 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
                         p.allSkillData.skillList.Add(skill);
                         p.allSkillData.equippedSkillIdList.Add(skill.skillId);
                         
-                        // 使用正常方式逐级升级技能到满级
+                        // 直接设置技能满级
                         List<SkillUpgradeSetting> upgradeList = DataTable.FindSkillUpgradeListBySkillId(skill.skillId);
-                        if (upgradeList != null && upgradeList.Count > 0 && SkillManager.Instance != null)
-                        {
-                            int maxSkillLevel = upgradeList.Count;
-                            while (skill.skillLevel < maxSkillLevel)
-                            {
-                                SkillManager.Instance.OnUpgradeSkill(skill);
-                            }
-                        }
-                        else if (upgradeList != null && upgradeList.Count > 0)
+                        if (upgradeList != null && upgradeList.Count > 0)
                         {
                             skill.skillLevel = upgradeList.Count;
                         }
