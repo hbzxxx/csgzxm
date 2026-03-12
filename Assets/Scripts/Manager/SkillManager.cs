@@ -319,6 +319,12 @@ public class SkillManager : CommonInstance<SkillManager>
     {
         List<ItemData> res = new List<ItemData>();
         List<SkillUpgradeSetting> upgradeList = DataTable.FindSkillUpgradeListBySkillId(singleSkillData.skillId);
+        
+        if (upgradeList == null || upgradeList.Count == 0)
+        {
+            return res;
+        }
+        
         if (singleSkillData.skillLevel < upgradeList.Count)
         {
             SkillUpgradeSetting curSetting = upgradeList[singleSkillData.skillLevel - 1];
@@ -327,6 +333,7 @@ public class SkillManager : CommonInstance<SkillManager>
             for (int i = 0; i < consume.Count; i++)
             {
                 List<int> singleConsume = consume[i];
+                if (singleConsume.Count < 2) continue;
                 ItemData data = new ItemData();
                 data.settingId = singleConsume[0];
                 data.count = (ulong)singleConsume[1];
@@ -338,13 +345,16 @@ public class SkillManager : CommonInstance<SkillManager>
             {
                 List<int> bookNumList = new List<int> { 1, 3, 5, 8, 11, 15, 19, 23, 27, 32 };
                 int needBookNumIndex = (singleSkillData.skillLevel + 1) / 5-1;
-                needBookNum = bookNumList[needBookNumIndex];
-                ItemData bookItemData = new ItemData();
-                bookItemData.settingId = curSetting.SkillId.ToInt32();
-                bookItemData.count = (ulong)needBookNum;
-                res.Add(bookItemData);
+                if (needBookNumIndex < bookNumList.Count)
+                {
+                    needBookNum = bookNumList[needBookNumIndex];
+                    ItemData bookItemData = new ItemData();
+                    bookItemData.settingId = curSetting.SkillId.ToInt32();
+                    bookItemData.count = (ulong)needBookNum;
+                    res.Add(bookItemData);
+                }
             }
-  
+   
         }
         return res;
         
