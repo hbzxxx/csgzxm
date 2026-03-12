@@ -253,27 +253,40 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
             // 确保技能数据已初始化 - 使用正常流程
             InitPlayerSkillsFullLevel(gameInfo.playerPeople);
 
+            // 初始化背包
+            if (gameInfo.ItemModel == null)
+            {
+                gameInfo.ItemModel = new ItemModel();
+            }
+
             Debug.Log("[TestMod] 玩家没有装备，正在自动装备...");
             for (int i = 0; i < 4; i++)
             {
-                var bestEquip = FindBestEquipmentForSlot(i, allEquipSettings);
-                Debug.Log($"[TestMod] 槽位 {i} 找到最佳装备: {(bestEquip != null ? bestEquip.Name : "null")}");
-                if (bestEquip != null)
+                // 先从背包中查找可用的装备
+                ItemData existingEquip = FindEquipmentFromBag(gameInfo.ItemModel.itemDataList, i);
+                if (existingEquip != null)
                 {
-                    // 创建装备
-                    ItemData item = CreateBestEquipItem(bestEquip, gameInfo);
-                    
-                    // 添加到背包
-                    if (gameInfo.ItemModel == null)
+                    Debug.Log($"[TestMod] 槽位 {i} 使用背包中已有装备: {existingEquip.setting.Name}");
+                    EquipmentManager.Instance.OnEquip(gameInfo.playerPeople, existingEquip, i);
+                }
+                else
+                {
+                    // 背包没有，从配置表创建新装备
+                    var bestEquip = FindBestEquipmentForSlot(i, allEquipSettings);
+                    Debug.Log($"[TestMod] 槽位 {i} 找到最佳装备: {(bestEquip != null ? bestEquip.Name : "null")}");
+                    if (bestEquip != null)
                     {
-                        gameInfo.ItemModel = new ItemModel();
-                    }
-                    gameInfo.ItemModel.itemIdList.Add(item.settingId);
-                    gameInfo.ItemModel.itemDataList.Add(item);
-                    gameInfo.ItemModel.onlyIdList.Add(item.onlyId);
+                        // 创建装备
+                        ItemData item = CreateBestEquipItem(bestEquip, gameInfo);
+                        
+                        // 添加到背包
+                        gameInfo.ItemModel.itemIdList.Add(item.settingId);
+                        gameInfo.ItemModel.itemDataList.Add(item);
+                        gameInfo.ItemModel.onlyIdList.Add(item.onlyId);
 
-                    // 使用正常装备方式装备
-                    EquipmentManager.Instance.OnEquip(gameInfo.playerPeople, item, i);
+                        // 使用正常装备方式装备
+                        EquipmentManager.Instance.OnEquip(gameInfo.playerPeople, item, i);
+                    }
                 }
             }
             Debug.Log("[TestMod] 玩家自动装备完成");
@@ -1486,6 +1499,46 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
         }
         
         Debug.Log($"[TestMod] 修武弟子已设置：装备 {p.curEquipItemList.FindAll(x => x != null).Count} 件");
+    }
+
+    private ItemData FindEquipmentFromBag(List<ItemData> bagItems, int slotIndex)
+    {
+        if (bagItems == null || bagItems.Count == 0) return null;
+
+        ItemData best = null;
+        int bestRarity = -1;
+
+        string[] slotNames = { "法器", "锦衣", "鞋子", "璎珞", "饰品", "腰带" };
+        string slotName = slotIndex < slotNames.Length ? slotNames[slotIndex] : "未知";
+
+        int targetEquipType = slotIndex + 1;
+
+        foreach (var item in bagItems)
+        {
+            if (item == null || item.settingId <= 0) continue;
+            if (item.equipProtoData == null) continue;
+            if (item.equipProtoData.isEquipped) continue;
+
+            var equipSetting = item.equipProtoData.setting;
+            if (equipSetting == null) continue;
+
+            int equipType = equipSetting.Pos.ToInt32();
+            if (equipType != targetEquipType) continue;
+
+            int rarity = equipSetting.Rarity.ToInt32();
+            if (rarity > bestRarity)
+            {
+                bestRarity = rarity;
+                best = item;
+            }
+        }
+
+        if (best != null)
+        {
+            Debug.Log($"[TestMod] 背包中找到槽位 {slotIndex}({slotName}) 的装备: {best.setting.Name}, 稀有度={bestRarity}");
+        }
+
+        return best;
     }
     
     private EquipmentSetting FindBestEquipmentForSlot(int slotIndex, List<EquipmentSetting> allEquipSettings)
