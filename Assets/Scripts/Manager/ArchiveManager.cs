@@ -226,11 +226,11 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
         // 初始化玩家的装备槽位
         if (gameInfo.playerPeople.curEquipItemList == null)
         {
-            gameInfo.playerPeople.curEquipItemList = new List<ItemData> { null, null, null, null };
+            gameInfo.playerPeople.curEquipItemList = new List<ItemData> { null, null, null, null, null, null };
         }
-        else if (gameInfo.playerPeople.curEquipItemList.Count < 4)
+        else if (gameInfo.playerPeople.curEquipItemList.Count < 6)
         {
-            while (gameInfo.playerPeople.curEquipItemList.Count < 4)
+            while (gameInfo.playerPeople.curEquipItemList.Count < 6)
             {
                 gameInfo.playerPeople.curEquipItemList.Add(null);
             }
@@ -238,7 +238,7 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
         
         // 检查玩家是否有装备
         bool playerHasEquip = false;
-        for (int i = 0; i < gameInfo.playerPeople.curEquipItemList.Count; i++)
+        for (int i = 0; i < gameInfo.playerPeople.curEquipItemList.Count && i < 6; i++)
         {
             if (gameInfo.playerPeople.curEquipItemList[i] != null && gameInfo.playerPeople.curEquipItemList[i].settingId > 0)
             {
@@ -281,7 +281,8 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
             Debug.Log("[TestMod] ====================");
 
             Debug.Log("[TestMod] 玩家没有装备，正在自动装备...");
-            for (int i = 0; i < 4; i++)
+            // 玩家有6个装备槽位：法器、锦衣、鞋子、璎珞、饰品、腰带
+            for (int i = 0; i < 6; i++)
             {
                 // 先从背包中查找可用的装备
                 ItemData existingEquip = FindEquipmentFromBag(gameInfo.ItemModel.itemDataList, i);
