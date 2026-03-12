@@ -239,12 +239,11 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
         // 检查玩家是否有装备
         bool playerHasEquip = false;
         for (int i = 0; i < gameInfo.playerPeople.curEquipItemList.Count; i++)
+        {
+            if (gameInfo.playerPeople.curEquipItemList[i] != null && gameInfo.playerPeople.curEquipItemList[i].settingId > 0)
             {
-                if (gameInfo.playerPeople.curEquipItemList[i] != null && gameInfo.playerPeople.curEquipItemList[i].settingId > 0)
-                {
-                    playerHasEquip = true;
-                    break;
-                }
+                playerHasEquip = true;
+                break;
             }
         }
         
