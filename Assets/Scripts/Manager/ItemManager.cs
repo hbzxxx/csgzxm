@@ -1802,9 +1802,11 @@ public class ItemManager:CommonInstance<ItemManager>
         if (p.studentLevel > 0)
         {
             int levelLimit = StudentManager.Instance.GetStudentLevelLimit(p);
+            Debug.Log($"[FindValidXiuWeiDan] {p.name} studentLevel={p.studentLevel} levelLimit={levelLimit} curExp={p.studentCurExp}");
             if (p.studentLevel < levelLimit && p.studentLevel <= DataTable._studentUpgradeList.Count)
             {
                 int needExp = DataTable._studentUpgradeList[p.studentLevel - 1].NeedExp.ToInt32();
+                Debug.Log($"[FindValidXiuWeiDan] needExp={needExp}");
                 if (p.studentCurExp < needExp)
                 {
                     for (int i = 0; i < RoleManager.Instance._CurGameInfo.ItemModel.itemDataList.Count; i++)
@@ -1814,6 +1816,7 @@ public class ItemManager:CommonInstance<ItemManager>
                         if (setting!=null && setting.ItemType.ToInt32() == (int)ItemType.ProductExpDan)
                         {
                             List<int> levelRange = CommonUtil.SplitCfgOneDepth(setting.Param2);
+                            Debug.Log($"[FindValidXiuWeiDan] found ProductExpDan settingId={setting.Id} Param2={setting.Param2} levelRange count={levelRange?.Count}");
                             if (levelRange != null && levelRange.Count >= 2 
                                 && p.studentLevel >= levelRange[0]
                                 && p.studentLevel <= levelRange[1])
