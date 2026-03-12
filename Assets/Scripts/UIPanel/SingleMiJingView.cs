@@ -10,6 +10,7 @@ using DG.Tweening;
 public class SingleMiJingView : SingleViewBase
 {
     public Button btn;
+    public Image img_bg;//玩法背景图
     public Image img_icon;//玩法图标
     public Text txt_title;//玩法标题
     public SingleMiJingPaiQianData singleMiJingPaiQianData;
