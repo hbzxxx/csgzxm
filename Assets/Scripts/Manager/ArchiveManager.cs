@@ -1493,6 +1493,9 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
         EquipmentSetting best = null;
         int bestRarity = 0;
         
+        string[] slotNames = { "法器", "锦衣", "鞋子", "璎珞", "饰品", "腰带" };
+        string slotName = slotIndex < slotNames.Length ? slotNames[slotIndex] : "未知";
+        
         foreach (var equip in allEquipSettings)
         {
             if (equip == null) continue;
@@ -1513,12 +1516,18 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
             if (matchesSlot)
             {
                 int rarity = equip.Rarity.ToInt32();
+                Debug.Log($"[TestMod] 槽位 {slotIndex}({slotName}) 找到装备: {equip.Name}, 类型={equipType}, 稀有度={rarity}");
                 if (rarity > bestRarity)
                 {
                     bestRarity = rarity;
                     best = equip;
                 }
             }
+        }
+        
+        if (best == null)
+        {
+            Debug.LogWarning($"[TestMod] 槽位 {slotIndex}({slotName}) 没有找到可用装备");
         }
         
         return best;
