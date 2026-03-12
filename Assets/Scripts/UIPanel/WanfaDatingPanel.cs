@@ -58,30 +58,35 @@ public class WanfaDatingPanel : PanelBase
             {
                 settingId=10001,
                 title="天命宫",
+                bgName = "mine_bg",
                 iconName="mine_icon"
             },
             new LeLiLianData
             {
                 settingId=10002,
                 title="玄武殿",
+                bgName = "mine_bg",
                 iconName="mine_icon"
             },
             new LeLiLianData
             {
                 settingId=10003,
                 title="斗化星",
+                bgName = "mine_bg",
                 iconName="mine_icon"
             },
             new LeLiLianData
             {
                 settingId=10004,
                 title="太微垣",
+                bgName = "mine_bg",
                 iconName="mine_icon"
             },
             new LeLiLianData
             {
                 settingId=10005,
                 title="天堑峰",
+                bgName = "mine_bg",
                 iconName="mine_icon"
             },
         };
@@ -134,5 +139,6 @@ public class LeLiLianData
 {
     public int settingId;//关卡ID
     public string title; // 标题
+    public string bgName;
     public string iconName; // 图标资源名
 }

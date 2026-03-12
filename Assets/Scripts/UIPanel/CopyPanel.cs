@@ -29,24 +29,28 @@ public class CopyPanel : PanelBase
             new SingleMiJingData
             {
                 settingId=10001,
+                bgName = "mine_bg",
                 title="焦土深渊",
                 iconName="mine_icon"
             },
             new SingleMiJingData
             {
                 settingId=10002,
+                bgName = "mine_bg",
                 title="尘埃峡谷",
                 iconName="mine_icon"
             },
             new SingleMiJingData
             {
                 settingId=10003,
+                bgName = "mine_bg",
                 title="幽深废墟",
                 iconName="mine_icon"
             },
             new SingleMiJingData
             {
                 settingId=10004,
+                bgName = "mine_bg",
                 title="神兵遗址",
                 iconName="mine_icon"
             },
@@ -99,6 +103,7 @@ public class CopyPanel : PanelBase
 public class SingleMiJingData
 {
     public int settingId;//关卡ID
+    public string bgName;
     public string title; // 标题
     public string iconName; // 图标资源名
 }
