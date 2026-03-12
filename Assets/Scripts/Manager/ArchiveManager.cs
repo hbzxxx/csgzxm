@@ -979,7 +979,7 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
         }
         
         int maxQuality = (int)Quality.Gold;
-        int maxRarity = (int)cfg.Rarity.red;
+        int maxRarity = (int)cfg.Rarity.orange; // 资源图片只有1-5，红色(6)没有图片
         
         var talents = new List<StudentTalent>
         {
