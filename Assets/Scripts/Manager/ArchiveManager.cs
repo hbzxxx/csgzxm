@@ -1388,8 +1388,23 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
             p.curBattleProIdList.Add(theId);
             p.curBattleProList.Add(battlePro);
         }
-        
+
+        // 使用正常流程初始化技能
         p.allSkillData = new AllSkillData();
+        p.allSkillData.unlockedSkillPos = 3;
+        p.allSkillData.unlockedTypeList = new List<int>();
+        for (int i = 0; i < 8; i++)
+        {
+            p.allSkillData.unlockedTypeList.Add((int)UnlockType.UnLocked);
+        }
+        
+        // 添加基础技能（根据元素类型）
+        SingleSkillData singleSkill = new SingleSkillData();
+        singleSkill.skillId = BattleManager.Instance.PuGongIdByYuanSu((YuanSuType)p.yuanSu);
+        singleSkill.skillLevel = 1;
+        p.allSkillData.skillList.Add(singleSkill);
+        p.allSkillData.equippedSkillIdList.Add(singleSkill.skillId);
+
         p.curEquipItemList = new List<ItemData> { null, null, null, null };
         
         p.gender = UnityEngine.Random.Range(0, 2);
