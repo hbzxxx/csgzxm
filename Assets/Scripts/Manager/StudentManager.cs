@@ -1514,9 +1514,8 @@ public class StudentManager : CommonInstance<StudentManager>
                 }
             }
         }
-     
-
- 
+      
+        res += p.trainIndex * 10;
         return res;
     }
 
