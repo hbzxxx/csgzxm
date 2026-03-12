@@ -440,7 +440,8 @@ public enum ObjectPoolSingle
     WanfaDatingPanel,//玩法大厅面板
     WanfaView,//玩法视图
     CopyPanel,
-    SingleMiJingView
+    SingleMiJingView,
+    SingleLiLianView
 }
 
     public class TempItem
