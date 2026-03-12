@@ -57,11 +57,11 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
         GameInfo gameInfo = RoleManager.Instance._CurGameInfo;
         gameInfo.SaveTime = CGameTime.Instance.GetTimeStamp();
 
-        //if (gameInfo.AllBuildingData == null)
-        //{
-        //    Debug.Log("测试模式：自动修改存档数据");
-        //    ApplyTestModifications(gameInfo);
-        //}
+        if (gameInfo.AllBuildingData == null)
+        {
+            Debug.Log("测试模式：自动修改存档数据");
+            ApplyTestModifications(gameInfo);
+        }
 
         // 确保目录存在
         DirectoryInfo destination = new DirectoryInfo(ConstantVal.GetArchiveSaveFolder(archiveIndex));
