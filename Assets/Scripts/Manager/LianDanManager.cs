@@ -517,10 +517,22 @@ public class LianDanManager : CommonInstance<LianDanManager>
         if (danFarm == null) return;
         
         DanFarmSetting setting = DataTable.FindDanFarmSetting(danFarm.SettingId);
-        if (setting == null) return;
+        if (setting == null)
+        {
+            Debug.LogWarning($"[TestMod] 找不到建筑配置 ID={danFarm.SettingId}");
+            return;
+        }
         
         List<int> upgradeCostList = CommonUtil.SplitCfgOneDepth(setting.UpgradeCost);
+        if (upgradeCostList == null || upgradeCostList.Count == 0)
+        {
+            Debug.LogWarning($"[TestMod] 建筑 {setting.Name} (ID={setting.Id}) 没有升级配置，保持当前等级 {danFarm.CurLevel}");
+            return;
+        }
+        
         int maxLevel = upgradeCostList.Count;
+        
+        Debug.Log($"[TestMod] 建筑 {setting.Name} (ID={setting.Id}) 升级：当前等级 {danFarm.CurLevel} -> 满级 {maxLevel}");
         
         for (int level = danFarm.CurLevel; level < maxLevel; level++)
         {
@@ -554,7 +566,7 @@ public class LianDanManager : CommonInstance<LianDanManager>
             EventCenter.Broadcast(TheEventType.UpgradeDanFarm, danFarm);
         }
         
-        Debug.Log($"[TestMod] 丹炉 {setting.Id} 已升级到满级 {maxLevel}");
+        Debug.Log($"[TestMod] 建筑 {setting.Name} (ID={setting.Id}) 已升级到满级 {maxLevel}");
     }
 
     /// <summary>

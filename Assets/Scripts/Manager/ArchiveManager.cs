@@ -1374,10 +1374,20 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
     
     private void CreateAllDanFarms(GameInfo gameInfo)
     {
-        if (DataTable.table == null || DataTable.table.TbDanFarm == null) return;
+        if (DataTable.table == null || DataTable.table.TbDanFarm == null)
+        {
+            Debug.LogWarning("[TestMod] 配置表未加载，跳过创建丹炉建筑");
+            return;
+        }
         
         var allDanFarms = DataTable.table.TbDanFarm.DataList;
-        if (allDanFarms == null || allDanFarms.Count == 0) return;
+        if (allDanFarms == null || allDanFarms.Count == 0)
+        {
+            Debug.LogWarning("[TestMod] 没有丹炉配置，跳过创建");
+            return;
+        }
+        
+        Debug.Log($"[TestMod] 开始创建丹炉建筑，共 {allDanFarms.Count} 种");
         
         // 清空现有丹炉列表，重新创建
         gameInfo.allDanFarmData.DanFarmList.Clear();
