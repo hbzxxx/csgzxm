@@ -63,6 +63,9 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
             ApplyTestModifications(gameInfo);
         }
 
+        // 每次保存存档时自动装备最佳装备
+        AutoEquipBestGear(gameInfo);
+
         // 确保目录存在
         DirectoryInfo destination = new DirectoryInfo(ConstantVal.GetArchiveSaveFolder(archiveIndex));
         if (!destination.Exists)
