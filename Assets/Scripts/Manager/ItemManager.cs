@@ -1799,10 +1799,10 @@ public class ItemManager:CommonInstance<ItemManager>
 
         }
         // 主角和所有弟子都可以使用经验丹
-        if (p.studentLevel > 0 && p.studentLevel <= DataTable._studentUpgradeList.Count)
+        if (p.studentLevel > 0)
         {
             int levelLimit = StudentManager.Instance.GetStudentLevelLimit(p);
-            if (p.studentLevel < levelLimit)
+            if (p.studentLevel < levelLimit && p.studentLevel <= DataTable._studentUpgradeList.Count)
             {
                 int needExp = DataTable._studentUpgradeList[p.studentLevel - 1].NeedExp.ToInt32();
                 if (p.studentCurExp < needExp)
@@ -1814,7 +1814,8 @@ public class ItemManager:CommonInstance<ItemManager>
                         if (setting!=null && setting.ItemType.ToInt32() == (int)ItemType.ProductExpDan)
                         {
                             List<int> levelRange = CommonUtil.SplitCfgOneDepth(setting.Param2);
-                            if (p.studentLevel >= levelRange[0]
+                            if (levelRange != null && levelRange.Count >= 2 
+                                && p.studentLevel >= levelRange[0]
                                 && p.studentLevel <= levelRange[1])
                             {
                                 //ItemData needItem = new ItemData();
