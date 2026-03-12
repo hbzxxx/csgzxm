@@ -1491,7 +1491,7 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
     private EquipmentSetting FindBestEquipmentForSlot(int slotIndex, List<EquipmentSetting> allEquipSettings)
     {
         EquipmentSetting best = null;
-        int bestRarity = 0;
+        int bestRarity = -1;
         
         string[] slotNames = { "法器", "锦衣", "鞋子", "璎珞", "饰品", "腰带" };
         string slotName = slotIndex < slotNames.Length ? slotNames[slotIndex] : "未知";
