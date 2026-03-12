@@ -14,16 +14,23 @@ using UnityEngine;
     /// <param name="danFarmId"></param>
     public int GetFarmNumLimit(int danFarmId)
     {
-        int limit = 0;
-        for(int i = 0; i < RoleManager.Instance._CurGameInfo.allDanFarmData.UnlockedDanFarmId.Count; i++)
+        int curLevel = RoleManager.Instance._CurGameInfo.allZongMenData.ZongMenLevel;
+        if (curLevel > 0 && curLevel <= DataTable._zongMenUpgradeList.Count)
         {
-            int theId = RoleManager.Instance._CurGameInfo.allDanFarmData.UnlockedDanFarmId[i];
-            if (theId == danFarmId)
-                limit++;
+            ZongMenUpgradeSetting setting = DataTable._zongMenUpgradeList[curLevel - 1];
+            List<List<int>> buildingList = CommonUtil.SplitCfg(setting.UnlockedBuilding);
+            
+            for (int i = 0; i < buildingList.Count; i++)
+            {
+                List<int> building = buildingList[i];
+                if (building.Count >= 2 && building[0] == danFarmId)
+                {
+                    return building[1];
+                }
+            }
         }
-        //TODO测试用
-
-        return limit;
+        
+        return 0;
     }
 
 

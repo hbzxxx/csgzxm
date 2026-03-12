@@ -262,7 +262,7 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
                 
                 if (!studentHasEquip)
                 {
-                    for (int i = 0; i < 6; i++)
+                    for (int i = 0; i < 4; i++)
                     {
                         var bestEquip = FindBestEquipmentForSlot(i, allEquipSettings);
                         if (bestEquip != null)
@@ -717,8 +717,50 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
 
         if (gameInfo.playerPeople != null)
         {
-            gameInfo.playerPeople.studentCurExp = 999999999;
-            gameInfo.playerPeople.curXiuwei = 999999999;
+            // 设置主角等级为满级
+            int maxLevel = 1;
+            if (DataTable._zongMenUpgradeList != null && DataTable._zongMenUpgradeList.Count > 0)
+            {
+                maxLevel = DataTable._zongMenUpgradeList.Count;
+            }
+            gameInfo.playerPeople.studentLevel = maxLevel;
+            gameInfo.playerPeople.studentCurExp = 0;
+            gameInfo.playerPeople.curXiuwei = 0;
+            Debug.Log($"[TestMod] 主角等级已设为满级 ({maxLevel})");
+            
+            // 主角技能强化到满级
+            if (gameInfo.playerPeople.allSkillData != null)
+            {
+                var allSkills = DataTable.table.TbSkill.DataList;
+                if (allSkills != null && allSkills.Count > 0)
+                {
+                    for (int i = 0; i < Mathf.Min(5, allSkills.Count); i++)
+                    {
+                        var skillSetting = allSkills[i];
+                        if (skillSetting != null)
+                        {
+                            SingleSkillData skill = new SingleSkillData();
+                            skill.skillId = skillSetting.Id.ToInt32();
+                            skill.skillLevel = 1;
+                            skill.isEquipped = true;
+                            gameInfo.playerPeople.allSkillData.skillList.Add(skill);
+                            gameInfo.playerPeople.allSkillData.equippedSkillIdList.Add(skill.skillId);
+                            
+                            // 使用正常方式升级技能到满级
+                            List<SkillUpgradeSetting> upgradeList = DataTable.FindSkillUpgradeListBySkillId(skill.skillId);
+                            if (upgradeList != null)
+                            {
+                                int maxSkillLevel = upgradeList.Count;
+                                while (skill.skillLevel < maxSkillLevel)
+                                {
+                                    skill.skillLevel++;
+                                }
+                            }
+                        }
+                    }
+                }
+                Debug.Log($"[TestMod] 主角技能已强化到满级 ({gameInfo.playerPeople.allSkillData.skillList.Count} 个)");
+            }
         }
 
         // 2.1 设置所有丹炉建筑，解锁位置，排序好
@@ -812,12 +854,61 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
             Debug.Log($"[TestMod] 地图和关卡已全部解锁/通关 ({gameInfo.AllMapData.MapList.Count} 个地图)");
         }
         
-        // 5. 宗门等级满（直接设置数据）
+        // 5. 宗门等级满（调用正常升级方法，触发建筑数量变化）
         if (gameInfo.allZongMenData != null)
         {
             int maxZongMenLevel = DataTable._zongMenUpgradeList.Count;
-            gameInfo.allZongMenData.ZongMenLevel = maxZongMenLevel;
-            Debug.Log($"[TestMod] 宗门等级已设为满级 ({maxZongMenLevel})");
+            
+            // 先设置为1级
+            gameInfo.allZongMenData.ZongMenLevel = 1;
+            
+            // 逐步升级到满级，触发每个等级的建筑解锁逻辑
+            for (int level = 1; level < maxZongMenLevel; level++)
+            {
+                ZongMenUpgradeSetting curSetting = DataTable._zongMenUpgradeList[level - 1];
+                ZongMenUpgradeSetting afterSetting = DataTable._zongMenUpgradeList[level];
+                
+                // 解锁建筑
+                List<List<int>> beforeBuilding = CommonUtil.SplitCfg(curSetting.UnlockedBuilding);
+                List<List<int>> afterBuilding = CommonUtil.SplitCfg(afterSetting.UnlockedBuilding);
+                
+                for (int i = 0; i < beforeBuilding.Count; i++)
+                {
+                    List<int> before = beforeBuilding[i];
+                    List<int> after = afterBuilding[i];
+                    
+                    int buildId = before[0];
+                    int beforeNum = before[1];
+                    int afterNum = after[1];
+                    
+                    int existedNum = 0;
+                    for (int j = 0; j < gameInfo.allDanFarmData.UnlockedDanFarmId.Count; j++)
+                    {
+                        int id = gameInfo.allDanFarmData.UnlockedDanFarmId[j];
+                        if (id == buildId)
+                        {
+                            existedNum++;
+                        }
+                    }
+                    while (afterNum > existedNum)
+                    {
+                        LianDanManager.Instance.UnlockDanFarm(buildId);
+                        existedNum++;
+                    }
+                }
+                
+                // 空地数量
+                int farmNumBefore = curSetting.FarmNumLimit.ToInt32();
+                int farmNumAfter = afterSetting.FarmNumLimit.ToInt32();
+                if (farmNumAfter > farmNumBefore)
+                {
+                    gameInfo.allDanFarmData.UnlockedDanFarmNumLimit = farmNumAfter + gameInfo.allZongMenData.SendFarmNumLimitAddNum;
+                }
+                
+                gameInfo.allZongMenData.ZongMenLevel++;
+            }
+            
+            Debug.Log($"[TestMod] 宗门等级已设为满级 ({maxZongMenLevel})，建筑已按等级解锁");
         }
         
         // 6. 探索数据全解锁（直接设置数据）
@@ -1078,7 +1169,7 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
         }
         
         p.allSkillData = new AllSkillData();
-        p.curEquipItemList = new List<ItemData> { null, null, null, null, null, null };
+        p.curEquipItemList = new List<ItemData> { null, null, null, null };
         
         p.gender = UnityEngine.Random.Range(0, 2);
         p.yuanSu = UnityEngine.Random.Range(1, 6);
@@ -1126,10 +1217,18 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
     
     private void SetupLianGongStudentMax(PeopleData p, GameInfo gameInfo)
     {
-        // 只增加经验，不修改等级（和玩家设置一致）(不修改)
-        // p.studentLevel = 1;
-        // p.studentCurExp = 99999999;
-        // p.curXiuwei = 99999999;
+        // 设置弟子等级为满级
+        p.studentLevel = 1;
+        p.studentCurExp = 0;
+        p.curXiuwei = 0;
+        
+        // 获取最大等级并设置满级
+        int maxLevel = 1;
+        if (DataTable._zongMenUpgradeList != null && DataTable._zongMenUpgradeList.Count > 0)
+        {
+            maxLevel = DataTable._zongMenUpgradeList.Count;
+        }
+        p.studentLevel = maxLevel;
         
         if (p.allSkillData != null)
         {
@@ -1143,10 +1242,21 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
                     {
                         SingleSkillData skill = new SingleSkillData();
                         skill.skillId = skillSetting.Id.ToInt32();
-                        skill.skillLevel = 100;
+                        skill.skillLevel = 1;
                         skill.isEquipped = true;
                         p.allSkillData.skillList.Add(skill);
                         p.allSkillData.equippedSkillIdList.Add(skill.skillId);
+                        
+                        // 使用正常方式升级技能到满级
+                        List<SkillUpgradeSetting> upgradeList = DataTable.FindSkillUpgradeListBySkillId(skill.skillId);
+                        if (upgradeList != null)
+                        {
+                            int maxSkillLevel = upgradeList.Count;
+                            while (skill.skillLevel < maxSkillLevel)
+                            {
+                                skill.skillLevel++;
+                            }
+                        }
                     }
                 }
             }
@@ -1157,7 +1267,7 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
             var allEquipSettings = DataTable.table.TbEquipment.DataList;
             if (allEquipSettings != null && allEquipSettings.Count > 0)
             {
-                for (int i = 0; i < 6; i++)
+                for (int i = 0; i < 4; i++)
                 {
                     var bestEquip = FindBestEquipmentForSlot(i, allEquipSettings);
                     if (bestEquip != null)
@@ -1367,7 +1477,7 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
                 if (student == null) continue;
                 
                 int studentEquipCount = 0;
-                for (int i = 0; i < 6; i++)
+                for (int i = 0; i < 4; i++)
                 {
                     var bestEquip = FindBestEquipmentForSlot(i, allEquipSettings);
                     if (bestEquip != null)
