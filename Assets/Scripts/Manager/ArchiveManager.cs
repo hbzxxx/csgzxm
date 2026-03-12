@@ -226,11 +226,11 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
         // 初始化玩家的装备槽位
         if (gameInfo.playerPeople.curEquipItemList == null)
         {
-            gameInfo.playerPeople.curEquipItemList = new List<ItemData> { null, null, null, null, null, null };
+            gameInfo.playerPeople.curEquipItemList = new List<ItemData> { null, null, null, null };
         }
-        else if (gameInfo.playerPeople.curEquipItemList.Count < 6)
+        else if (gameInfo.playerPeople.curEquipItemList.Count < 4)
         {
-            while (gameInfo.playerPeople.curEquipItemList.Count < 6)
+            while (gameInfo.playerPeople.curEquipItemList.Count < 4)
             {
                 gameInfo.playerPeople.curEquipItemList.Add(null);
             }
@@ -251,7 +251,7 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
         if (!playerHasEquip)
         {
             Debug.Log("[TestMod] 玩家没有装备，正在自动装备...");
-            for (int i = 0; i < 6; i++)
+            for (int i = 0; i < 4; i++)
             {
                 var bestEquip = FindBestEquipmentForSlot(i, allEquipSettings);
                 Debug.Log($"[TestMod] 槽位 {i} 找到最佳装备: {(bestEquip != null ? bestEquip.Name : "null")}");
@@ -274,11 +274,11 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
                 // 初始化弟子的装备槽位
                 if (student.curEquipItemList == null)
                 {
-                    student.curEquipItemList = new List<ItemData> { null, null, null, null, null, null };
+                    student.curEquipItemList = new List<ItemData> { null, null, null, null };
                 }
-                else if (student.curEquipItemList.Count < 6)
+                else if (student.curEquipItemList.Count < 4)
                 {
-                    while (student.curEquipItemList.Count < 6)
+                    while (student.curEquipItemList.Count < 4)
                     {
                         student.curEquipItemList.Add(null);
                     }
@@ -296,7 +296,7 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
                 
                 if (!studentHasEquip)
                 {
-                    for (int i = 0; i < 6; i++)
+                    for (int i = 0; i < 4; i++)
                     {
                         var bestEquip = FindBestEquipmentForSlot(i, allEquipSettings);
                         if (bestEquip != null)

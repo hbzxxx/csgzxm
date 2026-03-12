@@ -31,8 +31,8 @@ public class PeopleData
     /// <summary>技能数据</summary>
     public AllSkillData allSkillData;
     
-    /// <summary>当前装备物品列表（固定6个槽位）</summary>
-    public List<ItemData> curEquipItemList = new List<ItemData>() { null, null, null, null, null, null };
+    /// <summary>当前装备物品列表（固定4个槽位）</summary>
+    public List<ItemData> curEquipItemList = new List<ItemData>() { null, null, null, null };
     
     /// <summary>性别</summary>
     public int gender;
