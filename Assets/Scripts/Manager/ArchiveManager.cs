@@ -1950,36 +1950,53 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
     
     private ItemData CreateBestEquipItem(EquipmentSetting bestEquip, GameInfo gameInfo)
     {
-        // 创建装备原型数据
-        EquipProtoData equipProto = new EquipProtoData();
-        equipProto.settingId = bestEquip.Id.ToInt32();
-        equipProto.onlyId = gameInfo.TheId++;
-        equipProto.curLevel = 100;
-        equipProto.curExp = 999999;
-        equipProto.curDurability = 100;
-        equipProto.jingLianLv = 10;
-        equipProto.propertyList = new List<SinglePropertyData>();
+        // 完整模拟练器房创建装备的流程
+        EquipProtoData equipData = new EquipProtoData();
+        equipData.onlyId = gameInfo.TheId++;
+        equipData.settingId = bestEquip.Id.ToInt32();
+        equipData.setting = bestEquip;
+        equipData.curLevel = 100;
+        equipData.curDurability = 100;
         
-        // 从装备配置表中解析基础属性
+        // 设置满级属性（模拟练器房的属性设置）
         List<List<int>> baseProList = CommonUtil.SplitCfg(bestEquip.BasePro);
         for (int i = 0; i < baseProList.Count; i++)
         {
             List<int> singlePro = baseProList[i];
             if (singlePro.Count >= 2)
             {
-                SinglePropertyData proData = new SinglePropertyData();
-                proData.id = singlePro[0];
-                proData.num = singlePro[1];
-                proData.quality = (int)Quality.None;
-                equipProto.propertyIdList.Add(proData.id);
-                equipProto.propertyList.Add(proData);
+                int theId = singlePro[0];
+                int theNum = singlePro[1];
+                
+                // 随机属性处理
+                if (theId == (int)PropertyIdType.RdmProDamageAdd)
+                {
+                    List<PropertyIdType> candidateIdList = new List<PropertyIdType>
+                    {
+                        PropertyIdType.WaterDamageAdd,
+                        PropertyIdType.FireDamageAdd,
+                        PropertyIdType.StormDamageAdd,
+                        PropertyIdType.IceDamageAdd,
+                        PropertyIdType.YangProDamageAdd,
+                        PropertyIdType.YinProDamageAdd
+                    };
+                    int proIdIndex = RandomManager.Next(0, candidateIdList.Count);
+                    theId = (int)candidateIdList[proIdIndex];
+                }
+                
+                equipData.propertyIdList.Add(theId);
+                SinglePropertyData data = new SinglePropertyData();
+                data.id = theId;
+                data.num = theNum;
+                data.quality = 5; // 满品质
+                equipData.propertyList.Add(data);
             }
         }
         
-        equipProto.setting = bestEquip;
+        // 设置优化等级
+        equipData.youHuaLv = 5;
         
-        // 使用正常流程创建装备（与练器房一致的流程）
-        // 1. 通过 ItemId 获取 ItemSetting
+        // 获取 ItemSetting
         int itemId = bestEquip.ItemId.ToInt32();
         ItemSetting itemSetting = DataTable.FindItemSetting(itemId);
         if (itemSetting == null)
@@ -1988,11 +2005,8 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
             return null;
         }
         
-        // 2. 使用 ItemSetting.Quality 获取品质
-        int rarity = itemSetting.Quality.ToInt32();
-        
-        // 3. 调用 GetEquipment 创建装备
-        ItemData item = RoleManager.Instance.GetEquipment(equipProto, rarity);
+        // 使用 GetEquipment 创建装备（与练器房完全一致的流程）
+        ItemData item = RoleManager.Instance.GetEquipment(equipData, itemSetting.Quality.ToInt32());
         
         return item;
     }
