@@ -780,7 +780,7 @@ public class StudentHandlePanel : PanelBase
     /// </summary>
     void ShowTuPo( )
     {
-        trans_xiuWeiDanParent.gameObject.SetActive(false);
+        //trans_xiuWeiDanParent.gameObject.SetActive(false);
         trans_yuanShenShouSun.gameObject.SetActive(false);
 
         btn_breakThrough.gameObject.SetActive(true);
