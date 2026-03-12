@@ -44,6 +44,82 @@ using UnityEngine;
     }
 
     /// <summary>
+    /// 直接提升宗门等级（不消耗道具，用于GM工具或测试模式）
+    /// </summary>
+    public void UpgradeZongMenLevel()
+    {
+        int curLevel = RoleManager.Instance._CurGameInfo.allZongMenData.ZongMenLevel;
+        int maxLevel = CurMaxZongmenLevel();
+        if (curLevel >= maxLevel)
+        {
+            PanelManager.Instance.OpenFloatWindow("已经达到最大等级");
+            return;
+        }
+
+        ZongMenUpgradeSetting curSetting = DataTable._zongMenUpgradeList[curLevel - 1];
+        ZongMenUpgradeSetting afterSetting = DataTable._zongMenUpgradeList[curLevel];
+
+        RoleManager.Instance._CurGameInfo.allZongMenData.ZongMenLevel++;
+
+        List<List<int>> beforeBuilding = CommonUtil.SplitCfg(curSetting.UnlockedBuilding);
+        List<List<int>> afterBuilding = CommonUtil.SplitCfg(afterSetting.UnlockedBuilding);
+
+        for (int i = 0; i < beforeBuilding.Count; i++)
+        {
+            List<int> before = beforeBuilding[i];
+            List<int> after = afterBuilding[i];
+
+            int buildId = before[0];
+            int beforeNum = before[1];
+            int afterNum = after[1];
+
+            int existedNum = 0;
+            for (int j = 0; j < RoleManager.Instance._CurGameInfo.allDanFarmData.UnlockedDanFarmId.Count; j++)
+            {
+                int id = RoleManager.Instance._CurGameInfo.allDanFarmData.UnlockedDanFarmId[j];
+                if (id == buildId)
+                {
+                    existedNum++;
+                }
+            }
+            while (afterNum > existedNum)
+            {
+                if (beforeNum == 0)
+                {
+                    DanFarmSetting setting = DataTable.FindDanFarmSetting(buildId);
+                    PanelManager.Instance.AddTongZhi(TongZhiType.Common, "解锁新建筑：" + setting.Name);
+                }
+                LianDanManager.Instance.UnlockDanFarm(buildId);
+                existedNum++;
+            }
+        }
+
+        int farmNumBefore = curSetting.FarmNumLimit.ToInt32();
+        int farmNumAfter = afterSetting.FarmNumLimit.ToInt32();
+        if (farmNumAfter > farmNumBefore)
+        {
+            PanelManager.Instance.AddTongZhi(TongZhiType.Common, "有新的空地可以解锁了");
+            RoleManager.Instance._CurGameInfo.allDanFarmData.UnlockedDanFarmNumLimit = farmNumAfter + RoleManager.Instance._CurGameInfo.allZongMenData.SendFarmNumLimitAddNum;
+            EventCenter.Broadcast(TheEventType.ShowUnlockFarmPosStatus);
+        }
+
+        int tiliLimitBefore = curSetting.TiliLimit.ToInt32();
+        int tiliLimitAfter = afterSetting.TiliLimit.ToInt32();
+        if (tiliLimitAfter - tiliLimitBefore > 0)
+        {
+            PanelManager.Instance.AddTongZhi(TongZhiType.Common, "体力上限增加" + tiliLimitBefore + "——" + tiliLimitAfter);
+            RoleManager.Instance.AddTiLiLimit(tiliLimitAfter);
+        }
+        RoleManager.Instance.FullTiLi();
+        PanelManager.Instance.AddTongZhi(TongZhiType.Common, "体力已回复满" + tiliLimitBefore + "——" + tiliLimitAfter);
+
+        RoleManager.Instance._CurGameInfo.studentData.MaxStudentNum = RoleManager.Instance._CurGameInfo.allZongMenData.ZongMenLevel * 3;
+        EventCenter.Broadcast(TheEventType.ZongMenLevelUpgrade);
+        PanelManager.Instance.AddTongZhi(TongZhiType.Common, "等级提升为Lv" + RoleManager.Instance._CurGameInfo.allZongMenData.ZongMenLevel);
+        RoleManager.Instance.profile.SetLevel(RoleManager.Instance._CurGameInfo.allZongMenData.ZongMenLevel);
+    }
+
+    /// <summary>
     /// 宗门升级
     /// </summary>
     public void UpgradeZongMen()
