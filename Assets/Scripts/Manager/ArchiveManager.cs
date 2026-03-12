@@ -1027,10 +1027,9 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
         p.studentQuality = quality;
         p.studentRarity = rarity;
         
-        // 只增加经验，不修改等级（和玩家设置一致）(不修改)
-        // p.studentLevel = 1;
-        // p.studentCurExp = 99999999;
-        // p.curXiuwei = 99999999;
+        // 设置默认等级和经验（以便可以使用经验丹）
+        p.studentLevel = 1;
+        p.studentCurExp = 0;
         
         p.propertyIdList = new List<int>();
         p.propertyList = new List<SinglePropertyData>();
