@@ -1741,6 +1741,7 @@ public class StudentHandlePanel : PanelBase
         {
             PanelManager.Instance.ShowTaskGuidePanel(curChoosedInfoBigStudentView.btn_info.gameObject);
         }
+        trans_xiuWeiDanParent.gameObject.SetActive(true);
     }
     
     /// <summary>
