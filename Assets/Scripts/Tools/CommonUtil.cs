@@ -907,6 +907,7 @@ public static class CommonUtil
         int rarity =  p.studentRarity;
         if (rarity == 0)
             rarity = 1;
+        rarity = Mathf.Clamp(rarity, 1, 5);
         if (p.isPlayer)
         {
             return ResourceManager.Instance.GetObj<Sprite>(ConstantVal.ItemIconPath + "img_dizijibiek6");
@@ -923,6 +924,7 @@ public static class CommonUtil
         int rarity = p.studentRarity;
         if (rarity == 0)
             rarity = 1;
+        rarity = Mathf.Clamp(rarity, 1, 5);
         if (p.talent == (int)StudentTalent.LianGong)
             return ResourceManager.Instance.GetObj<Sprite>(ConstantVal.resCommonPath + "img_diziknew_" + rarity);
         else
