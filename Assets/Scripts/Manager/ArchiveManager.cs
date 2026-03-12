@@ -226,22 +226,22 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
             return;
         }
 
-        // 初始化玩家的装备槽位（只有4个：法器、锦衣、鞋子、璎珞）
+        // 初始化玩家的装备槽位（6个：法器、锦衣、鞋子、璎珞、饰品、腰带）
         if (gameInfo.playerPeople.curEquipItemList == null)
         {
-            gameInfo.playerPeople.curEquipItemList = new List<ItemData> { null, null, null, null };
+            gameInfo.playerPeople.curEquipItemList = new List<ItemData> { null, null, null, null, null, null };
         }
-        else if (gameInfo.playerPeople.curEquipItemList.Count < 4)
+        else if (gameInfo.playerPeople.curEquipItemList.Count < 6)
         {
-            while (gameInfo.playerPeople.curEquipItemList.Count < 4)
+            while (gameInfo.playerPeople.curEquipItemList.Count < 6)
             {
                 gameInfo.playerPeople.curEquipItemList.Add(null);
             }
         }
         
-        // 检查玩家是否有装备（4个槽位）
+        // 检查玩家是否有装备（6个槽位）
         bool playerHasEquip = false;
-        for (int i = 0; i < gameInfo.playerPeople.curEquipItemList.Count && i < 4; i++)
+        for (int i = 0; i < gameInfo.playerPeople.curEquipItemList.Count && i < 6; i++)
         {
             if (gameInfo.playerPeople.curEquipItemList[i] != null && gameInfo.playerPeople.curEquipItemList[i].settingId > 0)
             {
@@ -284,8 +284,8 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
             Debug.Log("[TestMod] ====================");
 
             Debug.Log("[TestMod] 玩家没有装备，正在自动装备...");
-            // 玩家有4个装备槽位：法器、锦衣、鞋子、璎珞
-            for (int i = 0; i < 4; i++)
+            // 玩家有6个装备槽位：法器、锦衣、鞋子、璎珞、饰品、腰带
+            for (int i = 0; i < 6; i++)
             {
                 // 先从背包中查找可用的装备
                 ItemData existingEquip = FindEquipmentFromBag(gameInfo.ItemModel.itemDataList, i);
@@ -322,14 +322,14 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
             {
                 if (student == null) continue;
 
-                // 初始化弟子的装备槽位
+                // 初始化弟子的装备槽位（6个：法器、锦衣、鞋子、璎珞、饰品、腰带）
                 if (student.curEquipItemList == null)
                 {
-                    student.curEquipItemList = new List<ItemData> { null, null, null, null };
+                    student.curEquipItemList = new List<ItemData> { null, null, null, null, null, null };
                 }
-                else if (student.curEquipItemList.Count < 4)
+                else if (student.curEquipItemList.Count < 6)
                 {
-                    while (student.curEquipItemList.Count < 4)
+                    while (student.curEquipItemList.Count < 6)
                     {
                         student.curEquipItemList.Add(null);
                     }
@@ -356,7 +356,7 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
                 
                 if (!studentHasEquip)
                 {
-                    for (int i = 0; i < 4; i++)
+                    for (int i = 0; i < 6; i++)
                     {
                         var bestEquip = FindBestEquipmentForSlot(i, allEquipSettings);
                         if (bestEquip != null)
@@ -850,7 +850,7 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
                 if (danFarm != null)
                 {
                     danFarm.PosUnlockStatusList.Clear();
-                    for (int i = 0; i < 4; i++)
+            for (int i = 0; i < 6; i++)
                     {
                         danFarm.PosUnlockStatusList.Add(true);
                     }
@@ -1693,18 +1693,33 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
             var allSkills = DataTable.table.TbSkill.DataList;
             if (allSkills != null)
             {
-                // 添加一些基础技能
-                skillIdList.Add(1); //  LingDan
-                skillIdList.Add(2); //  PuGong
-                skillIdList.Add(3); //  FangYu
-                skillIdList.Add(4); //  ZhiLiao
-                
-                // 获取弟子天赋对应的技能
-                if (p.talent == (int)StudentTalent.LianGong)
+                // 添加配置表中所有的技能
+                foreach (var skill in allSkills)
                 {
-                    skillIdList.Add(5); // XiuLian
+                    if (skill != null)
+                    {
+                        int skillId = skill.Id.ToInt32();
+                        skillIdList.Add(skillId);
+                    }
                 }
+                Debug.Log($"[TestMod] 从配置表获取到 {skillIdList.Count} 个技能");
             }
+        }
+
+        // 如果配置表没有技能，添加默认技能
+        if (skillIdList.Count == 0)
+        {
+            skillIdList.Add(1); // LingDan
+            skillIdList.Add(2); // PuGong
+            skillIdList.Add(3); // FangYu
+            skillIdList.Add(4); // ZhiLiao
+            
+            // 获取弟子天赋对应的技能
+            if (p.talent == (int)StudentTalent.LianGong)
+            {
+                skillIdList.Add(5); // XiuLian
+            }
+            Debug.Log($"[TestMod] 使用默认技能，共 {skillIdList.Count} 个");
         }
 
         // 清空现有技能并添加满级技能
@@ -1914,7 +1929,7 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
                 InitPlayerSkillsFullLevel(student);
                 
                 int studentEquipCount = 0;
-                for (int i = 0; i < 4; i++)
+                for (int i = 0; i < 6; i++)
                 {
                     var bestEquip = FindBestEquipmentForSlot(i, allEquipSettings);
                     if (bestEquip != null)
