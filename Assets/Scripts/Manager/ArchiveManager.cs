@@ -717,8 +717,11 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
 
         if (gameInfo.playerPeople != null)
         {
-            // 主角满级设置为150级
-            int maxLevel = 150;
+            // 主角满级是149级（由GetStudentLevelLimit决定）
+            int maxLevel = 149;
+            
+            // 确保主角有足够的修炼指数来突破等级限制
+            gameInfo.playerPeople.trainIndex = 1;  // 修炼指数设为1，可以突破更高等级
             
             // 计算升到满级需要的总经验
             int totalExpNeeded = 0;
@@ -1247,8 +1250,11 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
     
     private void SetupLianGongStudentMax(PeopleData p, GameInfo gameInfo)
     {
-        // 修武弟子满级设置为150级
-        int maxLevel = 150;
+        // 修武弟子满级是149级（天品）+ trainIndex*10
+        // 设置足够的修炼指数来达到更高等级
+        p.trainIndex = 1;
+        int maxLevel = 149 + p.trainIndex * 10;
+        if (maxLevel > 150) maxLevel = 150;  // 不超过配置表上限
         
         // 计算升到满级需要的总经验
         int totalExpNeeded = 0;
