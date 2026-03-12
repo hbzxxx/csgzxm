@@ -262,7 +262,7 @@ namespace Framework.Data
             var setting = table.TbItem.GetOrDefault(id);
             if (setting == null)
             {
-                Debug.LogWarning($"[配置表] 找不到物品配置, id={id}");
+                Debug.LogWarning($"[配置表] 找不到物品配置, id={id}，自动修改成金币！");
             }
             return setting;
         }

@@ -981,7 +981,7 @@ public class ItemManager:CommonInstance<ItemManager>
         ItemSetting itemSetting = DataTable.FindItemSetting(settingId);
         if (itemSetting == null)
         {
-            Debug.LogWarning($"[GetItem] 物品配置不存在，settingId={settingId}，已替换为灵石");
+            Debug.LogWarning($"[GetItem] 物品配置不存在，settingId={settingId}，已替换为金币");
             settingId = 10001;
             itemSetting = DataTable.FindItemSetting(settingId);
             if (itemSetting == null)
