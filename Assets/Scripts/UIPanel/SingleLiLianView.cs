@@ -8,20 +8,26 @@ using cfg;
 public class SingleLiLianView : SingleViewBase
 {
     public int id;//id
+    public Image img_icon;//玩法图标
+    public Text txt_title;//玩法标题
     public Button btn;
-    public Text txt_name;
+    //public Text txt_name;
+    public LeLiLianData data;
 
     public override void Init(params object[] args)
     {
         base.Init(args);
+        data = args[0] as LeLiLianData;
+        id = data.settingId;
+        //图
+        img_icon.sprite = ResourceManager.Instance.GetObj<Sprite>(ConstantVal.resCommonPath + data.iconName);
+        //标题
+        txt_title.SetText(data.title);
+
         LiLianSetting setting = DataTable.FindLiLianSetting(id);
         int timeIndex = DataTable._liLianList.IndexOf(setting);
-
         int curParticipatedNum = RoleManager.Instance._CurGameInfo.timeData.TodayParticipatedLiLianStatus[timeIndex];
-        
-      
-
-        txt_name.SetText((RoleManager.Instance._CurGameInfo.timeData.MaxLiLianTimePerDay - curParticipatedNum)+"/"+ RoleManager.Instance._CurGameInfo.timeData.MaxLiLianTimePerDay);
+        //txt_name.SetText((RoleManager.Instance._CurGameInfo.timeData.MaxLiLianTimePerDay - curParticipatedNum)+"/"+ RoleManager.Instance._CurGameInfo.timeData.MaxLiLianTimePerDay);
 
         addBtnListener(btn, () =>
         {

@@ -52,19 +52,52 @@ public class WanfaDatingPanel : PanelBase
                 isEnabled = false
             }
         };
-        for(int i = 0; i < 5; i++)
+        var leLiLianData = new List<LeLiLianData>
         {
-            SingleLiLianView singleLiLianView = new SingleLiLianView();
-            singleLiLianView.id = 10001+i;
-            singleLiLianViewList.Add(singleLiLianView);
-        }
+            new LeLiLianData
+            {
+                settingId=10001,
+                title="天命宫",
+                iconName="mine_icon"
+            },
+            new LeLiLianData
+            {
+                settingId=10002,
+                title="玄武殿",
+                iconName="mine_icon"
+            },
+            new LeLiLianData
+            {
+                settingId=10003,
+                title="斗化星",
+                iconName="mine_icon"
+            },
+            new LeLiLianData
+            {
+                settingId=10004,
+                title="太微垣",
+                iconName="mine_icon"
+            },
+            new LeLiLianData
+            {
+                settingId=10005,
+                title="天堑峰",
+                iconName="mine_icon"
+            },
+        };
+        
         // 创建 WanfaView
         for (int i = 0; i < wanfaDataList.Count; i++)
         {
             WanfaView view = PanelManager.Instance.OpenSingle<WanfaView>(tran_grid, wanfaDataList[i], this);
             wanfaViewList.Add(view);
         }
-
+        // 创建 SingleLiLianView
+        for (int i = 0; i < wanfaDataList.Count; i++)
+        {
+            SingleLiLianView view = PanelManager.Instance.OpenSingle<SingleLiLianView>(tran_grid, leLiLianData[i], this);
+            singleLiLianViewList.Add(view);
+        }
     }
 
     void ClearWanfaViews()
@@ -96,4 +129,10 @@ public enum WanfaType
     Mining,
     Goblin,
     ComingSoon
+}
+public class LeLiLianData
+{
+    public int settingId;//关卡ID
+    public string title; // 标题
+    public string iconName; // 图标资源名
 }

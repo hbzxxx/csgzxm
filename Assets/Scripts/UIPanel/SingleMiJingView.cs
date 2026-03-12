@@ -26,11 +26,13 @@ public class SingleMiJingView : SingleViewBase
 
         //SetupView();
         singleMiJingPaiQianData = MiJingManager.Instance.GetSingleMiJingPaiQianDataById(singleMiJingData.settingId);
+        //图
         img_icon.sprite = ResourceManager.Instance.GetObj<Sprite>(ConstantVal.resCommonPath + singleMiJingData.iconName);
+        //标题
+        txt_title.SetText(singleMiJingData.title);
         //按钮
         miJingSetting = DataTable.FindMiJingSetting(singleMiJingData.settingId);
         addBtnListener(btn, OnChoose);
-        txt_title.SetText(miJingSetting.Name);
     }
 
 
