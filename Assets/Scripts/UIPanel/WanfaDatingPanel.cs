@@ -6,6 +6,7 @@ public class WanfaDatingPanel : PanelBase
 {
     public Transform tran_grid;
     private List<WanfaView> wanfaViewList = new List<WanfaView>();
+    private List<SingleLiLianView> singleLiLianViewList = new List<SingleLiLianView>();
 
     public override void Init(params object[] args)
     {
@@ -51,14 +52,19 @@ public class WanfaDatingPanel : PanelBase
                 isEnabled = false
             }
         };
-
+        for(int i = 0; i < 5; i++)
+        {
+            SingleLiLianView singleLiLianView = new SingleLiLianView();
+            singleLiLianView.id = 10001+i;
+            singleLiLianViewList.Add(singleLiLianView);
+        }
         // 创建 WanfaView
         for (int i = 0; i < wanfaDataList.Count; i++)
         {
-            Debug.Log("xxxxxxxxxxxxxxxxxxx"+tran_grid);
             WanfaView view = PanelManager.Instance.OpenSingle<WanfaView>(tran_grid, wanfaDataList[i], this);
             wanfaViewList.Add(view);
         }
+
     }
 
     void ClearWanfaViews()
