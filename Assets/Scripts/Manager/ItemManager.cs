@@ -798,32 +798,29 @@ public class ItemManager:CommonInstance<ItemManager>
     public List<ItemData> FindCangKuAddProductExpItem(PeopleData p)
     {
         List<ItemData> res = new List<ItemData>();
-        if (p.talent != (int)StudentTalent.LianGong)
+        // 主角和所有弟子都可以使用经验丹
+        if (StudentManager.Instance.GetStudentLevelLimit(p) > p.studentLevel)
         {
-            if (StudentManager.Instance.GetStudentLevelLimit(p) > p.studentLevel)
+            int needExp = DataTable._studentUpgradeList[p.studentLevel - 1].NeedExp.ToInt32();
+            if (p.studentCurExp < needExp)
             {
-                int needExp = DataTable._studentUpgradeList[p.studentLevel - 1].NeedExp.ToInt32();
-                if (p.studentCurExp < needExp)
+                for (int i = 0; i < RoleManager.Instance._CurGameInfo.ItemModel.cangKuItemDataList.Count; i++)
                 {
-                    for (int i = 0; i < RoleManager.Instance._CurGameInfo.ItemModel.cangKuItemDataList.Count; i++)
+                    ItemData data = RoleManager.Instance._CurGameInfo.ItemModel.cangKuItemDataList[i];
+                    ItemSetting setting = DataTable.FindItemSetting(data.settingId);
+                    if (setting.ItemType.ToInt32() == (int)ItemType.ProductExpDan)
                     {
-                        ItemData data = RoleManager.Instance._CurGameInfo.ItemModel.cangKuItemDataList[i];
-                        ItemSetting setting = DataTable.FindItemSetting(data.settingId);
-                        if (setting.ItemType.ToInt32() == (int)ItemType.ProductExpDan)
+                        List<int> levelRange = CommonUtil.SplitCfgOneDepth(setting.Param2);
+                        if (p.studentLevel >= levelRange[0]
+                            && p.studentLevel <= levelRange[1])
                         {
-                            List<int> levelRange = CommonUtil.SplitCfgOneDepth(setting.Param2);
-                            if (p.studentLevel >= levelRange[0]
-                                && p.studentLevel <= levelRange[1])
-                            {
-                                ItemData needItem = new ItemData();
-                                needItem.settingId = data.settingId;
-                                needItem.count = 1;
-                                res.Add(needItem);
-                            }
+                            ItemData needItem = new ItemData();
+                            needItem.settingId = data.settingId;
+                            needItem.count = 1;
+                            res.Add(needItem);
                         }
                     }
                 }
-
             }
         }
 
@@ -1800,9 +1797,12 @@ public class ItemManager:CommonInstance<ItemManager>
                 }
             }
 
-        }else if (p.talent != (int)StudentTalent.None)
+        }
+        // 主角和所有弟子都可以使用经验丹
+        if (p.studentLevel > 0 && p.studentLevel <= DataTable._studentUpgradeList.Count)
         {
-            if (p.studentLevel > 0 && p.studentLevel <= DataTable._studentUpgradeList.Count)
+            int levelLimit = StudentManager.Instance.GetStudentLevelLimit(p);
+            if (p.studentLevel < levelLimit)
             {
                 int needExp = DataTable._studentUpgradeList[p.studentLevel - 1].NeedExp.ToInt32();
                 if (p.studentCurExp < needExp)
@@ -2516,6 +2516,91 @@ public class ItemManager:CommonInstance<ItemManager>
         }
         res = (int)(res * (1 + addBaiFen * 0.01f));
         return res;
+    }
+
+    /// <summary>
+    /// 经验丹加多少经验
+    /// </summary>
+    /// <param name="data"></param>
+    /// <returns></returns>
+    public int ExpDanExpAdd(ItemData data)
+    {
+        if (data.setting == null)
+        {
+            data.setting = DataTable.FindItemSetting(data.settingId);
+        }
+        return data.setting.Param.ToInt32();
+    }
+
+    /// <summary>
+    /// 使用经验丹，增加弟子经验并处理升级
+    /// </summary>
+    /// <param name="p">角色数据</param>
+    /// <param name="item">经验丹物品数据</param>
+    /// <returns>是否使用成功</returns>
+    public bool UseExpDan(PeopleData p, ItemData item)
+    {
+        if (p == null || item == null)
+            return false;
+
+        // 检查是否达到等级上限
+        int levelLimit = StudentManager.Instance.GetStudentLevelLimit(p);
+        if (p.studentLevel >= levelLimit)
+        {
+            PanelManager.Instance.OpenFloatWindow("已达到等级上限，需要突破境界后才能继续升级");
+            return false;
+        }
+
+        // 检查是否还有升级空间
+        if (p.studentLevel <= 0 || p.studentLevel > DataTable._studentUpgradeList.Count)
+        {
+            return false;
+        }
+
+        // 获得的经验值
+        int expAdd = ExpDanExpAdd(item);
+        
+        // 记录升级前的等级
+        int beforeLevel = p.studentLevel;
+        
+        // 增加经验
+        p.studentCurExp += expAdd;
+        
+        // 检查是否升级
+        CheckAndUpgradeStudent(p);
+        
+        // 消耗物品
+        RemoveItem(item.settingId, 1);
+        
+        Debug.Log($"[UseExpDan] {p.name} 使用经验丹增加 {expAdd} 经验，等级从 {beforeLevel} 升到 {p.studentLevel}");
+        
+        return true;
+    }
+
+    /// <summary>
+    /// 检查并升级弟子
+    /// </summary>
+    /// <param name="p"></param>
+    private void CheckAndUpgradeStudent(PeopleData p)
+    {
+        while (p.studentLevel > 0 && p.studentLevel <= DataTable._studentUpgradeList.Count)
+        {
+            int needExp = DataTable._studentUpgradeList[p.studentLevel - 1].NeedExp.ToInt32();
+            if (p.studentCurExp >= needExp)
+            {
+                p.studentCurExp -= needExp;
+                p.studentLevel++;
+                
+                // 升级事件
+                EventCenter.Broadcast(TheEventType.OnGetStudentExp, p);
+                
+                Debug.Log($"[CheckAndUpgradeStudent] {p.name} 升级到 {p.studentLevel} 级");
+            }
+            else
+            {
+                break;
+            }
+        }
     }
 
     /// <summary>
