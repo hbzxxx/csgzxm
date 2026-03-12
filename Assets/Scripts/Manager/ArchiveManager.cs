@@ -1978,8 +1978,20 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
         
         equipProto.setting = bestEquip;
         
-        // 使用正常流程创建装备
-        int rarity = bestEquip.Rarity.ToInt32();
+        // 使用正常流程创建装备（与练器房一致的流程）
+        // 1. 通过 ItemId 获取 ItemSetting
+        int itemId = bestEquip.ItemId.ToInt32();
+        ItemSetting itemSetting = DataTable.FindItemSetting(itemId);
+        if (itemSetting == null)
+        {
+            Debug.LogError($"[TestMod] ItemSetting not found for itemId: {itemId}");
+            return null;
+        }
+        
+        // 2. 使用 ItemSetting.Quality 获取品质
+        int rarity = itemSetting.Quality.ToInt32();
+        
+        // 3. 调用 GetEquipment 创建装备
         ItemData item = RoleManager.Instance.GetEquipment(equipProto, rarity);
         
         return item;
