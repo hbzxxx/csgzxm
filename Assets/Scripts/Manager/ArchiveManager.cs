@@ -259,6 +259,27 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
                 gameInfo.ItemModel = new ItemModel();
             }
 
+            // 调试：显示背包中所有装备
+            Debug.Log("[TestMod] === 背包物品列表 ===");
+            if (gameInfo.ItemModel.itemDataList != null)
+            {
+                foreach (var item in gameInfo.ItemModel.itemDataList)
+                {
+                    if (item != null && item.settingId > 0)
+                    {
+                        string equipTypeName = "未知";
+                        if (item.equipProtoData?.setting != null)
+                        {
+                            int pos = item.equipProtoData.setting.Pos.ToInt32();
+                            string[] typeNames = { "", "法器", "锦衣", "鞋子", "璎珞", "饰品", "腰带" };
+                            equipTypeName = pos >= 1 && pos <= 6 ? typeNames[pos] : "未知";
+                        }
+                        Debug.Log($"[TestMod] 背包物品: {item.setting.Name}, 类型: {equipTypeName}, 已装备: {item.equipProtoData?.isEquipped}");
+                    }
+                }
+            }
+            Debug.Log("[TestMod] ====================");
+
             Debug.Log("[TestMod] 玩家没有装备，正在自动装备...");
             for (int i = 0; i < 4; i++)
             {
