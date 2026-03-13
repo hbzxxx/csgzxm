@@ -56,7 +56,16 @@ public class ItemTipsPanel : PanelBase
                 {
                     int itemId = equipSetting.ItemId.ToInt32();
                     itemSetting = DataTable.FindItemSetting(itemId);
-                    Debug.LogError($"[ItemTipsPanel] Found itemSetting from equipProtoData, itemId={itemId}");
+                    Debug.Log($"[ItemTipsPanel] equipSetting found: {equipSetting.Name}, itemId={itemId}, itemSetting={(itemSetting != null ? itemSetting.Name : "null")}");
+                }
+                else
+                {
+                    Debug.LogError($"[ItemTipsPanel] equipSetting not found for equipProtoData.settingId={itemData.equipProtoData.settingId}");
+                    // 尝试从已有的 equipProtoData.setting 获取
+                    if (itemData.equipProtoData.setting != null)
+                    {
+                        Debug.Log($"[ItemTipsPanel] using equipProtoData.setting: {itemData.equipProtoData.setting.Name}");
+                    }
                 }
             }
         }
