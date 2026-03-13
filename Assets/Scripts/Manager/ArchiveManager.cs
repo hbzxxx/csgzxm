@@ -1989,7 +1989,7 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
         equipData.onlyId = gameInfo.TheId++;
         equipData.settingId = bestEquip.Id.ToInt32();
         equipData.setting = bestEquip;
-        equipData.curLevel = 1;
+        equipData.curLevel = 25; // 满级25级
         equipData.curDurability = 100;
 
         List<List<int>> baseProList = CommonUtil.SplitCfg(bestEquip.BasePro);
@@ -2016,10 +2016,19 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
                     theId = (int)candidateIdList[proIdIndex];
                 }
 
+                // 计算满级属性值
+                int maxLevel = 25;
+                int baseNum = singlePro[1];
+                int upgradeAdd = 0;
+                try {
+                    upgradeAdd = bestEquip.UpgradeProAdd.ToInt32();
+                } catch { }
+                int maxNum = baseNum + upgradeAdd * maxLevel;
+
                 equipData.propertyIdList.Add(theId);
                 SinglePropertyData data = new SinglePropertyData();
                 data.id = theId;
-                data.num = theNum;
+                data.num = maxNum; // 满级属性值
                 data.quality = 5;
                 equipData.propertyList.Add(data);
             }
