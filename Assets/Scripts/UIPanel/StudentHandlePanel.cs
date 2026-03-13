@@ -724,7 +724,9 @@ public class StudentHandlePanel : PanelBase
                 for (int j = 0; j < itemList.Count - 1 - i; j++)
                 {
                     //前面的小于后面的，则二者交换
-                    if (itemList[j].setting.Param.ToInt32()
+                    if (itemList[j] != null && itemList[j].setting != null 
+                        && itemList[j + 1] != null && itemList[j + 1].setting != null
+                        && itemList[j].setting.Param.ToInt32()
                         < itemList[j + 1].setting.Param.ToInt32())
                     {
                         var temp = itemList[j];
