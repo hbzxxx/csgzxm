@@ -66,6 +66,10 @@ public class ItemTipsPanel : PanelBase
                     {
                         Debug.Log($"[ItemTipsPanel] using equipProtoData.setting: {itemData.equipProtoData.setting.Name}");
                     }
+                    else
+                    {
+                        Debug.LogError($"[ItemTipsPanel] equipProtoData.setting is also null, using settingId as fallback");
+                    }
                 }
             }
         }
@@ -83,6 +87,11 @@ public class ItemTipsPanel : PanelBase
         else if (itemData.equipProtoData?.setting != null)
         {
             equipName = itemData.equipProtoData.setting.Name;
+        }
+        else
+        {
+            // 使用装备ID作为后备名称
+            equipName = $"装备{itemData.settingId}";
         }
         
         if (string.IsNullOrEmpty(equipName))
