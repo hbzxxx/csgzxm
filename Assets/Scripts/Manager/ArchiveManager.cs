@@ -1175,13 +1175,20 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
         if (p == null) return;
         
         bool isLianGong = (p.talent == (int)StudentTalent.LianGong);
-        int targetLevel = 999;
         
+        // 获取弟子的等级上限
+        int levelLimit = StudentManager.Instance.GetStudentLevelLimit(p);
+        
+        // 设置目标等级为当前品质能达到的最大等级
+        int targetLevel = levelLimit;
+        
+        // 如果是修武弟子，升级境界到999
         if (isLianGong)
         {
-            Debug.Log($"[TestMod] 开始将修武弟子 {p.name} 从 trainIndex {p.trainIndex} 升级到 {targetLevel}");
+            int targetTrainIndex = 999;
+            Debug.Log($"[TestMod] 开始将修武弟子 {p.name} 从 trainIndex {p.trainIndex} 升级到 {targetTrainIndex}");
             
-            while (p.trainIndex < targetLevel)
+            while (p.trainIndex < targetTrainIndex)
             {
                 int curLevelLimit = StudentManager.Instance.GetStudentLevelLimit(p);
                 
@@ -1217,7 +1224,17 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
         }
         else
         {
-            Debug.Log($"[TestMod] 开始将弟子 {p.name} 从等级 {p.studentLevel} 升级到 {targetLevel}");
+            // 非修武弟子：先设置足够的 trainIndex 以提升等级上限
+            if (p.trainIndex < 10)
+            {
+                p.trainIndex = 10;
+            }
+            
+            // 重新获取等级上限
+            levelLimit = StudentManager.Instance.GetStudentLevelLimit(p);
+            targetLevel = levelLimit;
+            
+            Debug.Log($"[TestMod] 开始将弟子 {p.name} 从等级 {p.studentLevel} 升级到 {targetLevel}（等级上限 {levelLimit}）");
             
             while (p.studentLevel < targetLevel)
             {
