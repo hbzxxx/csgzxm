@@ -58,17 +58,14 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
         GameInfo gameInfo = RoleManager.Instance._CurGameInfo;
         gameInfo.SaveTime = CGameTime.Instance.GetTimeStamp();
 
-        //if (gameInfo.AllBuildingData == null)
-        //{
-        //    Debug.Log("测试模式：自动修改存档数据");
-        //    ApplyTestModifications(gameInfo);
-        //}
+        if (gameInfo.AllBuildingData == null)
+        {
+            Debug.Log("测试模式：自动修改存档数据");
+            ApplyTestModifications(gameInfo);
+        }
 
         // 每次保存存档时自动装备最佳装备
-        //AutoEquipBestGear(gameInfo);
-
-        // 每次保存存档时将技能拉到满级
-        UpgradeSkillsToMaxLevel(gameInfo);
+        AutoEquipBestGear(gameInfo);
 
         // 确保目录存在
         DirectoryInfo destination = new DirectoryInfo(ConstantVal.GetArchiveSaveFolder(archiveIndex));
@@ -81,8 +78,8 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
         string savePath = GetES3SavePath(archiveIndex);
         
         // 存档前处理：将 gemList 转换为 gemSaveList（避免循环引用）
-        //PrepareEquipDataForSave(gameInfo);
-        
+        PrepareEquipDataForSave(gameInfo);
+
         ES3.Save<GameInfo>(ConstantVal.mm, gameInfo, savePath, settings);
         
         Debug.Log("保存gameInfo成功: " + savePath);
@@ -118,71 +115,6 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
         // 如果被封了就弹窗
         if (gameInfo.IsFeng)
             PanelManager.Instance.OpenOnlyOkHint("检测到账号异常。", null, true);
-    }
-
-    /// <summary>
-    /// 将所有技能拉到满级（按正常流程）
-    /// </summary>
-    private void UpgradeSkillsToMaxLevel(GameInfo gameInfo)
-    {
-        if (gameInfo == null) return;
-
-        int totalSkillsUpgraded = 0;
-
-        // 为玩家升级技能到满级
-        if (gameInfo.playerPeople != null)
-        {
-            totalSkillsUpgraded += UpgradeSinglePersonSkillsToMaxLevel(gameInfo.playerPeople);
-        }
-
-        // 为所有弟子升级技能到满级
-        if (gameInfo.studentData != null && gameInfo.studentData.allStudentList != null)
-        {
-            foreach (var student in gameInfo.studentData.allStudentList)
-            {
-                if (student != null)
-                {
-                    totalSkillsUpgraded += UpgradeSinglePersonSkillsToMaxLevel(student);
-                }
-            }
-        }
-
-        if (totalSkillsUpgraded > 0)
-        {
-            Debug.Log($"[ArchiveManager] 技能满级处理完成，共升级 {totalSkillsUpgraded} 个技能");
-        }
-    }
-
-    /// <summary>
-    /// 将单个角色的所有技能升到满级
-    /// </summary>
-    private int UpgradeSinglePersonSkillsToMaxLevel(PeopleData p)
-    {
-        if (p == null || p.allSkillData == null || p.allSkillData.skillList == null)
-            return 0;
-
-        int upgradedCount = 0;
-
-        foreach (var skillData in p.allSkillData.skillList)
-        {
-            if (skillData == null) continue;
-
-            // 获取该技能的升级配置
-            List<SkillUpgradeSetting> upgradeList = DataTable.FindSkillUpgradeListBySkillId(skillData.skillId);
-            if (upgradeList == null || upgradeList.Count == 0)
-                continue;
-
-            int maxLevel = upgradeList.Count;
-
-            // 如果技能未满级，使用正常流程升级到满级
-            while (skillData.skillLevel < maxLevel)
-            {
-                skillData.skillLevel++;
-                upgradedCount++;
-            }
-        }
-
-        return upgradedCount;
     }
 
     /// <summary>
@@ -231,7 +163,7 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
                 gameInfo.allDanFarmData.DanFarmList.RemoveAll(data => data.SettingId == 70001);
             }
             // 加载后处理：将 gemSaveList 还原为 gemList
-            //RestoreEquipDataAfterLoad(gameInfo);
+            RestoreEquipDataAfterLoad(gameInfo);
             // 把存档存到备份位置
             DirectoryInfo destination = new DirectoryInfo(ConstantVal.GetArchiveBeiFenSaveFolder(archiveIndex));
             if (!destination.Exists)
@@ -272,184 +204,184 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
         }
         
         //// 检查并自动装备（如果还没有装备）
-        //CheckAndAutoEquip(gameInfo);
-        
+        CheckAndAutoEquip(gameInfo);
+
         return gameInfo;
     }
-    
-    //private void CheckAndAutoEquip(GameInfo gameInfo)
-    //{
-    //    if (gameInfo == null) return;
-        
-    //    var allEquipSettings = DataTable.table?.TbEquipment?.DataList;
-    //    if (allEquipSettings == null || allEquipSettings.Count == 0)
-    //    {
-    //        Debug.LogWarning("[TestMod] 装备配置表为空，无法自动装备");
-    //        return;
-    //    }
 
-    //    // 确保玩家有装备槽位
-    //    if (gameInfo.playerPeople == null)
-    //    {
-    //        Debug.LogWarning("[TestMod] 玩家数据为空，无法自动装备");
-    //        return;
-    //    }
+    private void CheckAndAutoEquip(GameInfo gameInfo)
+    {
+        if (gameInfo == null) return;
 
-    //    // 初始化玩家的装备槽位（6个：法器、锦衣、鞋子、璎珞、饰品、腰带）
-    //    if (gameInfo.playerPeople.curEquipItemList == null)
-    //    {
-    //        gameInfo.playerPeople.curEquipItemList = new List<ItemData> { null, null, null, null, null, null };
-    //    }
-    //    else if (gameInfo.playerPeople.curEquipItemList.Count < 6)
-    //    {
-    //        while (gameInfo.playerPeople.curEquipItemList.Count < 6)
-    //        {
-    //            gameInfo.playerPeople.curEquipItemList.Add(null);
-    //        }
-    //    }
-        
-    //    // 检查玩家是否有装备（6个槽位）
-    //    bool playerHasEquip = false;
-    //    for (int i = 0; i < gameInfo.playerPeople.curEquipItemList.Count && i < 6; i++)
-    //    {
-    //        if (gameInfo.playerPeople.curEquipItemList[i] != null && gameInfo.playerPeople.curEquipItemList[i].settingId > 0)
-    //        {
-    //            playerHasEquip = true;
-    //            break;
-    //        }
-    //    }
-        
-    //    // 如果没有装备，自动添加 - 使用正常装备方式
-    //    if (!playerHasEquip)
-    //    {
-    //        // 确保技能数据已初始化 - 使用正常流程
-    //        InitPlayerSkillsFullLevel(gameInfo.playerPeople);
+        var allEquipSettings = DataTable.table?.TbEquipment?.DataList;
+        if (allEquipSettings == null || allEquipSettings.Count == 0)
+        {
+            Debug.LogWarning("[TestMod] 装备配置表为空，无法自动装备");
+            return;
+        }
 
-    //        // 初始化背包
-    //        if (gameInfo.ItemModel == null)
-    //        {
-    //            gameInfo.ItemModel = new ItemModel();
-    //        }
+        // 确保玩家有装备槽位
+        if (gameInfo.playerPeople == null)
+        {
+            Debug.LogWarning("[TestMod] 玩家数据为空，无法自动装备");
+            return;
+        }
 
-    //        // 调试：显示背包中所有装备
-    //        Debug.Log("[TestMod] === 背包物品列表 ===");
-    //        if (gameInfo.ItemModel.itemDataList != null)
-    //        {
-    //            foreach (var item in gameInfo.ItemModel.itemDataList)
-    //            {
-    //                if (item != null && item.settingId > 0)
-    //                {
-    //                    string equipTypeName = "未知";
-    //                    if (item.equipProtoData?.setting != null)
-    //                    {
-    //                        int pos = item.equipProtoData.setting.Pos.ToInt32();
-    //                        string[] typeNames = { "", "法器", "锦衣", "鞋子", "璎珞", "饰品", "腰带" };
-    //                        equipTypeName = pos >= 1 && pos <= 6 ? typeNames[pos] : "未知";
-    //                    }
-    //                    Debug.Log($"[TestMod] 背包物品: {item.setting.Name}, 类型: {equipTypeName}, 已装备: {item.equipProtoData?.isEquipped}");
-    //                }
-    //            }
-    //        }
-    //        Debug.Log("[TestMod] ====================");
+        // 初始化玩家的装备槽位（6个：法器、锦衣、鞋子、璎珞、饰品、腰带）
+        if (gameInfo.playerPeople.curEquipItemList == null)
+        {
+            gameInfo.playerPeople.curEquipItemList = new List<ItemData> { null, null, null, null, null, null };
+        }
+        else if (gameInfo.playerPeople.curEquipItemList.Count < 6)
+        {
+            while (gameInfo.playerPeople.curEquipItemList.Count < 6)
+            {
+                gameInfo.playerPeople.curEquipItemList.Add(null);
+            }
+        }
 
-    //        Debug.Log("[TestMod] 玩家没有装备，正在自动装备...");
-    //        // 玩家有6个装备槽位：法器、锦衣、鞋子、璎珞、饰品、腰带
-    //        for (int i = 0; i < 6; i++)
-    //        {
-    //            // 先从背包中查找可用的装备
-    //            ItemData existingEquip = FindEquipmentFromBag(gameInfo.ItemModel.itemDataList, i);
-    //            if (existingEquip != null)
-    //            {
-    //                Debug.Log($"[TestMod] 槽位 {i} 使用背包中已有装备: {existingEquip.setting.Name}");
-    //                EquipmentManager.Instance.OnEquip(gameInfo.playerPeople, existingEquip, i);
-    //            }
-    //            else
-    //            {
-    //                // 背包没有，从配置表创建新装备
-    //                var bestEquip = FindBestEquipmentForSlot(i, allEquipSettings);
-    //                Debug.Log($"[TestMod] 槽位 {i} 找到最佳装备: {(bestEquip != null ? bestEquip.Name : "null")}");
-    //                if (bestEquip != null)
-    //                {
-    //                    // 创建装备
-    //                    ItemData item = CreateBestEquipItem(bestEquip, gameInfo);
-                        
-    //                    // 使用正常流程添加到背包
-    //                    ItemManager.Instance.AddANewItem(item);
+        // 检查玩家是否有装备（6个槽位）
+        bool playerHasEquip = false;
+        for (int i = 0; i < gameInfo.playerPeople.curEquipItemList.Count && i < 6; i++)
+        {
+            if (gameInfo.playerPeople.curEquipItemList[i] != null && gameInfo.playerPeople.curEquipItemList[i].settingId > 0)
+            {
+                playerHasEquip = true;
+                break;
+            }
+        }
 
-    //                    // 使用正常装备方式装备
-    //                    EquipmentManager.Instance.OnEquip(gameInfo.playerPeople, item, i);
-    //                }
-    //            }
-    //        }
-    //        Debug.Log("[TestMod] 玩家自动装备完成");
-    //    }
-        
-    //    // 检查弟子是否有装备
-    //    if (gameInfo.studentData?.allStudentList != null)
-    //    {
-    //        foreach (var student in gameInfo.studentData.allStudentList)
-    //        {
-    //            if (student == null) continue;
+        // 如果没有装备，自动添加 - 使用正常装备方式
+        if (!playerHasEquip)
+        {
+            // 确保技能数据已初始化 - 使用正常流程
+            InitPlayerSkillsFullLevel(gameInfo.playerPeople);
 
-    //            // 初始化弟子的装备槽位（6个：法器、锦衣、鞋子、璎珞、饰品、腰带）
-    //            if (student.curEquipItemList == null)
-    //            {
-    //                student.curEquipItemList = new List<ItemData> { null, null, null, null, null, null };
-    //            }
-    //            else if (student.curEquipItemList.Count < 6)
-    //            {
-    //                while (student.curEquipItemList.Count < 6)
-    //                {
-    //                    student.curEquipItemList.Add(null);
-    //                }
-    //            }
+            // 初始化背包
+            if (gameInfo.ItemModel == null)
+            {
+                gameInfo.ItemModel = new ItemModel();
+            }
 
-    //            // 确保技能数据已初始化
-    //            if (student.allSkillData == null)
-    //            {
-    //                student.allSkillData = new AllSkillData();
-    //            }
-                
-    //            // 使用正常流程初始化弟子技能
-    //            InitPlayerSkillsFullLevel(student);
-                
-    //            bool studentHasEquip = false;
-    //            for (int i = 0; i < student.curEquipItemList.Count; i++)
-    //            {
-    //                if (student.curEquipItemList[i] != null && student.curEquipItemList[i].settingId > 0)
-    //                {
-    //                    studentHasEquip = true;
-    //                    break;
-    //                }
-    //            }
-                
-    //            if (!studentHasEquip)
-    //            {
-    //                for (int i = 0; i < 6; i++)
-    //                {
-    //                    var bestEquip = FindBestEquipmentForSlot(i, allEquipSettings);
-    //                    if (bestEquip != null)
-    //                    {
-    //                        // 创建装备
-    //                        ItemData item = CreateBestEquipItem(bestEquip, gameInfo);
-                            
-    //                        // 使用正常流程添加到背包
-    //                        // 确保背包已初始化
-    //                        if (gameInfo.ItemModel == null)
-    //                        {
-    //                            gameInfo.ItemModel = new ItemModel();
-    //                        }
-    //                        ItemManager.Instance.AddANewItem(item);
+            // 调试：显示背包中所有装备
+            Debug.Log("[TestMod] === 背包物品列表 ===");
+            if (gameInfo.ItemModel.itemDataList != null)
+            {
+                foreach (var item in gameInfo.ItemModel.itemDataList)
+                {
+                    if (item != null && item.settingId > 0)
+                    {
+                        string equipTypeName = "未知";
+                        if (item.equipProtoData?.setting != null)
+                        {
+                            int pos = item.equipProtoData.setting.Pos.ToInt32();
+                            string[] typeNames = { "", "法器", "锦衣", "鞋子", "璎珞", "饰品", "腰带" };
+                            equipTypeName = pos >= 1 && pos <= 6 ? typeNames[pos] : "未知";
+                        }
+                        Debug.Log($"[TestMod] 背包物品: {item.setting.Name}, 类型: {equipTypeName}, 已装备: {item.equipProtoData?.isEquipped}");
+                    }
+                }
+            }
+            Debug.Log("[TestMod] ====================");
 
-    //                        // 使用正常装备方式装备
-    //                        EquipmentManager.Instance.OnEquip(student, item, i);
-    //                    }
-    //                }
-    //                Debug.Log($"[TestMod] 弟子 {student.name} 自动装备完成");
-    //            }
-    //        }
-    //    }
-    //}
+            Debug.Log("[TestMod] 玩家没有装备，正在自动装备...");
+            // 玩家有6个装备槽位：法器、锦衣、鞋子、璎珞、饰品、腰带
+            for (int i = 0; i < 6; i++)
+            {
+                // 先从背包中查找可用的装备
+                ItemData existingEquip = FindEquipmentFromBag(gameInfo.ItemModel.itemDataList, i);
+                if (existingEquip != null)
+                {
+                    Debug.Log($"[TestMod] 槽位 {i} 使用背包中已有装备: {existingEquip.setting.Name}");
+                    EquipmentManager.Instance.OnEquip(gameInfo.playerPeople, existingEquip, i);
+                }
+                else
+                {
+                    // 背包没有，从配置表创建新装备
+                    var bestEquip = FindBestEquipmentForSlot(i, allEquipSettings);
+                    Debug.Log($"[TestMod] 槽位 {i} 找到最佳装备: {(bestEquip != null ? bestEquip.Name : "null")}");
+                    if (bestEquip != null)
+                    {
+                        // 创建装备
+                        ItemData item = CreateBestEquipItem(bestEquip, gameInfo);
+
+                        // 使用正常流程添加到背包
+                        ItemManager.Instance.AddANewItem(item);
+
+                        // 使用正常装备方式装备
+                        EquipmentManager.Instance.OnEquip(gameInfo.playerPeople, item, i);
+                    }
+                }
+            }
+            Debug.Log("[TestMod] 玩家自动装备完成");
+        }
+
+        // 检查弟子是否有装备
+        if (gameInfo.studentData?.allStudentList != null)
+        {
+            foreach (var student in gameInfo.studentData.allStudentList)
+            {
+                if (student == null) continue;
+
+                // 初始化弟子的装备槽位（6个：法器、锦衣、鞋子、璎珞、饰品、腰带）
+                if (student.curEquipItemList == null)
+                {
+                    student.curEquipItemList = new List<ItemData> { null, null, null, null, null, null };
+                }
+                else if (student.curEquipItemList.Count < 6)
+                {
+                    while (student.curEquipItemList.Count < 6)
+                    {
+                        student.curEquipItemList.Add(null);
+                    }
+                }
+
+                // 确保技能数据已初始化
+                if (student.allSkillData == null)
+                {
+                    student.allSkillData = new AllSkillData();
+                }
+
+                // 使用正常流程初始化弟子技能
+                InitPlayerSkillsFullLevel(student);
+
+                bool studentHasEquip = false;
+                for (int i = 0; i < student.curEquipItemList.Count; i++)
+                {
+                    if (student.curEquipItemList[i] != null && student.curEquipItemList[i].settingId > 0)
+                    {
+                        studentHasEquip = true;
+                        break;
+                    }
+                }
+
+                if (!studentHasEquip)
+                {
+                    for (int i = 0; i < 6; i++)
+                    {
+                        var bestEquip = FindBestEquipmentForSlot(i, allEquipSettings);
+                        if (bestEquip != null)
+                        {
+                            // 创建装备
+                            ItemData item = CreateBestEquipItem(bestEquip, gameInfo);
+
+                            // 使用正常流程添加到背包
+                            // 确保背包已初始化
+                            if (gameInfo.ItemModel == null)
+                            {
+                                gameInfo.ItemModel = new ItemModel();
+                            }
+                            ItemManager.Instance.AddANewItem(item);
+
+                            // 使用正常装备方式装备
+                            EquipmentManager.Instance.OnEquip(student, item, i);
+                        }
+                    }
+                    Debug.Log($"[TestMod] 弟子 {student.name} 自动装备完成");
+                }
+            }
+        }
+    }
 
     /// <summary>
     /// 载入所有存档
@@ -671,1623 +603,1626 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
         return $"New2BeiFenArchives/archive_{archiveIndex}/GameInfo.es3";
     }
 
-    //#region
-    ///// <summary>
-    ///// 存档前处理：遍历所有装备，将 gemList 转换为 gemSaveList
-    ///// </summary>
-    //private void PrepareEquipDataForSave(GameInfo gameInfo)
-    //{
-    //    // 处理背包中的装备
-    //    if (gameInfo.ItemModel?.itemDataList != null)
-    //    {
-    //        foreach (var item in gameInfo.ItemModel.itemDataList)
-    //        {
-    //            item?.equipProtoData?.PrepareForSave();
-    //        }
-    //    }
-        
-    //    // 处理仓库中的装备
-    //    if (gameInfo.ItemModel?.cangKuItemDataList != null)
-    //    {
-    //        foreach (var item in gameInfo.ItemModel.cangKuItemDataList)
-    //        {
-    //            item?.equipProtoData?.PrepareForSave();
-    //        }
-    //    }
-        
-    //    // 处理已装备的装备
-    //    if (gameInfo.AllEquipmentData?.curEquippedEquipList != null)
-    //    {
-    //        foreach (var equip in gameInfo.AllEquipmentData.curEquippedEquipList)
-    //        {
-    //            equip?.PrepareForSave();
-    //        }
-    //    }
-        
-    //    // 处理玩家身上的装备
-    //    if (gameInfo.playerPeople?.curEquipItemList != null)
-    //    {
-    //        foreach (var item in gameInfo.playerPeople.curEquipItemList)
-    //        {
-    //            item?.equipProtoData?.PrepareForSave();
-    //        }
-    //    }
-        
-    //    // 处理弟子身上的装备
-    //    if (gameInfo.studentData?.allStudentList != null)
-    //    {
-    //        foreach (var student in gameInfo.studentData.allStudentList)
-    //        {
-    //            if (student?.curEquipItemList != null)
-    //            {
-    //                foreach (var item in student.curEquipItemList)
-    //                {
-    //                    item?.equipProtoData?.PrepareForSave();
-    //                }
-    //            }
-    //        }
-    //    }
-    //}
-    
-    ///// <summary>
-    ///// 加载后处理：遍历所有装备，将 gemSaveList 还原为 gemList
-    ///// 注意：setting 赋值需要在配置表加载完成后调用 RestoreAllSettings
-    ///// </summary>
-    //private void RestoreEquipDataAfterLoad(GameInfo gameInfo)
-    //{
-    //    // 处理背包中的装备
-    //    if (gameInfo.ItemModel?.itemDataList != null)
-    //    {
-    //        foreach (var item in gameInfo.ItemModel.itemDataList)
-    //        {
-    //            item?.equipProtoData?.RestoreAfterLoad();
-    //        }
-    //    }
-        
-    //    // 处理仓库中的装备
-    //    if (gameInfo.ItemModel?.cangKuItemDataList != null)
-    //    {
-    //        foreach (var item in gameInfo.ItemModel.cangKuItemDataList)
-    //        {
-    //            item?.equipProtoData?.RestoreAfterLoad();
-    //        }
-    //    }
-        
-    //    // 处理已装备的装备
-    //    if (gameInfo.AllEquipmentData?.curEquippedEquipList != null)
-    //    {
-    //        foreach (var equip in gameInfo.AllEquipmentData.curEquippedEquipList)
-    //        {
-    //            equip?.RestoreAfterLoad();
-    //        }
-    //    }
-        
-    //    // 处理玩家身上的装备
-    //    if (gameInfo.playerPeople?.curEquipItemList != null)
-    //    {
-    //        foreach (var item in gameInfo.playerPeople.curEquipItemList)
-    //        {
-    //            item?.equipProtoData?.RestoreAfterLoad();
-    //        }
-    //    }
-        
-    //    // 处理弟子身上的装备
-    //    if (gameInfo.studentData?.allStudentList != null)
-    //    {
-    //        foreach (var student in gameInfo.studentData.allStudentList)
-    //        {
-    //            if (student?.curEquipItemList != null)
-    //            {
-    //                foreach (var item in student.curEquipItemList)
-    //                {
-    //                    item?.equipProtoData?.RestoreAfterLoad();
-    //                }
-    //            }
-    //        }
-    //    }
-    //}
-    
-    ///// <summary>
-    ///// 配置表加载完成后调用：为所有 ItemData 和 EquipProtoData 重新赋值 setting
-    ///// </summary>
-    //public void RestoreAllSettings(GameInfo gameInfo)
-    //{
-    //    if (gameInfo == null) return;
-
-    //    // 处理背包中的物品
-    //    if (gameInfo.ItemModel?.itemDataList != null)
-    //    {
-    //        foreach (var item in gameInfo.ItemModel.itemDataList)
-    //        {
-    //            if (item == null) continue;
-    //            item.setting = DataTable.FindItemSetting(item.settingId);
-    //            if (item.equipProtoData != null)
-    //            {
-    //                item.equipProtoData.setting = DataTable.FindEquipSetting(item.equipProtoData.settingId);
-    //            }
-    //        }
-    //    }
-
-    //    // 处理仓库中的物品
-    //    if (gameInfo.ItemModel?.cangKuItemDataList != null)
-    //    {
-    //        foreach (var item in gameInfo.ItemModel.cangKuItemDataList)
-    //        {
-    //            if (item == null) continue;
-    //            item.setting = DataTable.FindItemSetting(item.settingId);
-    //            if (item.equipProtoData != null)
-    //            {
-    //                item.equipProtoData.setting = DataTable.FindEquipSetting(item.equipProtoData.settingId);
-    //            }
-    //        }
-    //    }
-
-    //    // 处理已装备的装备
-    //    if (gameInfo.AllEquipmentData?.curEquippedEquipList != null)
-    //    {
-    //        foreach (var equip in gameInfo.AllEquipmentData.curEquippedEquipList)
-    //        {
-    //            if (equip == null) continue;
-    //            equip.setting = DataTable.FindEquipSetting(equip.settingId);
-    //        }
-    //    }
-
-    //    // 处理玩家身上的装备
-    //    if (gameInfo.playerPeople?.curEquipItemList != null)
-    //    {
-    //        for (int i = 0; i < gameInfo.playerPeople.curEquipItemList.Count; i++)
-    //        {
-    //            var item = gameInfo.playerPeople.curEquipItemList[i];
-    //            if (item == null) continue;
-    //            // 清理无效的装备数据（ES3反序列化可能创建空对象）
-    //            if (item.settingId <= 0)
-    //            {
-    //                gameInfo.playerPeople.curEquipItemList[i] = null;
-    //                continue;
-    //            }
-    //            item.setting = DataTable.FindItemSetting(item.settingId);
-    //            if (item.equipProtoData != null)
-    //            {
-    //                item.equipProtoData.setting = DataTable.FindEquipSetting(item.equipProtoData.settingId);
-    //            }
-    //        }
-    //    }
-
-    //    // 处理弟子身上的装备
-    //    if (gameInfo.studentData?.allStudentList != null)
-    //    {
-    //        foreach (var student in gameInfo.studentData.allStudentList)
-    //        {
-    //            if (student?.curEquipItemList == null) continue;
-    //            for (int i = 0; i < student.curEquipItemList.Count; i++)
-    //            {
-    //                var item = student.curEquipItemList[i];
-    //                if (item == null) continue;
-    //                // 清理无效的装备数据（ES3反序列化可能创建空对象）
-    //                if (item.settingId <= 0)
-    //                {
-    //                    student.curEquipItemList[i] = null;
-    //                    continue;
-    //                }
-    //                item.setting = DataTable.FindItemSetting(item.settingId);
-    //                if (item.equipProtoData != null)
-    //                {
-    //                    item.equipProtoData.setting = DataTable.FindEquipSetting(item.equipProtoData.settingId);
-    //                }
-    //            }
-    //        }
-    //    }
-
-    //}
-    ///// <summary>
-    ///// 测试模式：自动修改存档数据
-    ///// 将玩家等级、属性、建筑、新手教程、地图关卡全部设为最高/完成状态
-    ///// </summary>
-    //private void ApplyTestModifications(GameInfo gameInfo)
-    //{
-    //    if (gameInfo == null) return;
-        
-    //    Debug.Log("[TestMod] 开始应用测试修改...");
-
-    //    // 2.1 设置所有丹炉建筑，解锁位置，排序好
-    //    if (gameInfo.allDanFarmData != null && gameInfo.allDanFarmData.DanFarmList != null)
-    //    {
-    //        // 先解锁丹炉位置
-    //        gameInfo.allDanFarmData.DanFarmZuoZhenStudentLimit = 4;
-    //        gameInfo.allDanFarmData.UnlockedDanFarmNumLimit = 100;
-    //        gameInfo.allDanFarmData.UnlockedFarmNum = 100;
-            
-    //        // 解锁所有丹炉类型
-    //        if (DataTable.table != null && DataTable.table.TbDanFarm != null)
-    //        {
-    //            var allDanFarms = DataTable.table.TbDanFarm.DataList;
-    //            if (allDanFarms != null)
-    //            {
-    //                foreach (var danFarmSetting in allDanFarms)
-    //                {
-    //                    if (danFarmSetting != null && !gameInfo.allDanFarmData.UnlockedDanFarmId.Contains(danFarmSetting.Id.ToInt32()))
-    //                    {
-    //                        gameInfo.allDanFarmData.UnlockedDanFarmId.Add(danFarmSetting.Id.ToInt32());
-    //                    }
-    //                }
-    //            }
-    //        }
-            
-    //        // 解锁所有丹炉位置
-    //        foreach (var danFarm in gameInfo.allDanFarmData.DanFarmList)
-    //        {
-    //            if (danFarm != null)
-    //            {
-    //                danFarm.PosUnlockStatusList.Clear();
-    //        for (int i = 0; i < 6; i++)
-    //                {
-    //                    danFarm.PosUnlockStatusList.Add(true);
-    //                }
-    //            }
-    //        }
-            
-    //        // 使用正确的配置表ID创建丹炉建筑
-    //        CreateAllDanFarms(gameInfo);
-            
-    //        Debug.Log($"[TestMod] 丹炉建筑已创建，解锁位置，空地全开");
-    //    }
-        
-    //    // 3. 设置所有新手教程为已完成
-    //    if (gameInfo.NewGuideData != null)
-    //    {
-    //        gameInfo.NewGuideData.finishedGuideIdList.Clear();
-    //        gameInfo.NewGuideData.IdList.Clear();
-    //        gameInfo.NewGuideData.AccomplishStatus.Clear();
-            
-    //        for (int i = 1; i <= 100; i++)
-    //        {
-    //            gameInfo.NewGuideData.finishedGuideIdList.Add(i);
-    //            gameInfo.NewGuideData.IdList.Add(i);
-    //            gameInfo.NewGuideData.AccomplishStatus.Add(2);
-    //        }
-    //        gameInfo.NewGuideData.curGuideId = 0;
-    //        gameInfo.NewGuideData.curGuideStep = 0;
-    //        Debug.Log($"[TestMod] 新手教程已完成 ({gameInfo.NewGuideData.finishedGuideIdList.Count} 个)");
-    //    }
-        
-    //    // 4. 设置所有地图和关卡为解锁/通关状态（通过正常流程）
-    //    if (gameInfo.AllMapData != null && gameInfo.AllMapData.MapList != null)
-    //    {
-    //        foreach (var map in gameInfo.AllMapData.MapList)
-    //        {
-    //            map.MapStatus = 4;
-    //            map.LieXiMapStatus = 4;
-                
-    //            if (map.LevelList != null)
-    //            {
-    //                foreach (var level in map.LevelList)
-    //                {
-    //                    level.LevelStatus = 4;
-    //                    level.HaveAccomplished = true;
-    //                }
-    //            }
-    //            if (map.FixedLevelList != null)
-    //            {
-    //                foreach (var level in map.FixedLevelList)
-    //                {
-    //                    level.LevelStatus = 4;
-    //                    level.HaveAccomplished = true;
-    //                }
-    //            }
-    //        }
-    //        // 触发任务检查
-    //        TaskManager.Instance.TryAccomplishAllTask();
-    //        Debug.Log($"[TestMod] 地图和关卡已全部解锁/通关 ({gameInfo.AllMapData.MapList.Count} 个地图)");
-    //    }
-        
-    //    // 5. 宗门等级满（调用正常升级方法，触发建筑数量变化）
-    //    if (gameInfo.allZongMenData != null)
-    //    {
-    //        int maxZongMenLevel = DataTable._zongMenUpgradeList.Count;
-            
-    //        // 先设置为1级
-    //        gameInfo.allZongMenData.ZongMenLevel = 1;
-            
-    //        // 逐步升级到满级，使用正常升级方法触发建筑解锁、空地数量、体力上限、弟子数量等变化
-    //        for (int level = 1; level < maxZongMenLevel; level++)
-    //        {
-    //            if (RoleManager.Instance != null && ZongMenManager.Instance != null)
-    //            {
-    //                ZongMenManager.Instance.UpgradeZongMenLevel();
-    //            }
-    //            else
-    //            {
-    //                // 降级处理：如果 Manager 未初始化，直接设置数据
-    //                ZongMenUpgradeSetting curSetting = DataTable._zongMenUpgradeList[level - 1];
-    //                ZongMenUpgradeSetting afterSetting = DataTable._zongMenUpgradeList[level];
-                    
-    //                List<List<int>> beforeBuilding = CommonUtil.SplitCfg(curSetting.UnlockedBuilding);
-    //                List<List<int>> afterBuilding = CommonUtil.SplitCfg(afterSetting.UnlockedBuilding);
-                    
-    //                for (int i = 0; i < beforeBuilding.Count; i++)
-    //                {
-    //                    List<int> before = beforeBuilding[i];
-    //                    List<int> after = afterBuilding[i];
-    //                    int buildId = before[0];
-    //                    int beforeNum = before[1];
-    //                    int afterNum = after[1];
-                        
-    //                    int existedNum = 0;
-    //                    for (int j = 0; j < gameInfo.allDanFarmData.UnlockedDanFarmId.Count; j++)
-    //                    {
-    //                        int id = gameInfo.allDanFarmData.UnlockedDanFarmId[j];
-    //                        if (id == buildId)
-    //                        {
-    //                            existedNum++;
-    //                        }
-    //                    }
-    //                    while (afterNum > existedNum)
-    //                    {
-    //                        LianDanManager.Instance.UnlockDanFarm(buildId);
-    //                        existedNum++;
-    //                    }
-    //                }
-                    
-    //                int farmNumBefore = curSetting.FarmNumLimit.ToInt32();
-    //                int farmNumAfter = afterSetting.FarmNumLimit.ToInt32();
-    //                if (farmNumAfter > farmNumBefore)
-    //                {
-    //                    gameInfo.allDanFarmData.UnlockedDanFarmNumLimit = farmNumAfter + gameInfo.allZongMenData.SendFarmNumLimitAddNum;
-    //                }
-                    
-    //                gameInfo.allZongMenData.ZongMenLevel++;
-    //            }
-    //        }
-            
-    //        Debug.Log($"[TestMod] 宗门等级已设为满级 ({maxZongMenLevel})，建筑已按等级解锁");
-    //    }
-        
-    //    // 6. 探索数据全解锁（直接设置数据）
-    //    if (gameInfo.AllExploreData != null && gameInfo.AllExploreData.ExploreList != null)
-    //    {
-    //        foreach (var exploreData in gameInfo.AllExploreData.ExploreList)
-    //        {
-    //            if (exploreData != null)
-    //            {
-    //                exploreData.Unlocked = true;
-    //            }
-    //        }
-    //        Debug.Log($"[TestMod] 探索已全部解锁 ({gameInfo.AllExploreData.ExploreList.Count} 个)");
-    //    }
-        
-    //    // 7. 成就数据全完成（通过正常流程）
-    //    if (gameInfo.AllAchievementData != null && gameInfo.AllAchievementData.achievementList != null)
-    //    {
-    //        foreach (var achievement in gameInfo.AllAchievementData.achievementList)
-    //        {
-    //            if (achievement != null)
-    //            {
-    //                achievement.accomplishStatus = 2;
-    //                achievement.curProgress = 9999;
-    //            }
-    //        }
-    //        // 触发任务检查
-    //        TaskManager.Instance.TryAccomplishAllTask();
-    //        TaskManager.Instance.TryAccomplishAllGuideBook();
-    //        Debug.Log($"[TestMod] 成就已全部完成 ({gameInfo.AllAchievementData.achievementList.Count} 个)");
-    //    }
-        
-    //    // 8. 空地全开 - 解锁所有丹田位置
-    //    if (gameInfo.allDanFarmData != null && gameInfo.allDanFarmData.DanFarmList != null)
-    //    {
-    //        foreach (var danFarm in gameInfo.allDanFarmData.DanFarmList)
-    //        {
-    //            danFarm.PosUnlockStatusList.Clear();
-    //            for (int i = 0; i < 4; i++)
-    //            {
-    //                danFarm.PosUnlockStatusList.Add(true);
-    //            }
-    //            Debug.Log($"[TestMod] 丹田空地已全开");
-    //        }
-    //    }
-
-    //    // 9.5 玩家升级到999级（与修武弟子一样的升级流程）
-    //    if (gameInfo.playerPeople != null)
-    //    {
-    //        UpgradePlayerTo999Level(gameInfo.playerPeople);
-    //        // 血脉强化到满级
-    //        UpgradeXueMaiToMaxLevel(gameInfo.playerPeople);
-    //    }
-
-    //    // 9. 设置现有弟子只增加经验不修改等级 (不修改)
-    //    // if (gameInfo.studentData?.allStudentList != null)
-    //    // {
-    //    //     foreach (var student in gameInfo.studentData.allStudentList)
-    //    //     {
-    //    //         if (student != null)
-    //    //         {
-    //    //             student.studentCurExp = 0;
-    //    //             student.curXiuwei = 0;
-    //    //         }
-    //    //     }
-    //    //     Debug.Log($"[TestMod] 现有弟子经验已设为满 ({gameInfo.studentData.allStudentList.Count} 个)");
-    //    // }
-
-    //    // 10. 创建最高品质的各职业随从各4个
-    //    CreateMaxQualityStudents(gameInfo);
-
-    //    // 11. 获得所有物品，数量为99999
-    //    AddAllItems(gameInfo);
-        
-    //    // 12. 为玩家和所有弟子自动装备最好的装备
-    //    AutoEquipBestGear(gameInfo);
-    //    // 13. 初始化历练数据 - 解锁所有历练关卡
-    //    if (gameInfo.timeData != null)
-    //    {
-    //        // 初始化今日参与历练状态
-    //        gameInfo.timeData.TodayParticipatedLiLianStatus.Clear();
-    //        gameInfo.timeData.LastParticipatedLiLianTime.Clear();
-
-    //        if (DataTable._liLianList != null)
-    //        {
-    //            for (int i = 0; i < DataTable._liLianList.Count; i++)
-    //            {
-    //                gameInfo.timeData.TodayParticipatedLiLianStatus.Add(0);
-    //                gameInfo.timeData.LastParticipatedLiLianTime.Add(0);
-    //            }
-    //        }
-
-    //        // 设置每日最大历练次数
-    //        gameInfo.timeData.MaxLiLianTimePerDay = 2;
-
-    //        Debug.Log($"[TestMod] 历练数据已初始化，解锁所有历练关卡");
-    //    }
-    //    // 14. 开启历练功能
-    //    if (LiLianManager.Instance != null)
-    //    {
-    //        LiLianManager.Instance.SetLiLianEnabled(true);
-    //        Debug.Log("[TestMod] 历练功能已开启");
-    //    }
-    //    Debug.Log("[TestMod] 测试修改应用完成！");
-    //}
-    
-    //private void AddAllItems(GameInfo gameInfo)
-    //{
-    //    if (gameInfo.ItemModel == null)
-    //    {
-    //        gameInfo.ItemModel = new ItemModel();
-    //    }
-        
-    //    // 设置灵石（金币）数量
-    //    gameInfo.ItemModel.fuLingShiNum = 9999999999999999L;
-        
-    //    if (DataTable.table != null && DataTable.table.TbItem != null)
-    //    {
-    //        var allItems = DataTable.table.TbItem.DataList;
-    //        if (allItems != null)
-    //        {
-    //            foreach (var itemSetting in allItems)
-    //            {
-    //                if (itemSetting == null) continue;
-                    
-    //                // 跳过灵石，因为已经单独设置了
-    //                int itemId = itemSetting.Id.ToInt32();
-    //                if (itemId == (int)ItemIdType.LingShi) continue;
-                    
-    //                ItemData newItem = new ItemData();
-    //                newItem.settingId = itemId;
-    //                newItem.count = 9999999999999999L;
-    //                newItem.onlyId = ConstantVal.SetId;
-                    
-    //                if (itemSetting.Quality != "-1")
-    //                {
-    //                    newItem.quality = itemSetting.Quality.ToInt32();
-    //                }
-    //                newItem.setting = itemSetting;
-                    
-    //                gameInfo.ItemModel.itemIdList.Add(itemId);
-    //                gameInfo.ItemModel.itemDataList.Add(newItem);
-    //                gameInfo.ItemModel.onlyIdList.Add(newItem.onlyId);
-    //            }
-    //            Debug.Log($"[TestMod] 已添加 {allItems.Count} 种物品（不含灵石），灵石数量已设为 9999999999999999");
-    //        }
-    //    }
-    //}
-    
-    //private void CreateMaxQualityStudents(GameInfo gameInfo)
-    //{
-    //    if (gameInfo == null) return;
-        
-    //    if (gameInfo.studentData == null)
-    //    {
-    //        gameInfo.studentData = new StudentData();
-    //    }
-        
-    //    int maxQuality = (int)Quality.Gold;
-    //    int maxRarity = (int)cfg.Rarity.orange; // 资源图片只有1-5，红色(6)没有图片
-        
-    //    var talents = new List<StudentTalent>
-    //    {
-    //        StudentTalent.LianJing,
-    //        StudentTalent.DuanZhao,
-    //        StudentTalent.LianGong,
-    //        StudentTalent.CaiKuang,
-    //        StudentTalent.ChaoYao,
-    //        StudentTalent.JingWen,
-    //        StudentTalent.BaoShi,
-    //        StudentTalent.JingShang
-    //    };
-        
-    //    int studentCount = 0;
-        
-    //    foreach (var talent in talents)
-    //    {
-    //        for (int i = 0; i < 4; i++)
-    //        {
-    //            PeopleData student = CreateMaxQualityStudent(talent, maxQuality, maxRarity, gameInfo);
-    //            // 使用正常招募流程添加弟子
-    //            StudentManager.Instance.AddStudent(student);
-    //            studentCount++;
-                
-    //            // 调用升级流程将弟子升级到999级
-    //            UpgradeStudentTo999Level(student);
-                
-    //            // 血脉强化到满级
-    //            UpgradeXueMaiToMaxLevel(student);
-                
-    //            if (talent == StudentTalent.LianGong)
-    //            {
-    //                SetupLianGongStudentMax(student, gameInfo);
-    //            }
-    //        }
-    //    }
-        
-    //    gameInfo.studentData.CurStudentNum = gameInfo.studentData.allStudentList.Count;
-    //    gameInfo.studentData.MaxStudentNum = 1000;
-        
-    //    Debug.Log($"[TestMod] 已创建 {studentCount} 个各职业随从（每职业4个）");
-    //}
-
-    //private void UpgradeStudentTo999Level(PeopleData p)
-    //{
-    //    if (p == null) return;
-        
-    //    bool isLianGong = (p.talent == (int)StudentTalent.LianGong);
-        
-    //    // 获取弟子的等级上限
-    //    int levelLimit = StudentManager.Instance.GetStudentLevelLimit(p);
-        
-    //    // 设置目标等级为当前品质能达到的最大等级
-    //    int targetLevel = levelLimit;
-        
-    //    // 如果是修武弟子，升级境界到999
-    //    if (isLianGong)
-    //    {
-    //        int targetTrainIndex = 999;
-    //        Debug.Log($"[TestMod] 开始将修武弟子 {p.name} 从 trainIndex {p.trainIndex} 升级到 {targetTrainIndex}");
-            
-    //        while (p.trainIndex < targetTrainIndex)
-    //        {
-    //            int curLevelLimit = StudentManager.Instance.GetStudentLevelLimit(p);
-                
-    //            if (p.trainIndex >= curLevelLimit)
-    //            {
-    //                Debug.Log($"[TestMod] 修武弟子 {p.name} 达到境界上限 {curLevelLimit}，停止升级");
-    //                break;
-    //            }
-                
-    //            if (p.trainIndex >= DataTable._trainList.Count - 1)
-    //            {
-    //                Debug.Log($"[TestMod] 修武弟子 {p.name} 达到配置表上限，停止升级");
-    //                break;
-    //            }
-                
-    //            TrainSetting curTrainSetting = DataTable._trainList[p.trainIndex];
-    //            ulong xiuweiNeed = curTrainSetting.XiuWeiNeed.ToUInt64();
-                
-    //            if (p.curXiuwei < xiuweiNeed)
-    //            {
-    //                p.curXiuwei += (ulong)(xiuweiNeed - p.curXiuwei + 10000000);
-    //            }
-                
-    //            int originalNextBreak = p.nextBreakThroughAdd;
-    //            p.nextBreakThroughAdd = 100;
-                
-    //            StudentManager.Instance.OnBreakThrough(p);
-                
-    //            p.nextBreakThroughAdd = originalNextBreak;
-    //        }
-            
-    //        Debug.Log($"[TestMod] 修武弟子 {p.name} 升级完成，当前 trainIndex {p.trainIndex}");
-    //    }
-    //    else
-    //    {
-    //        // 非修武弟子：先设置足够的 trainIndex 以提升等级上限
-    //        if (p.trainIndex < 10)
-    //        {
-    //            p.trainIndex = 10;
-    //        }
-            
-    //        // 重新获取等级上限
-    //        levelLimit = StudentManager.Instance.GetStudentLevelLimit(p);
-    //        targetLevel = levelLimit;
-            
-    //        Debug.Log($"[TestMod] 开始将弟子 {p.name} 从等级 {p.studentLevel} 升级到 {targetLevel}（等级上限 {levelLimit}）");
-            
-    //        while (p.studentLevel < targetLevel)
-    //        {
-    //            int curLevelLimit = StudentManager.Instance.GetStudentLevelLimit(p);
-                
-    //            if (p.studentLevel >= curLevelLimit)
-    //            {
-    //                Debug.Log($"[TestMod] 弟子 {p.name} 达到等级上限 {curLevelLimit}，停止升级");
-    //                break;
-    //            }
-                
-    //            if (p.studentLevel > 0 && p.studentLevel <= DataTable._studentUpgradeList.Count)
-    //            {
-    //                StudentUpgradeSetting setting = DataTable._studentUpgradeList[p.studentLevel - 1];
-    //                int needExp = setting.NeedExp.ToInt32();
-    //                p.studentCurExp += needExp;
-    //            }
-    //            else
-    //            {
-    //                p.studentCurExp += 1000000;
-    //            }
-                
-    //            while (p.studentLevel < targetLevel)
-    //            {
-    //                curLevelLimit = StudentManager.Instance.GetStudentLevelLimit(p);
-                    
-    //                if (p.studentLevel >= curLevelLimit)
-    //                {
-    //                    break;
-    //                }
-                    
-    //                if (p.studentLevel > 0 && p.studentLevel <= DataTable._studentUpgradeList.Count)
-    //                {
-    //                    StudentUpgradeSetting setting = DataTable._studentUpgradeList[p.studentLevel - 1];
-    //                    int needExp = setting.NeedExp.ToInt32();
-                        
-    //                    if (p.studentCurExp < needExp)
-    //                    {
-    //                        Debug.Log($"[TestMod] 弟子 {p.name} 经验不足，停止升级，当前等级 {p.studentLevel}");
-    //                        return;
-    //                    }
-                        
-    //                    p.studentLevel++;
-    //                    p.studentCurExp -= needExp;
-    //                }
-    //                else
-    //                {
-    //                    if (p.studentCurExp < 1000000)
-    //                    {
-    //                        return;
-    //                    }
-    //                    p.studentLevel++;
-    //                    p.studentCurExp -= 1000000;
-    //                }
-                    
-    //                for (int i = 0; i < p.propertyList.Count; i++)
-    //                {
-    //                    Quality proQuality = (Quality)(int)p.propertyList[i].quality;
-    //                    int valEquip = StudentManager.Instance.StudentBreakThroughAdd((StudentTalent)(int)p.talent, proQuality);
-    //                    p.propertyList[i].num += valEquip;
-    //                    if (p.propertyList[i].num >= 300)
-    //                    {
-    //                        p.propertyList[i].num = 300;
-    //                    }
-    //                }
-                    
-    //                for (int i = 0; i < p.curBattleProList.Count; i++)
-    //                {
-    //                    Quality proQuality = (Quality)(int)p.curBattleProList[i].quality;
-    //                    int valEquip = StudentManager.Instance.StudentBreakThroughAdd((StudentTalent)(int)p.talent, proQuality);
-    //                    p.curBattleProList[i].num += valEquip;
-    //                    if (p.curBattleProList[i].num >= 300)
-    //                    {
-    //                        p.curBattleProList[i].num = 300;
-    //                    }
-    //                }
-    //            }
-    //        }
-            
-    //        Debug.Log($"[TestMod] 弟子 {p.name} 升级完成，当前等级 {p.studentLevel}");
-    //    }
-    //}
-
-    //private void UpgradePlayerTo999Level(PeopleData p)
-    //{
-    //    if (p == null) return;
-
-    //    int targetLevel = 999;
-
-    //    if (p.trainIndex == 0)
-    //    {
-    //        p.trainIndex = 0;
-    //    }
-    //    if (p.curXiuwei == 0)
-    //    {
-    //        p.curXiuwei = 0;
-    //    }
-
-    //    Debug.Log($"[TestMod] 开始将玩家 {p.name} 从 trainIndex {p.trainIndex} 升级到 {targetLevel}");
-
-    //    while (p.trainIndex < targetLevel)
-    //    {
-    //        int curLevelLimit = StudentManager.Instance.GetStudentLevelLimit(p);
-
-    //        if (p.trainIndex >= curLevelLimit)
-    //        {
-    //            Debug.Log($"[TestMod] 玩家 {p.name} 达到境界上限 {curLevelLimit}，停止升级");
-    //            break;
-    //        }
-
-    //        if (p.trainIndex >= DataTable._trainList.Count - 1)
-    //        {
-    //            Debug.Log($"[TestMod] 玩家 {p.name} 达到配置表上限，停止升级");
-    //            break;
-    //        }
-
-    //        TrainSetting curTrainSetting = DataTable._trainList[p.trainIndex];
-    //        ulong xiuweiNeed = curTrainSetting.XiuWeiNeed.ToUInt64();
-
-    //        if (p.curXiuwei < xiuweiNeed)
-    //        {
-    //            p.curXiuwei += (ulong)(xiuweiNeed - p.curXiuwei + 10000000);
-    //        }
-
-    //        int originalNextBreak = p.nextBreakThroughAdd;
-    //        int originalEatedDanNum = p.curEatedDanNum;
-    //        p.nextBreakThroughAdd = 100;
-    //        p.curEatedDanNum = 10;
-
-    //        StudentManager.Instance.OnBreakThrough(p);
-
-    //        p.nextBreakThroughAdd = originalNextBreak;
-    //        p.curEatedDanNum = originalEatedDanNum;
-    //    }
-
-    //    Debug.Log($"[TestMod] 玩家 {p.name} 升级完成，当前 trainIndex {p.trainIndex}");
-
-    //    // 血脉强化到满级
-    //    UpgradeXueMaiToMaxLevel(p);
-    //}
-
-    ///// <summary>
-    ///// 血脉强化到满级
-    ///// </summary>
-    //private void UpgradeXueMaiToMaxLevel(PeopleData p)
-    //{
-    //    if (p == null || p.xueMai == null) return;
-
-    //    int xueMaiMaxLevel = XueMaiManager.Instance.limitLevel(p);
-        
-    //    Debug.Log($"[TestMod] 开始将 {p.name} 的血脉强化到满级，当前血脉上限: {xueMaiMaxLevel}");
-
-    //    // 遍历所有血脉类型，将等级设置为上限
-    //    for (int i = 0; i < p.xueMai.xueMaiLevelList.Count; i++)
-    //    {
-    //        p.xueMai.xueMaiLevelList[i] = xueMaiMaxLevel;
-    //    }
-
-    //    // 刷新战斗属性
-    //    if (p.isPlayer)
-    //    {
-    //        RoleManager.Instance.RefreshBattlePro(p);
-    //    }
-    //    else
-    //    {
-    //        RoleManager.Instance.RefreshBattlePro(p);
-    //    }
-
-    //    Debug.Log($"[TestMod] {p.name} 血脉强化完成，所有血脉等级已设为 {xueMaiMaxLevel}");
-    //}
-    
-    //private PeopleData CreateMaxQualityStudent(StudentTalent talent, int quality, int rarity, GameInfo gameInfo)
-    //{
-    //    PeopleData p = new PeopleData();
-    //    p.onlyId = gameInfo.TheId++;
-    //    p.name = GetStudentNameByTalent(talent);
-    //    p.studentType = (int)StudentType.WaiMen;
-    //    p.talent = (int)talent;
-    //    p.studentQuality = quality;
-    //    p.studentRarity = rarity;
-        
-    //    // 设置默认等级和经验（以便可以使用经验丹）
-    //    p.studentLevel = 1;
-    //    p.studentCurExp = 0;
-        
-    //    p.propertyIdList = new List<int>();
-    //    p.propertyList = new List<SinglePropertyData>();
-    //    p.curBattleProIdList = new List<int>();
-    //    p.curBattleProList = new List<SinglePropertyData>();
-        
-    //    p.portraitIndexList = new List<int> { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-    //    p.portraitType = (int)PortraitType.ChangeFace;
-        
-    //    string proStr = ConstantVal.baseLianGongStudentPro;
-    //    List<List<int>> baseBattleProList = CommonUtil.SplitCfg(ConstantVal.baseBattleProperty);
-    //    List<List<int>> proList = CommonUtil.SplitCfg(proStr);
-        
-    //    List<int> haveValIdList = new List<int>();
-    //    List<int> haveValValList = new List<int>();
-        
-    //    for (int i = 0; i < proList.Count; i++)
-    //    {
-    //        List<int> thePro = proList[i];
-    //        haveValIdList.Add(thePro[0]);
-    //        haveValValList.Add(thePro[1]);
-    //    }
-        
-    //    for (int i = 0; i < baseBattleProList.Count; i++)
-    //    {
-    //        List<int> singlePro = baseBattleProList[i];
-    //        int theId = singlePro[0];
-    //        int theNum = singlePro[1];
-            
-    //        if (haveValIdList.Contains(theId))
-    //        {
-    //            int index = haveValIdList.IndexOf(theId);
-    //            theNum = haveValValList[index];
-    //        }
-            
-    //        SinglePropertyData pro = new SinglePropertyData();
-    //        pro.id = theId;
-    //        pro.num = theNum;
-    //        pro.quality = 5;
-    //        if (theId == (int)PropertyIdType.MpNum)
-    //        {
-    //            pro.limit = 100;
-    //        }
-    //        else if (theId == (int)PropertyIdType.Hp)
-    //        {
-    //            pro.limit = theNum;
-    //        }
-            
-    //        p.propertyIdList.Add(theId);
-    //        p.propertyList.Add(pro);
-            
-    //        SinglePropertyData battlePro = new SinglePropertyData();
-    //        battlePro.id = theId;
-    //        battlePro.num = theNum;
-    //        battlePro.limit = pro.limit;
-    //        battlePro.quality = 5;
-            
-    //        p.curBattleProIdList.Add(theId);
-    //        p.curBattleProList.Add(battlePro);
-    //    }
-
-    //    // 使用正常流程初始化技能
-    //    p.allSkillData = new AllSkillData();
-    //    p.allSkillData.unlockedSkillPos = 3;
-    //    p.allSkillData.unlockedTypeList = new List<int>();
-    //    for (int i = 0; i < 8; i++)
-    //    {
-    //        p.allSkillData.unlockedTypeList.Add((int)UnlockType.UnLocked);
-    //    }
-        
-    //    // 添加基础技能（根据元素类型）
-    //    SingleSkillData singleSkill = new SingleSkillData();
-    //    singleSkill.skillId = (int)BattleManager.Instance.PuGongIdByYuanSu((YuanSuType)p.yuanSu);
-    //    singleSkill.skillLevel = 1;
-    //    p.allSkillData.skillList.Add(singleSkill);
-    //    p.allSkillData.equippedSkillIdList.Add(singleSkill.skillId);
-
-    //    p.curEquipItemList = new List<ItemData> { null, null, null, null };
-        
-    //    p.gender = UnityEngine.Random.Range(0, 2);
-    //    p.yuanSu = UnityEngine.Random.Range(1, 6);
-    //    p.enemySettingId = 0;
-    //    p.curPhase = 1;
-    //    p.totalPhase = 10;
-    //    p.xiSuiRate = 100;
-    //    p.talentRarity = 5;
-        
-    //    // 设置随机头像（和正常招募流程一致）
-    //    RoleManager.Instance.RdmFace(p);
-        
-    //    p.xueMai = new XueMaiData();
-    //    p.xueMai.xueMaiTypeList = new List<XueMaiType>();
-    //    p.xueMai.xueMaiLevelList = new List<int>();
-    //    for (int i = 1; i < 6; i++)
-    //    {
-    //        p.xueMai.xueMaiTypeList.Add((XueMaiType)i);
-    //        p.xueMai.xueMaiLevelList.Add(0);
-    //    }
-        
-    //    p.socializationData = new SocializationData();
-    //    p.socializationData.knowPeopleList = new List<ulong>();
-    //    p.socializationData.haoGanDu = new List<int>();
-    //    p.socializationData.socialRecordList = new List<SocializationRecordData>();
-        
-    //    return p;
-    //}
-    
-    //private string GetStudentNameByTalent(StudentTalent talent)
-    //{
-    //    switch (talent)
-    //    {
-    //        case StudentTalent.LianJing: return "炼丹弟子";
-    //        case StudentTalent.DuanZhao: return "炼器弟子";
-    //        case StudentTalent.LianGong: return "修武弟子";
-    //        case StudentTalent.CaiKuang: return "采矿弟子";
-    //        case StudentTalent.ChaoYao: return "灵田弟子";
-    //        case StudentTalent.JingWen: return "经文弟子";
-    //        case StudentTalent.BaoShi: return "宝石弟子";
-    //        case StudentTalent.JingShang: return "经商弟子";
-    //        default: return "弟子";
-    //    }
-    //}
-    
-    //private void SetupLianGongStudentMax(PeopleData p, GameInfo gameInfo)
-    //{
-    //    if (p.curEquipItemList != null && DataTable.table.TbEquipment != null)
-    //    {
-    //        var allEquipSettings = DataTable.table.TbEquipment.DataList;
-    //        if (allEquipSettings != null && allEquipSettings.Count > 0)
-    //        {
-    //            for (int i = 0; i < 6; i++)
-    //            {
-    //                var bestEquip = FindBestEquipmentForSlot(i, allEquipSettings);
-    //                if (bestEquip != null)
-    //                {
-    //                    ItemData item = new ItemData();
-    //                    item.settingId = bestEquip.Id.ToInt32();
-    //                    item.onlyId = gameInfo.TheId++;
-    //                    item.quality = (int)Quality.Gold;
-    //                    item.count = 1;
-                        
-    //                    EquipProtoData equipProto = new EquipProtoData();
-    //                    equipProto.settingId = item.settingId;
-    //                    equipProto.onlyId = item.onlyId;
-    //                    equipProto.curLevel = 100;
-    //                    equipProto.curExp = 999999;
-    //                    equipProto.curDurability = 100;
-    //                    equipProto.jingLianLv = 10;
-    //                    equipProto.propertyList = new List<SinglePropertyData>();
-                        
-    //                    item.equipProtoData = equipProto;
-    //                    p.curEquipItemList[i] = item;
-    //                }
-    //            }
-    //        }
-    //    }
-        
-    //    Debug.Log($"[TestMod] 修武弟子已设置：装备 {p.curEquipItemList.FindAll(x => x != null).Count} 件");
-    //}
-
-    //private ItemData FindEquipmentFromBag(List<ItemData> bagItems, int slotIndex)
-    //{
-    //    if (bagItems == null || bagItems.Count == 0) return null;
-
-    //    ItemData best = null;
-    //    int bestRarity = -1;
-
-    //    string[] slotNames = { "法器", "锦衣", "鞋子", "璎珞" };
-    //    string slotName = slotIndex < slotNames.Length ? slotNames[slotIndex] : "未知";
-
-    //    int targetEquipType = slotIndex + 1;
-
-    //    Debug.Log($"[TestMod] 查找槽位 {slotIndex}({slotName}), 目标类型={targetEquipType}");
-
-    //    foreach (var item in bagItems)
-    //    {
-    //        if (item == null || item.settingId <= 0) continue;
-            
-    //        // 调试信息
-    //        string equipInfo = $"[TestMod] 检查物品: {item.setting?.Name ?? "unknown"}, settingId={item.settingId}";
-    //        if (item.equipProtoData == null)
-    //        {
-    //            Debug.LogWarning($"{equipInfo}, equipProtoData=null");
-    //            continue;
-    //        }
-    //        equipInfo += $", isEquipped={item.equipProtoData.isEquipped}";
-
-    //        if (item.equipProtoData.isEquipped) continue;
-
-    //        var equipSetting = item.equipProtoData.setting;
-    //        if (equipSetting == null)
-    //        {
-    //            // 尝试从配置表获取
-    //            equipSetting = DataTable.FindEquipSetting(item.equipProtoData.settingId);
-    //            if (equipSetting != null)
-    //            {
-    //                item.equipProtoData.setting = equipSetting;
-    //                Debug.Log($"{equipInfo}, 从配置表加载了setting");
-    //            }
-    //            else
-    //            {
-    //                Debug.LogWarning($"{equipInfo}, setting=null, 无法获取");
-    //                continue;
-    //            }
-    //        }
-
-    //        int equipType = equipSetting.Pos.ToInt32();
-    //        Debug.Log($"{equipInfo}, equipType={equipType}");
-
-    //        if (equipType != targetEquipType) continue;
-
-    //        int rarity = equipSetting.Rarity.ToInt32();
-    //        if (rarity > bestRarity)
-    //        {
-    //            bestRarity = rarity;
-    //            best = item;
-    //        }
-    //    }
-
-    //    if (best != null)
-    //    {
-    //        Debug.Log($"[TestMod] 背包中找到槽位 {slotIndex}({slotName}) 的装备: {best.setting.Name}, 稀有度={bestRarity}");
-    //    }
-    //    else
-    //    {
-    //        Debug.LogWarning($"[TestMod] 背包中未找到槽位 {slotIndex}({slotName}) 的装备");
-    //    }
-
-    //    return best;
-    //}
-    
-    //private EquipmentSetting FindBestEquipmentForSlot(int slotIndex, List<EquipmentSetting> allEquipSettings)
-    //{
-    //    string[] slotNames = { "法器", "锦衣", "鞋子", "璎珞" };
-    //    string slotName = slotIndex < slotNames.Length ? slotNames[slotIndex] : "未知";
-        
-    //    Debug.Log($"[TestMod] 开始查找槽位 {slotIndex}({slotName})，装备总数: {allEquipSettings.Count}");
-        
-    //    // 统计各类型的装备数量
-    //    Dictionary<int, int> typeCount = new Dictionary<int, int>();
-    //    foreach (var equip in allEquipSettings)
-    //    {
-    //        if (equip == null) continue;
-    //        int equipType = equip.Pos.ToInt32();
-    //        if (!typeCount.ContainsKey(equipType))
-    //            typeCount[equipType] = 0;
-    //        typeCount[equipType]++;
-    //    }
-    //    Debug.Log($"[TestMod] 装备类型分布: {string.Join(", ", typeCount.Select(x => $"类型{x.Key}={x.Value}个"))}");
-        
-    //    // 找出所有匹配槽位的装备
-    //    List<EquipmentSetting> matchedEquips = new List<EquipmentSetting>();
-    //    foreach (var equip in allEquipSettings)
-    //    {
-    //        if (equip == null) continue;
-            
-    //        int equipType = equip.Pos.ToInt32();
-    //        bool matchesSlot = false;
-            
-    //        switch (slotIndex)
-    //        {
-    //            case 0: matchesSlot = (equipType == 0); break;
-    //            case 1: matchesSlot = (equipType == 1); break;
-    //            case 2: matchesSlot = (equipType == 2); break;
-    //            case 3: matchesSlot = (equipType == 3); break;
-    //        }
-            
-    //        if (matchesSlot)
-    //        {
-    //            matchedEquips.Add(equip);
-    //        }
-    //    }
-        
-    //    Debug.Log($"[TestMod] 槽位 {slotIndex}({slotName}) 匹配到 {matchedEquips.Count} 个装备");
-        
-    //    // 按稀有度排序，从高到低
-    //    matchedEquips.Sort((a, b) => {
-    //        int rarityA = 0, rarityB = 0;
-    //        try { rarityA = a.Rarity.ToInt32(); } catch { }
-    //        try { rarityB = b.Rarity.ToInt32(); } catch { }
-    //        return rarityB.CompareTo(rarityA);
-    //    });
-        
-    //    // 从高到低，找到第一个在配置表中存在的装备
-    //    EquipmentSetting best = null;
-    //    foreach (var equip in matchedEquips)
-    //    {
-    //        int rarity = 0;
-    //        try { rarity = equip.Rarity.ToInt32(); } catch { }
-            
-    //        // 检查 itemId 对应的 ItemSetting 是否存在
-    //        int itemId = equip.ItemId.ToInt32();
-    //        var itemSetting = DataTable.FindItemSetting(itemId);
-            
-    //        Debug.Log($"[TestMod] 检查装备: {equip.Name}, id={equip.Id}, itemId={itemId}, 稀有度={rarity}, ItemSetting存在={itemSetting != null}");
-            
-    //        if (itemSetting != null)
-    //        {
-    //            best = equip;
-    //            Debug.Log($"[TestMod] 槽位 {slotIndex}({slotName}) 选中装备: {equip.Name}, 稀有度={rarity}");
-    //            break;
-    //        }
-    //    }
-        
-    //    if (best == null)
-    //    {
-    //        Debug.LogWarning($"[TestMod] 槽位 {slotIndex}({slotName}) 没有任何装备的ItemSetting存在！");
-    //        // 最后一个手段：返回第一个匹配的装备
-    //        if (matchedEquips.Count > 0)
-    //        {
-    //            best = matchedEquips[0];
-    //            Debug.LogWarning($"[TestMod] 使用后备装备: {best.Name}");
-    //        }
-    //    }
-        
-    //    return best;
-    //}
-
-    //private void InitPlayerSkillsFullLevel(PeopleData p)
-    //{
-    //    if (p == null) return;
-
-    //    // 如果已经有技能数据，不再重新初始化（保留玩家手动卸下的技能）
-    //    if (p.allSkillData != null && p.allSkillData.skillList != null && p.allSkillData.skillList.Count > 0)
-    //    {
-    //        Debug.Log($"[TestMod] {p.name} 已有技能数据，跳过初始化");
-    //        return;
-    //    }
-
-    //    // 初始化技能数据
-    //    if (p.allSkillData == null)
-    //    {
-    //        p.allSkillData = new AllSkillData();
-    //    }
-    //    if (p.allSkillData.equippedSkillIdList == null)
-    //    {
-    //        p.allSkillData.equippedSkillIdList = new List<int>();
-    //    }
-    //    if (p.allSkillData.skillList == null)
-    //    {
-    //        p.allSkillData.skillList = new List<SingleSkillData>();
-    //    }
-
-    //    // 解锁所有技能槽位
-    //    p.allSkillData.unlockedSkillPos = 10; // 解锁足够多的槽位
-    //    if (p.allSkillData.unlockedTypeList == null)
-    //    {
-    //        p.allSkillData.unlockedTypeList = new List<int>();
-    //    }
-    //    else
-    //    {
-    //        p.allSkillData.unlockedTypeList.Clear();
-    //    }
-    //    for (int i = 0; i < 10; i++)
-    //    {
-    //        p.allSkillData.unlockedTypeList.Add((int)UnlockType.UnLocked);
-    //    }
-
-    //    // 获取所有可用的技能ID列表
-    //    List<int> skillIdList = new List<int>();
-    //    if (DataTable.table != null && DataTable.table.TbSkill != null)
-    //    {
-    //        var allSkills = DataTable.table.TbSkill.DataList;
-    //        if (allSkills != null)
-    //        {
-    //            // 添加配置表中所有的技能
-    //            foreach (var skill in allSkills)
-    //            {
-    //                if (skill != null)
-    //                {
-    //                    int skillId = skill.Id.ToInt32();
-    //                    skillIdList.Add(skillId);
-    //                }
-    //            }
-    //            Debug.Log($"[TestMod] 从配置表获取到 {skillIdList.Count} 个技能");
-    //        }
-    //    }
-
-    //    // 如果配置表没有技能，添加默认技能
-    //    if (skillIdList.Count == 0)
-    //    {
-    //        skillIdList.Add(1); // LingDan
-    //        skillIdList.Add(2); // PuGong
-    //        skillIdList.Add(3); // FangYu
-    //        skillIdList.Add(4); // ZhiLiao
-            
-    //        // 获取弟子天赋对应的技能
-    //        if (p.talent == (int)StudentTalent.LianGong)
-    //        {
-    //            skillIdList.Add(5); // XiuLian
-    //        }
-    //        Debug.Log($"[TestMod] 使用默认技能，共 {skillIdList.Count} 个");
-    //    }
-
-    //    // 清空现有技能并添加满级技能
-    //    p.allSkillData.skillList.Clear();
-    //    p.allSkillData.equippedSkillIdList.Clear();
-
-    //    // 添加技能并设置为满级
-    //    foreach (int skillId in skillIdList)
-    //    {
-    //        // 获取该技能可以升级的最大等级
-    //        int maxLevelForThisSkill = 1;
-    //        List<SkillUpgradeSetting> upgradeList = DataTable.FindSkillUpgradeListBySkillId(skillId);
-    //        if (upgradeList != null && upgradeList.Count > 0)
-    //        {
-    //            maxLevelForThisSkill = upgradeList.Count;
-    //        }
-
-    //        SingleSkillData skillData = new SingleSkillData();
-    //        skillData.skillId = skillId;
-    //        skillData.skillLevel = maxLevelForThisSkill;
-    //        p.allSkillData.skillList.Add(skillData);
-    //    }
-
-    //    // 使用正常流程装备技能
-    //    for (int i = 0; i < p.allSkillData.skillList.Count; i++)
-    //    {
-    //        var skillData = p.allSkillData.skillList[i];
-    //        if (skillData != null && !skillData.isEquipped)
-    //        {
-    //            // 尝试装备技能
-    //            SkillSetting skillSetting = DataTable.FindSkillSetting(skillData.skillId);
-    //            if (skillSetting != null)
-    //            {
-    //                // 检查是否已装备同类技能
-    //                bool hasSameTypeEquipped = false;
-    //                for (int j = 0; j < p.allSkillData.equippedSkillIdList.Count; j++)
-    //                {
-    //                    int equippedId = p.allSkillData.equippedSkillIdList[j];
-    //                    var equippedSkill = p.allSkillData.skillList.Find(s => s.skillId == equippedId);
-    //                    if (equippedSkill != null)
-    //                    {
-    //                        SkillSetting equippedSetting = DataTable.FindSkillSetting(equippedId);
-    //                        if (equippedSetting != null && equippedSetting.YuanSu == skillSetting.YuanSu)
-    //                        {
-    //                            hasSameTypeEquipped = true;
-    //                            break;
-    //                        }
-    //                    }
-    //                }
-
-    //                // 如果没有同类技能，则装备
-    //                if (!hasSameTypeEquipped)
-    //                {
-    //                    skillData.isEquipped = true;
-    //                    p.allSkillData.equippedSkillIdList.Add(skillData.skillId);
-    //                }
-    //            }
-    //        }
-    //    }
-
-    //    Debug.Log($"[TestMod] 技能已设置为满级，共 {p.allSkillData.skillList.Count} 个技能，已装备 {p.allSkillData.equippedSkillIdList.Count} 个");
-    //}
-    
-    //private void CreateAllDanFarms(GameInfo gameInfo)
-    //{
-    //    if (DataTable.table == null || DataTable.table.TbDanFarm == null)
-    //    {
-    //        Debug.LogWarning("[TestMod] 配置表未加载，跳过创建丹炉建筑");
-    //        return;
-    //    }
-        
-    //    var allDanFarms = DataTable.table.TbDanFarm.DataList;
-    //    if (allDanFarms == null || allDanFarms.Count == 0)
-    //    {
-    //        Debug.LogWarning("[TestMod] 没有丹炉配置，跳过创建");
-    //        return;
-    //    }
-        
-    //    Debug.Log($"[TestMod] 开始创建丹炉建筑，共 {allDanFarms.Count} 种");
-        
-    //    // 清空现有丹炉列表，重新创建
-    //    gameInfo.allDanFarmData.DanFarmList.Clear();
-        
-    //    // 第一个建筑位置
-    //    float startX = -1975f;
-    //    float startY = 1835f;
-        
-    //    // 每个建筑之间的间距
-    //    float spacingX = 250f;
-    //    float spacingY = -250f;
-        
-    //    // 每排最多6个
-    //    int perRow = 6;
-        
-    //    int index = 0;
-        
-    //    foreach (var danFarmSetting in allDanFarms)
-    //    {
-    //        if (danFarmSetting == null) continue;
-            
-    //        int settingId = danFarmSetting.Id.ToInt32();
-            
-    //        // 每个类型的丹炉创建1个
-    //        SingleDanFarmData danFarm = new SingleDanFarmData();
-    //        danFarm.OnlyId = (ulong)(gameInfo.TheId++);
-    //        danFarm.SettingId = settingId;
-    //        danFarm.IsEmpty = false;
-    //        danFarm.Index = index;
-    //        danFarm.DanFarmType = danFarmSetting.Type.ToInt32();
-            
-    //        // 计算位置：每排6个，超过换排
-    //        int row = index / perRow;
-    //        int col = index % perRow;
-    //        danFarm.LocalPos = new Vector2(
-    //            startX + col * spacingX,
-    //            startY + row * spacingY
-    //        );
-            
-    //        // 获取丹炉满级
-    //        List<int> upgradeCostList = CommonUtil.SplitCfgOneDepth(danFarmSetting.UpgradeCost);
-    //        int maxLevel = upgradeCostList.Count;
-            
-    //        // 状态为Idle（空闲状态，可以直接使用）
-    //        danFarm.Status = 1; // Idling状态
-    //        danFarm.RemainTime = 0;
-    //        danFarm.ProcessDanTimer = 0;
-    //        danFarm.RebuildTotalTime = 0;
-    //        danFarm.OpenQuanLi = false;
-    //        danFarm.QuanLiTotalTime = 0;
-    //        danFarm.QuanliRemainTime = 0;
-    //        danFarm.ProcessSpeed = 0;
-    //        // 从配置表获取产品ID，如果无效则设置为灵识(10001)
-    //        int productId = danFarmSetting.Param.ToInt32();
-    //        if (productId <= 0)
-    //        {
-    //            productId = (int)ItemIdType.LingShi;
-    //        }
-    //        danFarm.ProductSettingId = productId;
-    //        danFarm.ProductRemainNum = 0;
-    //        danFarm.ProductTotalNum = 0;
-    //        danFarm.HandleStop = false;
-    //        danFarm.NeedForeItemId = 0;
-    //        danFarm.SingleDanPrice = 0;
-    //        danFarm.Unlocked = true;
-    //        danFarm.TalentType = 0;
-            
-    //        // 先初始化坐镇位置列表，确保有足够的元素
-    //        for (int j = 0; j < 4; j++)
-    //        {
-    //            danFarm.ZuoZhenStudentIdList.Add(0);
-    //        }
-            
-    //        danFarm.PosUnlockStatusList.Clear();
-    //        for (int j = 0; j < 4; j++)
-    //        {
-    //            danFarm.PosUnlockStatusList.Add(false);
-    //        }
-            
-    //        // 初始等级为1，然后调用升级逻辑到满级
-    //        danFarm.CurLevel = 1;
-            
-    //        // 调用同步升级方法到满级
-    //        LianDanManager.Instance.DanFarmUpgradeToMaxForTest(danFarm);
-            
-    //        danFarm.Status = 1; // Idling状态
-            
-    //        danFarm.StudentUseCangKuDataList = new List<SingleStudentUseCangKuData>();
-    //        danFarm.ProductItemList = new List<ItemData>();
-    //        danFarm.UnlockedProductIdList = new List<int>();
-            
-    //        gameInfo.allDanFarmData.DanFarmList.Add(danFarm);
-    //        index++;
-    //    }
-        
-    //    Debug.Log($"[TestMod] 已创建 {index} 个丹炉建筑，每种1个，每排6个按顺序排列");
-    //}
-    
-    //private void AutoEquipBestGear(GameInfo gameInfo)
-    //{
-    //    if (gameInfo == null) return;
-        
-    //    var allEquipSettings = DataTable.table?.TbEquipment?.DataList;
-    //    if (allEquipSettings == null || allEquipSettings.Count == 0)
-    //    {
-    //        Debug.Log($"[TestMod] 没有找到装备配置表，无法自动装备");
-    //        return;
-    //    }
-        
-    //    Debug.Log($"[TestMod] 装备配置表加载成功，共 {allEquipSettings.Count} 个装备");
-        
-    //    int equipCount = 0;
-        
-    //    // 为玩家装备 - 使用正常装备方式
-    //    if (gameInfo.playerPeople != null)
-    //    {
-    //        // 确保技能数据已初始化 - 使用正常流程
-    //        InitPlayerSkillsFullLevel(gameInfo.playerPeople);
-
-    //        // 确保背包已初始化
-    //        if (gameInfo.ItemModel == null)
-    //        {
-    //            gameInfo.ItemModel = new ItemModel();
-    //        }
-
-    //        for (int i = 0; i < 4; i++)
-    //        {
-    //            var bestEquip = FindBestEquipmentForSlot(i, allEquipSettings);
-    //            Debug.Log($"[TestMod] 槽位 {i} 找到最佳装备: {(bestEquip != null ? bestEquip.Name : "null")}");
-    //            if (bestEquip != null)
-    //            {
-    //                // 先卸下现有装备
-    //                ItemData existingItem = gameInfo.playerPeople.curEquipItemList[i];
-    //                if (existingItem != null && existingItem.settingId > 0)
-    //                {
-    //                    EquipmentManager.Instance.OnUnEquip(gameInfo.playerPeople, existingItem, i);
-    //                }
-
-    //                // 使用正常流程获取装备
-    //                ItemData item = CreateEquipWithNormalProcess(bestEquip, gameInfo);
-    //                if (item != null)
-    //                {
-    //                    // 使用正常装备方式装备
-    //                    EquipmentManager.Instance.OnEquip(gameInfo.playerPeople, item, i);
-    //                    equipCount++;
-    //                }
-    //            }
-    //        }
-    //        Debug.Log($"[TestMod] 玩家已自动装备 {equipCount} 件装备");
-    //    }
-        
-    //    // 为所有弟子装备 - 使用正常装备方式（4个槽位）
-    //    if (gameInfo.studentData?.allStudentList != null)
-    //    {
-    //        foreach (var student in gameInfo.studentData.allStudentList)
-    //        {
-    //            if (student == null) continue;
-
-    //            // 使用正常流程初始化弟子技能
-    //            InitPlayerSkillsFullLevel(student);
-                
-    //            int studentEquipCount = 0;
-    //            for (int i = 0; i < 4; i++)
-    //            {
-    //                var bestEquip = FindBestEquipmentForSlot(i, allEquipSettings);
-    //                if (bestEquip != null)
-    //                {
-    //                    // 先卸下现有装备
-    //                    ItemData existingItem = student.curEquipItemList[i];
-    //                    if (existingItem != null && existingItem.settingId > 0)
-    //                    {
-    //                        EquipmentManager.Instance.OnUnEquip(student, existingItem, i);
-    //                    }
-
-    //                    // 使用正常流程获取装备
-    //                    ItemData item = CreateEquipWithNormalProcess(bestEquip, gameInfo);
-    //                    if (item != null)
-    //                    {
-    //                        // 使用正常装备方式装备
-    //                        EquipmentManager.Instance.OnEquip(student, item, i);
-    //                        studentEquipCount++;
-    //                    }
-    //                }
-    //            }
-    //            Debug.Log($"[TestMod] 弟子 {student.name} 已自动装备 {studentEquipCount} 件装备");
-    //        }
-    //    }
-        
-    //    Debug.Log($"[TestMod] 自动装备完成，共装备 {equipCount} 件");
-    //}
-    
-    //private ItemData CreateEquipWithNormalProcess(EquipmentSetting bestEquip, GameInfo gameInfo)
-    //{
-    //    EquipProtoData equipData = new EquipProtoData();
-    //    equipData.onlyId = gameInfo.TheId++;
-    //    equipData.settingId = bestEquip.Id.ToInt32();
-    //    equipData.setting = bestEquip;
-    //    equipData.curLevel = 25; // 满级25级
-    //    equipData.curDurability = 100;
-
-    //    List<List<int>> baseProList = CommonUtil.SplitCfg(bestEquip.BasePro);
-    //    for (int i = 0; i < baseProList.Count; i++)
-    //    {
-    //        List<int> singlePro = baseProList[i];
-    //        if (singlePro.Count >= 2)
-    //        {
-    //            int theId = singlePro[0];
-    //            int theNum = singlePro[1];
-
-    //            if (theId == (int)PropertyIdType.RdmProDamageAdd)
-    //            {
-    //                List<PropertyIdType> candidateIdList = new List<PropertyIdType>
-    //                {
-    //                    PropertyIdType.WaterDamageAdd,
-    //                    PropertyIdType.FireDamageAdd,
-    //                    PropertyIdType.StormDamageAdd,
-    //                    PropertyIdType.IceDamageAdd,
-    //                    PropertyIdType.YangProDamageAdd,
-    //                    PropertyIdType.YinProDamageAdd
-    //                };
-    //                int proIdIndex = RandomManager.Next(0, candidateIdList.Count);
-    //                theId = (int)candidateIdList[proIdIndex];
-    //            }
-
-    //            // 计算满级属性值
-    //            int maxLevel = 25;
-    //            int baseNum = singlePro[1];
-    //            int upgradeAdd = 0;
-    //            try {
-    //                upgradeAdd = bestEquip.UpgradeProAdd.ToInt32();
-    //            } catch { }
-    //            int maxNum = baseNum + upgradeAdd * maxLevel;
-
-    //            equipData.propertyIdList.Add(theId);
-    //            SinglePropertyData data = new SinglePropertyData();
-    //            data.id = theId;
-    //            data.num = maxNum; // 满级属性值
-    //            data.quality = 5;
-    //            equipData.propertyList.Add(data);
-    //        }
-    //    }
-
-    //    equipData.youHuaLv = 5;
-
-    //    int itemId = bestEquip.ItemId.ToInt32();
-    //    ItemSetting itemSetting = DataTable.FindItemSetting(itemId);
-    //    if (itemSetting == null)
-    //    {
-    //        Debug.LogError($"[TestMod] ItemSetting not found for itemId: {itemId}");
-    //        return null;
-    //    }
-
-    //    ItemData item = ItemManager.Instance.GetItem(equipData, 1, Quality.Gold);
-
-    //    return item;
-    //}
-
-    //private ItemData CreateBestEquipItem(EquipmentSetting bestEquip, GameInfo gameInfo)
-    //{
-    //    // 完整模拟练器房创建装备的流程
-    //    EquipProtoData equipData = new EquipProtoData();
-    //    equipData.onlyId = gameInfo.TheId++;
-    //    equipData.settingId = bestEquip.Id.ToInt32();
-    //    equipData.setting = bestEquip;
-    //    equipData.curLevel = 1;
-    //    equipData.curDurability = 100;
-        
-    //    // 设置满级属性（模拟练器房的属性设置）
-    //    List<List<int>> baseProList = CommonUtil.SplitCfg(bestEquip.BasePro);
-    //    for (int i = 0; i < baseProList.Count; i++)
-    //    {
-    //        List<int> singlePro = baseProList[i];
-    //        if (singlePro.Count >= 2)
-    //        {
-    //            int theId = singlePro[0];
-    //            int theNum = singlePro[1];
-                
-    //            // 随机属性处理
-    //            if (theId == (int)PropertyIdType.RdmProDamageAdd)
-    //            {
-    //                List<PropertyIdType> candidateIdList = new List<PropertyIdType>
-    //                {
-    //                    PropertyIdType.WaterDamageAdd,
-    //                    PropertyIdType.FireDamageAdd,
-    //                    PropertyIdType.StormDamageAdd,
-    //                    PropertyIdType.IceDamageAdd,
-    //                    PropertyIdType.YangProDamageAdd,
-    //                    PropertyIdType.YinProDamageAdd
-    //                };
-    //                int proIdIndex = RandomManager.Next(0, candidateIdList.Count);
-    //                theId = (int)candidateIdList[proIdIndex];
-    //            }
-                
-    //            equipData.propertyIdList.Add(theId);
-    //            SinglePropertyData data = new SinglePropertyData();
-    //            data.id = theId;
-    //            data.num = theNum;
-    //            data.quality = 5; // 满品质
-    //            equipData.propertyList.Add(data);
-    //        }
-    //    }
-        
-    //    // 设置优化等级
-    //    equipData.youHuaLv = 5;
-        
-    //    // 初始化宝石槽
-    //    equipData.gemList = new List<ItemData>();
-    //    for (int i = 0; i < 4; i++)
-    //    {
-    //        equipData.gemList.Add(null);
-    //    }
-        
-    //    // 获取 ItemSetting
-    //    int itemId = bestEquip.ItemId.ToInt32();
-    //    ItemSetting itemSetting = DataTable.FindItemSetting(itemId);
-    //    if (itemSetting == null)
-    //    {
-    //        Debug.LogError($"[TestMod] ItemSetting not found for itemId: {itemId}");
-    //        return null;
-    //    }
-        
-    //    // 使用 GetEquipment 创建装备（与练器房完全一致的流程）
-    //    ItemData item = RoleManager.Instance.GetEquipment(equipData, itemSetting.Quality.ToInt32());
-        
-    //    return item;
-    //}
-    //#endregion
+    #region
+    /// <summary>
+    /// 存档前处理：遍历所有装备，将 gemList 转换为 gemSaveList
+    /// </summary>
+    private void PrepareEquipDataForSave(GameInfo gameInfo)
+    {
+        // 处理背包中的装备
+        if (gameInfo.ItemModel?.itemDataList != null)
+        {
+            foreach (var item in gameInfo.ItemModel.itemDataList)
+            {
+                item?.equipProtoData?.PrepareForSave();
+            }
+        }
+
+        // 处理仓库中的装备
+        if (gameInfo.ItemModel?.cangKuItemDataList != null)
+        {
+            foreach (var item in gameInfo.ItemModel.cangKuItemDataList)
+            {
+                item?.equipProtoData?.PrepareForSave();
+            }
+        }
+
+        // 处理已装备的装备
+        if (gameInfo.AllEquipmentData?.curEquippedEquipList != null)
+        {
+            foreach (var equip in gameInfo.AllEquipmentData.curEquippedEquipList)
+            {
+                equip?.PrepareForSave();
+            }
+        }
+
+        // 处理玩家身上的装备
+        if (gameInfo.playerPeople?.curEquipItemList != null)
+        {
+            foreach (var item in gameInfo.playerPeople.curEquipItemList)
+            {
+                item?.equipProtoData?.PrepareForSave();
+            }
+        }
+
+        // 处理弟子身上的装备
+        if (gameInfo.studentData?.allStudentList != null)
+        {
+            foreach (var student in gameInfo.studentData.allStudentList)
+            {
+                if (student?.curEquipItemList != null)
+                {
+                    foreach (var item in student.curEquipItemList)
+                    {
+                        item?.equipProtoData?.PrepareForSave();
+                    }
+                }
+            }
+        }
+    }
+
+    /// <summary>
+    /// 加载后处理：遍历所有装备，将 gemSaveList 还原为 gemList
+    /// 注意：setting 赋值需要在配置表加载完成后调用 RestoreAllSettings
+    /// </summary>
+    private void RestoreEquipDataAfterLoad(GameInfo gameInfo)
+    {
+        // 处理背包中的装备
+        if (gameInfo.ItemModel?.itemDataList != null)
+        {
+            foreach (var item in gameInfo.ItemModel.itemDataList)
+            {
+                item?.equipProtoData?.RestoreAfterLoad();
+            }
+        }
+
+        // 处理仓库中的装备
+        if (gameInfo.ItemModel?.cangKuItemDataList != null)
+        {
+            foreach (var item in gameInfo.ItemModel.cangKuItemDataList)
+            {
+                item?.equipProtoData?.RestoreAfterLoad();
+            }
+        }
+
+        // 处理已装备的装备
+        if (gameInfo.AllEquipmentData?.curEquippedEquipList != null)
+        {
+            foreach (var equip in gameInfo.AllEquipmentData.curEquippedEquipList)
+            {
+                equip?.RestoreAfterLoad();
+            }
+        }
+
+        // 处理玩家身上的装备
+        if (gameInfo.playerPeople?.curEquipItemList != null)
+        {
+            foreach (var item in gameInfo.playerPeople.curEquipItemList)
+            {
+                item?.equipProtoData?.RestoreAfterLoad();
+            }
+        }
+
+        // 处理弟子身上的装备
+        if (gameInfo.studentData?.allStudentList != null)
+        {
+            foreach (var student in gameInfo.studentData.allStudentList)
+            {
+                if (student?.curEquipItemList != null)
+                {
+                    foreach (var item in student.curEquipItemList)
+                    {
+                        item?.equipProtoData?.RestoreAfterLoad();
+                    }
+                }
+            }
+        }
+    }
+
+    /// <summary>
+    /// 配置表加载完成后调用：为所有 ItemData 和 EquipProtoData 重新赋值 setting
+    /// </summary>
+    public void RestoreAllSettings(GameInfo gameInfo)
+    {
+        if (gameInfo == null) return;
+
+        // 处理背包中的物品
+        if (gameInfo.ItemModel?.itemDataList != null)
+        {
+            foreach (var item in gameInfo.ItemModel.itemDataList)
+            {
+                if (item == null) continue;
+                item.setting = DataTable.FindItemSetting(item.settingId);
+                if (item.equipProtoData != null)
+                {
+                    item.equipProtoData.setting = DataTable.FindEquipSetting(item.equipProtoData.settingId);
+                }
+            }
+        }
+
+        // 处理仓库中的物品
+        if (gameInfo.ItemModel?.cangKuItemDataList != null)
+        {
+            foreach (var item in gameInfo.ItemModel.cangKuItemDataList)
+            {
+                if (item == null) continue;
+                item.setting = DataTable.FindItemSetting(item.settingId);
+                if (item.equipProtoData != null)
+                {
+                    item.equipProtoData.setting = DataTable.FindEquipSetting(item.equipProtoData.settingId);
+                }
+            }
+        }
+
+        // 处理已装备的装备
+        if (gameInfo.AllEquipmentData?.curEquippedEquipList != null)
+        {
+            foreach (var equip in gameInfo.AllEquipmentData.curEquippedEquipList)
+            {
+                if (equip == null) continue;
+                equip.setting = DataTable.FindEquipSetting(equip.settingId);
+            }
+        }
+
+        // 处理玩家身上的装备
+        if (gameInfo.playerPeople?.curEquipItemList != null)
+        {
+            for (int i = 0; i < gameInfo.playerPeople.curEquipItemList.Count; i++)
+            {
+                var item = gameInfo.playerPeople.curEquipItemList[i];
+                if (item == null) continue;
+                // 清理无效的装备数据（ES3反序列化可能创建空对象）
+                if (item.settingId <= 0)
+                {
+                    gameInfo.playerPeople.curEquipItemList[i] = null;
+                    continue;
+                }
+                item.setting = DataTable.FindItemSetting(item.settingId);
+                if (item.equipProtoData != null)
+                {
+                    item.equipProtoData.setting = DataTable.FindEquipSetting(item.equipProtoData.settingId);
+                }
+            }
+        }
+
+        // 处理弟子身上的装备
+        if (gameInfo.studentData?.allStudentList != null)
+        {
+            foreach (var student in gameInfo.studentData.allStudentList)
+            {
+                if (student?.curEquipItemList == null) continue;
+                for (int i = 0; i < student.curEquipItemList.Count; i++)
+                {
+                    var item = student.curEquipItemList[i];
+                    if (item == null) continue;
+                    // 清理无效的装备数据（ES3反序列化可能创建空对象）
+                    if (item.settingId <= 0)
+                    {
+                        student.curEquipItemList[i] = null;
+                        continue;
+                    }
+                    item.setting = DataTable.FindItemSetting(item.settingId);
+                    if (item.equipProtoData != null)
+                    {
+                        item.equipProtoData.setting = DataTable.FindEquipSetting(item.equipProtoData.settingId);
+                    }
+                }
+            }
+        }
+
+    }
+    /// <summary>
+    /// 测试模式：自动修改存档数据
+    /// 将玩家等级、属性、建筑、新手教程、地图关卡全部设为最高/完成状态
+    /// </summary>
+    private void ApplyTestModifications(GameInfo gameInfo)
+    {
+        if (gameInfo == null) return;
+
+        Debug.Log("[TestMod] 开始应用测试修改...");
+
+        // 2.1 设置所有丹炉建筑，解锁位置，排序好
+        if (gameInfo.allDanFarmData != null && gameInfo.allDanFarmData.DanFarmList != null)
+        {
+            // 先解锁丹炉位置
+            gameInfo.allDanFarmData.DanFarmZuoZhenStudentLimit = 4;
+            gameInfo.allDanFarmData.UnlockedDanFarmNumLimit = 100;
+            gameInfo.allDanFarmData.UnlockedFarmNum = 100;
+
+            // 解锁所有丹炉类型
+            if (DataTable.table != null && DataTable.table.TbDanFarm != null)
+            {
+                var allDanFarms = DataTable.table.TbDanFarm.DataList;
+                if (allDanFarms != null)
+                {
+                    foreach (var danFarmSetting in allDanFarms)
+                    {
+                        if (danFarmSetting != null && !gameInfo.allDanFarmData.UnlockedDanFarmId.Contains(danFarmSetting.Id.ToInt32()))
+                        {
+                            gameInfo.allDanFarmData.UnlockedDanFarmId.Add(danFarmSetting.Id.ToInt32());
+                        }
+                    }
+                }
+            }
+
+            // 解锁所有丹炉位置
+            foreach (var danFarm in gameInfo.allDanFarmData.DanFarmList)
+            {
+                if (danFarm != null)
+                {
+                    danFarm.PosUnlockStatusList.Clear();
+                    for (int i = 0; i < 6; i++)
+                    {
+                        danFarm.PosUnlockStatusList.Add(true);
+                    }
+                }
+            }
+
+            // 使用正确的配置表ID创建丹炉建筑
+            CreateAllDanFarms(gameInfo);
+
+            Debug.Log($"[TestMod] 丹炉建筑已创建，解锁位置，空地全开");
+        }
+
+        // 3. 设置所有新手教程为已完成
+        if (gameInfo.NewGuideData != null)
+        {
+            gameInfo.NewGuideData.finishedGuideIdList.Clear();
+            gameInfo.NewGuideData.IdList.Clear();
+            gameInfo.NewGuideData.AccomplishStatus.Clear();
+
+            for (int i = 1; i <= 100; i++)
+            {
+                gameInfo.NewGuideData.finishedGuideIdList.Add(i);
+                gameInfo.NewGuideData.IdList.Add(i);
+                gameInfo.NewGuideData.AccomplishStatus.Add(2);
+            }
+            gameInfo.NewGuideData.curGuideId = 0;
+            gameInfo.NewGuideData.curGuideStep = 0;
+            Debug.Log($"[TestMod] 新手教程已完成 ({gameInfo.NewGuideData.finishedGuideIdList.Count} 个)");
+        }
+
+        // 4. 设置所有地图和关卡为解锁/通关状态（通过正常流程）
+        if (gameInfo.AllMapData != null && gameInfo.AllMapData.MapList != null)
+        {
+            foreach (var map in gameInfo.AllMapData.MapList)
+            {
+                map.MapStatus = 4;
+                map.LieXiMapStatus = 4;
+
+                if (map.LevelList != null)
+                {
+                    foreach (var level in map.LevelList)
+                    {
+                        level.LevelStatus = 4;
+                        level.HaveAccomplished = true;
+                    }
+                }
+                if (map.FixedLevelList != null)
+                {
+                    foreach (var level in map.FixedLevelList)
+                    {
+                        level.LevelStatus = 4;
+                        level.HaveAccomplished = true;
+                    }
+                }
+            }
+            // 触发任务检查
+            TaskManager.Instance.TryAccomplishAllTask();
+            Debug.Log($"[TestMod] 地图和关卡已全部解锁/通关 ({gameInfo.AllMapData.MapList.Count} 个地图)");
+        }
+
+        // 5. 宗门等级满（调用正常升级方法，触发建筑数量变化）
+        if (gameInfo.allZongMenData != null)
+        {
+            int maxZongMenLevel = DataTable._zongMenUpgradeList.Count;
+
+            // 先设置为1级
+            gameInfo.allZongMenData.ZongMenLevel = 1;
+
+            // 逐步升级到满级，使用正常升级方法触发建筑解锁、空地数量、体力上限、弟子数量等变化
+            for (int level = 1; level < maxZongMenLevel; level++)
+            {
+                if (RoleManager.Instance != null && ZongMenManager.Instance != null)
+                {
+                    ZongMenManager.Instance.UpgradeZongMenLevel();
+                }
+                else
+                {
+                    // 降级处理：如果 Manager 未初始化，直接设置数据
+                    ZongMenUpgradeSetting curSetting = DataTable._zongMenUpgradeList[level - 1];
+                    ZongMenUpgradeSetting afterSetting = DataTable._zongMenUpgradeList[level];
+
+                    List<List<int>> beforeBuilding = CommonUtil.SplitCfg(curSetting.UnlockedBuilding);
+                    List<List<int>> afterBuilding = CommonUtil.SplitCfg(afterSetting.UnlockedBuilding);
+
+                    for (int i = 0; i < beforeBuilding.Count; i++)
+                    {
+                        List<int> before = beforeBuilding[i];
+                        List<int> after = afterBuilding[i];
+                        int buildId = before[0];
+                        int beforeNum = before[1];
+                        int afterNum = after[1];
+
+                        int existedNum = 0;
+                        for (int j = 0; j < gameInfo.allDanFarmData.UnlockedDanFarmId.Count; j++)
+                        {
+                            int id = gameInfo.allDanFarmData.UnlockedDanFarmId[j];
+                            if (id == buildId)
+                            {
+                                existedNum++;
+                            }
+                        }
+                        while (afterNum > existedNum)
+                        {
+                            LianDanManager.Instance.UnlockDanFarm(buildId);
+                            existedNum++;
+                        }
+                    }
+
+                    int farmNumBefore = curSetting.FarmNumLimit.ToInt32();
+                    int farmNumAfter = afterSetting.FarmNumLimit.ToInt32();
+                    if (farmNumAfter > farmNumBefore)
+                    {
+                        gameInfo.allDanFarmData.UnlockedDanFarmNumLimit = farmNumAfter + gameInfo.allZongMenData.SendFarmNumLimitAddNum;
+                    }
+
+                    gameInfo.allZongMenData.ZongMenLevel++;
+                }
+            }
+
+            Debug.Log($"[TestMod] 宗门等级已设为满级 ({maxZongMenLevel})，建筑已按等级解锁");
+        }
+
+        // 6. 探索数据全解锁（直接设置数据）
+        if (gameInfo.AllExploreData != null && gameInfo.AllExploreData.ExploreList != null)
+        {
+            foreach (var exploreData in gameInfo.AllExploreData.ExploreList)
+            {
+                if (exploreData != null)
+                {
+                    exploreData.Unlocked = true;
+                }
+            }
+            Debug.Log($"[TestMod] 探索已全部解锁 ({gameInfo.AllExploreData.ExploreList.Count} 个)");
+        }
+
+        // 7. 成就数据全完成（通过正常流程）
+        if (gameInfo.AllAchievementData != null && gameInfo.AllAchievementData.achievementList != null)
+        {
+            foreach (var achievement in gameInfo.AllAchievementData.achievementList)
+            {
+                if (achievement != null)
+                {
+                    achievement.accomplishStatus = 2;
+                    achievement.curProgress = 9999;
+                }
+            }
+            // 触发任务检查
+            TaskManager.Instance.TryAccomplishAllTask();
+            TaskManager.Instance.TryAccomplishAllGuideBook();
+            Debug.Log($"[TestMod] 成就已全部完成 ({gameInfo.AllAchievementData.achievementList.Count} 个)");
+        }
+
+        // 8. 空地全开 - 解锁所有丹田位置
+        if (gameInfo.allDanFarmData != null && gameInfo.allDanFarmData.DanFarmList != null)
+        {
+            foreach (var danFarm in gameInfo.allDanFarmData.DanFarmList)
+            {
+                danFarm.PosUnlockStatusList.Clear();
+                for (int i = 0; i < 4; i++)
+                {
+                    danFarm.PosUnlockStatusList.Add(true);
+                }
+                Debug.Log($"[TestMod] 丹田空地已全开");
+            }
+        }
+
+        // 9.5 玩家升级到999级（与修武弟子一样的升级流程）
+        if (gameInfo.playerPeople != null)
+        {
+            UpgradePlayerTo999Level(gameInfo.playerPeople);
+            // 血脉强化到满级
+            UpgradeXueMaiToMaxLevel(gameInfo.playerPeople);
+        }
+
+        // 9. 设置现有弟子只增加经验不修改等级 (不修改)
+        // if (gameInfo.studentData?.allStudentList != null)
+        // {
+        //     foreach (var student in gameInfo.studentData.allStudentList)
+        //     {
+        //         if (student != null)
+        //         {
+        //             student.studentCurExp = 0;
+        //             student.curXiuwei = 0;
+        //         }
+        //     }
+        //     Debug.Log($"[TestMod] 现有弟子经验已设为满 ({gameInfo.studentData.allStudentList.Count} 个)");
+        // }
+
+        // 10. 创建最高品质的各职业随从各4个
+        CreateMaxQualityStudents(gameInfo);
+
+        // 11. 获得所有物品，数量为99999
+        AddAllItems(gameInfo);
+
+        // 12. 为玩家和所有弟子自动装备最好的装备
+        AutoEquipBestGear(gameInfo);
+        // 13. 初始化历练数据 - 解锁所有历练关卡
+        if (gameInfo.timeData != null)
+        {
+            // 初始化今日参与历练状态
+            gameInfo.timeData.TodayParticipatedLiLianStatus.Clear();
+            gameInfo.timeData.LastParticipatedLiLianTime.Clear();
+
+            if (DataTable._liLianList != null)
+            {
+                for (int i = 0; i < DataTable._liLianList.Count; i++)
+                {
+                    gameInfo.timeData.TodayParticipatedLiLianStatus.Add(0);
+                    gameInfo.timeData.LastParticipatedLiLianTime.Add(0);
+                }
+            }
+
+            // 设置每日最大历练次数
+            gameInfo.timeData.MaxLiLianTimePerDay = 2;
+
+            Debug.Log($"[TestMod] 历练数据已初始化，解锁所有历练关卡");
+        }
+        // 14. 开启历练功能
+        if (LiLianManager.Instance != null)
+        {
+            LiLianManager.Instance.SetLiLianEnabled(true);
+            Debug.Log("[TestMod] 历练功能已开启");
+        }
+        Debug.Log("[TestMod] 测试修改应用完成！");
+    }
+
+    private void AddAllItems(GameInfo gameInfo)
+    {
+        if (gameInfo.ItemModel == null)
+        {
+            gameInfo.ItemModel = new ItemModel();
+        }
+
+        // 设置灵石（金币）数量
+        gameInfo.ItemModel.fuLingShiNum = 9999999999999999L;
+
+        if (DataTable.table != null && DataTable.table.TbItem != null)
+        {
+            var allItems = DataTable.table.TbItem.DataList;
+            if (allItems != null)
+            {
+                foreach (var itemSetting in allItems)
+                {
+                    if (itemSetting == null) continue;
+
+                    // 跳过灵石，因为已经单独设置了
+                    int itemId = itemSetting.Id.ToInt32();
+                    if (itemId == (int)ItemIdType.LingShi) continue;
+
+                    ItemData newItem = new ItemData();
+                    newItem.settingId = itemId;
+                    newItem.count = 9999999999999999L;
+                    newItem.onlyId = ConstantVal.SetId;
+
+                    if (itemSetting.Quality != "-1")
+                    {
+                        newItem.quality = itemSetting.Quality.ToInt32();
+                    }
+                    newItem.setting = itemSetting;
+
+                    gameInfo.ItemModel.itemIdList.Add(itemId);
+                    gameInfo.ItemModel.itemDataList.Add(newItem);
+                    gameInfo.ItemModel.onlyIdList.Add(newItem.onlyId);
+                }
+                Debug.Log($"[TestMod] 已添加 {allItems.Count} 种物品（不含灵石），灵石数量已设为 9999999999999999");
+            }
+        }
+    }
+
+    private void CreateMaxQualityStudents(GameInfo gameInfo)
+    {
+        if (gameInfo == null) return;
+
+        if (gameInfo.studentData == null)
+        {
+            gameInfo.studentData = new StudentData();
+        }
+
+        int maxQuality = (int)Quality.Gold;
+        int maxRarity = (int)cfg.Rarity.orange; // 资源图片只有1-5，红色(6)没有图片
+
+        var talents = new List<StudentTalent>
+        {
+            StudentTalent.LianJing,
+            StudentTalent.DuanZhao,
+            StudentTalent.LianGong,
+            StudentTalent.CaiKuang,
+            StudentTalent.ChaoYao,
+            StudentTalent.JingWen,
+            StudentTalent.BaoShi,
+            StudentTalent.JingShang
+        };
+
+        int studentCount = 0;
+
+        foreach (var talent in talents)
+        {
+            for (int i = 0; i < 4; i++)
+            {
+                PeopleData student = CreateMaxQualityStudent(talent, maxQuality, maxRarity, gameInfo);
+                // 使用正常招募流程添加弟子
+                StudentManager.Instance.AddStudent(student);
+                studentCount++;
+
+                // 调用升级流程将弟子升级到999级
+                UpgradeStudentTo999Level(student);
+
+                // 血脉强化到满级
+                UpgradeXueMaiToMaxLevel(student);
+
+                if (talent == StudentTalent.LianGong)
+                {
+                    SetupLianGongStudentMax(student, gameInfo);
+                }
+            }
+        }
+
+        gameInfo.studentData.CurStudentNum = gameInfo.studentData.allStudentList.Count;
+        gameInfo.studentData.MaxStudentNum = 1000;
+
+        Debug.Log($"[TestMod] 已创建 {studentCount} 个各职业随从（每职业4个）");
+    }
+
+    private void UpgradeStudentTo999Level(PeopleData p)
+    {
+        if (p == null) return;
+
+        bool isLianGong = (p.talent == (int)StudentTalent.LianGong);
+
+        // 获取弟子的等级上限
+        int levelLimit = StudentManager.Instance.GetStudentLevelLimit(p);
+
+        // 设置目标等级为当前品质能达到的最大等级
+        int targetLevel = levelLimit;
+
+        // 如果是修武弟子，升级境界到999
+        if (isLianGong)
+        {
+            int targetTrainIndex = 999;
+            Debug.Log($"[TestMod] 开始将修武弟子 {p.name} 从 trainIndex {p.trainIndex} 升级到 {targetTrainIndex}");
+
+            while (p.trainIndex < targetTrainIndex)
+            {
+                int curLevelLimit = StudentManager.Instance.GetStudentLevelLimit(p);
+
+                if (p.trainIndex >= curLevelLimit)
+                {
+                    Debug.Log($"[TestMod] 修武弟子 {p.name} 达到境界上限 {curLevelLimit}，停止升级");
+                    break;
+                }
+
+                if (p.trainIndex >= DataTable._trainList.Count - 1)
+                {
+                    Debug.Log($"[TestMod] 修武弟子 {p.name} 达到配置表上限，停止升级");
+                    break;
+                }
+
+                TrainSetting curTrainSetting = DataTable._trainList[p.trainIndex];
+                ulong xiuweiNeed = curTrainSetting.XiuWeiNeed.ToUInt64();
+
+                if (p.curXiuwei < xiuweiNeed)
+                {
+                    p.curXiuwei += (ulong)(xiuweiNeed - p.curXiuwei + 10000000);
+                }
+
+                int originalNextBreak = p.nextBreakThroughAdd;
+                p.nextBreakThroughAdd = 100;
+
+                StudentManager.Instance.OnBreakThrough(p);
+
+                p.nextBreakThroughAdd = originalNextBreak;
+            }
+
+            Debug.Log($"[TestMod] 修武弟子 {p.name} 升级完成，当前 trainIndex {p.trainIndex}");
+        }
+        else
+        {
+            // 非修武弟子：先设置足够的 trainIndex 以提升等级上限
+            if (p.trainIndex < 10)
+            {
+                p.trainIndex = 10;
+            }
+
+            // 重新获取等级上限
+            levelLimit = StudentManager.Instance.GetStudentLevelLimit(p);
+            targetLevel = levelLimit;
+
+            Debug.Log($"[TestMod] 开始将弟子 {p.name} 从等级 {p.studentLevel} 升级到 {targetLevel}（等级上限 {levelLimit}）");
+
+            while (p.studentLevel < targetLevel)
+            {
+                int curLevelLimit = StudentManager.Instance.GetStudentLevelLimit(p);
+
+                if (p.studentLevel >= curLevelLimit)
+                {
+                    Debug.Log($"[TestMod] 弟子 {p.name} 达到等级上限 {curLevelLimit}，停止升级");
+                    break;
+                }
+
+                if (p.studentLevel > 0 && p.studentLevel <= DataTable._studentUpgradeList.Count)
+                {
+                    StudentUpgradeSetting setting = DataTable._studentUpgradeList[p.studentLevel - 1];
+                    int needExp = setting.NeedExp.ToInt32();
+                    p.studentCurExp += needExp;
+                }
+                else
+                {
+                    p.studentCurExp += 1000000;
+                }
+
+                while (p.studentLevel < targetLevel)
+                {
+                    curLevelLimit = StudentManager.Instance.GetStudentLevelLimit(p);
+
+                    if (p.studentLevel >= curLevelLimit)
+                    {
+                        break;
+                    }
+
+                    if (p.studentLevel > 0 && p.studentLevel <= DataTable._studentUpgradeList.Count)
+                    {
+                        StudentUpgradeSetting setting = DataTable._studentUpgradeList[p.studentLevel - 1];
+                        int needExp = setting.NeedExp.ToInt32();
+
+                        if (p.studentCurExp < needExp)
+                        {
+                            Debug.Log($"[TestMod] 弟子 {p.name} 经验不足，停止升级，当前等级 {p.studentLevel}");
+                            return;
+                        }
+
+                        p.studentLevel++;
+                        p.studentCurExp -= needExp;
+                    }
+                    else
+                    {
+                        if (p.studentCurExp < 1000000)
+                        {
+                            return;
+                        }
+                        p.studentLevel++;
+                        p.studentCurExp -= 1000000;
+                    }
+
+                    for (int i = 0; i < p.propertyList.Count; i++)
+                    {
+                        Quality proQuality = (Quality)(int)p.propertyList[i].quality;
+                        int valEquip = StudentManager.Instance.StudentBreakThroughAdd((StudentTalent)(int)p.talent, proQuality);
+                        p.propertyList[i].num += valEquip;
+                        if (p.propertyList[i].num >= 300)
+                        {
+                            p.propertyList[i].num = 300;
+                        }
+                    }
+
+                    for (int i = 0; i < p.curBattleProList.Count; i++)
+                    {
+                        Quality proQuality = (Quality)(int)p.curBattleProList[i].quality;
+                        int valEquip = StudentManager.Instance.StudentBreakThroughAdd((StudentTalent)(int)p.talent, proQuality);
+                        p.curBattleProList[i].num += valEquip;
+                        if (p.curBattleProList[i].num >= 300)
+                        {
+                            p.curBattleProList[i].num = 300;
+                        }
+                    }
+                }
+            }
+
+            Debug.Log($"[TestMod] 弟子 {p.name} 升级完成，当前等级 {p.studentLevel}");
+        }
+    }
+
+    private void UpgradePlayerTo999Level(PeopleData p)
+    {
+        if (p == null) return;
+
+        int targetLevel = 999;
+
+        if (p.trainIndex == 0)
+        {
+            p.trainIndex = 0;
+        }
+        if (p.curXiuwei == 0)
+        {
+            p.curXiuwei = 0;
+        }
+
+        Debug.Log($"[TestMod] 开始将玩家 {p.name} 从 trainIndex {p.trainIndex} 升级到 {targetLevel}");
+
+        while (p.trainIndex < targetLevel)
+        {
+            int curLevelLimit = StudentManager.Instance.GetStudentLevelLimit(p);
+
+            if (p.trainIndex >= curLevelLimit)
+            {
+                Debug.Log($"[TestMod] 玩家 {p.name} 达到境界上限 {curLevelLimit}，停止升级");
+                break;
+            }
+
+            if (p.trainIndex >= DataTable._trainList.Count - 1)
+            {
+                Debug.Log($"[TestMod] 玩家 {p.name} 达到配置表上限，停止升级");
+                break;
+            }
+
+            TrainSetting curTrainSetting = DataTable._trainList[p.trainIndex];
+            ulong xiuweiNeed = curTrainSetting.XiuWeiNeed.ToUInt64();
+
+            if (p.curXiuwei < xiuweiNeed)
+            {
+                p.curXiuwei += (ulong)(xiuweiNeed - p.curXiuwei + 10000000);
+            }
+
+            int originalNextBreak = p.nextBreakThroughAdd;
+            int originalEatedDanNum = p.curEatedDanNum;
+            p.nextBreakThroughAdd = 100;
+            p.curEatedDanNum = 10;
+
+            StudentManager.Instance.OnBreakThrough(p);
+
+            p.nextBreakThroughAdd = originalNextBreak;
+            p.curEatedDanNum = originalEatedDanNum;
+        }
+
+        Debug.Log($"[TestMod] 玩家 {p.name} 升级完成，当前 trainIndex {p.trainIndex}");
+
+        // 血脉强化到满级
+        UpgradeXueMaiToMaxLevel(p);
+    }
+
+    /// <summary>
+    /// 血脉强化到满级
+    /// </summary>
+    private void UpgradeXueMaiToMaxLevel(PeopleData p)
+    {
+        if (p == null || p.xueMai == null) return;
+
+        int xueMaiMaxLevel = XueMaiManager.Instance.limitLevel(p);
+
+        Debug.Log($"[TestMod] 开始将 {p.name} 的血脉强化到满级，当前血脉上限: {xueMaiMaxLevel}");
+
+        // 遍历所有血脉类型，将等级设置为上限
+        for (int i = 0; i < p.xueMai.xueMaiLevelList.Count; i++)
+        {
+            p.xueMai.xueMaiLevelList[i] = xueMaiMaxLevel;
+        }
+
+        // 刷新战斗属性
+        if (p.isPlayer)
+        {
+            RoleManager.Instance.RefreshBattlePro(p);
+        }
+        else
+        {
+            RoleManager.Instance.RefreshBattlePro(p);
+        }
+
+        Debug.Log($"[TestMod] {p.name} 血脉强化完成，所有血脉等级已设为 {xueMaiMaxLevel}");
+    }
+
+    private PeopleData CreateMaxQualityStudent(StudentTalent talent, int quality, int rarity, GameInfo gameInfo)
+    {
+        PeopleData p = new PeopleData();
+        p.onlyId = gameInfo.TheId++;
+        p.name = GetStudentNameByTalent(talent);
+        p.studentType = (int)StudentType.WaiMen;
+        p.talent = (int)talent;
+        p.studentQuality = quality;
+        p.studentRarity = rarity;
+
+        // 设置默认等级和经验（以便可以使用经验丹）
+        p.studentLevel = 1;
+        p.studentCurExp = 0;
+
+        p.propertyIdList = new List<int>();
+        p.propertyList = new List<SinglePropertyData>();
+        p.curBattleProIdList = new List<int>();
+        p.curBattleProList = new List<SinglePropertyData>();
+
+        p.portraitIndexList = new List<int> { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+        p.portraitType = (int)PortraitType.ChangeFace;
+
+        string proStr = ConstantVal.baseLianGongStudentPro;
+        List<List<int>> baseBattleProList = CommonUtil.SplitCfg(ConstantVal.baseBattleProperty);
+        List<List<int>> proList = CommonUtil.SplitCfg(proStr);
+
+        List<int> haveValIdList = new List<int>();
+        List<int> haveValValList = new List<int>();
+
+        for (int i = 0; i < proList.Count; i++)
+        {
+            List<int> thePro = proList[i];
+            haveValIdList.Add(thePro[0]);
+            haveValValList.Add(thePro[1]);
+        }
+
+        for (int i = 0; i < baseBattleProList.Count; i++)
+        {
+            List<int> singlePro = baseBattleProList[i];
+            int theId = singlePro[0];
+            int theNum = singlePro[1];
+
+            if (haveValIdList.Contains(theId))
+            {
+                int index = haveValIdList.IndexOf(theId);
+                theNum = haveValValList[index];
+            }
+
+            SinglePropertyData pro = new SinglePropertyData();
+            pro.id = theId;
+            pro.num = theNum;
+            pro.quality = 5;
+            if (theId == (int)PropertyIdType.MpNum)
+            {
+                pro.limit = 100;
+            }
+            else if (theId == (int)PropertyIdType.Hp)
+            {
+                pro.limit = theNum;
+            }
+
+            p.propertyIdList.Add(theId);
+            p.propertyList.Add(pro);
+
+            SinglePropertyData battlePro = new SinglePropertyData();
+            battlePro.id = theId;
+            battlePro.num = theNum;
+            battlePro.limit = pro.limit;
+            battlePro.quality = 5;
+
+            p.curBattleProIdList.Add(theId);
+            p.curBattleProList.Add(battlePro);
+        }
+
+        // 使用正常流程初始化技能
+        p.allSkillData = new AllSkillData();
+        p.allSkillData.unlockedSkillPos = 3;
+        p.allSkillData.unlockedTypeList = new List<int>();
+        for (int i = 0; i < 8; i++)
+        {
+            p.allSkillData.unlockedTypeList.Add((int)UnlockType.UnLocked);
+        }
+
+        // 添加基础技能（根据元素类型）
+        SingleSkillData singleSkill = new SingleSkillData();
+        singleSkill.skillId = (int)BattleManager.Instance.PuGongIdByYuanSu((YuanSuType)p.yuanSu);
+        singleSkill.skillLevel = 1;
+        p.allSkillData.skillList.Add(singleSkill);
+        p.allSkillData.equippedSkillIdList.Add(singleSkill.skillId);
+
+        p.curEquipItemList = new List<ItemData> { null, null, null, null };
+
+        p.gender = UnityEngine.Random.Range(0, 2);
+        p.yuanSu = UnityEngine.Random.Range(1, 6);
+        p.enemySettingId = 0;
+        p.curPhase = 1;
+        p.totalPhase = 10;
+        p.xiSuiRate = 100;
+        p.talentRarity = 5;
+
+        // 设置随机头像（和正常招募流程一致）
+        RoleManager.Instance.RdmFace(p);
+
+        p.xueMai = new XueMaiData();
+        p.xueMai.xueMaiTypeList = new List<XueMaiType>();
+        p.xueMai.xueMaiLevelList = new List<int>();
+        for (int i = 1; i < 6; i++)
+        {
+            p.xueMai.xueMaiTypeList.Add((XueMaiType)i);
+            p.xueMai.xueMaiLevelList.Add(0);
+        }
+
+        p.socializationData = new SocializationData();
+        p.socializationData.knowPeopleList = new List<ulong>();
+        p.socializationData.haoGanDu = new List<int>();
+        p.socializationData.socialRecordList = new List<SocializationRecordData>();
+
+        return p;
+    }
+
+    private string GetStudentNameByTalent(StudentTalent talent)
+    {
+        switch (talent)
+        {
+            case StudentTalent.LianJing: return "炼丹弟子";
+            case StudentTalent.DuanZhao: return "炼器弟子";
+            case StudentTalent.LianGong: return "修武弟子";
+            case StudentTalent.CaiKuang: return "采矿弟子";
+            case StudentTalent.ChaoYao: return "灵田弟子";
+            case StudentTalent.JingWen: return "经文弟子";
+            case StudentTalent.BaoShi: return "宝石弟子";
+            case StudentTalent.JingShang: return "经商弟子";
+            default: return "弟子";
+        }
+    }
+
+    private void SetupLianGongStudentMax(PeopleData p, GameInfo gameInfo)
+    {
+        if (p.curEquipItemList != null && DataTable.table.TbEquipment != null)
+        {
+            var allEquipSettings = DataTable.table.TbEquipment.DataList;
+            if (allEquipSettings != null && allEquipSettings.Count > 0)
+            {
+                for (int i = 0; i < 6; i++)
+                {
+                    var bestEquip = FindBestEquipmentForSlot(i, allEquipSettings);
+                    if (bestEquip != null)
+                    {
+                        ItemData item = new ItemData();
+                        item.settingId = bestEquip.Id.ToInt32();
+                        item.onlyId = gameInfo.TheId++;
+                        item.quality = (int)Quality.Gold;
+                        item.count = 1;
+
+                        EquipProtoData equipProto = new EquipProtoData();
+                        equipProto.settingId = item.settingId;
+                        equipProto.onlyId = item.onlyId;
+                        equipProto.curLevel = 100;
+                        equipProto.curExp = 999999;
+                        equipProto.curDurability = 100;
+                        equipProto.jingLianLv = 10;
+                        equipProto.propertyList = new List<SinglePropertyData>();
+
+                        item.equipProtoData = equipProto;
+                        p.curEquipItemList[i] = item;
+                    }
+                }
+            }
+        }
+
+        Debug.Log($"[TestMod] 修武弟子已设置：装备 {p.curEquipItemList.FindAll(x => x != null).Count} 件");
+    }
+
+    private ItemData FindEquipmentFromBag(List<ItemData> bagItems, int slotIndex)
+    {
+        if (bagItems == null || bagItems.Count == 0) return null;
+
+        ItemData best = null;
+        int bestRarity = -1;
+
+        string[] slotNames = { "法器", "锦衣", "鞋子", "璎珞" };
+        string slotName = slotIndex < slotNames.Length ? slotNames[slotIndex] : "未知";
+
+        int targetEquipType = slotIndex + 1;
+
+        Debug.Log($"[TestMod] 查找槽位 {slotIndex}({slotName}), 目标类型={targetEquipType}");
+
+        foreach (var item in bagItems)
+        {
+            if (item == null || item.settingId <= 0) continue;
+
+            // 调试信息
+            string equipInfo = $"[TestMod] 检查物品: {item.setting?.Name ?? "unknown"}, settingId={item.settingId}";
+            if (item.equipProtoData == null)
+            {
+                Debug.LogWarning($"{equipInfo}, equipProtoData=null");
+                continue;
+            }
+            equipInfo += $", isEquipped={item.equipProtoData.isEquipped}";
+
+            if (item.equipProtoData.isEquipped) continue;
+
+            var equipSetting = item.equipProtoData.setting;
+            if (equipSetting == null)
+            {
+                // 尝试从配置表获取
+                equipSetting = DataTable.FindEquipSetting(item.equipProtoData.settingId);
+                if (equipSetting != null)
+                {
+                    item.equipProtoData.setting = equipSetting;
+                    Debug.Log($"{equipInfo}, 从配置表加载了setting");
+                }
+                else
+                {
+                    Debug.LogWarning($"{equipInfo}, setting=null, 无法获取");
+                    continue;
+                }
+            }
+
+            int equipType = equipSetting.Pos.ToInt32();
+            Debug.Log($"{equipInfo}, equipType={equipType}");
+
+            if (equipType != targetEquipType) continue;
+
+            int rarity = equipSetting.Rarity.ToInt32();
+            if (rarity > bestRarity)
+            {
+                bestRarity = rarity;
+                best = item;
+            }
+        }
+
+        if (best != null)
+        {
+            Debug.Log($"[TestMod] 背包中找到槽位 {slotIndex}({slotName}) 的装备: {best.setting.Name}, 稀有度={bestRarity}");
+        }
+        else
+        {
+            Debug.LogWarning($"[TestMod] 背包中未找到槽位 {slotIndex}({slotName}) 的装备");
+        }
+
+        return best;
+    }
+
+    private EquipmentSetting FindBestEquipmentForSlot(int slotIndex, List<EquipmentSetting> allEquipSettings)
+    {
+        string[] slotNames = { "法器", "锦衣", "鞋子", "璎珞" };
+        string slotName = slotIndex < slotNames.Length ? slotNames[slotIndex] : "未知";
+
+        Debug.Log($"[TestMod] 开始查找槽位 {slotIndex}({slotName})，装备总数: {allEquipSettings.Count}");
+
+        // 统计各类型的装备数量
+        Dictionary<int, int> typeCount = new Dictionary<int, int>();
+        foreach (var equip in allEquipSettings)
+        {
+            if (equip == null) continue;
+            int equipType = equip.Pos.ToInt32();
+            if (!typeCount.ContainsKey(equipType))
+                typeCount[equipType] = 0;
+            typeCount[equipType]++;
+        }
+        Debug.Log($"[TestMod] 装备类型分布: {string.Join(", ", typeCount.Select(x => $"类型{x.Key}={x.Value}个"))}");
+
+        // 找出所有匹配槽位的装备
+        List<EquipmentSetting> matchedEquips = new List<EquipmentSetting>();
+        foreach (var equip in allEquipSettings)
+        {
+            if (equip == null) continue;
+
+            int equipType = equip.Pos.ToInt32();
+            bool matchesSlot = false;
+
+            switch (slotIndex)
+            {
+                case 0: matchesSlot = (equipType == 0); break;
+                case 1: matchesSlot = (equipType == 1); break;
+                case 2: matchesSlot = (equipType == 2); break;
+                case 3: matchesSlot = (equipType == 3); break;
+            }
+
+            if (matchesSlot)
+            {
+                matchedEquips.Add(equip);
+            }
+        }
+
+        Debug.Log($"[TestMod] 槽位 {slotIndex}({slotName}) 匹配到 {matchedEquips.Count} 个装备");
+
+        // 按稀有度排序，从高到低
+        matchedEquips.Sort((a, b) =>
+        {
+            int rarityA = 0, rarityB = 0;
+            try { rarityA = a.Rarity.ToInt32(); } catch { }
+            try { rarityB = b.Rarity.ToInt32(); } catch { }
+            return rarityB.CompareTo(rarityA);
+        });
+
+        // 从高到低，找到第一个在配置表中存在的装备
+        EquipmentSetting best = null;
+        foreach (var equip in matchedEquips)
+        {
+            int rarity = 0;
+            try { rarity = equip.Rarity.ToInt32(); } catch { }
+
+            // 检查 itemId 对应的 ItemSetting 是否存在
+            int itemId = equip.ItemId.ToInt32();
+            var itemSetting = DataTable.FindItemSetting(itemId);
+
+            Debug.Log($"[TestMod] 检查装备: {equip.Name}, id={equip.Id}, itemId={itemId}, 稀有度={rarity}, ItemSetting存在={itemSetting != null}");
+
+            if (itemSetting != null)
+            {
+                best = equip;
+                Debug.Log($"[TestMod] 槽位 {slotIndex}({slotName}) 选中装备: {equip.Name}, 稀有度={rarity}");
+                break;
+            }
+        }
+
+        if (best == null)
+        {
+            Debug.LogWarning($"[TestMod] 槽位 {slotIndex}({slotName}) 没有任何装备的ItemSetting存在！");
+            // 最后一个手段：返回第一个匹配的装备
+            if (matchedEquips.Count > 0)
+            {
+                best = matchedEquips[0];
+                Debug.LogWarning($"[TestMod] 使用后备装备: {best.Name}");
+            }
+        }
+
+        return best;
+    }
+
+    private void InitPlayerSkillsFullLevel(PeopleData p)
+    {
+        if (p == null) return;
+
+        // 如果已经有技能数据，不再重新初始化（保留玩家手动卸下的技能）
+        if (p.allSkillData != null && p.allSkillData.skillList != null && p.allSkillData.skillList.Count > 0)
+        {
+            Debug.Log($"[TestMod] {p.name} 已有技能数据，跳过初始化");
+            return;
+        }
+
+        // 初始化技能数据
+        if (p.allSkillData == null)
+        {
+            p.allSkillData = new AllSkillData();
+        }
+        if (p.allSkillData.equippedSkillIdList == null)
+        {
+            p.allSkillData.equippedSkillIdList = new List<int>();
+        }
+        if (p.allSkillData.skillList == null)
+        {
+            p.allSkillData.skillList = new List<SingleSkillData>();
+        }
+
+        // 解锁所有技能槽位
+        p.allSkillData.unlockedSkillPos = 10; // 解锁足够多的槽位
+        if (p.allSkillData.unlockedTypeList == null)
+        {
+            p.allSkillData.unlockedTypeList = new List<int>();
+        }
+        else
+        {
+            p.allSkillData.unlockedTypeList.Clear();
+        }
+        for (int i = 0; i < 10; i++)
+        {
+            p.allSkillData.unlockedTypeList.Add((int)UnlockType.UnLocked);
+        }
+
+        // 获取所有可用的技能ID列表
+        List<int> skillIdList = new List<int>();
+        if (DataTable.table != null && DataTable.table.TbSkill != null)
+        {
+            var allSkills = DataTable.table.TbSkill.DataList;
+            if (allSkills != null)
+            {
+                // 添加配置表中所有的技能
+                foreach (var skill in allSkills)
+                {
+                    if (skill != null)
+                    {
+                        int skillId = skill.Id.ToInt32();
+                        skillIdList.Add(skillId);
+                    }
+                }
+                Debug.Log($"[TestMod] 从配置表获取到 {skillIdList.Count} 个技能");
+            }
+        }
+
+        // 如果配置表没有技能，添加默认技能
+        if (skillIdList.Count == 0)
+        {
+            skillIdList.Add(1); // LingDan
+            skillIdList.Add(2); // PuGong
+            skillIdList.Add(3); // FangYu
+            skillIdList.Add(4); // ZhiLiao
+
+            // 获取弟子天赋对应的技能
+            if (p.talent == (int)StudentTalent.LianGong)
+            {
+                skillIdList.Add(5); // XiuLian
+            }
+            Debug.Log($"[TestMod] 使用默认技能，共 {skillIdList.Count} 个");
+        }
+
+        // 清空现有技能并添加满级技能
+        p.allSkillData.skillList.Clear();
+        p.allSkillData.equippedSkillIdList.Clear();
+
+        // 添加技能并设置为满级
+        foreach (int skillId in skillIdList)
+        {
+            // 获取该技能可以升级的最大等级
+            int maxLevelForThisSkill = 1;
+            List<SkillUpgradeSetting> upgradeList = DataTable.FindSkillUpgradeListBySkillId(skillId);
+            if (upgradeList != null && upgradeList.Count > 0)
+            {
+                maxLevelForThisSkill = upgradeList.Count;
+            }
+
+            SingleSkillData skillData = new SingleSkillData();
+            skillData.skillId = skillId;
+            skillData.skillLevel = maxLevelForThisSkill;
+            p.allSkillData.skillList.Add(skillData);
+        }
+
+        // 使用正常流程装备技能
+        for (int i = 0; i < p.allSkillData.skillList.Count; i++)
+        {
+            var skillData = p.allSkillData.skillList[i];
+            if (skillData != null && !skillData.isEquipped)
+            {
+                // 尝试装备技能
+                SkillSetting skillSetting = DataTable.FindSkillSetting(skillData.skillId);
+                if (skillSetting != null)
+                {
+                    // 检查是否已装备同类技能
+                    bool hasSameTypeEquipped = false;
+                    for (int j = 0; j < p.allSkillData.equippedSkillIdList.Count; j++)
+                    {
+                        int equippedId = p.allSkillData.equippedSkillIdList[j];
+                        var equippedSkill = p.allSkillData.skillList.Find(s => s.skillId == equippedId);
+                        if (equippedSkill != null)
+                        {
+                            SkillSetting equippedSetting = DataTable.FindSkillSetting(equippedId);
+                            if (equippedSetting != null && equippedSetting.YuanSu == skillSetting.YuanSu)
+                            {
+                                hasSameTypeEquipped = true;
+                                break;
+                            }
+                        }
+                    }
+
+                    // 如果没有同类技能，则装备
+                    if (!hasSameTypeEquipped)
+                    {
+                        skillData.isEquipped = true;
+                        p.allSkillData.equippedSkillIdList.Add(skillData.skillId);
+                    }
+                }
+            }
+        }
+
+        Debug.Log($"[TestMod] 技能已设置为满级，共 {p.allSkillData.skillList.Count} 个技能，已装备 {p.allSkillData.equippedSkillIdList.Count} 个");
+    }
+
+    private void CreateAllDanFarms(GameInfo gameInfo)
+    {
+        if (DataTable.table == null || DataTable.table.TbDanFarm == null)
+        {
+            Debug.LogWarning("[TestMod] 配置表未加载，跳过创建丹炉建筑");
+            return;
+        }
+
+        var allDanFarms = DataTable.table.TbDanFarm.DataList;
+        if (allDanFarms == null || allDanFarms.Count == 0)
+        {
+            Debug.LogWarning("[TestMod] 没有丹炉配置，跳过创建");
+            return;
+        }
+
+        Debug.Log($"[TestMod] 开始创建丹炉建筑，共 {allDanFarms.Count} 种");
+
+        // 清空现有丹炉列表，重新创建
+        gameInfo.allDanFarmData.DanFarmList.Clear();
+
+        // 第一个建筑位置
+        float startX = -1975f;
+        float startY = 1835f;
+
+        // 每个建筑之间的间距
+        float spacingX = 250f;
+        float spacingY = -250f;
+
+        // 每排最多6个
+        int perRow = 6;
+
+        int index = 0;
+
+        foreach (var danFarmSetting in allDanFarms)
+        {
+            if (danFarmSetting == null) continue;
+
+            int settingId = danFarmSetting.Id.ToInt32();
+
+            // 每个类型的丹炉创建1个
+            SingleDanFarmData danFarm = new SingleDanFarmData();
+            danFarm.OnlyId = (ulong)(gameInfo.TheId++);
+            danFarm.SettingId = settingId;
+            danFarm.IsEmpty = false;
+            danFarm.Index = index;
+            danFarm.DanFarmType = danFarmSetting.Type.ToInt32();
+
+            // 计算位置：每排6个，超过换排
+            int row = index / perRow;
+            int col = index % perRow;
+            danFarm.LocalPos = new Vector2(
+                startX + col * spacingX,
+                startY + row * spacingY
+            );
+
+            // 获取丹炉满级
+            List<int> upgradeCostList = CommonUtil.SplitCfgOneDepth(danFarmSetting.UpgradeCost);
+            int maxLevel = upgradeCostList.Count;
+
+            // 状态为Idle（空闲状态，可以直接使用）
+            danFarm.Status = 1; // Idling状态
+            danFarm.RemainTime = 0;
+            danFarm.ProcessDanTimer = 0;
+            danFarm.RebuildTotalTime = 0;
+            danFarm.OpenQuanLi = false;
+            danFarm.QuanLiTotalTime = 0;
+            danFarm.QuanliRemainTime = 0;
+            danFarm.ProcessSpeed = 0;
+            // 从配置表获取产品ID，如果无效则设置为灵识(10001)
+            int productId = danFarmSetting.Param.ToInt32();
+            if (productId <= 0)
+            {
+                productId = (int)ItemIdType.LingShi;
+            }
+            danFarm.ProductSettingId = productId;
+            danFarm.ProductRemainNum = 0;
+            danFarm.ProductTotalNum = 0;
+            danFarm.HandleStop = false;
+            danFarm.NeedForeItemId = 0;
+            danFarm.SingleDanPrice = 0;
+            danFarm.Unlocked = true;
+            danFarm.TalentType = 0;
+
+            // 先初始化坐镇位置列表，确保有足够的元素
+            for (int j = 0; j < 4; j++)
+            {
+                danFarm.ZuoZhenStudentIdList.Add(0);
+            }
+
+            danFarm.PosUnlockStatusList.Clear();
+            for (int j = 0; j < 4; j++)
+            {
+                danFarm.PosUnlockStatusList.Add(false);
+            }
+
+            // 初始等级为1，然后调用升级逻辑到满级
+            danFarm.CurLevel = 1;
+
+            // 调用同步升级方法到满级
+            LianDanManager.Instance.DanFarmUpgradeToMaxForTest(danFarm);
+
+            danFarm.Status = 1; // Idling状态
+
+            danFarm.StudentUseCangKuDataList = new List<SingleStudentUseCangKuData>();
+            danFarm.ProductItemList = new List<ItemData>();
+            danFarm.UnlockedProductIdList = new List<int>();
+
+            gameInfo.allDanFarmData.DanFarmList.Add(danFarm);
+            index++;
+        }
+
+        Debug.Log($"[TestMod] 已创建 {index} 个丹炉建筑，每种1个，每排6个按顺序排列");
+    }
+
+    private void AutoEquipBestGear(GameInfo gameInfo)
+    {
+        if (gameInfo == null) return;
+
+        var allEquipSettings = DataTable.table?.TbEquipment?.DataList;
+        if (allEquipSettings == null || allEquipSettings.Count == 0)
+        {
+            Debug.Log($"[TestMod] 没有找到装备配置表，无法自动装备");
+            return;
+        }
+
+        Debug.Log($"[TestMod] 装备配置表加载成功，共 {allEquipSettings.Count} 个装备");
+
+        int equipCount = 0;
+
+        // 为玩家装备 - 使用正常装备方式
+        if (gameInfo.playerPeople != null)
+        {
+            // 确保技能数据已初始化 - 使用正常流程
+            InitPlayerSkillsFullLevel(gameInfo.playerPeople);
+
+            // 确保背包已初始化
+            if (gameInfo.ItemModel == null)
+            {
+                gameInfo.ItemModel = new ItemModel();
+            }
+
+            for (int i = 0; i < 4; i++)
+            {
+                var bestEquip = FindBestEquipmentForSlot(i, allEquipSettings);
+                Debug.Log($"[TestMod] 槽位 {i} 找到最佳装备: {(bestEquip != null ? bestEquip.Name : "null")}");
+                if (bestEquip != null)
+                {
+                    // 先卸下现有装备
+                    ItemData existingItem = gameInfo.playerPeople.curEquipItemList[i];
+                    if (existingItem != null && existingItem.settingId > 0)
+                    {
+                        EquipmentManager.Instance.OnUnEquip(gameInfo.playerPeople, existingItem, i);
+                    }
+
+                    // 使用正常流程获取装备
+                    ItemData item = CreateEquipWithNormalProcess(bestEquip, gameInfo);
+                    if (item != null)
+                    {
+                        // 使用正常装备方式装备
+                        EquipmentManager.Instance.OnEquip(gameInfo.playerPeople, item, i);
+                        equipCount++;
+                    }
+                }
+            }
+            Debug.Log($"[TestMod] 玩家已自动装备 {equipCount} 件装备");
+        }
+
+        // 为所有弟子装备 - 使用正常装备方式（4个槽位）
+        if (gameInfo.studentData?.allStudentList != null)
+        {
+            foreach (var student in gameInfo.studentData.allStudentList)
+            {
+                if (student == null) continue;
+
+                // 使用正常流程初始化弟子技能
+                InitPlayerSkillsFullLevel(student);
+
+                int studentEquipCount = 0;
+                for (int i = 0; i < 4; i++)
+                {
+                    var bestEquip = FindBestEquipmentForSlot(i, allEquipSettings);
+                    if (bestEquip != null)
+                    {
+                        // 先卸下现有装备
+                        ItemData existingItem = student.curEquipItemList[i];
+                        if (existingItem != null && existingItem.settingId > 0)
+                        {
+                            EquipmentManager.Instance.OnUnEquip(student, existingItem, i);
+                        }
+
+                        // 使用正常流程获取装备
+                        ItemData item = CreateEquipWithNormalProcess(bestEquip, gameInfo);
+                        if (item != null)
+                        {
+                            // 使用正常装备方式装备
+                            EquipmentManager.Instance.OnEquip(student, item, i);
+                            studentEquipCount++;
+                        }
+                    }
+                }
+                Debug.Log($"[TestMod] 弟子 {student.name} 已自动装备 {studentEquipCount} 件装备");
+            }
+        }
+
+        Debug.Log($"[TestMod] 自动装备完成，共装备 {equipCount} 件");
+    }
+
+    private ItemData CreateEquipWithNormalProcess(EquipmentSetting bestEquip, GameInfo gameInfo)
+    {
+        EquipProtoData equipData = new EquipProtoData();
+        equipData.onlyId = gameInfo.TheId++;
+        equipData.settingId = bestEquip.Id.ToInt32();
+        equipData.setting = bestEquip;
+        equipData.curLevel = 25; // 满级25级
+        equipData.curDurability = 100;
+
+        List<List<int>> baseProList = CommonUtil.SplitCfg(bestEquip.BasePro);
+        for (int i = 0; i < baseProList.Count; i++)
+        {
+            List<int> singlePro = baseProList[i];
+            if (singlePro.Count >= 2)
+            {
+                int theId = singlePro[0];
+                int theNum = singlePro[1];
+
+                if (theId == (int)PropertyIdType.RdmProDamageAdd)
+                {
+                    List<PropertyIdType> candidateIdList = new List<PropertyIdType>
+                    {
+                        PropertyIdType.WaterDamageAdd,
+                        PropertyIdType.FireDamageAdd,
+                        PropertyIdType.StormDamageAdd,
+                        PropertyIdType.IceDamageAdd,
+                        PropertyIdType.YangProDamageAdd,
+                        PropertyIdType.YinProDamageAdd
+                    };
+                    int proIdIndex = RandomManager.Next(0, candidateIdList.Count);
+                    theId = (int)candidateIdList[proIdIndex];
+                }
+
+                // 计算满级属性值
+                int maxLevel = 25;
+                int baseNum = singlePro[1];
+                int upgradeAdd = 0;
+                try
+                {
+                    upgradeAdd = bestEquip.UpgradeProAdd.ToInt32();
+                }
+                catch { }
+                int maxNum = baseNum + upgradeAdd * maxLevel;
+
+                equipData.propertyIdList.Add(theId);
+                SinglePropertyData data = new SinglePropertyData();
+                data.id = theId;
+                data.num = maxNum; // 满级属性值
+                data.quality = 5;
+                equipData.propertyList.Add(data);
+            }
+        }
+
+        equipData.youHuaLv = 5;
+
+        int itemId = bestEquip.ItemId.ToInt32();
+        ItemSetting itemSetting = DataTable.FindItemSetting(itemId);
+        if (itemSetting == null)
+        {
+            Debug.LogError($"[TestMod] ItemSetting not found for itemId: {itemId}");
+            return null;
+        }
+
+        ItemData item = ItemManager.Instance.GetItem(equipData, 1, Quality.Gold);
+
+        return item;
+    }
+
+    private ItemData CreateBestEquipItem(EquipmentSetting bestEquip, GameInfo gameInfo)
+    {
+        // 完整模拟练器房创建装备的流程
+        EquipProtoData equipData = new EquipProtoData();
+        equipData.onlyId = gameInfo.TheId++;
+        equipData.settingId = bestEquip.Id.ToInt32();
+        equipData.setting = bestEquip;
+        equipData.curLevel = 1;
+        equipData.curDurability = 100;
+
+        // 设置满级属性（模拟练器房的属性设置）
+        List<List<int>> baseProList = CommonUtil.SplitCfg(bestEquip.BasePro);
+        for (int i = 0; i < baseProList.Count; i++)
+        {
+            List<int> singlePro = baseProList[i];
+            if (singlePro.Count >= 2)
+            {
+                int theId = singlePro[0];
+                int theNum = singlePro[1];
+
+                // 随机属性处理
+                if (theId == (int)PropertyIdType.RdmProDamageAdd)
+                {
+                    List<PropertyIdType> candidateIdList = new List<PropertyIdType>
+                    {
+                        PropertyIdType.WaterDamageAdd,
+                        PropertyIdType.FireDamageAdd,
+                        PropertyIdType.StormDamageAdd,
+                        PropertyIdType.IceDamageAdd,
+                        PropertyIdType.YangProDamageAdd,
+                        PropertyIdType.YinProDamageAdd
+                    };
+                    int proIdIndex = RandomManager.Next(0, candidateIdList.Count);
+                    theId = (int)candidateIdList[proIdIndex];
+                }
+
+                equipData.propertyIdList.Add(theId);
+                SinglePropertyData data = new SinglePropertyData();
+                data.id = theId;
+                data.num = theNum;
+                data.quality = 5; // 满品质
+                equipData.propertyList.Add(data);
+            }
+        }
+
+        // 设置优化等级
+        equipData.youHuaLv = 5;
+
+        // 初始化宝石槽
+        equipData.gemList = new List<ItemData>();
+        for (int i = 0; i < 4; i++)
+        {
+            equipData.gemList.Add(null);
+        }
+
+        // 获取 ItemSetting
+        int itemId = bestEquip.ItemId.ToInt32();
+        ItemSetting itemSetting = DataTable.FindItemSetting(itemId);
+        if (itemSetting == null)
+        {
+            Debug.LogError($"[TestMod] ItemSetting not found for itemId: {itemId}");
+            return null;
+        }
+
+        // 使用 GetEquipment 创建装备（与练器房完全一致的流程）
+        ItemData item = RoleManager.Instance.GetEquipment(equipData, itemSetting.Quality.ToInt32());
+
+        return item;
+    }
+    #endregion
 }
