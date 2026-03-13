@@ -45,12 +45,33 @@ public class ItemTipsPanel : PanelBase
         }
         
         itemSetting = DataTable.FindItemSetting(itemData.settingId);
+        if (itemSetting == null)
+        {
+            Debug.LogError($"[ItemTipsPanel] ItemSetting not found for settingId={itemData.settingId}, trying to find equipSetting...");
+            // 尝试从 equipProtoData 获取
+            if (itemData.equipProtoData != null)
+            {
+                var equipSetting = DataTable.FindEquipSetting(itemData.equipProtoData.settingId);
+                if (equipSetting != null)
+                {
+                    int itemId = equipSetting.ItemId.ToInt32();
+                    itemSetting = DataTable.FindItemSetting(itemId);
+                    Debug.LogError($"[ItemTipsPanel] Found itemSetting from equipProtoData, itemId={itemId}");
+                }
+            }
+        }
         RegisterEvent(TheEventType.CloseItemTipsPanel, CloseThePanel);
     }
  
     public override void OnOpenIng()
     { 
         base.OnOpenIng();
+        if (itemSetting == null)
+        {
+            Debug.LogError($"[ItemTipsPanel] itemSetting is null, itemData.settingId={itemData?.settingId}");
+            txt_name.SetText("未知装备");
+            return;
+        }
         txt_name.SetText(itemSetting.Name);
         if(txt_des!=null)
         txt_des.SetText(itemSetting.Des);
