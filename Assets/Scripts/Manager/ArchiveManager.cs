@@ -1724,23 +1724,11 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
     {
         if (p == null) return;
 
-        // 如果已经有技能数据且有已装备的技能，不再重新初始化（保留玩家手动卸下的技能）
+        // 如果已经有技能数据，不再重新初始化（保留玩家手动卸下的技能）
         if (p.allSkillData != null && p.allSkillData.skillList != null && p.allSkillData.skillList.Count > 0)
         {
-            bool hasEquippedSkill = false;
-            foreach (var skill in p.allSkillData.skillList)
-            {
-                if (skill != null && skill.isEquipped)
-                {
-                    hasEquippedSkill = true;
-                    break;
-                }
-            }
-            if (hasEquippedSkill)
-            {
-                Debug.Log($"[TestMod] {p.name} 已有技能数据，跳过初始化");
-                return;
-            }
+            Debug.Log($"[TestMod] {p.name} 已有技能数据，跳过初始化");
+            return;
         }
 
         // 初始化技能数据
