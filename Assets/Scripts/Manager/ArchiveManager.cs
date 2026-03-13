@@ -1616,6 +1616,7 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
         }
         Debug.Log($"[TestMod] 装备类型分布: {string.Join(", ", typeCount.Select(x => $"类型{x.Key}={x.Value}个"))}");
         
+        // 先找稀有度最高的
         foreach (var equip in allEquipSettings)
         {
             if (equip == null) continue;
@@ -1633,7 +1634,12 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
             
             if (matchesSlot)
             {
-                int rarity = equip.Rarity.ToInt32();
+                int rarity = 0;
+                try {
+                    rarity = equip.Rarity.ToInt32();
+                } catch {
+                    rarity = 0;
+                }
                 Debug.Log($"[TestMod] 槽位 {slotIndex}({slotName}) 找到装备: {equip.Name}, 类型={equipType}, 稀有度={rarity}");
                 if (rarity > bestRarity)
                 {
@@ -1643,9 +1649,37 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
             }
         }
         
+        // 如果没找到，尝试找任意一个
         if (best == null)
         {
-            Debug.LogWarning($"[TestMod] 槽位 {slotIndex}({slotName}) 没有找到可用装备");
+            Debug.LogWarning($"[TestMod] 槽位 {slotIndex}({slotName}) 没有找到可用装备，尝试获取任意一个...");
+            foreach (var equip in allEquipSettings)
+            {
+                if (equip == null) continue;
+                
+                int equipType = equip.Pos.ToInt32();
+                bool matchesSlot = false;
+                
+                switch (slotIndex)
+                {
+                    case 0: matchesSlot = (equipType == 0); break;
+                    case 1: matchesSlot = (equipType == 1); break;
+                    case 2: matchesSlot = (equipType == 2); break;
+                    case 3: matchesSlot = (equipType == 3); break;
+                }
+                
+                if (matchesSlot)
+                {
+                    best = equip;
+                    Debug.Log($"[TestMod] 槽位 {slotIndex}({slotName}) 使用任意装备: {equip.Name}");
+                    break;
+                }
+            }
+        }
+        
+        if (best == null)
+        {
+            Debug.LogWarning($"[TestMod] 槽位 {slotIndex}({slotName}) 完全没有找到可用装备");
         }
         
         return best;
