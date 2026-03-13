@@ -354,6 +354,13 @@ public class SkillPanel : PanelBase
 
         List<SkillUpgradeSetting> upgradeList = DataTable.FindSkillUpgradeListBySkillId(curChoosedSkill.skillId);
 
+        if (upgradeList == null || upgradeList.Count == 0 || curChoosedSkill.skillLevel <= 0 || curChoosedSkill.skillLevel > upgradeList.Count)
+        {
+            Debug.LogError($"[SkillPanel] 技能升级配置异常: skillId={curChoosedSkill.skillId}, skillLevel={curChoosedSkill.skillLevel}, upgradeList.Count={upgradeList?.Count ?? 0}");
+            btn_confirmUpgrade.gameObject.SetActive(false);
+            return;
+        }
+
         SkillUpgradeSetting curSetting = upgradeList[curChoosedSkill.skillLevel - 1];
         txt_beforeUpgradeLv.SetText("Lv" + curChoosedSkill.skillLevel);
         txt_beforeUpgradeDes.SetText(SkillManager.Instance. ShowSkillFunctionDes(curSetting));
