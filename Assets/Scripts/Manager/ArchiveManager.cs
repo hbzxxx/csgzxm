@@ -1596,15 +1596,12 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
     
     private EquipmentSetting FindBestEquipmentForSlot(int slotIndex, List<EquipmentSetting> allEquipSettings)
     {
-        EquipmentSetting best = null;
-        int bestRarity = -1;
-        
         string[] slotNames = { "法器", "锦衣", "鞋子", "璎珞" };
         string slotName = slotIndex < slotNames.Length ? slotNames[slotIndex] : "未知";
         
         Debug.Log($"[TestMod] 开始查找槽位 {slotIndex}({slotName})，装备总数: {allEquipSettings.Count}");
         
-        // 先统计各类型的装备数量
+        // 统计各类型的装备数量
         Dictionary<int, int> typeCount = new Dictionary<int, int>();
         foreach (var equip in allEquipSettings)
         {
@@ -1616,7 +1613,8 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
         }
         Debug.Log($"[TestMod] 装备类型分布: {string.Join(", ", typeCount.Select(x => $"类型{x.Key}={x.Value}个"))}");
         
-        // 先找稀有度最高的
+        // 找出所有匹配槽位的装备
+        List<EquipmentSetting> matchedEquips = new List<EquipmentSetting>();
         foreach (var equip in allEquipSettings)
         {
             if (equip == null) continue;
@@ -1626,60 +1624,58 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
             
             switch (slotIndex)
             {
-                case 0: matchesSlot = (equipType == 0); break;  // 法器
-                case 1: matchesSlot = (equipType == 1); break;  // 锦衣
-                case 2: matchesSlot = (equipType == 2); break;  // 鞋子
-                case 3: matchesSlot = (equipType == 3); break;  // 璎珞
+                case 0: matchesSlot = (equipType == 0); break;
+                case 1: matchesSlot = (equipType == 1); break;
+                case 2: matchesSlot = (equipType == 2); break;
+                case 3: matchesSlot = (equipType == 3); break;
             }
             
             if (matchesSlot)
             {
-                int rarity = 0;
-                try {
-                    rarity = equip.Rarity.ToInt32();
-                } catch {
-                    rarity = 0;
-                }
-                Debug.Log($"[TestMod] 槽位 {slotIndex}({slotName}) 找到装备: {equip.Name}, 类型={equipType}, 稀有度={rarity}");
-                if (rarity > bestRarity)
-                {
-                    bestRarity = rarity;
-                    best = equip;
-                }
+                matchedEquips.Add(equip);
             }
         }
         
-        // 如果没找到，尝试找任意一个
-        if (best == null)
+        Debug.Log($"[TestMod] 槽位 {slotIndex}({slotName}) 匹配到 {matchedEquips.Count} 个装备");
+        
+        // 按稀有度排序，从高到低
+        matchedEquips.Sort((a, b) => {
+            int rarityA = 0, rarityB = 0;
+            try { rarityA = a.Rarity.ToInt32(); } catch { }
+            try { rarityB = b.Rarity.ToInt32(); } catch { }
+            return rarityB.CompareTo(rarityA);
+        });
+        
+        // 从高到低，找到第一个在配置表中存在的装备
+        EquipmentSetting best = null;
+        foreach (var equip in matchedEquips)
         {
-            Debug.LogWarning($"[TestMod] 槽位 {slotIndex}({slotName}) 没有找到可用装备，尝试获取任意一个...");
-            foreach (var equip in allEquipSettings)
+            int rarity = 0;
+            try { rarity = equip.Rarity.ToInt32(); } catch { }
+            
+            // 检查 itemId 对应的 ItemSetting 是否存在
+            int itemId = equip.ItemId.ToInt32();
+            var itemSetting = DataTable.FindItemSetting(itemId);
+            
+            Debug.Log($"[TestMod] 检查装备: {equip.Name}, id={equip.Id}, itemId={itemId}, 稀有度={rarity}, ItemSetting存在={itemSetting != null}");
+            
+            if (itemSetting != null)
             {
-                if (equip == null) continue;
-                
-                int equipType = equip.Pos.ToInt32();
-                bool matchesSlot = false;
-                
-                switch (slotIndex)
-                {
-                    case 0: matchesSlot = (equipType == 0); break;
-                    case 1: matchesSlot = (equipType == 1); break;
-                    case 2: matchesSlot = (equipType == 2); break;
-                    case 3: matchesSlot = (equipType == 3); break;
-                }
-                
-                if (matchesSlot)
-                {
-                    best = equip;
-                    Debug.Log($"[TestMod] 槽位 {slotIndex}({slotName}) 使用任意装备: {equip.Name}");
-                    break;
-                }
+                best = equip;
+                Debug.Log($"[TestMod] 槽位 {slotIndex}({slotName}) 选中装备: {equip.Name}, 稀有度={rarity}");
+                break;
             }
         }
         
         if (best == null)
         {
-            Debug.LogWarning($"[TestMod] 槽位 {slotIndex}({slotName}) 完全没有找到可用装备");
+            Debug.LogWarning($"[TestMod] 槽位 {slotIndex}({slotName}) 没有任何装备的ItemSetting存在！");
+            // 最后一个手段：返回第一个匹配的装备
+            if (matchedEquips.Count > 0)
+            {
+                best = matchedEquips[0];
+                Debug.LogWarning($"[TestMod] 使用后备装备: {best.Name}");
+            }
         }
         
         return best;
