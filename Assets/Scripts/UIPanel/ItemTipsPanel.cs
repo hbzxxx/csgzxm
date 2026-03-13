@@ -66,15 +66,34 @@ public class ItemTipsPanel : PanelBase
     public override void OnOpenIng()
     { 
         base.OnOpenIng();
-        if (itemSetting == null)
+        string equipName = "";
+        if (itemSetting != null)
+        {
+            equipName = itemSetting.Name;
+        }
+        else if (itemData.equipProtoData?.setting != null)
+        {
+            equipName = itemData.equipProtoData.setting.Name;
+        }
+        
+        if (string.IsNullOrEmpty(equipName))
         {
             Debug.LogError($"[ItemTipsPanel] itemSetting is null, itemData.settingId={itemData?.settingId}");
             txt_name.SetText("未知装备");
-            return;
         }
-        txt_name.SetText(itemSetting.Name);
-        if(txt_des!=null)
-        txt_des.SetText(itemSetting.Des);
+        else
+        {
+            txt_name.SetText(equipName);
+        }
+        
+        if(itemSetting != null && txt_des!=null)
+        {
+            txt_des.SetText(itemSetting.Des);
+        }
+        else if (itemData.equipProtoData?.setting != null && txt_des != null)
+        {
+            txt_des.SetText(itemData.equipProtoData.setting.Des);
+        }
         if (trans_itemGrid != null)
             AddSingle<ItemView>(trans_itemGrid, itemData);
         if(txt_quality!=null)
