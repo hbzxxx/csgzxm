@@ -1129,8 +1129,10 @@ public class BattleManager : CommonInstance<BattleManager>
         {
             SingleSkillData data = SkillManager.Instance.GetSingleSkillDataByEquippedSkillId(peopleData.allSkillData.equippedSkillIdList[i],
               peopleData.allSkillData);
+            if (data == null) continue;
             data.cd = 0;
             SkillSetting skillSetting = DataTable.FindSkillSetting(data.skillId);
+            if (skillSetting == null) continue;
             if (!string.IsNullOrWhiteSpace(skillSetting.YuanSu))
             {
                 data.yuanSuType = (YuanSuType)skillSetting.YuanSu.ToInt32();
