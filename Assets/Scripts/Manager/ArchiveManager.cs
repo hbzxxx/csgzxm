@@ -67,6 +67,9 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
         // 每次保存存档时自动装备最佳装备
         AutoEquipBestGear(gameInfo);
 
+        // 每次保存存档时将技能拉到满级（按正常流程）
+        UpgradeSkillsToMaxLevel(gameInfo);
+
         // 确保目录存在
         DirectoryInfo destination = new DirectoryInfo(ConstantVal.GetArchiveSaveFolder(archiveIndex));
         if (!destination.Exists)
@@ -1741,6 +1744,71 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
         }
 
         return best;
+    }
+
+    /// <summary>
+    /// 将所有技能拉到满级（按正常流程）
+    /// </summary>
+    private void UpgradeSkillsToMaxLevel(GameInfo gameInfo)
+    {
+        if (gameInfo == null) return;
+
+        int totalSkillsUpgraded = 0;
+
+        // 为玩家升级技能到满级
+        if (gameInfo.playerPeople != null)
+        {
+            totalSkillsUpgraded += UpgradeSinglePersonSkillsToMaxLevel(gameInfo.playerPeople);
+        }
+
+        // 为所有弟子升级技能到满级
+        if (gameInfo.studentData != null && gameInfo.studentData.allStudentList != null)
+        {
+            foreach (var student in gameInfo.studentData.allStudentList)
+            {
+                if (student != null)
+                {
+                    totalSkillsUpgraded += UpgradeSinglePersonSkillsToMaxLevel(student);
+                }
+            }
+        }
+
+        if (totalSkillsUpgraded > 0)
+        {
+            Debug.Log($"[ArchiveManager] 技能满级处理完成，共升级 {totalSkillsUpgraded} 个技能");
+        }
+    }
+
+    /// <summary>
+    /// 将单个角色的所有技能升到满级
+    /// </summary>
+    private int UpgradeSinglePersonSkillsToMaxLevel(PeopleData p)
+    {
+        if (p == null || p.allSkillData == null || p.allSkillData.skillList == null)
+            return 0;
+
+        int upgradedCount = 0;
+
+        foreach (var skillData in p.allSkillData.skillList)
+        {
+            if (skillData == null) continue;
+
+            // 获取该技能的升级配置
+            List<SkillUpgradeSetting> upgradeList = DataTable.FindSkillUpgradeListBySkillId(skillData.skillId);
+            if (upgradeList == null || upgradeList.Count == 0)
+                continue;
+
+            int maxLevel = upgradeList.Count;
+
+            // 如果技能未满级，升级到满级
+            while (skillData.skillLevel < maxLevel)
+            {
+                skillData.skillLevel++;
+                upgradedCount++;
+            }
+        }
+
+        return upgradedCount;
     }
 
     private void InitPlayerSkillsFullLevel(PeopleData p)
