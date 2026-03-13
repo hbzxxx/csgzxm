@@ -1599,7 +1599,7 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
         EquipmentSetting best = null;
         int bestRarity = -1;
         
-        string[] slotNames = { "法器", "锦衣", "鞋子", "璎珞", "饰品", "腰带" };
+        string[] slotNames = { "法器", "锦衣", "鞋子", "璎珞" };
         string slotName = slotIndex < slotNames.Length ? slotNames[slotIndex] : "未知";
         
         Debug.Log($"[TestMod] 开始查找槽位 {slotIndex}({slotName})，装备总数: {allEquipSettings.Count}");
@@ -1625,12 +1625,10 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
             
             switch (slotIndex)
             {
-                case 0: matchesSlot = (equipType == 1); break;
-                case 1: matchesSlot = (equipType == 2); break;
-                case 2: matchesSlot = (equipType == 3); break;
-                case 3: matchesSlot = (equipType == 4); break;
-                case 4: matchesSlot = (equipType == 5); break;
-                case 5: matchesSlot = (equipType == 6); break;
+                case 0: matchesSlot = (equipType == 0); break;  // 法器
+                case 1: matchesSlot = (equipType == 1); break;  // 锦衣
+                case 2: matchesSlot = (equipType == 2); break;  // 鞋子
+                case 3: matchesSlot = (equipType == 3); break;  // 璎珞
             }
             
             if (matchesSlot)
