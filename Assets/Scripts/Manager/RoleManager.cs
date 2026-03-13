@@ -141,7 +141,7 @@ public class RoleManager
         {
             _CurGameInfo = ArchiveManager.Instance.allArchiveList[index];
             // 配置表已加载，为所有 ItemData/EquipProtoData 重新赋值 setting
-            ArchiveManager.Instance.RestoreAllSettings(_CurGameInfo);
+            //ArchiveManager.Instance.RestoreAllSettings(_CurGameInfo);
         }
         TDGALogin();
         InitAllUIComponentUnlockStatus(newPlayer);
