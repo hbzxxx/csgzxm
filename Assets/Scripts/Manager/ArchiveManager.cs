@@ -1383,7 +1383,7 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
         }
         else
         {
-            StudentManager.Instance.RefreshStudentBattlePro(p);
+            RoleManager.Instance.RefreshBattlePro(p);
         }
 
         Debug.Log($"[TestMod] {p.name} 血脉强化完成，所有血脉等级已设为 {xueMaiMaxLevel}");
