@@ -1753,21 +1753,26 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
     {
         if (gameInfo == null) return;
 
+        Debug.Log("[ArchiveManager] 开始技能满级处理...");
+
         int totalSkillsUpgraded = 0;
 
         // 为玩家升级技能到满级
         if (gameInfo.playerPeople != null)
         {
+            Debug.Log($"[ArchiveManager] 玩家: {gameInfo.playerPeople.name}, 技能数: {gameInfo.playerPeople.allSkillData?.skillList?.Count}");
             totalSkillsUpgraded += UpgradeSinglePersonSkillsToMaxLevel(gameInfo.playerPeople, gameInfo);
         }
 
         // 为所有弟子升级技能到满级
         if (gameInfo.studentData != null && gameInfo.studentData.allStudentList != null)
         {
+            Debug.Log($"[ArchiveManager] 弟子数量: {gameInfo.studentData.allStudentList.Count}");
             foreach (var student in gameInfo.studentData.allStudentList)
             {
                 if (student != null)
                 {
+                    Debug.Log($"[ArchiveManager] 弟子: {student.name}, 技能数: {student.allSkillData?.skillList?.Count}");
                     totalSkillsUpgraded += UpgradeSinglePersonSkillsToMaxLevel(student, gameInfo);
                 }
             }
@@ -1775,7 +1780,11 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
 
         if (totalSkillsUpgraded > 0)
         {
-            Debug.Log($"[ArchiveManager] 技能满级处理完成，共升级 {totalSkillsUpgraded} 个技能");
+            Debug.Log($"[ArchiveManager] 技能满级处理完成，共升级 {totalSkillsUpgraded} 次");
+        }
+        else
+        {
+            Debug.Log("[ArchiveManager] 没有技能需要升级（可能已满级或无技能数据）");
         }
     }
 
@@ -1784,8 +1793,23 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
     /// </summary>
     private int UpgradeSinglePersonSkillsToMaxLevel(PeopleData p, GameInfo gameInfo)
     {
-        if (p == null || p.allSkillData == null || p.allSkillData.skillList == null)
+        if (p == null)
+        {
+            Debug.Log("[ArchiveManager] 角色为空");
             return 0;
+        }
+        if (p.allSkillData == null)
+        {
+            Debug.Log($"[ArchiveManager] {p.name} 没有技能数据 allSkillData");
+            return 0;
+        }
+        if (p.allSkillData.skillList == null || p.allSkillData.skillList.Count == 0)
+        {
+            Debug.Log($"[ArchiveManager] {p.name} 没有技能列表或列表为空");
+            return 0;
+        }
+
+        Debug.Log($"[ArchiveManager] 开始处理 {p.name} 的技能，共 {p.allSkillData.skillList.Count} 个");
 
         int upgradedCount = 0;
 
@@ -1884,14 +1908,19 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
 
             int maxLevel = upgradeList.Count;
 
+            Debug.Log($"[ArchiveManager] 技能ID: {skillData.skillId}, 当前等级: {skillData.skillLevel}, 最高等级: {maxLevel}");
+
             // 逐级升级
             while (skillData.skillLevel < maxLevel)
             {
                 // 使用正常升级流程
                 SkillManager.Instance.OnUpgradeSkill(skillData);
                 upgradedCount++;
+                Debug.Log($"[ArchiveManager] 技能 {skillData.skillId} 升级后等级: {skillData.skillLevel}");
             }
         }
+
+        Debug.Log($"[ArchiveManager] {p.name} 技能升级完成，共升级 {upgradedCount} 次");
 
         return upgradedCount;
     }
