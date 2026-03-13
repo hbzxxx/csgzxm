@@ -1793,26 +1793,27 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
         p.allSkillData.skillList.Clear();
         p.allSkillData.equippedSkillIdList.Clear();
 
-        // 获取技能升级配置表的最大等级
-        int maxSkillLevel = 50; // 默认最大等级
-        if (DataTable._skillUpgradeList != null && DataTable._skillUpgradeList.Count > 0)
-        {
-            maxSkillLevel = DataTable._skillUpgradeList.Count;
-        }
-
         // 添加技能并设置为满级
         foreach (int skillId in skillIdList)
         {
+            // 获取该技能可以升级的最大等级
+            int maxLevelForThisSkill = 1;
+            List<SkillUpgradeSetting> upgradeList = DataTable.FindSkillUpgradeListBySkillId(skillId);
+            if (upgradeList != null && upgradeList.Count > 0)
+            {
+                maxLevelForThisSkill = upgradeList.Count;
+            }
+
             SingleSkillData skillData = new SingleSkillData();
             skillData.skillId = skillId;
-            skillData.skillLevel = maxSkillLevel;
+            skillData.skillLevel = maxLevelForThisSkill;
             p.allSkillData.skillList.Add(skillData);
             
             // 装备这个技能
             p.allSkillData.equippedSkillIdList.Add(skillId);
         }
 
-        Debug.Log($"[TestMod] 技能已设置为满级 {maxSkillLevel}，共 {p.allSkillData.skillList.Count} 个技能");
+        Debug.Log($"[TestMod] 技能已设置为满级，共 {p.allSkillData.skillList.Count} 个技能");
     }
     
     private void CreateAllDanFarms(GameInfo gameInfo)
