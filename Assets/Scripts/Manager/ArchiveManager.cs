@@ -1022,6 +1022,8 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
         if (gameInfo.playerPeople != null)
         {
             UpgradePlayerTo999Level(gameInfo.playerPeople);
+            // 血脉强化到满级
+            UpgradeXueMaiToMaxLevel(gameInfo.playerPeople);
         }
 
         // 9. 设置现有弟子只增加经验不修改等级 (不修改)
@@ -1151,6 +1153,9 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
                 
                 // 调用升级流程将弟子升级到999级
                 UpgradeStudentTo999Level(student);
+                
+                // 血脉强化到满级
+                UpgradeXueMaiToMaxLevel(student);
                 
                 if (talent == StudentTalent.LianGong)
                 {
@@ -1349,6 +1354,39 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
         }
 
         Debug.Log($"[TestMod] 玩家 {p.name} 升级完成，当前 trainIndex {p.trainIndex}");
+
+        // 血脉强化到满级
+        UpgradeXueMaiToMaxLevel(p);
+    }
+
+    /// <summary>
+    /// 血脉强化到满级
+    /// </summary>
+    private void UpgradeXueMaiToMaxLevel(PeopleData p)
+    {
+        if (p == null || p.xueMai == null) return;
+
+        int xueMaiMaxLevel = XueMaiManager.Instance.limitLevel(p);
+        
+        Debug.Log($"[TestMod] 开始将 {p.name} 的血脉强化到满级，当前血脉上限: {xueMaiMaxLevel}");
+
+        // 遍历所有血脉类型，将等级设置为上限
+        for (int i = 0; i < p.xueMai.xueMaiLevelList.Count; i++)
+        {
+            p.xueMai.xueMaiLevelList[i] = xueMaiMaxLevel;
+        }
+
+        // 刷新战斗属性
+        if (p.isPlayer)
+        {
+            RoleManager.Instance.RefreshBattlePro(p);
+        }
+        else
+        {
+            StudentManager.Instance.RefreshStudentBattlePro(p);
+        }
+
+        Debug.Log($"[TestMod] {p.name} 血脉强化完成，所有血脉等级已设为 {xueMaiMaxLevel}");
     }
     
     private PeopleData CreateMaxQualityStudent(StudentTalent talent, int quality, int rarity, GameInfo gameInfo)
