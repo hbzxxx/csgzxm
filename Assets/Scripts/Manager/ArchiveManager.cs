@@ -1758,7 +1758,7 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
         // 为玩家升级技能到满级
         if (gameInfo.playerPeople != null)
         {
-            totalSkillsUpgraded += UpgradeSinglePersonSkillsToMaxLevel(gameInfo.playerPeople);
+            totalSkillsUpgraded += UpgradeSinglePersonSkillsToMaxLevel(gameInfo.playerPeople, gameInfo);
         }
 
         // 为所有弟子升级技能到满级
@@ -1768,7 +1768,7 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
             {
                 if (student != null)
                 {
-                    totalSkillsUpgraded += UpgradeSinglePersonSkillsToMaxLevel(student);
+                    totalSkillsUpgraded += UpgradeSinglePersonSkillsToMaxLevel(student, gameInfo);
                 }
             }
         }
@@ -1780,30 +1780,115 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
     }
 
     /// <summary>
-    /// 将单个角色的所有技能升到满级
+    /// 将单个角色的所有技能升到满级（按正常流程：消耗材料升级）
     /// </summary>
-    private int UpgradeSinglePersonSkillsToMaxLevel(PeopleData p)
+    private int UpgradeSinglePersonSkillsToMaxLevel(PeopleData p, GameInfo gameInfo)
     {
         if (p == null || p.allSkillData == null || p.allSkillData.skillList == null)
             return 0;
 
         int upgradedCount = 0;
 
+        // 先计算并添加所有升级需要的材料
+        Dictionary<int, ulong> totalConsumeDict = new Dictionary<int, ulong>();
+
         foreach (var skillData in p.allSkillData.skillList)
         {
             if (skillData == null) continue;
 
-            // 获取该技能的升级配置
             List<SkillUpgradeSetting> upgradeList = DataTable.FindSkillUpgradeListBySkillId(skillData.skillId);
             if (upgradeList == null || upgradeList.Count == 0)
                 continue;
 
             int maxLevel = upgradeList.Count;
 
-            // 如果技能未满级，升级到满级
+            // 计算升级到满级需要的材料
+            for (int level = skillData.skillLevel; level < maxLevel; level++)
+            {
+                SkillUpgradeSetting curSetting = upgradeList[level - 1];
+
+                // 普通消耗材料
+                List<List<int>> consume = CommonUtil.SplitCfg(curSetting.Consume);
+                for (int i = 0; i < consume.Count; i++)
+                {
+                    List<int> singleConsume = consume[i];
+                    if (singleConsume.Count < 2) continue;
+                    int itemId = singleConsume[0];
+                    int itemCount = singleConsume[1];
+
+                    if (!totalConsumeDict.ContainsKey(itemId))
+                        totalConsumeDict[itemId] = 0;
+                    totalConsumeDict[itemId] += (ulong)itemCount;
+                }
+
+                // 技能书消耗（每5级）
+                if ((level + 1) % 5 == 0)
+                {
+                    int bookNumListIndex = (level + 1) / 5 - 1;
+                    int[] bookNumList = { 1, 3, 5, 8, 11, 15, 19, 23, 27, 32 };
+                    if (bookNumListIndex < bookNumList.Length)
+                    {
+                        int bookId = skillData.skillId;
+                        int bookCount = bookNumList[bookNumListIndex];
+
+                        if (!totalConsumeDict.ContainsKey(bookId))
+                            totalConsumeDict[bookId] = 0;
+                        totalConsumeDict[bookId] += (ulong)bookCount;
+                    }
+                }
+            }
+        }
+
+        // 添加所有消耗材料到背包
+        if (gameInfo.ItemModel == null)
+        {
+            gameInfo.ItemModel = new ItemModel();
+        }
+        foreach (var kvp in totalConsumeDict)
+        {
+            int itemId = kvp.Key;
+            ulong itemCount = kvp.Value;
+
+            ItemData existItem = gameInfo.ItemModel.itemDataList.Find(x => x.settingId == itemId);
+            if (existItem != null)
+            {
+                existItem.count += itemCount;
+            }
+            else
+            {
+                ItemData newItem = new ItemData();
+                newItem.settingId = itemId;
+                newItem.count = itemCount;
+                newItem.onlyId = ConstantVal.SetId;
+                var setting = DataTable.FindItemSetting(itemId);
+                if (setting != null)
+                {
+                    newItem.quality = setting.Quality.ToInt32();
+                    newItem.setting = setting;
+                }
+                gameInfo.ItemModel.itemDataList.Add(newItem);
+                gameInfo.ItemModel.itemIdList.Add(itemId);
+                gameInfo.ItemModel.onlyIdList.Add(newItem.onlyId);
+            }
+            Debug.Log($"[ArchiveManager] 添加技能升级材料: {itemId}, 数量: {itemCount}");
+        }
+
+        // 使用正常流程逐级升级
+        foreach (var skillData in p.allSkillData.skillList)
+        {
+            if (skillData == null) continue;
+
+            List<SkillUpgradeSetting> upgradeList = DataTable.FindSkillUpgradeListBySkillId(skillData.skillId);
+            if (upgradeList == null || upgradeList.Count == 0)
+                continue;
+
+            int maxLevel = upgradeList.Count;
+
+            // 逐级升级
             while (skillData.skillLevel < maxLevel)
             {
-                skillData.skillLevel++;
+                // 使用正常升级流程
+                SkillManager.Instance.OnUpgradeSkill(skillData);
                 upgradedCount++;
             }
         }
