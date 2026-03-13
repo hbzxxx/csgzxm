@@ -585,6 +585,11 @@ public class KnapsackPanel : PanelBase
         {
             for (int j = 0; j < curItemDataList.Count - 1 - i; j++)
             {
+                //跳过空物品
+                if (curItemDataList[j] == null || curItemDataList[j].setting == null
+                    || curItemDataList[j + 1] == null || curItemDataList[j + 1].setting == null)
+                    continue;
+                    
                 //前面的大于后面的，则二者交换
                 if (curItemDataList[j].setting.ItemType.ToInt32()!=(int)ItemType.Dan
                     && curItemDataList[j].setting.ItemType.ToInt32() != (int)ItemType.GongFaShu
