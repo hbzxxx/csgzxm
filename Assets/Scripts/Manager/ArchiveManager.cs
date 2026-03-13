@@ -1739,7 +1739,7 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
         }
 
         // 解锁所有技能槽位
-        p.allSkillData.unlockedSkillPos = 3;
+        p.allSkillData.unlockedSkillPos = 10; // 解锁足够多的槽位
         if (p.allSkillData.unlockedTypeList == null)
         {
             p.allSkillData.unlockedTypeList = new List<int>();
@@ -1748,7 +1748,7 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
         {
             p.allSkillData.unlockedTypeList.Clear();
         }
-        for (int i = 0; i < 8; i++)
+        for (int i = 0; i < 10; i++)
         {
             p.allSkillData.unlockedTypeList.Add((int)UnlockType.UnLocked);
         }
@@ -1808,12 +1808,46 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
             skillData.skillId = skillId;
             skillData.skillLevel = maxLevelForThisSkill;
             p.allSkillData.skillList.Add(skillData);
-            
-            // 装备这个技能
-            p.allSkillData.equippedSkillIdList.Add(skillId);
         }
 
-        Debug.Log($"[TestMod] 技能已设置为满级，共 {p.allSkillData.skillList.Count} 个技能");
+        // 使用正常流程装备技能
+        for (int i = 0; i < p.allSkillData.skillList.Count; i++)
+        {
+            var skillData = p.allSkillData.skillList[i];
+            if (skillData != null && !skillData.isEquipped)
+            {
+                // 尝试装备技能
+                SkillSetting skillSetting = DataTable.FindSkillSetting(skillData.skillId);
+                if (skillSetting != null)
+                {
+                    // 检查是否已装备同类技能
+                    bool hasSameTypeEquipped = false;
+                    for (int j = 0; j < p.allSkillData.equippedSkillIdList.Count; j++)
+                    {
+                        int equippedId = p.allSkillData.equippedSkillIdList[j];
+                        var equippedSkill = p.allSkillData.skillList.Find(s => s.skillId == equippedId);
+                        if (equippedSkill != null)
+                        {
+                            SkillSetting equippedSetting = DataTable.FindSkillSetting(equippedId);
+                            if (equippedSetting != null && equippedSetting.YuanSu == skillSetting.YuanSu)
+                            {
+                                hasSameTypeEquipped = true;
+                                break;
+                            }
+                        }
+                    }
+
+                    // 如果没有同类技能，则装备
+                    if (!hasSameTypeEquipped)
+                    {
+                        skillData.isEquipped = true;
+                        p.allSkillData.equippedSkillIdList.Add(skillData.skillId);
+                    }
+                }
+            }
+        }
+
+        Debug.Log($"[TestMod] 技能已设置为满级，共 {p.allSkillData.skillList.Count} 个技能，已装备 {p.allSkillData.equippedSkillIdList.Count} 个");
     }
     
     private void CreateAllDanFarms(GameInfo gameInfo)
