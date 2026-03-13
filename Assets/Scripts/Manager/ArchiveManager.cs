@@ -1085,6 +1085,9 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
             gameInfo.ItemModel = new ItemModel();
         }
         
+        // 设置灵石（金币）数量
+        gameInfo.ItemModel.fuLingShiNum = 9999999999999999L;
+        
         if (DataTable.table != null && DataTable.table.TbItem != null)
         {
             var allItems = DataTable.table.TbItem.DataList;
@@ -1094,11 +1097,13 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
                 {
                     if (itemSetting == null) continue;
                     
+                    // 跳过灵石，因为已经单独设置了
                     int itemId = itemSetting.Id.ToInt32();
+                    if (itemId == (int)ItemIdType.LingShi) continue;
                     
                     ItemData newItem = new ItemData();
                     newItem.settingId = itemId;
-                    newItem.count = 9999999999999999;
+                    newItem.count = 9999999999999999L;
                     newItem.onlyId = ConstantVal.SetId;
                     
                     if (itemSetting.Quality != "-1")
@@ -1111,7 +1116,7 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
                     gameInfo.ItemModel.itemDataList.Add(newItem);
                     gameInfo.ItemModel.onlyIdList.Add(newItem.onlyId);
                 }
-                Debug.Log($"[TestMod] 已添加 {allItems.Count} 种物品，每种 99999999999999 个（直接添加数据）");
+                Debug.Log($"[TestMod] 已添加 {allItems.Count} 种物品（不含灵石），灵石数量已设为 9999999999999999");
             }
         }
     }
