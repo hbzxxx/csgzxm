@@ -1883,42 +1883,39 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
             // 确保技能数据已初始化 - 使用正常流程
             InitPlayerSkillsFullLevel(gameInfo.playerPeople);
 
+            // 确保背包已初始化
+            if (gameInfo.ItemModel == null)
+            {
+                gameInfo.ItemModel = new ItemModel();
+            }
+
             for (int i = 0; i < 4; i++)
             {
                 var bestEquip = FindBestEquipmentForSlot(i, allEquipSettings);
                 Debug.Log($"[TestMod] 槽位 {i} 找到最佳装备: {(bestEquip != null ? bestEquip.Name : "null")}");
                 if (bestEquip != null)
                 {
-                    // 先从背包移除该物品（如果已存在）
+                    // 先卸下现有装备
                     ItemData existingItem = gameInfo.playerPeople.curEquipItemList[i];
                     if (existingItem != null && existingItem.settingId > 0)
                     {
-                        // 卸下现有装备
-                        existingItem.equipProtoData.isEquipped = false;
-                        existingItem.equipProtoData.belongP = 0;
+                        EquipmentManager.Instance.OnUnEquip(gameInfo.playerPeople, existingItem, i);
                     }
 
-                    // 创建新装备
-                    ItemData item = CreateBestEquipItem(bestEquip, gameInfo);
-                    
-                    // 添加到背包
-                    if (gameInfo.ItemModel == null)
+                    // 使用正常流程获取装备
+                    ItemData item = CreateEquipWithNormalProcess(bestEquip, gameInfo);
+                    if (item != null)
                     {
-                        gameInfo.ItemModel = new ItemModel();
+                        // 使用正常装备方式装备
+                        EquipmentManager.Instance.OnEquip(gameInfo.playerPeople, item, i);
+                        equipCount++;
                     }
-                    gameInfo.ItemModel.itemIdList.Add(item.settingId);
-                    gameInfo.ItemModel.itemDataList.Add(item);
-                    gameInfo.ItemModel.onlyIdList.Add(item.onlyId);
-
-                    // 使用正常装备方式装备
-                    EquipmentManager.Instance.OnEquip(gameInfo.playerPeople, item, i);
-                    equipCount++;
                 }
             }
             Debug.Log($"[TestMod] 玩家已自动装备 {equipCount} 件装备");
         }
         
-        // 为所有弟子装备 - 使用正常装备方式
+        // 为所有弟子装备 - 使用正常装备方式（4个槽位）
         if (gameInfo.studentData?.allStudentList != null)
         {
             foreach (var student in gameInfo.studentData.allStudentList)
@@ -1929,34 +1926,26 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
                 InitPlayerSkillsFullLevel(student);
                 
                 int studentEquipCount = 0;
-                for (int i = 0; i < 6; i++)
+                for (int i = 0; i < 4; i++)
                 {
                     var bestEquip = FindBestEquipmentForSlot(i, allEquipSettings);
                     if (bestEquip != null)
                     {
-                        // 先从背包移除该物品（如果已存在）
+                        // 先卸下现有装备
                         ItemData existingItem = student.curEquipItemList[i];
                         if (existingItem != null && existingItem.settingId > 0)
                         {
-                            existingItem.equipProtoData.isEquipped = false;
-                            existingItem.equipProtoData.belongP = 0;
+                            EquipmentManager.Instance.OnUnEquip(student, existingItem, i);
                         }
 
-                        // 创建新装备
-                        ItemData item = CreateBestEquipItem(bestEquip, gameInfo);
-                        
-                        // 添加到背包
-                        if (gameInfo.ItemModel == null)
+                        // 使用正常流程获取装备
+                        ItemData item = CreateEquipWithNormalProcess(bestEquip, gameInfo);
+                        if (item != null)
                         {
-                            gameInfo.ItemModel = new ItemModel();
+                            // 使用正常装备方式装备
+                            EquipmentManager.Instance.OnEquip(student, item, i);
+                            studentEquipCount++;
                         }
-                        gameInfo.ItemModel.itemIdList.Add(item.settingId);
-                        gameInfo.ItemModel.itemDataList.Add(item);
-                        gameInfo.ItemModel.onlyIdList.Add(item.onlyId);
-
-                        // 使用正常装备方式装备
-                        EquipmentManager.Instance.OnEquip(student, item, i);
-                        studentEquipCount++;
                     }
                 }
                 Debug.Log($"[TestMod] 弟子 {student.name} 已自动装备 {studentEquipCount} 件装备");
@@ -1966,6 +1955,63 @@ public class ArchiveManager : CommonInstance<ArchiveManager>
         Debug.Log($"[TestMod] 自动装备完成，共装备 {equipCount} 件");
     }
     
+    private ItemData CreateEquipWithNormalProcess(EquipmentSetting bestEquip, GameInfo gameInfo)
+    {
+        EquipProtoData equipData = new EquipProtoData();
+        equipData.onlyId = gameInfo.TheId++;
+        equipData.settingId = bestEquip.Id.ToInt32();
+        equipData.setting = bestEquip;
+        equipData.curLevel = 1;
+        equipData.curDurability = 100;
+
+        List<List<int>> baseProList = CommonUtil.SplitCfg(bestEquip.BasePro);
+        for (int i = 0; i < baseProList.Count; i++)
+        {
+            List<int> singlePro = baseProList[i];
+            if (singlePro.Count >= 2)
+            {
+                int theId = singlePro[0];
+                int theNum = singlePro[1];
+
+                if (theId == (int)PropertyIdType.RdmProDamageAdd)
+                {
+                    List<PropertyIdType> candidateIdList = new List<PropertyIdType>
+                    {
+                        PropertyIdType.WaterDamageAdd,
+                        PropertyIdType.FireDamageAdd,
+                        PropertyIdType.StormDamageAdd,
+                        PropertyIdType.IceDamageAdd,
+                        PropertyIdType.YangProDamageAdd,
+                        PropertyIdType.YinProDamageAdd
+                    };
+                    int proIdIndex = RandomManager.Next(0, candidateIdList.Count);
+                    theId = (int)candidateIdList[proIdIndex];
+                }
+
+                equipData.propertyIdList.Add(theId);
+                SinglePropertyData data = new SinglePropertyData();
+                data.id = theId;
+                data.num = theNum;
+                data.quality = 5;
+                equipData.propertyList.Add(data);
+            }
+        }
+
+        equipData.youHuaLv = 5;
+
+        int itemId = bestEquip.ItemId.ToInt32();
+        ItemSetting itemSetting = DataTable.FindItemSetting(itemId);
+        if (itemSetting == null)
+        {
+            Debug.LogError($"[TestMod] ItemSetting not found for itemId: {itemId}");
+            return null;
+        }
+
+        ItemData item = ItemManager.Instance.GetItem(equipData, 1, Quality.Gold);
+
+        return item;
+    }
+
     private ItemData CreateBestEquipItem(EquipmentSetting bestEquip, GameInfo gameInfo)
     {
         // 完整模拟练器房创建装备的流程
